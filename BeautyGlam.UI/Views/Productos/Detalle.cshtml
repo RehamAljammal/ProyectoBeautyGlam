@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Detalle del Producto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space">
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-md-5">
+                <img src="https://i5.walmartimages.com/seo/Rare-Beauty-By-Selena-Gomez-Liquid-Touch-Weightless-Foundation-0-94oz-170-W-New_7ea70278-ee27-46d2-afb2-3269fa349fd0.56e2e46e3563a42e835192b0f18fda1d.jpeg"
+                     class="img-fluid rounded"
+                     style="max-width:400px;object-fit:cover;" />
+            </div>
+
+            <div class="col-md-7">
+                <h2>Base Líquida Rare Beauty</h2>
+                <p class="text-muted">Categoría: Maquillaje</p>
+                <h4 class="text-dark mb-3">$29.99</h4>
+
+                <p>
+                    Base líquida de cobertura media, acabado natural y sensación ligera en la piel.
+                    Ideal para un look fresco y luminoso durante todo el día.
+                </p>
+
+                <div class="mt-4">
+                    <a href="@Url.Action("Index","Wishlist")"
+                       class="btn btn-dark btn-sm me-2 custom-btn-sm">Agregar a wishlist</a>
+
+                    <a href="@Url.Action("Index","Productos")"
+                       class="btn btn-secondary btn-sm custom-btn-sm">Volver a la lista</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<style>
+    .custom-btn-sm {
+        padding: 6px 14px !important;
+        font-size: 0.85rem !important;
+        border-radius: 6px !important;
+    }
+</style>

@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Inventario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .btn-inv {
+        padding: 6px 14px !important;
+        font-size: 14px;
+        border-radius: 6px;
+    }
+</style>
+
+<section class="section-space">
+    <div class="container">
+
+        <h2 class="mb-4">Inventario</h2>
+
+        <table class="table table-striped align-middle">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Stock</th>
+                    <th>Mínimo</th>
+                    <th>Máximo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Base Rare Beauty</td>
+                    <td>35</td>
+                    <td>10</td>
+                    <td>80</td>
+                    <td class="d-flex gap-2">
+
+                        <a class="btn btn-dark btn-sm btn-inv"
+                           href="@Url.Action("Editar","Inventario", new { id = 1 })">
+                            Editar stock
+                        </a>
+
+                        <a class="btn btn-secondary btn-sm btn-inv"
+                           href="@Url.Action("Minimos","Inventario", new { id = 1 })">
+                            Mín/Máx
+                        </a>
+
+                        <a class="btn btn-outline-dark btn-sm btn-inv"
+                           href="@Url.Action("Movimientos","Inventario", new { id = 1 })">
+                            Movimientos
+                        </a>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</section>

@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "Detalle del Producto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    /* Botones más pequeños */
+    .btn-cat {
+        padding: 4px 10px !important;
+        font-size: 12px !important;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+
+    /* Imagen principal */
+    .galeria-main {
+        width: 100%;
+        height: 420px;
+        border-radius: 12px;
+        object-fit: cover;
+        border: 2px solid #ddd;
+    }
+</style>
+
+<section class="section-space">
+    <div class="container">
+
+        <div class="row">
+
+            <!-- IMAGEN PRINCIPAL ÚNICA -->
+            <div class="col-md-6">
+                <img id="imgPrincipal"
+                     src="https://images.unsplash.com/photo-1600181952365-9d2c45f98898"
+                     class="galeria-main mb-3" />
+            </div>
+
+            <!-- INFORMACIÓN -->
+            <div class="col-md-6">
+
+                <h2>Base Líquida Rare Beauty</h2>
+                <p class="text-muted">Categoría: Maquillaje</p>
+
+                <h4 class="mb-3">$29.99</h4>
+
+                <p>
+                    Base líquida de cobertura media y acabado natural.
+                    Fórmula ligera creada para una piel radiante.
+                </p>
+
+                <h5 class="mt-4">Características</h5>
+                <ul>
+                    <li>Acabado natural</li>
+                    <li>No comedogénica</li>
+                    <li>Apto para todo tipo de piel</li>
+                    <li>Larga duración</li>
+                </ul>
+
+                <div class="mt-4">
+                    <a href="@Url.Action("Index","Wishlist")"
+                       class="btn btn-dark btn-cat me-2">
+                        Agregar a wishlist
+                    </a>
+
+                    <a href="@Url.Action("Index","Catalogo")"
+                       class="btn btn-secondary btn-cat">
+                        Volver al catálogo
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>

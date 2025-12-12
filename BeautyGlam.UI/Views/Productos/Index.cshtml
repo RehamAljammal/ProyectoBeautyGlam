@@ -1,0 +1,140 @@
+﻿@{
+    ViewBag.Title = "Productos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .productos-table {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+        .productos-table .btn-accion {
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin: 2px;
+            background-color: #ff7b7b;
+            color: #fff;
+            border: none;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+            .productos-table .btn-accion:hover {
+                background-color: #ff5050;
+            }
+</style>
+
+<section class="section-space">
+    <div class="container">
+
+        <h2 class="text-center mb-4">Gestión de Productos</h2>
+
+        <!-- FILTROS -->
+        <div class="card p-3 mb-4">
+            <h5 class="mb-3">Filtros</h5>
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="Buscar por nombre">
+                </div>
+                <div class="col-md-3">
+                    <select class="form-control">
+                        <option>Categoría</option>
+                        <option>Maquillaje</option>
+                        <option>Skincare</option>
+                        <option>Joyas</option>
+                        <option>Bolsos</option>
+                        <option>Accesorios</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-control">
+                        <option>Estado</option>
+                        <option>Activo</option>
+                        <option>Inactivo</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-dark w-100">Aplicar filtros</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTÓN AGREGAR -->
+        <div class="text-end mb-3">
+            <a href="@Url.Action("Crear","Productos")" class="btn btn-dark">+ Agregar Producto</a>
+        </div>
+
+        <!-- TABLA -->
+        <table class="table table-bordered productos-table">
+            <thead class="table-warning">
+                <tr>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                    <th>Estado</th>
+                    <th class="text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Producto 1 -->
+                <tr>
+                    <td>
+                        <img src="https://i5.walmartimages.com/seo/Rare-Beauty-By-Selena-Gomez-Liquid-Touch-Weightless-Foundation-0-94oz-170-W-New_7ea70278-ee27-46d2-afb2-3269fa349fd0.56e2e46e3563a42e835192b0f18fda1d.jpeg"
+                             style="width:80px;height:80px;object-fit:cover;border-radius:8px;" />
+                    </td>
+                    <td>Base Líquida Rare Beauty</td>
+                    <td>Maquillaje</td>
+                    <td>$29.99</td>
+                    <td>Activo</td>
+                    <td class="text-center">
+                        <a href="@Url.Action("Detalle","Productos")" class="btn-accion">Ver</a>
+                        <a href="@Url.Action("Editar","Productos")" class="btn-accion">Editar</a>
+                        <a href="@Url.Action("Eliminar","Productos")" class="btn-accion">Eliminar</a>
+                        <a href="@Url.Action("Index","Wishlist")" class="btn-accion">Wishlist</a>
+                    </td>
+                </tr>
+
+                <!-- Producto 2 -->
+                <tr>
+                    <td>
+                        <img src="https://images-na.ssl-images-amazon.com/images/I/613CFOwbuGL._AC_UL600_SR600,600_.jpg"
+                             style="width:80px;height:80px;object-fit:cover;border-radius:8px;" />
+                    </td>
+                    <td>Serum Niacinamide The Ordinary</td>
+                    <td>Skincare</td>
+                    <td>$14.50</td>
+                    <td>Activo</td>
+                    <td class="text-center">
+                        <a href="@Url.Action("Detalle","Productos")" class="btn-accion">Ver</a>
+                        <a href="@Url.Action("Editar","Productos")" class="btn-accion">Editar</a>
+                        <a href="@Url.Action("Eliminar","Productos")" class="btn-accion">Eliminar</a>
+                        <a href="@Url.Action("Index","Wishlist")" class="btn-accion">Wishlist</a>
+                    </td>
+                </tr>
+
+                <!-- Producto 3 -->
+                <tr>
+                    <td>
+                        <img src="https://www.charleskeith.eu/dw/image/v2/BMCD_PRD/on/demandware.static/-/Sites-ck-products/default/dwdb1d0148/images/hi-res/2024-L3-CK2-20151402-01-5.jpg?sw=504&sh=672"
+                             style="width:80px;height:80px;object-fit:cover;border-radius:8px;" />
+                    </td>
+                    <td>Bolso negro minimalista</td>
+                    <td>Bolsos</td>
+                    <td>$39.90</td>
+                    <td>Inactivo</td>
+                    <td class="text-center">
+                        <a href="@Url.Action("Detalle","Productos")" class="btn-accion">Ver</a>
+                        <a href="@Url.Action("Editar","Productos")" class="btn-accion">Editar</a>
+                        <a href="@Url.Action("Eliminar","Productos")" class="btn-accion">Eliminar</a>
+                        <a href="@Url.Action("Index","Wishlist")" class="btn-accion">Wishlist</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</section>

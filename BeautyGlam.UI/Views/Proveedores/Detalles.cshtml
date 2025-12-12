@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Detalles del Proveedor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="page-header-area pt-10 pb-9" data-bg-color="#FFF3DA">
+    <div class="container text-center">
+        <h2 class="page-header-title">Detalles del Proveedor</h2>
+    </div>
+</section>
+
+<section class="section-space">
+    <div class="container">
+
+        <div class="card p-4 shadow-sm">
+            <h4 class="mb-3">Distribuidora Glam SRL</h4>
+
+            <p><strong>Teléfono:</strong> 8888-8888</p>
+            <p><strong>Email:</strong> glam@correo.com</p>
+            <p><strong>Dirección:</strong> San José, Costa Rica</p>
+            <p><strong>Estado:</strong> <span class="badge bg-success">Activo</span></p>
+
+            <div class="mt-4">
+                <a href="@Url.Action("Index","Proveedores")" class="btn btn-dark">Volver</a>
+                <a href="@Url.Action("Editar","Proveedores")" class="btn btn-warning">Editar</a>
+            </div>
+        </div>
+
+    </div>
+</section>

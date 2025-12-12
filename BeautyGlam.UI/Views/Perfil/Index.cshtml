@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "Mi Perfil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="main-content">
+
+    <!-- TÍTULO -->
+    <section class="page-header-area pt-10 pb-9" data-bg-color="#FFF3DA">
+        <div class="container text-center">
+            <h2 class="page-header-title">Mi Perfil</h2>
+            <p class="mt-2">Administra tu información, tus rutinas y recomendaciones.</p>
+        </div>
+    </section>
+
+    <section class="section-space">
+        <div class="container">
+
+            <div class="row g-4">
+
+                <!-- Foto + Información -->
+                <div class="col-lg-4">
+                    <div class="shadow-sm border rounded-3 p-4 text-center bg-white">
+
+                        <img src="AQUI-TU-FOTO" class="rounded-circle mb-3" width="140" height="140" alt="Foto de perfil" />
+
+                        <h4 class="mb-1">Nombre del Usuario</h4>
+                        <p class="text-muted">usuario@correo.com</p>
+
+                        <a href="@Url.Action("Edit","Perfil")" class="btn btn-dark w-100 mt-3">Editar Perfil</a>
+
+                    </div>
+                </div>
+
+                <!-- Opciones -->
+                <div class="col-lg-8">
+                    <div class="shadow-sm border rounded-3 p-4 bg-white">
+
+                        <h4 class="mb-4">Opciones del Perfil</h4>
+
+                        <div class="list-group">
+
+                            <a href="@Url.Action("Rutinas","Perfil")" class="list-group-item list-group-item-action">
+                                Rutinas Guardadas
+                            </a>
+
+                            <a href="@Url.Action("Recomendaciones","Perfil")" class="list-group-item list-group-item-action">
+                                Recomendaciones Personalizadas
+                            </a>
+
+                            <a href="@Url.Action("Historial","Perfil")" class="list-group-item list-group-item-action">
+                                Historial de Actividad / Compras
+                            </a>
+
+                            <a href="@Url.Action("Seguimiento","Perfil")" class="list-group-item list-group-item-action">
+                                Seguimiento y Progreso
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+</main>

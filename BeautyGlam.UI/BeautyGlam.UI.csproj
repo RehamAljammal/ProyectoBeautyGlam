@@ -133,7 +133,17 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CatalogoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InventarioController.cs" />
+    <Compile Include="Controllers\PerfilController.cs" />
+    <Compile Include="Controllers\PermisosController.cs" />
+    <Compile Include="Controllers\ProductosController.cs" />
+    <Compile Include="Controllers\ProveedoresController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Controllers\WishlistController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -437,6 +447,46 @@
     <Content Include="Views\Auth\accountLogin.cshtml" />
     <Content Include="Views\Auth\myAcount.cshtml" />
     <Content Include="Views\Error\pageNotFound.cshtml" />
+    <Content Include="Views\Home\Blog.cshtml" />
+    <Content Include="Views\Home\Product.cshtml" />
+    <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\Usuarios\Create.cshtml" />
+    <Content Include="Views\Usuarios\Edit.cshtml" />
+    <Content Include="Views\Usuarios\AsignarRol.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\Roles\Create.cshtml" />
+    <Content Include="Views\Roles\Edit.cshtml" />
+    <Content Include="Views\Roles\Permisos.cshtml" />
+    <Content Include="Views\Permisos\Index.cshtml" />
+    <Content Include="Views\Permisos\Create.cshtml" />
+    <Content Include="Views\Permisos\Edit.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\Recuperar.cshtml" />
+    <Content Include="Views\Perfil\Index.cshtml" />
+    <Content Include="Views\Perfil\Edit.cshtml" />
+    <Content Include="Views\Perfil\Rutinas.cshtml" />
+    <Content Include="Views\Perfil\Recomendaciones.cshtml" />
+    <Content Include="Views\Perfil\Historial.cshtml" />
+    <Content Include="Views\Perfil\Seguimiento.cshtml" />
+    <Content Include="Views\Perfil\DetallePedido.cshtml" />
+    <Content Include="Views\Wishlist\Index.cshtml" />
+    <Content Include="Views\Proveedores\Index.cshtml" />
+    <Content Include="Views\Proveedores\Detalles.cshtml" />
+    <Content Include="Views\Proveedores\Crear.cshtml" />
+    <Content Include="Views\Proveedores\Editar.cshtml" />
+    <Content Include="Views\Productos\Index.cshtml" />
+    <Content Include="Views\Productos\Crear.cshtml" />
+    <Content Include="Views\Productos\Editar.cshtml" />
+    <Content Include="Views\Productos\Detalle.cshtml" />
+    <Content Include="Views\Productos\Eliminar.cshtml" />
+    <Content Include="Views\Inventario\Index.cshtml" />
+    <Content Include="Views\Inventario\Avanzado.cshtml" />
+    <Content Include="Views\Inventario\Editar.cshtml" />
+    <Content Include="Views\Inventario\Minimos.cshtml" />
+    <Content Include="Views\Inventario\Movimientos.cshtml" />
+    <Content Include="Views\Catalogo\Index.cshtml" />
+    <Content Include="Views\Catalogo\VistaProducto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
