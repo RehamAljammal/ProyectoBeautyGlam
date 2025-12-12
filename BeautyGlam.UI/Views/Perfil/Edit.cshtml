@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Editar Perfil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space">
+    <div class="container">
+
+        <h2 class="text-center mb-4">Editar Perfil</h2>
+
+        <div class="shadow-sm border rounded-3 p-4 bg-white col-lg-6 mx-auto">
+
+            <form>
+
+                <div class="mb-3">
+                    <label class="form-label">Nombre</label>
+                    <input class="form-control" placeholder="Ingrese su nombre" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Correo</label>
+                    <input type="email" class="form-control" placeholder="usuario@correo.com" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Contraseña (opcional)</label>
+                    <input type="password" class="form-control" placeholder="Nueva contraseña" />
+                </div>
+
+                <button class="btn btn-dark w-100 mt-3">Guardar Cambios</button>
+
+            </form>
+
+        </div>
+
+    </div>
+</section>

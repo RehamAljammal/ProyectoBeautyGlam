@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Crear Producto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space">
+    <div class="container">
+
+        <h2 class="text-center mb-4">Agregar nuevo producto</h2>
+
+        <div class="card p-4" style="max-width: 700px; margin: 0 auto;">
+
+            <div class="mb-3">
+                <label class="form-label">Nombre del producto</label>
+                <input type="text" class="form-control" placeholder="Ej: Base Líquida Rare Beauty">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Categoría</label>
+                <select class="form-control">
+                    <option>Maquillaje</option>
+                    <option>Skincare</option>
+                    <option>Joyas</option>
+                    <option>Bolsos</option>
+                    <option>Accesorios</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Precio</label>
+                <input type="number" class="form-control" placeholder="0.00">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Descripción</label>
+                <textarea class="form-control" rows="3" placeholder="Descripción breve del producto..."></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Imagen (URL)</label>
+                <input type="text" class="form-control" placeholder="https://...">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Estado</label>
+                <select class="form-control">
+                    <option>Activo</option>
+                    <option>Inactivo</option>
+                </select>
+            </div>
+
+            <div class="text-end">
+                <a href="@Url.Action("Index","Productos")" class="btn btn-secondary">Cancelar</a>
+                <button class="btn btn-dark">Guardar</button>
+            </div>
+
+        </div>
+
+    </div>
+</section>

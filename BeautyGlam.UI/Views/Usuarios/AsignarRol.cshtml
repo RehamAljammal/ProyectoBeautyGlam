@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Asignar Rol";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="main-content">
+
+    <section class="page-header-area pt-10 pb-9" data-bg-color="#FFF3DA">
+        <div class="container">
+            <h2 class="page-header-title">Asignar Rol a Usuario</h2>
+        </div>
+    </section>
+
+    <section class="section-space">
+        <div class="container">
+            <div class="shadow-sm bg-white border p-4 rounded-3">
+
+                <form>
+
+                    <h5 class="mb-3">Usuario: <strong>Ana Rodríguez</strong></h5>
+
+                    <label class="form-label">Seleccionar Rol</label>
+                    <select class="form-control mb-3">
+                        <option selected>Administrador</option>
+                        <option>Cliente</option>
+                        <option>Vendedor</option>
+                    </select>
+
+                    <button class="btn btn-dark px-4 py-2">Guardar</button>
+                    <a href="/Usuarios" class="btn btn-secondary px-4 py-2">Cancelar</a>
+
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+</main>

@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Mínimos y Máximos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .btn-inv {
+        padding: 6px 14px !important;
+        font-size: 14px;
+        border-radius: 6px;
+    }
+</style>
+
+<section class="section-space">
+    <div class="container">
+
+        <h2 class="mb-4">Definir Mínimos y Máximos</h2>
+
+        <div class="card p-4 shadow-sm">
+
+            <label>Mínimo permitido</label>
+            <input type="number" class="form-control mb-3" value="10">
+
+            <label>Máximo permitido</label>
+            <input type="number" class="form-control mb-3" value="80">
+
+            <div class="mt-3">
+                <button class="btn btn-dark btn-sm btn-inv">Guardar</button>
+                <a href="@Url.Action("Index","Inventario")"
+                   class="btn btn-secondary btn-sm btn-inv ms-2">Cancelar</a>
+            </div>
+
+        </div>
+
+    </div>
+</section>
