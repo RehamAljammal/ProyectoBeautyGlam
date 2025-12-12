@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "Proveedores";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .proveedores-table {
+        width: 100%;
+        margin-top: 30px;
+    }
+
+        /* BOTONES más pequeños y elegantes */
+        .proveedores-table .btn-accion {
+            padding: 5px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            margin: 3px;
+            background-color: #ff7b7b;
+            color: white;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            transition: .2s;
+        }
+
+            .proveedores-table .btn-accion:hover {
+                background-color: #ff5050;
+            }
+</style>
+
+<section class="section-space">
+    <div class="container">
+
+        <h2 class="text-center mb-4">Listado de Proveedores</h2>
+
+        <!-- BOTÓN AGREGAR -->
+        <div class="text-end mb-3">
+            <a href="@Url.Action("Crear", "Proveedores")" class="btn btn-dark">+ Agregar Proveedor</a>
+        </div>
+
+        <table class="table table-bordered proveedores-table">
+            <thead class="table-warning">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th>Estado</th>
+                    <th class="text-center">Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <!-- FILA 1 -->
+                <tr>
+                    <td>Distribuidora Glam</td>
+                    <td>contacto@glam.com</td>
+                    <td>8888-8888</td>
+                    <td>Activo</td>
+                    <td class="text-center">
+                        <!-- Enlaces de acciones -->
+                        <a href="@Url.Action("Detalles", "Proveedores", new { id = 1 })" class="btn-accion">Ver</a>
+                        <a href="@Url.Action("Editar", "Proveedores", new { id = 1 })" class="btn-accion">Editar</a>
+                        <a href="@Url.Action("Desactivar", "Proveedores", new { id = 1 })" class="btn-accion">Desactivar</a>
+                    </td>
+                </tr>
+
+                <!-- FILA 2 -->
+                <tr>
+                    <td>Cosmetics Deluxe</td>
+                    <td>ventas@deluxe.com</td>
+                    <td>8745-1204</td>
+                    <td>Activo</td>
+                    <td class="text-center">
+                        <!-- Enlaces de acciones -->
+                        <a href="@Url.Action("Detalles", "Proveedores", new { id = 2 })" class="btn-accion">Ver</a>
+                        <a href="@Url.Action("Editar", "Proveedores", new { id = 2 })" class="btn-accion">Editar</a>
+                        <a href="@Url.Action("Desactivar", "Proveedores", new { id = 2 })" class="btn-accion">Desactivar</a>
+                    </td>
+                </tr>
+
+                <!-- FILA 3 -->
+                <tr>
+                    <td>Beauty Imports</td>
+                    <td>info@beautyimports.com</td>
+                    <td>7000-4444</td>
+                    <td>Inactivo</td>
+                    <td class="text-center">
+                        <!-- Enlaces de acciones -->
+                        <a href="@Url.Action("Detalles", "Proveedores", new { id = 3 })" class="btn-accion">Ver</a>
+                        <a href="@Url.Action("Editar", "Proveedores", new { id = 3 })" class="btn-accion">Editar</a>
+                        <a href="@Url.Action("Activar", "Proveedores", new { id = 3 })" class="btn-accion">Activar</a>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+</section>

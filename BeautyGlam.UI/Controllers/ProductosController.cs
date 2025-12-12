@@ -6,32 +6,34 @@ using System.Web.Mvc;
 
 namespace BeautyGlam.UI.Controllers
 {
-    public class HomeController : Controller
+    public class ProductosController : Controller
     {
+        // LISTA
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-        public ActionResult Blog()
+        // CREAR
+        public ActionResult Crear()
         {
             return View();
         }
 
-        public ActionResult Product()
+        // EDITAR (id opcional)
+        public ActionResult Editar(int? id)
+        {
+            return View();
+        }
+
+        // DETALLE (id opcional)
+        public ActionResult Detalle(int? id)
+        {
+            return View();
+        }
+
+        // ELIMINAR (id opcional)
+        public ActionResult Eliminar(int? id)
         {
             return View();
         }

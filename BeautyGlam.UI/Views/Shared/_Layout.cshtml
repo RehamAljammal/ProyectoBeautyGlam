@@ -33,10 +33,12 @@
     <!--== Wrapper Start ==-->
     <div class="wrapper">
 
-        <!--================= HEADER (SE QUEDA COMPLETO AQUÍ) =================-->
+        <!--================= HEADER =================-->
         <header class="header-area sticky-header">
             <div class="container">
                 <div class="row align-items-center">
+
+                    <!-- LOGO -->
                     <div class="col-5 col-sm-6 col-lg-3">
                         <div class="header-logo">
                             <a href="@Url.Action("Index","Home")">
@@ -45,40 +47,74 @@
                         </div>
                     </div>
 
-                    <!-- NAV -->
+                    <!-- NAVIGATION DESKTOP -->
                     <div class="col-lg-6 d-none d-lg-block">
                         <div class="header-navigation">
                             <ul class="main-nav justify-content-start">
+
+                                <!-- Páginas principales -->
                                 <li><a href="@Url.Action("Index","Home")">Home</a></li>
                                 <li><a href="@Url.Action("About","Home")">About</a></li>
                                 <li><a href="@Url.Action("Product","Shop")">Shop</a></li>
                                 <li><a href="@Url.Action("Blog","Home")">Blog</a></li>
-                                <li><a href="@Url.Action("Contact","Home")">Contact</a></li>
+                                <li><a href("@Url.Action("Contact","Home"))>Contact</a></li>
+
+                                <!-- ===================== MÓDULO ADMIN ===================== -->
+                                <li><a href="@Url.Action("Index","Usuarios")">Usuarios</a></li>
+                                <li><a href="@Url.Action("Index","Roles")">Roles</a></li>
+                                <li><a href="@Url.Action("Index","Permisos")">Permisos</a></li>
+                                <li><a href="@Url.Action("Index","Proveedores")">Proveedores</a></li>
+                                <li><a href="@Url.Action("Index","Productos")">Productos</a></li>
+                                <!-- =========================================================== -->
+                                <!-- ===================== AUTENTICACIÓN ===================== -->
+                                <li><a href="@Url.Action("Login","Account")">Login</a></li>
+                                <li><a href="@Url.Action("Register","Account")">Registro</a></li>
+                                <li><a href="@Url.Action("Recuperar","Account")">Recuperar</a></li>
+                                <!-- =========================================================== -->
+                                <!-- ===================== MÓDULO PERFIL ===================== -->
+                                <li><a href="@Url.Action("Index","Perfil")">Perfil</a></li>
+                                <!-- =========================================================== -->
+                                <!-- ===================== WISHLIST ===================== -->
+                                <li><a href="@Url.Action("Index","Wishlist")">Wishlist</a></li>
+                                <!-- =========================================================== -->
+                                <!-- ===================== WISHLIST ===================== -->
+                                <li><a href="@Url.Action("Index","Inventario")">Inventario</a></li>
+                                <li><a href="@Url.Action("Avanzado","Inventario")">Avanzado</a></li>
+                                <li><a href="@Url.Action("Movimientos","Inventario", new { id = 1 })">Movimientos</a></li>
+                                <!-- =========================================================== -->
+                                <!-- ===================== WISHLIST ===================== -->
+                                <li><a href="@Url.Action("Index","Catalogo")">Catálogo</a></li>
+                                <!-- =========================================================== -->
+                            </ul>
+                                </li>
                             </ul>
                         </div>
                     </div>
 
-                    <!-- ICONOS -->
+                    <!-- ICONOS HEADER -->
                     <div class="col-7 col-sm-6 col-lg-3">
                         <div class="header-action justify-content-end">
 
+                            <!-- Login Icon -->
                             <a class="header-action-btn" href="@Url.Action("Login","Account")">
                                 <i class="fa fa-user"></i>
                             </a>
 
+                            <!-- Menú móvil -->
                             <button class="header-menu-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#AsideOffcanvasMenu">
                                 <span></span><span></span><span></span>
                             </button>
 
                         </div>
                     </div>
+
                 </div>
             </div>
         </header>
         <!--================= END HEADER =================-->
-        <!--=============== AQUI VA CADA PÁGINA ===============-->
+        <!--=============== CONTENIDO DE CADA PÁGINA ===============-->
         @RenderBody()
-        <!--====================================================-->
+        <!--=========================================================-->
         <!--================= FOOTER =================-->
         <footer class="footer-area">
             <div class="footer-main">

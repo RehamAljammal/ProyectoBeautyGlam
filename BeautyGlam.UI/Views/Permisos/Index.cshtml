@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Permisos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="main-content">
+
+    <section class="page-header-area pt-10 pb-9" data-bg-color="#FFF3DA">
+        <div class="container d-flex justify-content-between">
+            <h2 class="page-header-title">Permisos del Sistema</h2>
+            <a href="/Permisos/Create" class="btn btn-dark px-4 py-2">+ Crear Permiso</a>
+        </div>
+    </section>
+
+    <section class="section-space">
+        <div class="container">
+            <div class="shadow-sm border rounded-3 p-4 bg-white table-responsive">
+
+                <table class="table table-striped align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Permiso</th>
+                            <th>Módulo</th>
+                            <th class="text-end">Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Crear Usuario</td>
+                            <td>Usuarios</td>
+                            <td class="text-end">
+                                <a href="/Permisos/Edit/1" class="btn btn-warning btn-sm px-3">Editar</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Editar Productos</td>
+                            <td>Productos</td>
+                            <td class="text-end">
+                                <a href="/Permisos/Edit/2" class="btn btn-warning btn-sm px-3">Editar</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Ver Reservas</td>
+                            <td>Reservas</td>
+                            <td class="text-end">
+                                <a href="/Permisos/Edit/3" class="btn btn-warning btn-sm px-3">Editar</a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </section>
+
+</main>s
+

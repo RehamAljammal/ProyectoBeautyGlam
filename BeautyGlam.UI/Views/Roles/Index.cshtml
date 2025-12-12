@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Roles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="main-content">
+
+    <section class="page-header-area pt-10 pb-9" data-bg-color="#FFF3DA">
+        <div class="container d-flex justify-content-between">
+            <h2 class="page-header-title">Roles del Sistema</h2>
+            <a href="/Roles/Create" class="btn btn-dark px-4 py-2">+ Crear Rol</a>
+        </div>
+    </section>
+
+    <section class="section-space">
+        <div class="container">
+
+            <div class="table-responsive shadow-sm border rounded-3 p-4 bg-white">
+
+                <table class="table table-striped align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Rol</th>
+                            <th>Descripción</th>
+                            <th class="text-end">Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Administrador</td>
+                            <td>Acceso total al sistema</td>
+                            <td class="text-end">
+                                <a href="/Roles/Edit/1" class="btn btn-warning btn-sm px-3">Editar</a>
+                                <a href="/Roles/Permisos/1" class="btn btn-info text-white btn-sm px-3">Permisos</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Cliente</td>
+                            <td>Acceso a compras y reservas</td>
+                            <td class="text-end">
+                                <a href="/Roles/Edit/2" class="btn btn-warning btn-sm px-3">Editar</a>
+                                <a href="/Roles/Permisos/2" class="btn btn-info text-white btn-sm px-3">Permisos</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Vendedor</td>
+                            <td>Gestión de ventas del sistema</td>
+                            <td class="text-end">
+                                <a href="/Roles/Edit/3" class="btn btn-warning btn-sm px-3">Editar</a>
+                                <a href="/Roles/Permisos/3" class="btn btn-info text-white btn-sm px-3">Permisos</a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+    </section>
+
+</main>
+

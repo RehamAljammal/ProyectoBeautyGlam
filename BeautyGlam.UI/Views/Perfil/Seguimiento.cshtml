@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Seguimiento de pedidos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space">
+    <div class="container">
+
+        <h2 class="text-center mb-4">Seguimiento de pedidos</h2>
+        <p class="text-center text-muted mb-5">
+            Consulta el estado de tus pedidos en tiempo real.
+        </p>
+
+        <div class="row g-4">
+
+            <!-- Pedido 1 -->
+            <div class="col-lg-6">
+                <div class="shadow-sm border rounded-3 p-4 bg-white">
+
+                    <h5 class="mb-1">Pedido #10254</h5>
+                    <p class="text-muted mb-3">Fecha de compra: 10/02/2025</p>
+
+                    <div class="progress mb-3" style="height: 10px;">
+                        <div class="progress-bar bg-dark" style="width: 70%;"></div>
+                    </div>
+
+                    <p><strong>Estado actual:</strong> En camino</p>
+
+                    <a href="@Url.Action("DetallePedido","Perfil", new { id = 10254 })"
+                       class="btn btn-dark w-100 mt-3">
+                        Ver detalles del pedido
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- Pedido 2 -->
+            <div class="col-lg-6">
+                <div class="shadow-sm border rounded-3 p-4 bg-white">
+
+                    <h5 class="mb-1">Pedido #10212</h5>
+                    <p class="text-muted mb-3">Fecha de compra: 05/02/2025</p>
+
+                    <div class="progress mb-3" style="height: 10px;">
+                        <div class="progress-bar bg-dark" style="width: 100%;"></div>
+                    </div>
+
+                    <p><strong>Estado actual:</strong> Entregado</p>
+
+                    <a href="@Url.Action("DetallePedido","Perfil", new { id = 10212 })"
+                       class="btn btn-dark w-100 mt-3">
+                        Ver detalles del pedido
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>

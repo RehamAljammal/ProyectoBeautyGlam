@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Usuarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="main-content">
+
+    <section class="page-header-area pt-10 pb-9" data-bg-color="#FFF3DA">
+        <div class="container d-flex justify-content-between">
+            <h2 class="page-header-title">Gestión de Usuarios</h2>
+            <a href="/Usuarios/Create" class="btn btn-dark px-4 py-2">+ Crear Usuario</a>
+        </div>
+    </section>
+
+    <section class="section-space">
+        <div class="container">
+
+            <div class="table-responsive shadow-sm border rounded-3 p-4 bg-white">
+                <table class="table table-striped align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Rol</th>
+                            <th>Estado</th>
+                            <th class="text-end">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td>Ana Rodríguez</td>
+                            <td>ana@gmail.com</td>
+                            <td><span class="badge bg-primary">Administrador</span></td>
+                            <td><span class="badge bg-success">Activo</span></td>
+                            <td class="text-end">
+                                <a href="/Usuarios/Edit/1" class="btn btn-warning btn-sm px-3">Editar</a>
+                                <button class="btn btn-danger btn-sm px-3">Desactivar</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Mario López</td>
+                            <td>mario@gmail.com</td>
+                            <td><span class="badge bg-secondary">Cliente</span></td>
+                            <td><span class="badge bg-danger">Inactivo</span></td>
+                            <td class="text-end">
+                                <a href="/Usuarios/Edit/2" class="btn btn-warning btn-sm px-3">Editar</a>
+                                <button class="btn btn-success btn-sm px-3">Activar</button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+
+</main>s
