@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Registro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="main-content">
+
+    <section class="page-header-area pt-10 pb-9" data-bg-color="#FFF3DA">
+        <div class="container text-center">
+            <h2 class="page-header-title">Crear una Cuenta</h2>
+        </div>
+    </section>
+
+    <section class="section-space">
+        <div class="container">
+
+            <div class="shadow-sm border bg-white p-4 rounded-3 mx-auto" style="max-width: 500px;">
+
+                <form>
+
+                    <div class="mb-3">
+                        <label class="form-label">Nombre completo</label>
+                        <input type="text" class="form-control" placeholder="Ejemplo: Ana López" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Correo electrónico</label>
+                        <input type="email" class="form-control" placeholder="example@gmail.com" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" placeholder="Crea una contraseña fuerte" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Confirmar contraseña</label>
+                        <input type="password" class="form-control" placeholder="Repita la contraseña" />
+                    </div>
+
+                    <button class="btn btn-dark w-100 py-2 mb-3">Registrarse</button>
+
+                    <div class="text-center">
+                        <span>¿Ya tienes cuenta?</span>
+                        <a href="/Account/Login" class="text-dark fw-bold ms-1">Iniciar Sesión</a>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </section>
+
+</main>

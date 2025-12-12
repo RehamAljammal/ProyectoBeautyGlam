@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Editar Permiso";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="main-content">
+
+    <section class="page-header-area pt-10 pb-9" data-bg-color="#DFE4FF">
+        <div class="container text-center">
+            <h2 class="page-header-title">Editar Permiso</h2>
+        </div>
+    </section>
+
+    <section class="section-space">
+        <div class="container">
+
+            <div class="shadow-sm border p-4 rounded-3 bg-white">
+
+                <form>
+
+                    <div class="mb-3">
+                        <label class="form-label">Nombre del Permiso</label>
+                        <input type="text" class="form-control" value="Crear Usuario" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Módulo</label>
+                        <select class="form-control">
+                            <option selected>Usuarios</option>
+                            <option>Productos</option>
+                            <option>Ventas</option>
+                            <option>Reservas</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-dark px-4 py-2">Guardar Cambios</button>
+                    <a href="/Permisos" class="btn btn-secondary px-4 py-2">Cancelar</a>
+
+                </form>
+
+            </div>
+
+        </div>
+    </section>
+
+</main>
+

@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Editar Proveedor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="page-header-area pt-10 pb-9" data-bg-color="#FFF3DA">
+    <div class="container text-center">
+        <h2 class="page-header-title">Editar Proveedor</h2>
+    </div>
+</section>
+
+<section class="section-space">
+    <div class="container">
+        <div class="card p-4 shadow-sm">
+
+            <form>
+
+                <div class="mb-3">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" class="form-control" value="Distribuidora Glam SRL">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Teléfono</label>
+                    <input type="text" class="form-control" value="8888-8888">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Correo</label>
+                    <input type="email" class="form-control" value="glam@correo.com">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Dirección</label>
+                    <textarea class="form-control" rows="2">San José</textarea>
+                </div>
+
+                <div class="text-end">
+                    <a href="@Url.Action("Index","Proveedores")" class="btn btn-secondary">Cancelar</a>
+                    <button class="btn btn-dark">Guardar cambios</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</section>

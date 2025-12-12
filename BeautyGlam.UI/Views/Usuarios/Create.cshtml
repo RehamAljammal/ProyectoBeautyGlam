@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Crear Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="main-content">
+
+    <section class="page-header-area pt-10 pb-9" data-bg-color="#DFE4FF">
+        <div class="container text-center">
+            <h2 class="page-header-title">Crear Usuario</h2>
+        </div>
+    </section>
+
+    <section class="section-space">
+        <div class="container">
+
+            <div class="shadow-sm border p-4 bg-white rounded-3">
+
+                <form>
+
+                    <div class="mb-3">
+                        <label class="form-label">Nombre</label>
+                        <input class="form-control" placeholder="Ingrese el nombre" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input class="form-control" placeholder="ejemplo@gmail.com" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Rol</label>
+                        <select class="form-control">
+                            <option>Administrador</option>
+                            <option>Cliente</option>
+                            <option>Vendedor</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-dark px-4 py-2">Guardar</button>
+                    <a href="/Usuarios" class="btn btn-secondary px-4 py-2">Cancelar</a>
+
+                </form>
+
+            </div>
+
+        </div>
+    </section>
+
+</main>

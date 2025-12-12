@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Inventario Avanzado";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space">
+    <div class="container">
+        <h2 class="mb-4">Listado Avanzado</h2>
+
+        <div class="card p-4 mb-4">
+            <h5 class="mb-3">Filtros</h5>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label>Categoría</label>
+                    <select class="form-control">
+                        <option>Todos</option>
+                        <option>Maquillaje</option>
+                        <option>Cuidado facial</option>
+                        <option>Accesorios</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label>Stock menor a:</label>
+                    <input type="number" class="form-control" placeholder="Ej: 20">
+                </div>
+
+                <div class="col-md-4">
+                    <label>Buscar producto</label>
+                    <input type="text" class="form-control" placeholder="Nombre o código">
+                </div>
+            </div>
+
+            <button class="btn btn-dark mt-3">Buscar</button>
+        </div>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Stock</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Serum The Ordinary</td>
+                    <td>12</td>
+                    <td><a class="btn btn-sm btn-dark" href="#">Editar</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
