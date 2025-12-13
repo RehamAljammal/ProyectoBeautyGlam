@@ -1,0 +1,169 @@
+﻿@{
+    ViewBag.Title = "Asistente de Tono";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .tono-card {
+        border: 1px solid #e5e5e5;
+        border-radius: 10px;
+        padding: 15px;
+        cursor: pointer;
+        transition: 0.3s;
+        background: #fff;
+        margin-bottom: 10px;
+    }
+
+        .tono-card:hover {
+            border-color: #000;
+            background: #fafafa;
+        }
+
+        .tono-card input {
+            display: none;
+        }
+
+        .tono-card span {
+            font-weight: 500;
+        }
+
+    .pregunta {
+        margin-bottom: 30px;
+    }
+
+    .btn-tono {
+        padding: 4px 14px;
+        font-size: 12px;
+        border-radius: 6px;
+    }
+</style>
+
+<section class="section-space">
+    <div class="container">
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+
+                <h2 class="text-center mb-2">Asistente de Tono</h2>
+                <p class="text-muted text-center mb-4">
+                    Responde según tu experiencia real. No hay respuestas correctas o incorrectas.
+                </p>
+
+                <!-- PREGUNTA 1 -->
+                <div class="pregunta">
+                    <h5>1. Cuando te expones al sol sin protector, tu piel:</h5>
+
+                    <label class="tono-card">
+                        <input type="radio" name="sol">
+                        <span>Se quema rápido y casi no se broncea</span>
+                    </label>
+
+                    <label class="tono-card">
+                        <input type="radio" name="sol">
+                        <span>Se broncea fácilmente sin quemarse</span>
+                    </label>
+
+                    <label class="tono-card">
+                        <input type="radio" name="sol">
+                        <span>Primero se quema y luego se broncea</span>
+                    </label>
+                </div>
+
+                <!-- PREGUNTA 2 -->
+                <div class="pregunta">
+                    <h5>2. ¿Cómo describirías el fondo natural de tu piel?</h5>
+
+                    <label class="tono-card">
+                        <input type="radio" name="fondo">
+                        <span>Rosado o rojizo</span>
+                    </label>
+
+                    <label class="tono-card">
+                        <input type="radio" name="fondo">
+                        <span>Amarillo, dorado o durazno</span>
+                    </label>
+
+                    <label class="tono-card">
+                        <input type="radio" name="fondo">
+                        <span>No logro identificarlo claramente</span>
+                    </label>
+                </div>
+
+                <!-- PREGUNTA 3 -->
+                <div class="pregunta">
+                    <h5>3. ¿Qué tipo de joyería hace que tu piel se vea más luminosa?</h5>
+
+                    <label class="tono-card">
+                        <input type="radio" name="joyeria">
+                        <span>Plata, acero o tonos fríos</span>
+                    </label>
+
+                    <label class="tono-card">
+                        <input type="radio" name="joyeria">
+                        <span>Oro, bronce o tonos cálidos</span>
+                    </label>
+
+                    <label class="tono-card">
+                        <input type="radio" name="joyeria">
+                        <span>Ambas me quedan bien</span>
+                    </label>
+                </div>
+
+                <!-- PREGUNTA 4 -->
+                <div class="pregunta">
+                    <h5>4. Cuando usas bases muy rosadas o muy amarillas:</h5>
+
+                    <label class="tono-card">
+                        <input type="radio" name="base">
+                        <span>Las rosadas me favorecen más</span>
+                    </label>
+
+                    <label class="tono-card">
+                        <input type="radio" name="base">
+                        <span>Las amarillas me quedan mejor</span>
+                    </label>
+
+                    <label class="tono-card">
+                        <input type="radio" name="base">
+                        <span>Ninguna, ambas se ven raras</span>
+                    </label>
+                </div>
+
+                <!-- PREGUNTA 5 -->
+                <div class="pregunta">
+                    <h5>5. ¿Cómo se ve tu piel al lado de una hoja blanca?</h5>
+
+                    <label class="tono-card">
+                        <input type="radio" name="comparacion">
+                        <span>Más rosada o fría</span>
+                    </label>
+
+                    <label class="tono-card">
+                        <input type="radio" name="comparacion">
+                        <span>Más amarilla o dorada</span>
+                    </label>
+
+                    <label class="tono-card">
+                        <input type="radio" name="comparacion">
+                        <span>Muy similar, no destaca ningún tono</span>
+                    </label>
+                </div>
+
+                <!-- BOTONES -->
+                <div class="text-center mt-4">
+                    <a href="@Url.Action("Resultado","AsistenteTono")"
+                       class="btn btn-dark btn-tono me-2">
+                        Ver mi resultado
+                    </a>
+
+                    <a href="@Url.Action("Index","AsistenteTono")"
+                       class="btn btn-secondary btn-tono">
+                        Cancelar
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
