@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "Resultado del Asistente de Tono";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .btn-tono {
+        padding: 4px 12px;
+        font-size: 12px;
+        border-radius: 5px;
+    }
+
+    .resultado-box {
+        background: #fafafa;
+        border: 1px solid #e5e5e5;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<section class="section-space">
+    <div class="container">
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+
+                <h2 class="mb-3 text-center">Tu Resultado</h2>
+                <p class="text-muted text-center mb-4">
+                    Según tus respuestas, este es tu perfil de tono:
+                </p>
+
+                <div class="resultado-box">
+
+                    <ul class="mb-3">
+                        <li><strong>Tono:</strong> Medio</li>
+                        <li><strong>Subtono:</strong> Neutro</li>
+                        <li><strong>Colores ideales:</strong> Beige, durazno, rosado suave</li>
+                        <li><strong>Base recomendada:</strong> Beige Neutral</li>
+                    </ul>
+
+                    <p>
+                        Estos tonos ayudan a que tu piel se vea más equilibrada,
+                        natural y luminosa.
+                    </p>
+
+                </div>
+
+                <div class="mt-4 text-center">
+                    <a href="@Url.Action("Index","Catalogo")"
+                       class="btn btn-dark btn-tono me-2">
+                        Ver productos recomendados
+                    </a>
+
+                    <a href="@Url.Action("Cuestionario","AsistenteTono")"
+                       class="btn btn-outline-dark btn-tono me-2">
+                        Repetir cuestionario
+                    </a>
+
+                    <a href="@Url.Action("Index","Perfil")"
+                       class="btn btn-secondary btn-tono">
+                        Guardar en mi perfil
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>

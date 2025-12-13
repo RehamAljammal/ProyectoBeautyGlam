@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Tu Rutina de Skincare";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space">
+    <div class="container">
+        <h3 class="mb-4">Rutina recomendada para ti</h3>
+
+        <ul class="list-group mb-4">
+            <li class="list-group-item">🧼 Limpieza suave</li>
+            <li class="list-group-item">💧 Tónico hidratante</li>
+            <li class="list-group-item">✨ Sérum especializado</li>
+            <li class="list-group-item">🧴 Hidratante</li>
+            <li class="list-group-item">☀️ Protector solar</li>
+        </ul>
+
+        <a href="@Url.Action("PasoAPaso","AsistenteSkincare")"
+           class="btn btn-dark btn-sm">
+            Ver paso a paso
+        </a>
+    </div>
+</section>

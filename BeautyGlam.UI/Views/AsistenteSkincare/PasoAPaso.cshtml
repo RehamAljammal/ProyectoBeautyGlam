@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Rutina Paso a Paso";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space">
+    <div class="container">
+        <h3 class="mb-4">Cómo aplicar tu rutina</h3>
+
+        <ol class="list-group list-group-numbered mb-4">
+            <li class="list-group-item">Limpia tu rostro mañana y noche</li>
+            <li class="list-group-item">Aplica el tónico con suaves toques</li>
+            <li class="list-group-item">Usa el sérum según necesidad</li>
+            <li class="list-group-item">Hidrata bien tu piel</li>
+            <li class="list-group-item">Protege con bloqueador solar</li>
+        </ol>
+
+        <a href="@Url.Action("Repeticion","AsistenteSkincare")"
+           class="btn btn-outline-dark btn-sm">
+            Repetir diagnóstico
+        </a>
+    </div>
+</section>

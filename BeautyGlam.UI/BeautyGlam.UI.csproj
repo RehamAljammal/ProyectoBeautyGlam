@@ -134,6 +134,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AsistenteSkincareController.cs" />
+    <Compile Include="Controllers\AsistenteTonoController.cs" />
+    <Compile Include="Controllers\BlogBellezaController.cs" />
     <Compile Include="Controllers\CatalogoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventarioController.cs" />
@@ -487,6 +490,18 @@
     <Content Include="Views\Inventario\Movimientos.cshtml" />
     <Content Include="Views\Catalogo\Index.cshtml" />
     <Content Include="Views\Catalogo\VistaProducto.cshtml" />
+    <Content Include="Views\AsistenteTono\Index.cshtml" />
+    <Content Include="Views\AsistenteTono\Cuestionario.cshtml" />
+    <Content Include="Views\AsistenteTono\Resultado.cshtml" />
+    <Content Include="Views\AsistenteSkincare\Index.cshtml" />
+    <Content Include="Views\AsistenteSkincare\Cuestionario.cshtml" />
+    <Content Include="Views\AsistenteSkincare\Rutina.cshtml" />
+    <Content Include="Views\AsistenteSkincare\PasoAPaso.cshtml" />
+    <Content Include="Views\AsistenteSkincare\Repeticion.cshtml" />
+    <Content Include="Views\BlogBelleza\Index.cshtml" />
+    <Content Include="Views\BlogBelleza\Publicar.cshtml" />
+    <Content Include="Views\BlogBelleza\Editar.cshtml" />
+    <Content Include="Views\BlogBelleza\Detalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
