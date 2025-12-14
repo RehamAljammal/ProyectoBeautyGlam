@@ -1,25 +1,47 @@
-﻿@model dynamic
-
-@{
-    ViewBag.Title = "View";
+﻿@{
+    ViewBag.Title = "Reportes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>View</h2>
+<style>
+    .proveedores-table {
+        width: 100%;
+        margin-top: 30px;
+    }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th></th>
-    </tr>
+        /* BOTONES más pequeños y elegantes */
+        .proveedores-table .btn-accion {
+            padding: 5px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            margin: 3px;
+            background-color: #ff7b7b;
+            color: white;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            transition: .2s;
+        }
 
-        <tr>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { }) |
-                @Html.ActionLink("Details", "Details", new { }) |
-                @Html.ActionLink("Delete", "Delete", new { })
-            </td>
-        </tr>
+            .proveedores-table .btn-accion:hover {
+                background-color: #ff5050;
+            }
+</style>
 
-</table>
+<section class="section-space">
+    <div class="container">
+
+        <h2 class="text-center mb-4">Modulo de Reportes</h2>
+
+        <!-- BOTÓN AGREGAR -->
+        <div class="text-end mb-3">
+            <a href="@Url.Action("Crear", "Reportes")" class="btn btn-dark">+ Nuevo Reporte</a>
+        </div>
+
+        <table class="table table-bordered proveedores-table">
+             
+        </table>
+
+    </div>
+</section>

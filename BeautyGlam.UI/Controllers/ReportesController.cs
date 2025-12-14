@@ -13,5 +13,10 @@ namespace BeautyGlam.UI.Controllers
         {
             return View();
         }
+
+        public ActionResult Crear()
+        {
+            return View();
+        }
     }
 }
