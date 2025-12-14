@@ -143,6 +143,7 @@
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\PermisosController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
+    <Compile Include="Controllers\PromocionesController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
@@ -504,6 +505,7 @@
     <Content Include="Views\BlogBelleza\Editar.cshtml" />
     <Content Include="Views\BlogBelleza\Detalle.cshtml" />
     <Content Include="Views\Reportes\Index.cshtml" />
+    <Content Include="Views\Promociones\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
