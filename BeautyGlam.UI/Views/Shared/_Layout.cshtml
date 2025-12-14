@@ -54,10 +54,10 @@
 
                                 <!-- Páginas principales -->
                                 <li><a href="@Url.Action("Index","Home")">Home</a></li>
-                                <li><a href="@Url.Action("About","Home")">About</a></li>
-                                <li><a href="@Url.Action("Product","Shop")">Shop</a></li>
-                                <li><a href="@Url.Action("Blog","Home")">Blog</a></li>
-                                <li><a href("@Url.Action("Contact","Home"))>Contact</a></li>
+                                @*<li><a href="@Url.Action("About","Home")">About</a></li>
+        <li><a href="@Url.Action("Product","Shop")">Shop</a></li>*@
+                                @*<li><a href="@Url.Action("Blog","Home")">Blog</a></li>
+        <li><a href("@Url.Action("Contact","Home"))>Contact</a></li>*@
 
                                 <!-- ===================== MÓDULO ADMIN ===================== -->
                                 <li><a href="@Url.Action("Index","Usuarios")">Usuarios</a></li>
@@ -65,6 +65,10 @@
                                 <li><a href="@Url.Action("Index","Permisos")">Permisos</a></li>
                                 <li><a href="@Url.Action("Index","Proveedores")">Proveedores</a></li>
                                 <li><a href="@Url.Action("Index","Productos")">Productos</a></li>
+                                <li><a href="@Url.Action("Index","Reportes")">Reportes</a></li>
+                                <li><a href="@Url.Action("Index","Regalos")">Regalos</a></li>
+                                <li><a href="@Url.Action("Index","Promociones")">Promociones</a></li>
+
                                 <!-- =========================================================== -->
                                 <!-- ===================== AUTENTICACIÓN ===================== -->
                                 <li><a href="@Url.Action("Login","Account")">Login</a></li>
@@ -84,6 +88,20 @@
                                 <!-- =========================================================== -->
                                 <!-- ===================== WISHLIST ===================== -->
                                 <li><a href="@Url.Action("Index","Catalogo")">Catálogo</a></li>
+                                <!-- =========================================================== -->
+                                <!-- ===================== ASISTENTE DE TONO ===================== -->
+                                <li><a href="@Url.Action("Index","AsistenteTono")">Asistente de Tono</a></li>
+                                <!-- ============================================================= -->
+                                <!-- ===================== ASISTENTE DE SKINCARE ===================== -->
+                                <li><a href="@Url.Action("Index","AsistenteSkincare")">Asistente Skincare</a></li>
+                                <li><a href="@Url.Action("Cuestionario","AsistenteSkincare")">Cuestionario Skincare</a></li>
+                                <li><a href="@Url.Action("Rutina","AsistenteSkincare")">Rutina Personalizada</a></li>
+                                <li><a href="@Url.Action("PasoAPaso","AsistenteSkincare")">Rutina Paso a Paso</a></li>
+                                <li><a href="@Url.Action("Repeticion","AsistenteSkincare")">Repetir Diagnóstico</a></li>
+                                <!-- ================================================================ -->
+                                <!-- ===================== BLOG DE BELLEZA ===================== -->
+                                <li><a href="@Url.Action("Index","BlogBelleza")">Blog Belleza</a></li>
+                                <li><a href="@Url.Action("Publicar","BlogBelleza")">Publicar</a></li>
                                 <!-- =========================================================== -->
                             </ul>
                                 </li>

@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "Diagnóstico de Skincare";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .sk-box {
+        border: 1px solid #e5e5e5;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 20px;
+        background: #fff;
+    }
+
+    .btn-skin {
+        padding: 6px 16px;
+        font-size: 14px;
+        border-radius: 6px;
+    }
+</style>
+
+<section class="section-space">
+    <div class="container">
+        <h3 class="mb-4">Cuéntanos sobre tu piel</h3>
+
+        <div class="sk-box">
+            <h6>1. ¿Cómo describirías tu tipo de piel?</h6>
+            <select class="form-select">
+                <option>Selecciona</option>
+                <option>Grasa</option>
+                <option>Seca</option>
+                <option>Mixta</option>
+                <option>Sensible</option>
+            </select>
+        </div>
+
+        <div class="sk-box">
+            <h6>2. ¿Qué es lo que más te preocupa?</h6>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox"> Acné
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox"> Manchas
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox"> Arrugas
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox"> Resequedad
+            </div>
+        </div>
+
+        <div class="sk-box">
+            <h6>3. ¿Cada cuánto realizas tu rutina?</h6>
+            <select class="form-select">
+                <option>Todos los días</option>
+                <option>Algunas veces a la semana</option>
+                <option>Muy rara vez</option>
+            </select>
+        </div>
+
+        <div class="text-end mt-4">
+            <a href="@Url.Action("Rutina","AsistenteSkincare")"
+               class="btn btn-dark btn-skin">
+                Ver mi rutina
+            </a>
+        </div>
+    </div>
+</section>

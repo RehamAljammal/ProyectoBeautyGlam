@@ -134,13 +134,18 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AsistenteSkincareController.cs" />
+    <Compile Include="Controllers\AsistenteTonoController.cs" />
+    <Compile Include="Controllers\BlogBellezaController.cs" />
     <Compile Include="Controllers\CatalogoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventarioController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\PermisosController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
+    <Compile Include="Controllers\PromocionesController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
+    <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\WishlistController.cs" />
@@ -487,6 +492,20 @@
     <Content Include="Views\Inventario\Movimientos.cshtml" />
     <Content Include="Views\Catalogo\Index.cshtml" />
     <Content Include="Views\Catalogo\VistaProducto.cshtml" />
+    <Content Include="Views\AsistenteTono\Index.cshtml" />
+    <Content Include="Views\AsistenteTono\Cuestionario.cshtml" />
+    <Content Include="Views\AsistenteTono\Resultado.cshtml" />
+    <Content Include="Views\AsistenteSkincare\Index.cshtml" />
+    <Content Include="Views\AsistenteSkincare\Cuestionario.cshtml" />
+    <Content Include="Views\AsistenteSkincare\Rutina.cshtml" />
+    <Content Include="Views\AsistenteSkincare\PasoAPaso.cshtml" />
+    <Content Include="Views\AsistenteSkincare\Repeticion.cshtml" />
+    <Content Include="Views\BlogBelleza\Index.cshtml" />
+    <Content Include="Views\BlogBelleza\Publicar.cshtml" />
+    <Content Include="Views\BlogBelleza\Editar.cshtml" />
+    <Content Include="Views\BlogBelleza\Detalle.cshtml" />
+    <Content Include="Views\Reportes\Index.cshtml" />
+    <Content Include="Views\Promociones\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
