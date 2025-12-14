@@ -144,6 +144,7 @@
     <Compile Include="Controllers\PermisosController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
+    <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\WishlistController.cs" />
@@ -502,6 +503,7 @@
     <Content Include="Views\BlogBelleza\Publicar.cshtml" />
     <Content Include="Views\BlogBelleza\Editar.cshtml" />
     <Content Include="Views\BlogBelleza\Detalle.cshtml" />
+    <Content Include="Views\Reportes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
