@@ -1,0 +1,25 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>View</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+    </tr>
+
+        <tr>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { }) |
+                @Html.ActionLink("Details", "Details", new { }) |
+                @Html.ActionLink("Delete", "Delete", new { })
+            </td>
+        </tr>
+
+</table>
