@@ -26,6 +26,8 @@
 
     <!-- Main Style -->
     <link rel="stylesheet" href="~/assets/css/style.min.css" />
+    <link rel="stylesheet" href="~/assets/css/custom.css" />
+
 </head>
 
 <body>
@@ -39,72 +41,89 @@
                 <div class="row align-items-center">
 
                     <!-- LOGO -->
-                    <div class="col-5 col-sm-6 col-lg-3">
-                        <div class="header-logo">
-                            <a href="@Url.Action("Index","Home")">
-                                <img class="logo-main" src="~/assets/images/logo.webp" width="95" height="68" alt="Logo" />
+                    <div class="col-md-6 col-lg-4">
+                        <div class="widget-about">
+                            <a class="widget-logo" href="@Url.Action("Index","Home")">
+                                <img src="@Url.Content("~/Images/logobeauty.jpg")"
+                                     width="95"
+                                     height="68"
+                                     alt="BeautyGlam Logo" />
                             </a>
+                            
                         </div>
                     </div>
+
 
                     <!-- NAVIGATION DESKTOP -->
                     <div class="col-lg-6 d-none d-lg-block">
                         <div class="header-navigation">
                             <ul class="main-nav justify-content-start">
 
-                                <!-- Páginas principales -->
-                                <li><a href="@Url.Action("Index","Home")">Home</a></li>
-                                @*<li><a href="@Url.Action("About","Home")">About</a></li>
-        <li><a href="@Url.Action("Product","Shop")">Shop</a></li>*@
-                                @*<li><a href="@Url.Action("Blog","Home")">Blog</a></li>
-        <li><a href("@Url.Action("Contact","Home"))>Contact</a></li>*@
+                                <ul class="main-nav justify-content-start">
 
-                                <!-- ===================== MÓDULO ADMIN ===================== -->
-                                <li><a href="@Url.Action("Index","Usuarios")">Usuarios</a></li>
-                                <li><a href="@Url.Action("Index","Roles")">Roles</a></li>
-                                <li><a href="@Url.Action("Index","Permisos")">Permisos</a></li>
-                                <li><a href="@Url.Action("Index","Proveedores")">Proveedores</a></li>
-                                <li><a href="@Url.Action("Index","Productos")">Productos</a></li>
-                                <li><a href="@Url.Action("Index","Reportes")">Reportes</a></li>
-                                <li><a href="@Url.Action("Index","Regalos")">Regalos</a></li>
-                                <li><a href="@Url.Action("Index","Promociones")">Promociones</a></li>
+                                    <!-- HOME -->
+                                    <li>
+                                        <a href="@Url.Action("Index","Home")">Home</a>
+                                    </li>
 
-                                <!-- =========================================================== -->
-                                <!-- ===================== AUTENTICACIÓN ===================== -->
-                                <li><a href="@Url.Action("Login","Account")">Login</a></li>
-                                <li><a href="@Url.Action("Register","Account")">Registro</a></li>
-                                <li><a href="@Url.Action("Recuperar","Account")">Recuperar</a></li>
-                                <!-- =========================================================== -->
-                                <!-- ===================== MÓDULO PERFIL ===================== -->
-                                <li><a href="@Url.Action("Index","Perfil")">Perfil</a></li>
-                                <!-- =========================================================== -->
-                                <!-- ===================== WISHLIST ===================== -->
-                                <li><a href="@Url.Action("Index","Wishlist")">Wishlist</a></li>
-                                <!-- =========================================================== -->
-                                <!-- ===================== WISHLIST ===================== -->
-                                <li><a href="@Url.Action("Index","Inventario")">Inventario</a></li>
-                                <li><a href="@Url.Action("Avanzado","Inventario")">Avanzado</a></li>
-                                <li><a href="@Url.Action("Movimientos","Inventario", new { id = 1 })">Movimientos</a></li>
-                                <!-- =========================================================== -->
-                                <!-- ===================== WISHLIST ===================== -->
-                                <li><a href="@Url.Action("Index","Catalogo")">Catálogo</a></li>
-                                <!-- =========================================================== -->
-                                <!-- ===================== ASISTENTE DE TONO ===================== -->
-                                <li><a href="@Url.Action("Index","AsistenteTono")">Asistente de Tono</a></li>
-                                <!-- ============================================================= -->
-                                <!-- ===================== ASISTENTE DE SKINCARE ===================== -->
-                                <li><a href="@Url.Action("Index","AsistenteSkincare")">Asistente Skincare</a></li>
-                                <li><a href="@Url.Action("Cuestionario","AsistenteSkincare")">Cuestionario Skincare</a></li>
-                                <li><a href="@Url.Action("Rutina","AsistenteSkincare")">Rutina Personalizada</a></li>
-                                <li><a href="@Url.Action("PasoAPaso","AsistenteSkincare")">Rutina Paso a Paso</a></li>
-                                <li><a href="@Url.Action("Repeticion","AsistenteSkincare")">Repetir Diagnóstico</a></li>
-                                <!-- ================================================================ -->
-                                <!-- ===================== BLOG DE BELLEZA ===================== -->
-                                <li><a href="@Url.Action("Index","BlogBelleza")">Blog Belleza</a></li>
-                                <li><a href="@Url.Action("Publicar","BlogBelleza")">Publicar</a></li>
-                                <!-- =========================================================== -->
-                            </ul>
-                                </li>
+                                    <!-- ADMINISTRACIÓN -->
+                                    <li class="has-submenu">
+                                        <a href="#">Administración</a>
+                                        <ul class="submenu">
+                                            <li><a href="@Url.Action("Index","Usuarios")">Usuarios</a></li>
+                                            <li><a href="@Url.Action("Index","Roles")">Roles</a></li>
+                                            <li><a href="@Url.Action("Index","Permisos")">Permisos</a></li>
+                                            <li><a href="@Url.Action("Index","Proveedores")">Proveedores</a></li>
+                                            <li><a href="@Url.Action("Index","Reportes")">Reportes</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <!-- PRODUCTOS -->
+                                    <li class="has-submenu">
+                                        <a href="#">Productos</a>
+                                        <ul class="submenu">
+                                            <li><a href="@Url.Action("Index","Productos")">Listado</a></li>
+                                            <li><a href="@Url.Action("Index","Inventario")">Inventario</a></li>
+                                            <li><a href="@Url.Action("Avanzado","Inventario")">Inventario Avanzado</a></li>
+                                            <li><a href="@Url.Action("Movimientos","Inventario", new { id = 1 })">Movimientos</a></li>
+                                            <li><a href="@Url.Action("Index","Catalogo")">Catálogo</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <!-- ASISTENTES -->
+                                    <li class="has-submenu">
+                                        <a href="#">Asistentes</a>
+                                        <ul class="submenu">
+                                            <li><a href="@Url.Action("Index","AsistenteTono")">Asistente de Tono</a></li>
+                                            <li><a href="@Url.Action("Index","AsistenteSkincare")">Skincare</a></li>
+                                            <li><a href="@Url.Action("Cuestionario","AsistenteSkincare")">Cuestionario</a></li>
+                                            <li><a href="@Url.Action("Rutina","AsistenteSkincare")">Rutina</a></li>
+                                            <li><a href="@Url.Action("PasoAPaso","AsistenteSkincare")">Paso a Paso</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <!-- BLOG -->
+                                    <li class="has-submenu">
+                                        <a href="#">Blog</a>
+                                        <ul class="submenu">
+                                            <li><a href="@Url.Action("Index","BlogBelleza")">Ver Blog</a></li>
+                                            <li><a href="@Url.Action("Publicar","BlogBelleza")">Publicar</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <!-- CUENTA -->
+                                    <li class="has-submenu">
+                                        <a href="#">Cuenta</a>
+                                        <ul class="submenu">
+                                            <li><a href="@Url.Action("Login","Account")">Login</a></li>
+                                            <li><a href="@Url.Action("Register","Account")">Registro</a></li>
+                                            <li><a href="@Url.Action("Index","Perfil")">Perfil</a></li>
+                                            <li><a href="@Url.Action("Recuperar","Account")">Recuperar</a></li>
+                                        </ul>
+                                    </li>
+
+                                </ul>
+
                             </ul>
                         </div>
                     </div>
@@ -113,10 +132,7 @@
                     <div class="col-7 col-sm-6 col-lg-3">
                         <div class="header-action justify-content-end">
 
-                            <!-- Login Icon -->
-                            <a class="header-action-btn" href="@Url.Action("Login","Account")">
-                                <i class="fa fa-user"></i>
-                            </a>
+                            
 
                             <!-- Menú móvil -->
                             <button class="header-menu-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#AsideOffcanvasMenu">
@@ -142,11 +158,16 @@
                         <div class="col-md-6 col-lg-4">
                             <div class="widget-about">
                                 <a class="widget-logo" href="@Url.Action("Index","Home")">
-                                    <img src="~/assets/images/logo.webp" width="95" height="68" alt="Logo">
+                                    <img src="@Url.Content("~/Images/logobeauty.jpg")"
+                                         width="95"
+                                         height="68"
+                                         alt="BeautyGlam Logo" />
                                 </a>
                                 <p class="desc">BeautyGlam - Your beauty, our passion.</p>
                             </div>
                         </div>
+
+
 
                         <div class="col-md-6 col-lg-5">
                             <h4 class="widget-title">Information</h4>
