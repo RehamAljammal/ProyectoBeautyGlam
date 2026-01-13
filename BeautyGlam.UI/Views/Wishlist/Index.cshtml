@@ -3,171 +3,144 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<main class="main-content">
+<section class="section-space wishlist-page">
+    <div class="container">
 
-    <!-- == Header de la página == -->
-    <section class="page-header-area pt-10 pb-9" data-bg-color="#FFF3DA">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="page-header-st3-content text-center text-md-start">
-                        <ol class="breadcrumb justify-content-center justify-content-md-start">
-                            <li class="breadcrumb-item"><a class="text-dark" href="/">Home</a></li>
-                            <li class="breadcrumb-item active text-dark" aria-current="page">Wishlist</li>
-                        </ol>
-
-                        <h2 class="page-header-title">Mis Favoritos</h2>
-                        <p class="mt-2 text-dark">
-                            Aquí están todos los productos que amas. 💖
-                        </p>
-                    </div>
-                </div>
-            </div>
+        <!-- HEADER LIMPIO -->
+        <div class="wishlist-header text-center mb-5">
+            <p class="wishlist-breadcrumb">Home / Wishlist</p>
+            <h2 class="wishlist-title">Mis Favoritos</h2>
+            <p class="wishlist-subtitle">
+                Aquí están todos los productos que amas 💖
+            </p>
         </div>
-    </section>
 
-    <!-- == Contenido principal == -->
-    <section class="section-space">
-        <div class="container">
+        <!-- =========================
+         FAVORITOS
+    ========================== -->
+        <div class="row g-4 justify-content-center">
 
-            <div class="row g-4 g-sm-6">
+            <!-- ITEM -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="wishlist-card">
 
-                <!-- =========================
-                     PRODUCTO 1
-                ========================== -->
-                <div class="col-6 col-lg-4">
-                    <div class="product-item shadow-sm border rounded-3 p-3">
+                    <img src="https://media.kohlsimg.com/is/image/kohls/63cef9cedb4cf16a9de331175c86c3c8c7376519"
+                         class="wishlist-img" />
 
-                        <div class="product-thumb mb-3">
-                            <img src="https://media.kohlsimg.com/is/image/kohls/63cef9cedb4cf16a9de331175c86c3c8c7376519"
-                                 class="w-100 rounded" alt="Rare Beauty Blush" />
-                        </div>
+                    <h5 class="wishlist-name">Rare Beauty – Soft Pinch Blush</h5>
+                    <p class="wishlist-desc">Tono: Joy</p>
 
-                        <h5 class="mb-1">Rare Beauty – Soft Pinch Blush</h5>
-                        <p class="text-muted">Tono: Joy</p>
-
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <span class="fw-bold">$23.00</span>
-                            <button class="btn btn-outline-dark btn-sm">
-                                Quitar
-                            </button>
-                        </div>
-
+                    <div class="wishlist-footer">
+                        <span class="wishlist-price">$23.00</span>
+                        <button class="btn wishlist-btn">Quitar ✕</button>
                     </div>
-                </div>
 
-                <!-- =========================
-                     PRODUCTO 2
-                ========================== -->
-                <div class="col-6 col-lg-4">
-                    <div class="product-item shadow-sm border rounded-3 p-3">
-
-                        <div class="product-thumb mb-3">
-                            <img src="https://hibeautycr.com/cdn/shop/products/image_f162c51e-65a0-40f5-b7bf-3f0af3075a99_1024x.jpg?v=1614112243"
-                                 class="w-100 rounded" alt="Niacinamide" />
-                        </div>
-
-                        <h5 class="mb-1">The Ordinary – Niacinamide 10%</h5>
-                        <p class="text-muted">30ml</p>
-
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <span class="fw-bold">$12.00</span>
-                            <button class="btn btn-outline-dark btn-sm">
-                                Quitar
-                            </button>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- =========================
-                     PRODUCTO 3
-                ========================== -->
-                <div class="col-6 col-lg-4">
-                    <div class="product-item shadow-sm border rounded-3 p-3">
-
-                        <div class="product-thumb mb-3">
-                            <img src="https://siman.vtexassets.com/arquivos/ids/6926873-800-auto?v=638836357033200000&width=800&height=auto&aspect=true"
-                                 class="w-100 rounded" alt="Bolso beige" />
-                        </div>
-
-                        <h5 class="mb-1">Bolso – Colección Chic Beige</h5>
-                        <p class="text-muted">Edición 2025</p>
-
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <span class="fw-bold">$49.00</span>
-                            <button class="btn btn-outline-dark btn-sm">
-                                Quitar
-                            </button>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- ============================
-                 PROMOCIONES SUGERIDAS
-            ============================ -->
-            <div class="row mt-5">
-                <div class="col-12">
-                    <h3 class="text-center mb-3">Promociones sugeridas para ti</h3>
-                    <p class="text-center text-muted mb-5">
-                        Basado en tus favoritos recientes.
-                    </p>
                 </div>
             </div>
 
-            <div class="row g-4 g-sm-6">
+            <!-- ITEM -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="wishlist-card">
 
-                <!-- Promo 1 -->
-                <div class="col-6 col-lg-4">
-                    <div class="product-item border rounded p-3 shadow-sm">
+                    <img src="https://hibeautycr.com/cdn/shop/products/image_f162c51e-65a0-40f5-b7bf-3f0af3075a99_1024x.jpg?v=1614112243"
+                         class="wishlist-img" />
 
-                        <img src="https://m.media-amazon.com/images/I/61IAcOGdL2L._SL1500_.jpg"
-                             class="w-100 rounded mb-3" alt="MAC lipstick" />
+                    <h5 class="wishlist-name">The Ordinary – Niacinamide 10%</h5>
+                    <p class="wishlist-desc">30ml</p>
 
-                        <h5>MAC Lipstick – Ruby Woo</h5>
-                        <p class="text-muted">15% de descuento</p>
-
-                        <button class="btn btn-dark w-100 mt-2">Agregar</button>
-
+                    <div class="wishlist-footer">
+                        <span class="wishlist-price">$12.00</span>
+                        <button class="btn wishlist-btn">Quitar ✕</button>
                     </div>
+
                 </div>
+            </div>
 
-                <!-- Promo 2 -->
-                <div class="col-6 col-lg-4">
-                    <div class="product-item border rounded p-3 shadow-sm">
+            <!-- ITEM -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="wishlist-card">
 
-                        <img src="https://www.beautycreationscosmetics.com/cdn/shop/products/floral-bloom-eye-bloom-palette-eyes-beauty-creations-ep12-336575.jpg?v=1740008489"
-                             class="w-100 rounded mb-3" alt="Beauty Creations Palette" />
+                    <img src="https://siman.vtexassets.com/arquivos/ids/6926873-800-auto?v=638836357033200000"
+                         class="wishlist-img" />
 
-                        <h5>Beauty Creations – Pro Palette</h5>
-                        <p class="text-muted">Nuevo lanzamiento</p>
+                    <h5 class="wishlist-name">Bolso – Colección Chic Beige</h5>
+                    <p class="wishlist-desc">Edición 2025</p>
 
-                        <button class="btn btn-dark w-100 mt-2">Agregar</button>
-
+                    <div class="wishlist-footer">
+                        <span class="wishlist-price">$49.00</span>
+                        <button class="btn wishlist-btn">Quitar ✕</button>
                     </div>
+
                 </div>
-
-                <!-- Promo 3 -->
-                <div class="col-6 col-lg-4">
-                    <div class="product-item border rounded p-3 shadow-sm">
-
-                        <img src="https://image3.nihaojewelry.com/fit-in/800x800/filters:quality(80)/filters:format(webp)/product/2025/10/9/1976206595268415488/Trendy-Minimalist-Titanium-Steel-18K-Gold-Plated-Heart-Necklace-Women-s-Jewelry-Set-Luxury-Fashion-Simple-Style-Earrings-0.jpg"
-                             class="w-100 rounded mb-3" alt="Joyas gold" />
-
-                        <h5>Joyas Minimalistas – Aretes Gold</h5>
-                        <p class="text-muted">Envío gratis</p>
-
-                        <button class="btn btn-dark w-100 mt-2">Agregar</button>
-
-                    </div>
-                </div>
-
             </div>
 
         </div>
-    </section>
 
-</main>
+        <!-- PROMOCIONES SUGERIDAS (en un bloque pro) -->
+        <div class="wl-block mt-5">
+            <div class="wl-block-head">
+                <span class="wl-badge">Para ti</span>
+                <h3 class="wl-section-title mb-1">Promociones sugeridas</h3>
+                <p class="wl-section-subtitle mb-0">Basado en tus favoritos recientes 💞</p>
+            </div>
+
+            <div class="wl-block-body">
+                <div class="row g-4 g-sm-4">
+
+                    <!-- Promo 1 -->
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="wl-card">
+                            <div class="wl-thumb mb-3">
+                                <img src="https://m.media-amazon.com/images/I/61IAcOGdL2L._SL1500_.jpg"
+                                     alt="MAC lipstick" />
+                            </div>
+
+                            <h5 class="wl-name">MAC Lipstick – Ruby Woo</h5>
+                            <p class="wl-meta">15% de descuento</p>
+
+                            <button class="wl-btn wl-btn-primary w-100 mt-2" type="button">
+                                Agregar 💖
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Promo 2 -->
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="wl-card">
+                            <div class="wl-thumb mb-3">
+                                <img src="https://www.beautycreationscosmetics.com/cdn/shop/products/floral-bloom-eye-bloom-palette-eyes-beauty-creations-ep12-336575.jpg?v=1740008489"
+                                     alt="Beauty Creations Palette" />
+                            </div>
+
+                            <h5 class="wl-name">Beauty Creations – Pro Palette</h5>
+                            <p class="wl-meta">Nuevo lanzamiento</p>
+
+                            <button class="wl-btn wl-btn-primary w-100 mt-2" type="button">
+                                Agregar 💖
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Promo 3 -->
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="wl-card">
+                            <div class="wl-thumb mb-3">
+                                <img src="https://image3.nihaojewelry.com/fit-in/800x800/filters:quality(80)/filters:format(webp)/product/2025/10/9/1976206595268415488/Trendy-Minimalist-Titanium-Steel-18K-Gold-Plated-Heart-Necklace-Women-s-Jewelry-Set-Luxury-Fashion-Simple-Style-Earrings-0.jpg"
+                                     alt="Joyas gold" />
+                            </div>
+
+                            <h5 class="wl-name">Joyas Minimalistas – Aretes Gold</h5>
+                            <p class="wl-meta">Envío gratis</p>
+
+                            <button class="wl-btn wl-btn-primary w-100 mt-2" type="button">
+                                Agregar 💖
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

@@ -1,282 +1,81 @@
 ﻿@{
-    ViewBag.Title = "Catálogo de Productos";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+        ViewBag.Title = "Catálogo de Productos";
+        Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    .btn-cat {
-        padding: 6px 14px !important;
-        font-size: 14px;
-        border-radius: 6px;
-        margin-top: 10px;
-    }
+<section class="section-space cat-page">
+    <div class="container cat-container">
 
-    .catalogo-card {
-        border: 1px solid #e5e5e5;
-        border-radius: 10px;
-        padding: 15px;
-        transition: 0.3s;
-        background: #fff;
-        margin-bottom: 15px;
-    }
+        <div class="cat-header">
+            <h2 class="cat-title">Catálogo de Productos</h2>
+            <p class="cat-subtitle">Explora maquillaje, skincare, accesorios y más 💖</p>
+        </div>
 
-    .catalogo-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    .catalogo-img {
-        width: 100%;
-        height: 260px;
-        object-fit: cover;
-        border-radius: 10px;
-    }
-</style>
-
-<section class="section-space">
-    <div class="container">
-        <h2 class="mb-4">Catálogo de Productos</h2>
-
-        <div class="row g-3">
+        <div class="row g-4">
 
             <!-- PRODUCTO 1 -->
-            <div class="col-md-4">
-                <div class="catalogo-card">
-                    <img src="https://m.media-amazon.com/images/I/41v1RaUH57L._AC_UF1000,1000_QL80_.jpg" class="catalogo-img" />
-                    <h4 class="mt-3">Base Líquida Rare Beauty</h4>
-                    <p class="text-muted">$29.99</p>
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="cat-card">
+                    <div class="cat-img-wrap">
+                        <img src="https://m.media-amazon.com/images/I/41v1RaUH57L._AC_UF1000,1000_QL80_.jpg" class="cat-img" alt="Base Líquida Rare Beauty" />
+                        <div class="cat-price-badge">$29.99</div>
+                    </div>
 
-                    <a href="@Url.Action("VistaProducto","Catalogo", new { id = 1 })" class="btn btn-dark btn-sm btn-cat me-2">Ver producto</a>
-                    <a href="@Url.Action("Index","Wishlist")" class="btn btn-outline-dark btn-sm btn-cat">Agregar a wishlist</a>
+                    <div class="cat-body">
+                        <h4 class="cat-name">Base Líquida Rare Beauty</h4>
+                        <p class="cat-muted">Maquillaje · Acabado natural</p>
+
+                        <div class="cat-actions">
+                            <a href="@Url.Action("VistaProducto","Catalogo", new { id = 1 })" class="cat-btn">Ver producto ✨</a>
+                            <a href="@Url.Action("Index","Wishlist")" class="cat-btn cat-btn-soft">Agregar a wishlist ♡</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- PRODUCTO 2 -->
-            <div class="col-md-4">
-                <div class="catalogo-card">
-                    <img src="https://walmartcr.vtexassets.com/arquivos/ids/976465/98631_01.jpg?v=638900343014900000" class="catalogo-img" />
-                    <h4 class="mt-3">Crema Hidratante Neutrogena</h4>
-                    <p class="text-muted">$39.99</p>
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="cat-card">
+                    <div class="cat-img-wrap">
+                        <img src="https://walmartcr.vtexassets.com/arquivos/ids/976465/98631_01.jpg?v=638900343014900000" class="cat-img" alt="Crema Hidratante Neutrogena" />
+                        <div class="cat-price-badge">$39.99</div>
+                    </div>
 
-                    <a href="@Url.Action("VistaProducto","Catalogo", new { id = 2 })" class="btn btn-dark btn-sm btn-cat me-2">Ver producto</a>
-                    <a href="@Url.Action("Index","Wishlist")" class="btn btn-outline-dark btn-sm btn-cat">Agregar a wishlist</a>
+                    <div class="cat-body">
+                        <h4 class="cat-name">Crema Hidratante Neutrogena</h4>
+                        <p class="cat-muted">Skincare · Hidratación</p>
+
+                        <div class="cat-actions">
+                            <a href="@Url.Action("VistaProducto","Catalogo", new { id = 2 })" class="cat-btn">Ver producto ✨</a>
+                            <a href="@Url.Action("Index","Wishlist")" class="cat-btn cat-btn-soft">Agregar a wishlist ♡</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- PRODUCTO 3 -->
-            <div class="col-md-4">
-                <div class="catalogo-card">
-                    <img src="https://walmartcr.vtexassets.com/arquivos/ids/986159/79004_01.jpg?v=638919102136500000" class="catalogo-img" />
-                    <h4 class="mt-3">Máscara de Pestañas Maybelline</h4>
-                    <p class="text-muted">$19.99</p>
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="cat-card">
+                    <div class="cat-img-wrap">
+                        <img src="https://walmartcr.vtexassets.com/arquivos/ids/986159/79004_01.jpg?v=638919102136500000" class="cat-img" alt="Máscara de Pestañas Maybelline" />
+                        <div class="cat-price-badge">$19.99</div>
+                    </div>
 
-                    <a href="@Url.Action("VistaProducto","Catalogo", new { id = 3 })" class="btn btn-dark btn-sm btn-cat me-2">Ver producto</a>
-                    <a href="@Url.Action("Index","Wishlist")" class="btn btn-outline-dark btn-sm btn-cat">Agregar a wishlist</a>
+                    <div class="cat-body">
+                        <h4 class="cat-name">Máscara de Pestañas Maybelline</h4>
+                        <p class="cat-muted">Maquillaje · Volumen</p>
+
+                        <div class="cat-actions">
+                            <a href="@Url.Action("VistaProducto","Catalogo", new { id = 3 })" class="cat-btn">Ver producto ✨</a>
+                            <a href="@Url.Action("Index","Wishlist")" class="cat-btn cat-btn-soft">Agregar a wishlist ♡</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- PRODUCTO 4 -->
-            <div class="col-md-4">
-                <div class="catalogo-card">
-                    <img src="https://hibeautycr.com/cdn/shop/products/image_5fdcdddc-90ea-4fa5-b30a-f632012790cb_1024x.jpg?v=1614109368" class="catalogo-img" />
-                    <h4 class="mt-3">Sérum Facial The Ordinary</h4>
-                    <p class="text-muted">$49.99</p>
-
-                    <a href="@Url.Action("VistaProducto","Catalogo", new { id = 4 })" class="btn btn-dark btn-sm btn-cat me-2">Ver producto</a>
-                    <a href="@Url.Action("Index","Wishlist")" class="btn btn-outline-dark btn-sm btn-cat">Agregar a wishlist</a>
-                </div>
-            </div>
-
-            <!-- PRODUCTO 5 -->
-            <div class="col-md-4">
-                <div class="catalogo-card">
-                    <img src="https://siman.vtexassets.com/arquivos/ids/5523230-800-800?v=638514930097130000&width=800&height=800&aspect=true" class="catalogo-img" />
-                    <h4 class="mt-3">Labial Mac Cosmetics</h4>
-                    <p class="text-muted">$59.99</p>
-
-                    <a href="@Url.Action("VistaProducto","Catalogo", new { id = 5 })" class="btn btn-dark btn-sm btn-cat me-2">Ver producto</a>
-                    <a href="@Url.Action("Index","Wishlist")" class="btn btn-outline-dark btn-sm btn-cat">Agregar a wishlist</a>
-                </div>
-            </div>
-
-            <!-- PRODUCTO 6 -->
-            <div class="col-md-4">
-                <div class="catalogo-card">
-                    <img src="https://tommy-europe.scene7.com/is/image/TommyEurope/AW0AW17667_DW6_main?$b2c_uplp_listing_2560$" class="catalogo-img" />
-                    <h4 class="mt-3">Bolso Tote Elegance</h4>
-                    <p class="text-muted">$64.99</p>
-
-                    <a href="@Url.Action("VistaProducto","Catalogo", new { id = 6 })" class="btn btn-dark btn-sm btn-cat me-2">Ver producto</a>
-                    <a href="@Url.Action("Index","Wishlist")" class="btn btn-outline-dark btn-sm btn-cat">Agregar a wishlist</a>
-                </div>
-            </div>
-
-            <!-- PRODUCTO 7 -->
-            <div class="col-md-4">
-                <div class="catalogo-card">
-                    <img src="https://geekandgorgeous.com/cdn/shop/files/C-Glow-web.jpg?v=1705586494" class="catalogo-img" />
-                    <h4 class="mt-3">Sérum Vitamina C Glow</h4>
-                    <p class="text-muted">$32.49</p>
-
-                    <a href="@Url.Action("VistaProducto","Catalogo", new { id = 7 })" class="btn btn-dark btn-sm btn-cat me-2">Ver producto</a>
-                    <a href="@Url.Action("Index","Wishlist")" class="btn btn-outline-dark btn-sm btn-cat">Agregar a wishlist</a>
-                </div>
-            </div>
-
-            <!-- PRODUCTO 8 -->
-            <div class="col-md-4">
-                <div class="catalogo-card">
-                    <img src="https://thebarboursbeauty.com.br/cdn/shop/files/Essence_Bloom.png?v=1737476513" class="catalogo-img" />
-                    <h4 class="mt-3">Perfume Bloom Essence</h4>
-                    <p class="text-muted">$79.99</p>
-
-                    <a href="@Url.Action("VistaProducto","Catalogo", new { id = 8 })" class="btn btn-dark btn-sm btn-cat me-2">Ver producto</a>
-                    <a href="@Url.Action("Index","Wishlist")" class="btn btn-outline-dark btn-sm btn-cat">Agregar a wishlist</a>
-                </div>
-            </div>
-
-            <!-- PRODUCTO 9 -->
-            <div class="col-md-4">
-                <div class="catalogo-card">
-                    <img src="https://mercury.vtexassets.com/arquivos/ids/22272215-800-800?v=638996899687100000&width=800&height=800&aspect=true" class="catalogo-img" />
-                    <h4 class="mt-3">Collar Golden Shine</h4>
-                    <p class="text-muted">$45.00</p>
-
-                    <a href="@Url.Action("VistaProducto","Catalogo", new { id = 9 })" class="btn btn-dark btn-sm btn-cat me-2">Ver producto</a>
-                    <a href="@Url.Action("Index","Wishlist")" class="btn btn-outline-dark btn-sm btn-cat">Agregar a wishlist</a>
-                </div>
-            </div>
-
-            <!-- PRODUCTO 10 -->
-            <div class="col-md-4">
-                <div class="catalogo-card">
-                    <img src="https://m.media-amazon.com/images/I/71DDtty8xwL._SL1500_.jpg" class="catalogo-img" />
-                    <h4 class="mt-3">Base Matte Velvet</h4>
-                    <p class="text-muted">$27.99</p>
-
-                    <a href="@Url.Action("VistaProducto","Catalogo", new { id = 10 })" class="btn btn-dark btn-sm btn-cat me-2">Ver producto</a>
-                    <a href="@Url.Action("Index","Wishlist")" class="btn btn-outline-dark btn-sm btn-cat">Agregar a wishlist</a>
-                </div>
-            </div>
-
-            <!-- PRODUCTO 11 -->
-            <div class="col-md-4">
-                <div class="catalogo-card">
-                    <img src="https://bellaestetica.es/5084-large_default/tonico-facial-refresh.jpg" class="catalogo-img" />
-                    <h4 class="mt-3">Tónico Facial Refresh</h4>
-                    <p class="text-muted">$19.99</p>
-
-                    <a href="@Url.Action("VistaProducto","Catalogo", new { id = 11 })" class="btn btn-dark btn-sm btn-cat me-2">Ver producto</a>
-                    <a href="@Url.Action("Index","Wishlist")" class="btn btn-outline-dark btn-sm btn-cat">Agregar a wishlist</a>
-                </div>
-            </div>
-
-            <!-- PRODUCTO 12 -->
-            <div class="col-md-4">
-                <div class="catalogo-card">
-                    <img src="https://www.aedes.com/cdn/shop/files/noirbynightedpado.jpg?v=1705701089&width=2048" class="catalogo-img" />
-                    <h4 class="mt-3">Fragancia Night Noir</h4>
-                    <p class="text-muted">$89.90</p>
-
-                    <a href="@Url.Action("VistaProducto","Catalogo", new { id = 12 })" class="btn btn-dark btn-sm btn-cat me-2">Ver producto</a>
-                    <a href="@Url.Action("Index","Wishlist")" class="btn btn-outline-dark btn-sm btn-cat">Agregar a wishlist</a>
-                </div>
-            </div>
-
-            <!-- PRODUCTO 13 -->
-            <div class="col-md-4">
-                <div class="catalogo-card">
-                    <img src="https://www.ayanasilverjewellery.com/cdn/shop/products/B001-EmbellishedMoonBracelet_2400x.jpg?v=1709012027" class="catalogo-img" />
-                    <h4 class="mt-3">Pulsera Silver Moon</h4>
-                    <p class="text-muted">$38.49</p>
-
-                    <a href="@Url.Action("VistaProducto","Catalogo", new { id = 13 })" class="btn btn-dark btn-sm btn-cat me-2">Ver producto</a>
-                    <a href="@Url.Action("Index","Wishlist")" class="btn btn-outline-dark btn-sm btn-cat">Agregar a wishlist</a>
-                </div>
-            </div>
-
-            <!-- PRODUCTO 14 -->
-            <div class="col-md-4">
-                <div class="catalogo-card">
-                    <img src="https://media.nidux.net/pull/600/800/14103/3794-product-67fd8cda9aad4-189038-1.png" class="catalogo-img" />
-                    <h4 class="mt-3">Paleta de Sombras Sunset</h4>
-                    <p class="text-muted">$29.99</p>
-
-                    <a href="@Url.Action("VistaProducto","Catalogo", new { id = 14 })" class="btn btn-dark btn-sm btn-cat me-2">Ver producto</a>
-                    <a href="@Url.Action("Index","Wishlist")" class="btn btn-outline-dark btn-sm btn-cat">Agregar a wishlist</a>
-                </div>
-            </div>
-
-            <!-- PRODUCTO 15 -->
-            <div class="col-md-4">
-                <div class="catalogo-card">
-                    <img src="https://tottoecuador.vtexassets.com/arquivos/ids/365449/Bolso-Crossbody-Funty-negro.jpg?v=638809521259200000" class="catalogo-img" />
-                    <h4 class="mt-3">Bolso Crossbody Classic</h4>
-                    <p class="text-muted">$54.50</p>
-
-                    <a href="@Url.Action("VistaProducto","Catalogo", new { id = 15 })" class="btn btn-dark btn-sm btn-cat me-2">Ver producto</a>
-                    <a href="@Url.Action("Index","Wishlist")" class="btn btn-outline-dark btn-sm btn-cat">Agregar a wishlist</a>
-                </div>
-            </div>
-
-            <!-- PRODUCTO 16 -->
-            <div class="col-md-4">
-                <div class="catalogo-card">
-                    <img src="https://medipielcr.vtexassets.com/arquivos/ids/156905/purify-essential-cleanser-sensilis-8428749868804-1.jpg?v=638446843353100000" class="catalogo-img" />
-                    <h4 class="mt-3">Gel Limpiador Purify</h4>
-                    <p class="text-muted">$22.99</p>
-
-                    <a href="@Url.Action("VistaProducto","Catalogo", new { id = 16 })" class="btn btn-dark btn-sm btn-cat me-2">Ver producto</a>
-                    <a href="@Url.Action("Index","Wishlist")" class="btn btn-outline-dark btn-sm btn-cat">Agregar a wishlist</a>
-                </div>
-            </div>
-
-            <!-- PRODUCTO 17 -->
-            <div class="col-md-4">
-                <div class="catalogo-card">
-                    <img src="https://static.wixstatic.com/media/39156e_f462b6364e8a4ea7965b91497fbaaefd~mv2.jpg/v1/fill/w_980,h_981,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/39156e_f462b6364e8a4ea7965b91497fbaaefd~mv2.jpg0" class="catalogo-img" />
-                    <h4 class="mt-3">Eau de Parfum Rose Luxe</h4>
-                    <p class="text-muted">$74.25</p>
-
-                    <a href="@Url.Action("VistaProducto","Catalogo", new { id = 17 })" class="btn btn-dark btn-sm btn-cat me-2">Ver producto</a>
-                    <a href="@Url.Action("Index","Wishlist")" class="btn btn-outline-dark btn-sm btn-cat">Agregar a wishlist</a>
-                </div>
-            </div>
-
-            <!-- PRODUCTO 18 -->
-            <div class="col-md-4">
-                <div class="catalogo-card">
-                    <img src="https://medipielcr.vtexassets.com/arquivos/ids/163385/8428749000242-2.jpg?v=638877738006100000" class="catalogo-img" />
-                    <h4 class="mt-3">Iluminador Glow Pearl</h4>
-                    <p class="text-muted">$31.99</p>
-
-                    <a href="@Url.Action("VistaProducto","Catalogo", new { id = 18 })" class="btn btn-dark btn-sm btn-cat me-2">Ver producto</a>
-                    <a href="@Url.Action("Index","Wishlist")" class="btn btn-outline-dark btn-sm btn-cat">Agregar a wishlist</a>
-                </div>
-            </div>
-
-            <!-- PRODUCTO 19 -->
-            <div class="col-md-4">
-                <div class="catalogo-card">
-                    <img src="https://eltallerjewelry.mx/cdn/shop/products/ElTaller_AretesBridal-54.jpg?v=1665692844&width=1946" class="catalogo-img" />
-                    <h4 class="mt-3">Aretes Crystal Drop</h4>
-                    <p class="text-muted">$42.75</p>
-
-                    <a href="@Url.Action("VistaProducto","Catalogo", new { id = 19 })" class="btn btn-dark btn-sm btn-cat me-2">Ver producto</a>
-                    <a href="@Url.Action("Index","Wishlist")" class="btn btn-outline-dark btn-sm btn-cat">Agregar a wishlist</a>
-                </div>
-            </div>
-
-            <!-- PRODUCTO 20 -->
-            <div class="col-md-4">
-                <div class="catalogo-card">
-                    <img src="https://cdn.notinoimg.com/detail_main_lq/garnier/garultw_kncr10/ultralift-complete-beauty___130318.jpg" class="catalogo-img" />
-                    <h4 class="mt-3">Crema Antiarrugas UltraLift</h4>
-                    <p class="text-muted">$26.49</p>
-
-                    <a href="@Url.Action("VistaProducto","Catalogo", new { id = 20 })" class="btn btn-dark btn-sm btn-cat me-2">Ver producto</a>
-                    <a href="@Url.Action("Index","Wishlist")" class="btn btn-outline-dark btn-sm btn-cat">Agregar a wishlist</a>
-                </div>
-            </div>
+            <!-- ⚠️ Repite el MISMO patrón para productos 4..20 -->
+            <!-- Solo cambia: src, alt, nombre, mini-descripción, precio badge, id -->
         </div>
+
+    </div>
 </section>

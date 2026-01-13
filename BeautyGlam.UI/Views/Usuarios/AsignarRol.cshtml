@@ -1,39 +1,43 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Asignar Rol";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<main class="main-content">
+<section class="section-space users-page">
+    <div class="container users-container">
 
-    <section class="page-header-area pt-10 pb-9" data-bg-color="#FFF3DA">
-        <div class="container">
-            <h2 class="page-header-title">Asignar Rol a Usuario</h2>
+        <div class="users-top users-top-center">
+            <div class="text-center">
+                <h2 class="users-title">Asignar Rol a Usuario</h2>
+                <p class="users-subtitle">Cambia el rol sin complicarte 🔒</p>
+            </div>
         </div>
-    </section>
 
-    <section class="section-space">
-        <div class="container">
-            <div class="shadow-sm bg-white border p-4 rounded-3">
+        <div class="users-card users-form-card">
+            <form>
 
-                <form>
+                <div class="users-minihead">
+                    <span class="users-badge">Usuario</span>
+                    <h4 class="users-mini-title">Ana Rodríguez</h4>
+                    <p class="users-mini-sub">Selecciona el rol que deseas asignar.</p>
+                </div>
 
-                    <h5 class="mb-3">Usuario: <strong>Ana Rodríguez</strong></h5>
-
-                    <label class="form-label">Seleccionar Rol</label>
-                    <select class="form-control mb-3">
+                <div class="mb-3">
+                    <label class="form-label users-label">Seleccionar Rol</label>
+                    <select class="form-control users-input">
                         <option selected>Administrador</option>
                         <option>Cliente</option>
                         <option>Vendedor</option>
                     </select>
+                </div>
 
-                    <button class="btn btn-dark px-4 py-2">Guardar</button>
-                    <a href="/Usuarios" class="btn btn-secondary px-4 py-2">Cancelar</a>
+                <div class="users-form-actions">
+                    <button class="btn users-btn" type="submit">Guardar</button>
+                    <a href="/Usuarios" class="btn users-btn-soft">Cancelar</a>
+                </div>
 
-                </form>
-
-            </div>
+            </form>
         </div>
-    </section>
 
-</main>
+    </div>
+</section>

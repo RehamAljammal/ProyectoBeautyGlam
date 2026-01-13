@@ -3,34 +3,49 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section class="section-space">
-    <div class="container">
+<section class="section-space prof-page">
+    <div class="container prof-container">
 
-        <h2 class="text-center mb-4">Editar Perfil</h2>
+        <div class="prof-header">
+            <h2 class="prof-title">Editar Perfil</h2>
+            <p class="prof-subtitle">Actualiza tus datos cuando lo necesites ✨</p>
+        </div>
 
-        <div class="shadow-sm border rounded-3 p-4 bg-white col-lg-6 mx-auto">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-7">
+                <div class="prof-card">
 
-            <form>
+                    <div class="prof-card-head">
+                        <span class="prof-badge">Cuenta</span>
+                        <h4 class="prof-card-title">Información personal</h4>
+                        <p class="prof-card-desc">Campos básicos para mantener tu cuenta al día.</p>
+                    </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Nombre</label>
-                    <input class="form-control" placeholder="Ingrese su nombre" />
+                    <div class="prof-card-body">
+                        <form>
+
+                            <div class="mb-3">
+                                <label class="prof-label">Nombre</label>
+                                <input class="form-control prof-input" placeholder="Ingrese su nombre" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="prof-label">Correo</label>
+                                <input type="email" class="form-control prof-input" placeholder="usuario@correo.com" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="prof-label">Contraseña (opcional)</label>
+                                <input type="password" class="form-control prof-input" placeholder="Nueva contraseña" />
+                            </div>
+
+                            <button class="btn prof-btn prof-btn-block mt-2">Guardar Cambios 💾</button>
+
+                        </form>
+                    </div>
+
                 </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Correo</label>
-                    <input type="email" class="form-control" placeholder="usuario@correo.com" />
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Contraseña (opcional)</label>
-                    <input type="password" class="form-control" placeholder="Nueva contraseña" />
-                </div>
-
-                <button class="btn btn-dark w-100 mt-3">Guardar Cambios</button>
-
-            </form>
-
+            </div>
         </div>
 
     </div>

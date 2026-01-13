@@ -3,45 +3,56 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<main class="main-content">
+<section class="section-space perm-page">
+    <div class="container perm-container">
 
-    <section class="page-header-area pt-10 pb-9" data-bg-color="#DFE4FF">
-        <div class="container text-center">
-            <h2 class="page-header-title">Crear Permiso</h2>
+        <div class="perm-header">
+            <h2 class="perm-title">Crear Permiso</h2>
+            <p class="perm-subtitle">Agrega permisos para controlar accesos por módulo ✨</p>
         </div>
-    </section>
 
-    <section class="section-space">
-        <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-7">
 
-            <div class="shadow-sm border p-4 rounded-3 bg-white">
+                <div class="perm-card">
 
-                <form>
-
-                    <div class="mb-3">
-                        <label class="form-label">Nombre del Permiso</label>
-                        <input type="text" class="form-control" placeholder="Ej: Crear Usuario" />
+                    <div class="perm-card-head">
+                        <div>
+                            <span class="perm-badge">Nuevo</span>
+                        </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-label">Módulo</label>
-                        <select class="form-control">
-                            <option selected disabled>Seleccione un módulo</option>
-                            <option>Usuarios</option>
-                            <option>Productos</option>
-                            <option>Ventas</option>
-                            <option>Reservas</option>
-                        </select>
+                    <div class="perm-form">
+                        <form>
+
+                            <div class="mb-3">
+                                <label class="perm-label">Nombre del Permiso</label>
+                                <input type="text" class="form-control perm-input" placeholder="Ej: Crear Usuario" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="perm-label">Módulo</label>
+                                <select class="form-select perm-input">
+                                    <option selected disabled>Seleccione un módulo</option>
+                                    <option>Usuarios</option>
+                                    <option>Productos</option>
+                                    <option>Ventas</option>
+                                    <option>Reservas</option>
+                                </select>
+                            </div>
+
+                            <div class="perm-actions mt-3">
+                                <button class="perm-btn" type="button">Guardar ✨</button>
+                                <a href="/Permisos" class="perm-btn perm-btn-soft">Cancelar</a>
+                            </div>
+
+                        </form>
                     </div>
 
-                    <button class="btn btn-dark px-4 py-2">Guardar</button>
-                    <a href="/Permisos" class="btn btn-secondary px-4 py-2">Cancelar</a>
-
-                </form>
+                </div>
 
             </div>
-
         </div>
-    </section>
 
-</main>
+    </div>
+</section>
