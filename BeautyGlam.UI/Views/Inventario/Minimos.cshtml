@@ -3,33 +3,39 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    .btn-inv {
-        padding: 6px 14px !important;
-        font-size: 14px;
-        border-radius: 6px;
-    }
-</style>
+<section class="section-space inv-page">
+    <div class="container inv-container">
 
-<section class="section-space">
-    <div class="container">
+        <div class="inv-header">
+            <h2 class="inv-title">Definir Mínimos y Máximos</h2>
+            <p class="inv-subtitle">Configura alertas y rangos recomendados 💖</p>
+        </div>
 
-        <h2 class="mb-4">Definir Mínimos y Máximos</h2>
-
-        <div class="card p-4 shadow-sm">
-
-            <label>Mínimo permitido</label>
-            <input type="number" class="form-control mb-3" value="10">
-
-            <label>Máximo permitido</label>
-            <input type="number" class="form-control mb-3" value="80">
-
-            <div class="mt-3">
-                <button class="btn btn-dark btn-sm btn-inv">Guardar</button>
-                <a href="@Url.Action("Index","Inventario")"
-                   class="btn btn-secondary btn-sm btn-inv ms-2">Cancelar</a>
+        <div class="inv-card">
+            <div class="inv-card-head">
+                <span class="inv-badge">Rangos</span>
+                <h5 class="inv-card-title">Control de inventario</h5>
+                <p class="inv-card-desc">Define valores para evitar faltantes o exceso.</p>
             </div>
 
+            <div class="inv-card-body">
+                <div class="row g-3 justify-content-center">
+                    <div class="col-12 col-md-5">
+                        <label class="inv-label">Mínimo permitido</label>
+                        <input type="number" class="form-control inv-input" value="10" />
+                    </div>
+
+                    <div class="col-12 col-md-5">
+                        <label class="inv-label">Máximo permitido</label>
+                        <input type="number" class="form-control inv-input" value="80" />
+                    </div>
+                </div>
+
+                <div class="inv-center-actions">
+                    <button class="btn inv-btn">Guardar ✨</button>
+                    <a href="@Url.Action("Index","Inventario")" class="btn inv-btn inv-btn-soft">Cancelar</a>
+                </div>
+            </div>
         </div>
 
     </div>

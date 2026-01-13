@@ -1,42 +1,39 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Crear Rol";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<main class="main-content">
+<section class="section-space roles-page">
+    <div class="container roles-container">
 
-    <section class="page-header-area pt-10 pb-9" data-bg-color="#DFE4FF">
-        <div class="container text-center">
-            <h2 class="page-header-title">Crear Rol</h2>
-        </div>
-    </section>
-
-    <section class="section-space">
-        <div class="container">
-
-            <div class="shadow-sm border p-4 rounded-3 bg-white">
-
-                <form>
-
-                    <div class="mb-3">
-                        <label class="form-label">Nombre del Rol</label>
-                        <input type="text" class="form-control" placeholder="Ej: Administrador" />
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Descripción</label>
-                        <textarea class="form-control" rows="3"></textarea>
-                    </div>
-
-                    <button class="btn btn-dark px-4 py-2">Guardar</button>
-                    <a href="/Roles" class="btn btn-secondary px-4 py-2">Cancelar</a>
-
-                </form>
-
+        <div class="roles-top roles-top-center">
+            <div class="text-center">
+                <h2 class="roles-title">Crear Rol</h2>
+                <p class="roles-subtitle">Define un nuevo rol para tu sistema 💫</p>
             </div>
-
         </div>
-    </section>
 
-</main>
+        <div class="roles-card roles-form-card">
+            <form>
+
+                <div class="mb-3">
+                    <label class="form-label roles-label">Nombre del Rol</label>
+                    <input type="text" class="form-control roles-input" placeholder="Ej: Administrador" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label roles-label">Descripción</label>
+                    <textarea class="form-control roles-input" rows="4" placeholder="Describe el acceso de este rol..."></textarea>
+                </div>
+
+                <div class="roles-form-actions">
+                    <button class="btn roles-btn">Guardar</button>
+                    <a href="/Roles" class="btn roles-btn-soft">Cancelar</a>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</section>
+

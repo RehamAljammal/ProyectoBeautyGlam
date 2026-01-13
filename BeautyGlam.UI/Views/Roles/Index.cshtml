@@ -3,65 +3,197 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<main class="main-content">
+<style>
+    /* ===============================
+       ROLES – ESTILO PASTEL PRO
+       =============================== */
 
-    <section class="page-header-area pt-10 pb-9" data-bg-color="#FFF3DA">
-        <div class="container d-flex justify-content-between">
-            <h2 class="page-header-title">Roles del Sistema</h2>
-            <a href="/Roles/Create" class="btn btn-dark px-4 py-2">+ Crear Rol</a>
+    .roles-page {
+        background: radial-gradient(600px 260px at 0% 0%, #ffe4ef, transparent 60%), radial-gradient(520px 280px at 100% 0%, #e6f6ff, transparent 60%);
+        padding-top: 20px;
+    }
+
+    .roles-container {
+        max-width: 1120px;
+        margin: 0 auto;
+    }
+
+    .roles-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 22px;
+        flex-wrap: wrap;
+        gap: 14px;
+    }
+
+    .roles-title {
+        font-weight: 900;
+        color: #5c3b6f;
+        margin: 0;
+        letter-spacing: -0.02em;
+    }
+
+    .roles-subtitle {
+        font-weight: 600;
+        color: #7c6b88;
+        margin: 0;
+    }
+
+    /* Botón principal */
+    .roles-btn {
+        padding: 10px 18px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #ffb7d5, #cdb7ff, #b9f0e2);
+        font-weight: 900;
+        border: none;
+        color: #4b2b4b;
+        box-shadow: 0 14px 32px rgba(200,150,220,.35);
+    }
+
+        .roles-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 44px rgba(200,150,220,.45);
+        }
+
+    /* Card */
+    .roles-card {
+        background: #ffffff;
+        border: 1px solid #f2e6f3;
+        border-radius: 26px;
+        box-shadow: 0 20px 45px rgba(180,120,180,.12);
+        overflow: hidden;
+    }
+
+    /* Tabla */
+    .roles-table thead tr {
+        background: linear-gradient(90deg, #fff7e1, #ffe4ef, #e6f6ff);
+    }
+
+    .roles-table th {
+        border-bottom: none;
+        color: #5c3b6f;
+        font-weight: 900;
+        font-size: 14px;
+    }
+
+    .roles-table td {
+        border-color: #f2e6f3;
+        padding: 12px 16px;
+    }
+
+    .roles-strong {
+        color: #4b2b4b;
+        font-weight: 800;
+    }
+
+    /* Botones de acciones estilo proveedores */
+    .roles-actions {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: nowrap;
+    }
+
+    .roles-pill {
+        padding: 6px 16px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 800;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        border: 1px solid transparent;
+        box-shadow: 0 10px 24px rgba(180,120,180,.18);
+        text-decoration: none;
+        white-space: nowrap;
+    }
+
+    .roles-pill-edit {
+        background: #f1f0ff;
+        border-color: #cdb7ff;
+        color: #5c3b6f;
+    }
+
+    .roles-pill-perm {
+        background: #fff3c9;
+        border-color: #ffe7a8;
+        color: #8a6d1d;
+    }
+
+    .roles-pill:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 14px 32px rgba(180,120,180,.25);
+        opacity: 0.95;
+    }
+</style>
+
+
+<section class="section-space roles-page">
+    <div class="container roles-container">
+
+        <div class="roles-top">
+            <div>
+                <h2 class="roles-title">Roles del Sistema</h2>
+                <p class="roles-subtitle">Gestiona roles y permisos de forma rápida ✨</p>
+            </div>
+
+            <a href="/Roles/Create" class="btn roles-btn">
+                + Crear Rol
+            </a>
         </div>
-    </section>
 
-    <section class="section-space">
-        <div class="container">
-
-            <div class="table-responsive shadow-sm border rounded-3 p-4 bg-white">
-
-                <table class="table table-striped align-middle">
-                    <thead class="table-dark">
+        <div class="roles-card">
+            <div class="table-responsive">
+                <table class="table roles-table align-middle">
+                    <thead>
                         <tr>
                             <th>Rol</th>
                             <th>Descripción</th>
-                            <th class="text-end">Acciones</th>
+                            <th class="text-end" style="width: 260px;">Acciones</th>
                         </tr>
                     </thead>
 
                     <tbody>
 
                         <tr>
-                            <td>Administrador</td>
+                            <td><strong class="roles-strong">Administrador</strong></td>
                             <td>Acceso total al sistema</td>
                             <td class="text-end">
-                                <a href="/Roles/Edit/1" class="btn btn-warning btn-sm px-3">Editar</a>
-                                <a href="/Roles/Permisos/1" class="btn btn-info text-white btn-sm px-3">Permisos</a>
+                                <div class="roles-actions">
+                                    <a href="/Roles/Edit/1" class="roles-pill roles-pill-edit">Editar ✏️</a>
+                                    <a href="/Roles/Permisos/1" class="roles-pill roles-pill-perm">Permisos 🔒</a>
+                                </div>
                             </td>
                         </tr>
 
                         <tr>
-                            <td>Cliente</td>
+                            <td><strong class="roles-strong">Cliente</strong></td>
                             <td>Acceso a compras y reservas</td>
                             <td class="text-end">
-                                <a href="/Roles/Edit/2" class="btn btn-warning btn-sm px-3">Editar</a>
-                                <a href="/Roles/Permisos/2" class="btn btn-info text-white btn-sm px-3">Permisos</a>
+                                <div class="roles-actions">
+                                    <a href="/Roles/Edit/2" class="roles-pill roles-pill-edit">Editar ✏️</a>
+                                    <a href="/Roles/Permisos/2" class="roles-pill roles-pill-perm">Permisos 🔒</a>
+                                </div>
                             </td>
                         </tr>
 
                         <tr>
-                            <td>Vendedor</td>
+                            <td><strong class="roles-strong">Vendedor</strong></td>
                             <td>Gestión de ventas del sistema</td>
                             <td class="text-end">
-                                <a href="/Roles/Edit/3" class="btn btn-warning btn-sm px-3">Editar</a>
-                                <a href="/Roles/Permisos/3" class="btn btn-info text-white btn-sm px-3">Permisos</a>
+                                <div class="roles-actions">
+                                    <a href="/Roles/Edit/3" class="roles-pill roles-pill-edit">Editar ✏️</a>
+                                    <a href="/Roles/Permisos/3" class="roles-pill roles-pill-perm">Permisos 🔒</a>
+                                </div>
                             </td>
                         </tr>
 
                     </tbody>
                 </table>
-
             </div>
-
         </div>
-    </section>
 
-</main>
-
+    </div>
+</section>

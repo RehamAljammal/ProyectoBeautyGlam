@@ -3,55 +3,71 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section class="section-space">
-    <div class="container">
+<section class="section-space prof-page">
+    <div class="container prof-container">
 
-        <h2 class="text-center mb-4">Seguimiento de pedidos</h2>
-        <p class="text-center text-muted mb-5">
-            Consulta el estado de tus pedidos en tiempo real.
-        </p>
+        <div class="prof-header">
+            <h2 class="prof-title">Seguimiento de pedidos</h2>
+            <p class="prof-subtitle">Consulta el estado de tus pedidos en tiempo real 💖</p>
+        </div>
 
         <div class="row g-4">
 
             <!-- Pedido 1 -->
-            <div class="col-lg-6">
-                <div class="shadow-sm border rounded-3 p-4 bg-white">
-
-                    <h5 class="mb-1">Pedido #10254</h5>
-                    <p class="text-muted mb-3">Fecha de compra: 10/02/2025</p>
-
-                    <div class="progress mb-3" style="height: 10px;">
-                        <div class="progress-bar bg-dark" style="width: 70%;"></div>
+            <div class="col-12 col-lg-6">
+                <div class="prof-card">
+                    <div class="prof-card-head">
+                        <span class="prof-badge">Pedido #10254</span>
+                        <h5 class="prof-card-title">Estado: En camino</h5>
+                        <p class="prof-card-desc">Fecha de compra: 10/02/2025</p>
                     </div>
 
-                    <p><strong>Estado actual:</strong> En camino</p>
+                    <div class="prof-card-body">
+                        <div class="prof-progress mb-3">
+                            <div class="prof-progress-bar" style="width: 70%;"></div>
+                        </div>
 
-                    <a href="@Url.Action("DetallePedido","Perfil", new { id = 10254 })"
-                       class="btn btn-dark w-100 mt-3">
-                        Ver detalles del pedido
-                    </a>
+                        <div class="d-flex justify-content-between" style="font-weight:800;color:#7c6b88;font-size:13px;">
+                            <span>Procesado</span>
+                            <span>Empacado</span>
+                            <span>En camino</span>
+                            <span style="opacity:.55;">Entregado</span>
+                        </div>
 
+                        <a href="@Url.Action("DetallePedido","Perfil", new { id = 10254 })"
+                           class="btn prof-btn prof-btn-block mt-3">
+                            Ver detalles del pedido ✨
+                        </a>
+                    </div>
                 </div>
             </div>
 
             <!-- Pedido 2 -->
-            <div class="col-lg-6">
-                <div class="shadow-sm border rounded-3 p-4 bg-white">
-
-                    <h5 class="mb-1">Pedido #10212</h5>
-                    <p class="text-muted mb-3">Fecha de compra: 05/02/2025</p>
-
-                    <div class="progress mb-3" style="height: 10px;">
-                        <div class="progress-bar bg-dark" style="width: 100%;"></div>
+            <div class="col-12 col-lg-6">
+                <div class="prof-card">
+                    <div class="prof-card-head">
+                        <span class="prof-badge">Pedido #10212</span>
+                        <h5 class="prof-card-title">Estado: Entregado</h5>
+                        <p class="prof-card-desc">Fecha de compra: 05/02/2025</p>
                     </div>
 
-                    <p><strong>Estado actual:</strong> Entregado</p>
+                    <div class="prof-card-body">
+                        <div class="prof-progress mb-3">
+                            <div class="prof-progress-bar" style="width: 100%;"></div>
+                        </div>
 
-                    <a href="@Url.Action("DetallePedido","Perfil", new { id = 10212 })"
-                       class="btn btn-dark w-100 mt-3">
-                        Ver detalles del pedido
-                    </a>
+                        <div class="d-flex justify-content-between" style="font-weight:800;color:#7c6b88;font-size:13px;">
+                            <span>Procesado</span>
+                            <span>Empacado</span>
+                            <span>En camino</span>
+                            <span>Entregado</span>
+                        </div>
 
+                        <a href="@Url.Action("DetallePedido","Perfil", new { id = 10212 })"
+                           class="btn prof-btn prof-btn-block mt-3">
+                            Ver detalles del pedido ✨
+                        </a>
+                    </div>
                 </div>
             </div>
 

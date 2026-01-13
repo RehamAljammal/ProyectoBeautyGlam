@@ -3,32 +3,37 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section class="section-space">
-    <div class="container">
+<section class="section-space prof-page">
+    <div class="container prof-container">
 
-        <h2 class="text-center mb-4">Historial</h2>
+        <div class="prof-header">
+            <h2 class="prof-title">Historial</h2>
+            <p class="prof-subtitle">Tu actividad reciente en BeautyGlam ✨</p>
+        </div>
 
-        <table class="table table-striped shadow-sm">
-            <thead>
-                <tr>
-                    <th>Fecha</th>
-                    <th>Acción</th>
-                    <th>Detalle</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>10/02/2025</td>
-                    <td>Compra</td>
-                    <td>Crema hidratante Glow</td>
-                </tr>
-                <tr>
-                    <td>05/02/2025</td>
-                    <td>Rutina Guardada</td>
-                    <td>Rutina nocturna</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="prof-table-wrap">
+            <table class="table table-striped prof-table align-middle">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Acción</th>
+                        <th>Detalle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>10/02/2025</td>
+                        <td><span class="prof-chip prof-chip-ok">Compra</span></td>
+                        <td>Crema hidratante Glow</td>
+                    </tr>
+                    <tr>
+                        <td>05/02/2025</td>
+                        <td><span class="prof-chip prof-chip-soft">Rutina Guardada</span></td>
+                        <td>Rutina nocturna</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
     </div>
 </section>

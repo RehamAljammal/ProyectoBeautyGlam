@@ -3,21 +3,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<main class="main-content">
+<section class="section-space perm-page">
+    <div class="container perm-container">
 
-    <section class="page-header-area pt-10 pb-9" data-bg-color="#FFF3DA">
-        <div class="container d-flex justify-content-between">
-            <h2 class="page-header-title">Permisos del Sistema</h2>
-            <a href="/Permisos/Create" class="btn btn-dark px-4 py-2">+ Crear Permiso</a>
+        <div class="perm-header">
+            <h2 class="perm-title">Permisos del Sistema</h2>
+            <p class="perm-subtitle">Crea y gestiona permisos por módulo ✨</p>
         </div>
-    </section>
 
-    <section class="section-space">
-        <div class="container">
-            <div class="shadow-sm border rounded-3 p-4 bg-white table-responsive">
+        <div class="perm-card">
+            <div class="perm-card-head">
+                <div>
+                    <span class="perm-badge">Administración</span>
+                </div>
 
-                <table class="table table-striped align-middle">
-                    <thead class="table-dark">
+                <a href="/Permisos/Create" class="perm-btn">
+                    + Crear Permiso
+                </a>
+            </div>
+
+            <div class="perm-table-wrap table-responsive">
+                <table class="table table-striped align-middle perm-table">
+                    <thead>
                         <tr>
                             <th>Permiso</th>
                             <th>Módulo</th>
@@ -26,37 +33,40 @@
                     </thead>
 
                     <tbody>
-
                         <tr>
-                            <td>Crear Usuario</td>
-                            <td>Usuarios</td>
+                            <td><strong style="color:#5c3b6f;">Crear Usuario</strong></td>
+                            <td><span class="perm-chip perm-chip-soft">Usuarios</span></td>
                             <td class="text-end">
-                                <a href="/Permisos/Edit/1" class="btn btn-warning btn-sm px-3">Editar</a>
+                                <a href="/Permisos/Edit/1" class="perm-btn perm-btn-soft perm-btn-sm">
+                                    Editar ✏️
+                                </a>
                             </td>
                         </tr>
 
                         <tr>
-                            <td>Editar Productos</td>
-                            <td>Productos</td>
+                            <td><strong style="color:#5c3b6f;">Editar Productos</strong></td>
+                            <td><span class="perm-chip perm-chip-mint">Productos</span></td>
                             <td class="text-end">
-                                <a href="/Permisos/Edit/2" class="btn btn-warning btn-sm px-3">Editar</a>
+                                <a href="/Permisos/Edit/2" class="perm-btn perm-btn-soft perm-btn-sm">
+                                    Editar ✏️
+                                </a>
                             </td>
                         </tr>
 
                         <tr>
-                            <td>Ver Reservas</td>
-                            <td>Reservas</td>
+                            <td><strong style="color:#5c3b6f;">Ver Reservas</strong></td>
+                            <td><span class="perm-chip perm-chip-soft">Reservas</span></td>
                             <td class="text-end">
-                                <a href="/Permisos/Edit/3" class="btn btn-warning btn-sm px-3">Editar</a>
+                                <a href="/Permisos/Edit/3" class="perm-btn perm-btn-soft perm-btn-sm">
+                                    Editar ✏️
+                                </a>
                             </td>
                         </tr>
-
                     </tbody>
                 </table>
-
             </div>
+
         </div>
-    </section>
 
-</main>s
-
+    </div>
+</section>

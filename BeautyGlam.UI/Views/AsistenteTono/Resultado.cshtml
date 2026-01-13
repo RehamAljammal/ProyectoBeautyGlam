@@ -3,65 +3,34 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    .btn-tono {
-        padding: 4px 12px;
-        font-size: 12px;
-        border-radius: 5px;
-    }
+<section class="section-space tone-page">
+    <div class="container tone-container">
 
-    .resultado-box {
-        background: #fafafa;
-        border: 1px solid #e5e5e5;
-        border-radius: 10px;
-        padding: 20px;
-    }
-</style>
+        <div class="tone-header">
+            <h2 class="tone-title">Tu Resultado</h2>
+            <p class="tone-subtitle">Según tus respuestas, este es tu perfil de tono ✨</p>
+        </div>
 
-<section class="section-space">
-    <div class="container">
+        <div class="tone-card">
+            <div class="tone-card-head">
+                <span class="tone-badge">Resultado</span>
+                <h3 class="tone-card-title">Tono medio · Subtono neutro</h3>
+                <p class="tone-card-desc">Colores que te favorecen y se ven súper naturales en tu piel.</p>
+            </div>
 
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-
-                <h2 class="mb-3 text-center">Tu Resultado</h2>
-                <p class="text-muted text-center mb-4">
-                    Según tus respuestas, este es tu perfil de tono:
-                </p>
-
-                <div class="resultado-box">
-
-                    <ul class="mb-3">
-                        <li><strong>Tono:</strong> Medio</li>
-                        <li><strong>Subtono:</strong> Neutro</li>
-                        <li><strong>Colores ideales:</strong> Beige, durazno, rosado suave</li>
-                        <li><strong>Base recomendada:</strong> Beige Neutral</li>
-                    </ul>
-
-                    <p>
-                        Estos tonos ayudan a que tu piel se vea más equilibrada,
-                        natural y luminosa.
-                    </p>
-
+            <div class="tone-result">
+                <div class="tone-chip-grid">
+                    <div class="tone-chip"><strong>Tono</strong><span>Medio</span></div>
+                    <div class="tone-chip"><strong>Subtono</strong><span>Neutro</span></div>
+                    <div class="tone-chip tone-chip-wide"><strong>Colores ideales</strong><span>Beige, durazno, rosado suave</span></div>
+                    <div class="tone-chip tone-chip-wide"><strong>Base recomendada</strong><span>Beige Neutral</span></div>
                 </div>
 
-                <div class="mt-4 text-center">
-                    <a href="@Url.Action("Index","Catalogo")"
-                       class="btn btn-dark btn-tono me-2">
-                        Ver productos recomendados
-                    </a>
-
-                    <a href="@Url.Action("Cuestionario","AsistenteTono")"
-                       class="btn btn-outline-dark btn-tono me-2">
-                        Repetir cuestionario
-                    </a>
-
-                    <a href="@Url.Action("Index","Perfil")"
-                       class="btn btn-secondary btn-tono">
-                        Guardar en mi perfil
-                    </a>
+                <div class="tone-actions">
+                    <a href="@Url.Action("Index","Catalogo")" class="btn tone-btn">Ver productos recomendados ✨</a>
+                    <a href="@Url.Action("Cuestionario","AsistenteTono")" class="btn tone-btn tone-btn-soft">Repetir cuestionario</a>
+                    <a href="@Url.Action("Index","Perfil")" class="btn tone-btn tone-btn-soft">Guardar en mi perfil</a>
                 </div>
-
             </div>
         </div>
 
