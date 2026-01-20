@@ -3,46 +3,45 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<main class="main-content">
+<section class="section-space users-page">
+    <div class="container users-container">
 
-    <section class="page-header-area pt-10 pb-9" data-bg-color="#DFE4FF">
-        <div class="container text-center">
-            <h2 class="page-header-title">Editar Usuario</h2>
-        </div>
-    </section>
-
-    <section class="section-space">
-        <div class="container">
-            <div class="shadow-sm border p-4 bg-white rounded-3">
-
-                <form>
-
-                    <div class="mb-3">
-                        <label class="form-label">Nombre</label>
-                        <input class="form-control" value="Ana Rodríguez" />
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Email</label>
-                        <input class="form-control" value="ana@gmail.com" />
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Rol</label>
-                        <select class="form-control">
-                            <option selected>Administrador</option>
-                            <option>Cliente</option>
-                            <option>Vendedor</option>
-                        </select>
-                    </div>
-
-                    <button class="btn btn-dark px-4 py-2">Guardar</button>
-                    <a href="/Usuarios" class="btn btn-secondary px-4 py-2">Cancelar</a>
-
-                </form>
-
+        <div class="users-top users-top-center">
+            <div class="text-center">
+                <h2 class="users-title">Editar Usuario</h2>
+                <p class="users-subtitle">Actualiza datos y rol del usuario ✨</p>
             </div>
         </div>
-    </section>
 
-</main>
+        <div class="users-card users-form-card">
+            <form>
+
+                <div class="mb-3">
+                    <label class="form-label users-label">Nombre</label>
+                    <input class="form-control users-input" value="Ana Rodríguez" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label users-label">Email</label>
+                    <input class="form-control users-input" value="ana@gmail.com" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label users-label">Rol</label>
+                    <select class="form-control users-input">
+                        <option selected>Administrador</option>
+                        <option>Cliente</option>
+                        <option>Vendedor</option>
+                    </select>
+                </div>
+
+                <div class="users-form-actions">
+                    <button class="btn users-btn" type="submit">Guardar</button>
+                    <a href="/Usuarios" class="btn users-btn-soft">Cancelar</a>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</section>

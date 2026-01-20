@@ -1,65 +1,82 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Permisos del Rol";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<main class="main-content">
+<section class="section-space roles-page">
+    <div class="container roles-container">
 
-    <section class="page-header-area pt-10 pb-9" data-bg-color="#FFF3DA">
-        <div class="container">
-            <h2 class="page-header-title">Permisos del Rol: Administrador</h2>
+        <div class="roles-top roles-top-center">
+            <div class="text-center">
+                <h2 class="roles-title">Permisos del Rol: Administrador</h2>
+                <p class="roles-subtitle">Activa o desactiva permisos con un clic 🔒</p>
+            </div>
         </div>
-    </section>
 
-    <section class="section-space">
-        <div class="container">
+        <div class="roles-card">
+            <form>
 
-            <div class="shadow-sm border p-4 rounded-3 bg-white">
-
-                <form>
-
-                    <table class="table table-bordered align-middle">
-                        <thead class="table-secondary">
+                <div class="table-responsive">
+                    <table class="table roles-table roles-perm-table align-middle">
+                        <thead>
                             <tr>
                                 <th>Permiso</th>
-                                <th class="text-center">Asignado</th>
+                                <th class="text-center" style="width: 180px;">Asignado</th>
                             </tr>
                         </thead>
 
                         <tbody>
-
                             <tr>
-                                <td>Crear Usuarios</td>
-                                <td class="text-center"><input type="checkbox" checked /></td>
+                                <td><strong class="roles-strong">Crear Usuarios</strong></td>
+                                <td class="text-center">
+                                    <label class="roles-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="roles-slider"></span>
+                                    </label>
+                                </td>
                             </tr>
 
                             <tr>
-                                <td>Editar Productos</td>
-                                <td class="text-center"><input type="checkbox" /></td>
+                                <td><strong class="roles-strong">Editar Productos</strong></td>
+                                <td class="text-center">
+                                    <label class="roles-switch">
+                                        <input type="checkbox">
+                                        <span class="roles-slider"></span>
+                                    </label>
+                                </td>
                             </tr>
 
                             <tr>
-                                <td>Ver Ventas</td>
-                                <td class="text-center"><input type="checkbox" checked /></td>
+                                <td><strong class="roles-strong">Ver Ventas</strong></td>
+                                <td class="text-center">
+                                    <label class="roles-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="roles-slider"></span>
+                                    </label>
+                                </td>
                             </tr>
 
                             <tr>
-                                <td>Gestionar Reservas</td>
-                                <td class="text-center"><input type="checkbox" /></td>
+                                <td><strong class="roles-strong">Gestionar Reservas</strong></td>
+                                <td class="text-center">
+                                    <label class="roles-switch">
+                                        <input type="checkbox">
+                                        <span class="roles-slider"></span>
+                                    </label>
+                                </td>
                             </tr>
-
                         </tbody>
+
                     </table>
+                </div>
 
-                    <button class="btn btn-dark px-4 py-2">Guardar</button>
-                    <a href="/Roles" class="btn btn-secondary px-4 py-2">Cancelar</a>
+                <div class="roles-form-actions mt-3">
+                    <button class="btn roles-btn">Guardar</button>
+                    <a href="/Roles" class="btn roles-btn-soft">Cancelar</a>
+                </div>
 
-                </form>
-
-            </div>
-
+            </form>
         </div>
-    </section>
 
-</main>
+    </div>
+</section>

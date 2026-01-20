@@ -1,16 +1,41 @@
 ﻿@{
     ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <main class="main-content">
-    <!--== Start Faq Area Wrapper ==-->
-    <section class="page-not-found-area">
-        <div class="container">
-            <div class="page-not-found">
-                <img src="assets/images/photos/page-not-found.webp" width="975" height="538" alt="Image">
-                <h3 class="title">Opps! You Lost</h3>
-                <h5 class="back-btn">Go to <a href="index.html">Home</a> Page</h5>
+    <section class="section-space err-page">
+        <div class="container err-container">
+
+            <div class="err-card text-center">
+
+                <div class="err-head">
+                    <span class="err-badge">Oops 🥺</span>
+                    <h3 class="err-title">Ups… te perdiste</h3>
+                    <p class="err-subtitle">
+                        La página que buscas no existe o fue movida.
+                        Pero tranqui, te llevo de vuelta 💖
+                    </p>
+                </div>
+
+                <div class="err-media">
+                    <img src="~/assets/images/photos/page-not-found.webp"
+                         alt="Página no encontrada"
+                         class="err-img" />
+                </div>
+
+                <div class="err-actions">
+                    <a href="@Url.Action("Index","Home")" class="btn err-btn">
+                        Volver a Home ✨
+                    </a>
+
+                    <a href="javascript:history.back()" class="btn err-btn err-btn-soft">
+                        Regresar
+                    </a>
+                </div>
+
             </div>
+
         </div>
     </section>
-    <!--== End Faq Area Wrapper ==-->
 </main>

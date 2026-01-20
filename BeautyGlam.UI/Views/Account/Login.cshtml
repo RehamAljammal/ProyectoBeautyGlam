@@ -1,15 +1,15 @@
-﻿
-@{
-    ViewBag.Title = "Iniciar Sesión";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@{
+        ViewBag.Title = "Iniciar Sesión";
+        Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<main class="main-content">
+<main class="main-content auth-page">
 
     <!-- Encabezado -->
-    <section class="page-header-area pt-10 pb-9" data-bg-color="#DFE4FF">
+    <section class="page-header-area pt-10 pb-9 auth-header" data-bg-color="#DFE4FF">
         <div class="container text-center">
-            <h2 class="page-header-title">Iniciar Sesión</h2>
+            <h2 class="page-header-title auth-title">Iniciar Sesión</h2>
+            <p class="auth-subtitle mb-0">Accede a tu cuenta para continuar</p>
         </div>
     </section>
 
@@ -17,33 +17,38 @@
     <section class="section-space">
         <div class="container">
 
-            <div class="shadow-sm border bg-white p-4 rounded-3 mx-auto" style="max-width: 500px;">
+            <div class="auth-card mx-auto">
+                <div class="auth-card-head">
+                    <span class="auth-badge">Bienvenido/a</span>
+                    <h3 class="auth-card-title mb-1">Ingresa tus datos</h3>
+                    <p class="auth-card-desc mb-0">Asegúrate de usar el correo con el que te registraste.</p>
+                </div>
 
-                <form>
+                <form class="auth-form">
 
                     <div class="mb-3">
-                        <label class="form-label">Correo electrónico</label>
-                        <input type="email" class="form-control" placeholder="example@gmail.com" />
+                        <label class="form-label auth-label">Correo electrónico</label>
+                        <input type="email" class="form-control auth-input" placeholder="example@gmail.com" />
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" placeholder="Ingrese su contraseña" />
+                        <label class="form-label auth-label">Contraseña</label>
+                        <input type="password" class="form-control auth-input" placeholder="Ingrese su contraseña" />
                     </div>
 
-                    <div class="d-flex justify-content-between mb-3">
-                        <a href="/Account/Recuperar" class="text-decoration-none">¿Olvidaste tu contraseña?</a>
+                    <div class="d-flex justify-content-end mb-3">
+                        <a href="/Account/Recuperar" class="auth-link">¿Olvidaste tu contraseña?</a>
                     </div>
 
-                    <button class="btn btn-dark w-100 py-2 mb-3">Ingresar</button>
+                    <!-- Solo visual: type="button" para evitar submit -->
+                    <button type="button" class="btn auth-btn w-100 py-2 mb-3">Ingresar</button>
 
-                    <div class="text-center">
-                        <span>¿No tienes cuenta?</span>
-                        <a href="/Account/Register" class="text-dark fw-bold ms-1">Registrarse</a>
+                    <div class="text-center auth-footer">
+                        <span class="auth-muted">¿No tienes cuenta?</span>
+                        <a href="/Account/Register" class="auth-link fw-bold ms-1">Registrarse</a>
                     </div>
 
                 </form>
-
             </div>
 
         </div>

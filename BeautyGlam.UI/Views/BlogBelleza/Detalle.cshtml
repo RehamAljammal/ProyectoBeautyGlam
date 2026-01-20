@@ -3,37 +3,65 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section class="section-space">
-    <div class="container">
+<section class="section-space blog-page">
+    <div class="container blog-container">
 
-        <h2>Rutina básica de skincare para principiantes</h2>
-        <p class="text-muted mb-4">Publicado el 10/03/2025</p>
-
-        <p>
-            Una rutina sencilla puede marcar la diferencia en la salud de tu piel.
-            Aprende los pasos esenciales para comenzar correctamente.
-        </p>
-
-        <hr />
-
-        <h5>Comentarios</h5>
-
-        <div class="mb-3">
-            <textarea class="form-control" rows="3"
-                      placeholder="Escribe tu comentario..."></textarea>
+        <!-- Header del artículo -->
+        <div class="blog-detail-head">
+            <span class="blog-badge">Detalle</span>
+            <h2 class="blog-detail-title">Rutina básica de skincare para principiantes</h2>
+            <p class="blog-meta mb-0">Publicado el 10/03/2025</p>
         </div>
 
-        <button class="btn btn-dark btn-sm mb-4">Comentar</button>
-
-        <div class="border-top pt-3">
-            <p><strong>María:</strong> Excelente artículo, muy claro.</p>
-            <p><strong>Ana:</strong> Me ayudó muchísimo, gracias.</p>
+        <!-- Contenido -->
+        <div class="blog-card blog-detail-card">
+            <p class="blog-detail-text">
+                Una rutina sencilla puede marcar la diferencia en la salud de tu piel.
+                Aprende los pasos esenciales para comenzar correctamente.
+            </p>
         </div>
 
-        <a href="@Url.Action("Index","BlogBelleza")"
-           class="btn btn-secondary btn-sm mt-3">
-            Volver al blog
-        </a>
+        <!-- Comentarios -->
+        <div class="blog-card blog-comments-card">
+            <h5 class="blog-comments-title">Comentarios</h5>
+
+            <div class="mb-3">
+                <textarea class="form-control blog-input" rows="4"
+                          placeholder="Escribe tu comentario..."></textarea>
+            </div>
+
+            <div class="blog-actions">
+                <button class="btn blog-btn">Comentar ✨</button>
+            </div>
+
+            <div class="blog-comments-list mt-4">
+                <div class="blog-comment">
+                    <div class="blog-comment-head">
+                        <strong>María</strong>
+                        <span class="blog-comment-dot">•</span>
+                        <span class="blog-comment-date">Hoy</span>
+                    </div>
+                    <p class="blog-comment-text">Excelente artículo, muy claro.</p>
+                </div>
+
+                <div class="blog-comment">
+                    <div class="blog-comment-head">
+                        <strong>Ana</strong>
+                        <span class="blog-comment-dot">•</span>
+                        <span class="blog-comment-date">Ayer</span>
+                    </div>
+                    <p class="blog-comment-text">Me ayudó muchísimo, gracias.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Volver -->
+        <div class="text-center mt-4">
+            <a href="@Url.Action("Index","BlogBelleza")"
+               class="btn blog-btn blog-btn-soft">
+                Volver al blog ♡
+            </a>
+        </div>
 
     </div>
 </section>

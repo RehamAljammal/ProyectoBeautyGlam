@@ -1,27 +1,37 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Publicar Artículo";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section class="section-space">
-    <div class="container">
-        <h3 class="mb-4">Nuevo artículo</h3>
+<section class="section-space blog-page">
+    <div class="container blog-container">
 
-        <div class="mb-3">
-            <label>Título</label>
-            <input type="text" class="form-control" />
+        <div class="blog-form-card">
+            <div class="blog-form-head text-center">
+                <span class="blog-badge">Nuevo artículo</span>
+                <h3 class="blog-form-title">Publicar artículo</h3>
+                <p class="blog-form-desc">Comparte un tip o rutina con tu comunidad 💖</p>
+            </div>
+
+            <div class="blog-form-body">
+
+                <div class="mb-3">
+                    <label class="blog-label">Título</label>
+                    <input type="text" class="form-control blog-input" placeholder="Ej: Rutina glow para piel mixta" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="blog-label">Contenido</label>
+                    <textarea class="form-control blog-input" rows="7" placeholder="Escribe aquí tu artículo..."></textarea>
+                </div>
+
+                <div class="blog-form-actions">
+                    <button class="btn blog-btn">Publicar ✨</button>
+                    <a href="@Url.Action("Index","BlogBelleza")" class="btn blog-btn blog-btn-soft">Cancelar</a>
+                </div>
+
+            </div>
         </div>
 
-        <div class="mb-3">
-            <label>Contenido</label>
-            <textarea class="form-control" rows="6"></textarea>
-        </div>
-
-        <button class="btn btn-dark btn-sm me-2">Publicar</button>
-        <a href="@Url.Action("Index","BlogBelleza")"
-           class="btn btn-secondary btn-sm">
-            Cancelar
-        </a>
     </div>
 </section>

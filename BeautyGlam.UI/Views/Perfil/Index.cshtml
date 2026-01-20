@@ -3,67 +3,65 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<main class="main-content">
+<section class="section-space prof-page">
+    <div class="container prof-container">
 
-    <!-- TÍTULO -->
-    <section class="page-header-area pt-10 pb-9" data-bg-color="#FFF3DA">
-        <div class="container text-center">
-            <h2 class="page-header-title">Mi Perfil</h2>
-            <p class="mt-2">Administra tu información, tus rutinas y recomendaciones.</p>
+        <div class="prof-header">
+            <h2 class="prof-title">Mi Perfil</h2>
+            <p class="prof-subtitle">Administra tu información, tus rutinas y recomendaciones 💖</p>
         </div>
-    </section>
 
-    <section class="section-space">
-        <div class="container">
+        <div class="row g-4">
 
-            <div class="row g-4">
+            <!-- Foto + Info -->
+            <div class="col-lg-4">
+                <div class="prof-card">
+                    <div class="prof-card-head text-center">
+                        <span class="prof-badge">Perfil</span>
+                        <h4 class="prof-card-title" style="margin-bottom:0;">Nombre del Usuario</h4>
+                        <p class="prof-card-desc">usuario@correo.com</p>
+                    </div>
 
-                <!-- Foto + Información -->
-                <div class="col-lg-4">
-                    <div class="shadow-sm border rounded-3 p-4 text-center bg-white">
+                    <div class="prof-card-body text-center">
+                        <img src="AQUI-TU-FOTO" class="prof-avatar mb-3" alt="Foto de perfil" />
 
-                        <img src="AQUI-TU-FOTO" class="rounded-circle mb-3" width="140" height="140" alt="Foto de perfil" />
-
-                        <h4 class="mb-1">Nombre del Usuario</h4>
-                        <p class="text-muted">usuario@correo.com</p>
-
-                        <a href="@Url.Action("Edit","Perfil")" class="btn btn-dark w-100 mt-3">Editar Perfil</a>
-
+                        <a href="@Url.Action("Edit","Perfil")" class="btn prof-btn prof-btn-block">
+                            Editar Perfil ✨
+                        </a>
                     </div>
                 </div>
+            </div>
 
-                <!-- Opciones -->
-                <div class="col-lg-8">
-                    <div class="shadow-sm border rounded-3 p-4 bg-white">
+            <!-- Opciones -->
+            <div class="col-lg-8">
+                <div class="prof-card">
+                    <div class="prof-card-head">
+                        <span class="prof-badge">Opciones</span>
+                        <h4 class="prof-card-title">Opciones del Perfil</h4>
+                        <p class="prof-card-desc">Rutinas, recomendaciones, historial y pedidos.</p>
+                    </div>
 
-                        <h4 class="mb-4">Opciones del Perfil</h4>
-
-                        <div class="list-group">
-
-                            <a href="@Url.Action("Rutinas","Perfil")" class="list-group-item list-group-item-action">
-                                Rutinas Guardadas
+                    <div class="prof-card-body">
+                        <div class="prof-list">
+                            <a href="@Url.Action("Rutinas","Perfil")" class="prof-link">
+                                Rutinas Guardadas <span>›</span>
                             </a>
-
-                            <a href="@Url.Action("Recomendaciones","Perfil")" class="list-group-item list-group-item-action">
-                                Recomendaciones Personalizadas
+                            <a href="@Url.Action("Recomendaciones","Perfil")" class="prof-link">
+                                Recomendaciones Personalizadas <span>›</span>
                             </a>
-
-                            <a href="@Url.Action("Historial","Perfil")" class="list-group-item list-group-item-action">
-                                Historial de Actividad / Compras
+                            <a href="@Url.Action("Historial","Perfil")" class="prof-link">
+                                Historial de Actividad / Compras <span>›</span>
                             </a>
-
-                            <a href="@Url.Action("Seguimiento","Perfil")" class="list-group-item list-group-item-action">
-                                Seguimiento y Progreso
+                            <a href="@Url.Action("Seguimiento","Perfil")" class="prof-link">
+                                Seguimiento y Progreso <span>›</span>
                             </a>
-
                         </div>
-
                     </div>
-                </div>
 
+                </div>
             </div>
 
         </div>
-    </section>
 
-</main>
+    </div>
+</section>

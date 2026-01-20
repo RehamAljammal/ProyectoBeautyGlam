@@ -3,57 +3,70 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    .btn-inv {
-        padding: 6px 14px !important;
-        font-size: 14px;
-        border-radius: 6px;
-    }
-</style>
+<section class="section-space inv-page">
+    <div class="container inv-container">
 
-<section class="section-space">
-    <div class="container">
+        <div class="inv-header">
+            <h2 class="inv-title">Inventario</h2>
+            <p class="inv-subtitle">Controla stock, mínimos/máximos y movimientos ✨</p>
+        </div>
 
-        <h2 class="mb-4">Inventario</h2>
+        <div class="inv-table-wrap">
+            <table class="table table-striped inv-table align-middle">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Stock</th>
+                        <th>Mínimo</th>
+                        <th>Máximo</th>
+                        <th style="width: 340px;">Acciones</th>
+                    </tr>
+                </thead>
 
-        <table class="table table-striped align-middle">
-            <thead>
-                <tr>
-                    <th>Producto</th>
-                    <th>Stock</th>
-                    <th>Mínimo</th>
-                    <th>Máximo</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
+                <tbody>
+                    <tr>
+                        <td><strong style="color:#5c3b6f;">Base Rare Beauty</strong></td>
+                        <td><span class="inv-chip inv-chip-ok">35</span></td>
+                        <td>10</td>
+                        <td>80</td>
+                        <td>
+                            <div class="inv-actions">
+                                <a class="btn inv-btn"
+                                   href="@Url.Action("Editar","Inventario", new { id = 1 })">
+                                    Editar stock ✏️
+                                </a>
 
-            <tbody>
-                <tr>
-                    <td>Base Rare Beauty</td>
-                    <td>35</td>
-                    <td>10</td>
-                    <td>80</td>
-                    <td class="d-flex gap-2">
+                                <a class="btn inv-btn inv-btn-soft"
+                                   href="@Url.Action("Minimos","Inventario", new { id = 1 })">
+                                    Mín/Máx 📌
+                                </a>
 
-                        <a class="btn btn-dark btn-sm btn-inv"
-                           href="@Url.Action("Editar","Inventario", new { id = 1 })">
-                            Editar stock
-                        </a>
+                                <a class="btn inv-btn inv-btn-outline"
+                                   href="@Url.Action("Movimientos","Inventario", new { id = 1 })">
+                                    Movimientos 📈
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
 
-                        <a class="btn btn-secondary btn-sm btn-inv"
-                           href="@Url.Action("Minimos","Inventario", new { id = 1 })">
-                            Mín/Máx
-                        </a>
+                    <!-- Ejemplo bajo stock -->
+                    <tr>
+                        <td><strong style="color:#5c3b6f;">Serum The Ordinary</strong></td>
+                        <td><span class="inv-chip inv-chip-low">12</span></td>
+                        <td>15</td>
+                        <td>60</td>
+                        <td>
+                            <div class="inv-actions">
+                                <a class="btn inv-btn" href="@Url.Action("Editar","Inventario", new { id = 2 })">Editar stock ✏️</a>
+                                <a class="btn inv-btn inv-btn-soft" href="@Url.Action("Minimos","Inventario", new { id = 2 })">Mín/Máx 📌</a>
+                                <a class="btn inv-btn inv-btn-outline" href="@Url.Action("Movimientos","Inventario", new { id = 2 })">Movimientos 📈</a>
+                            </div>
+                        </td>
+                    </tr>
 
-                        <a class="btn btn-outline-dark btn-sm btn-inv"
-                           href="@Url.Action("Movimientos","Inventario", new { id = 1 })">
-                            Movimientos
-                        </a>
-
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
 
     </div>
 </section>

@@ -3,58 +3,315 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<main class="main-content">
+<style>
+    /* =========================
+       USUARIOS – LISTADO PRO
+       ========================= */
 
-    <section class="page-header-area pt-10 pb-9" data-bg-color="#FFF3DA">
-        <div class="container d-flex justify-content-between">
-            <h2 class="page-header-title">Gestión de Usuarios</h2>
-            <a href="/Usuarios/Create" class="btn btn-dark px-4 py-2">+ Crear Usuario</a>
-        </div>
-    </section>
+    .usr-page {
+        background:
+            radial-gradient(600px 260px at 0% 0%, #ffe4ef, transparent 60%),
+            radial-gradient(520px 280px at 100% 0%, #e6f6ff, transparent 60%);
+    }
+
+    .usr-container {
+        max-width: 1120px;
+        margin: 0 auto;
+    }
+
+    .usr-header {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .usr-title {
+        font-weight: 900;
+        color: #5c3b6f;
+        letter-spacing: -0.02em;
+        margin-bottom: 4px;
+    }
+
+    .usr-subtitle {
+        color: #7c6b88;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    .usr-card {
+        background: #ffffff;
+        border-radius: 26px;
+        border: 1px solid #f2e6f3;
+        box-shadow: 0 22px 45px rgba(180,120,180,.13);
+        overflow: hidden;
+    }
+
+    .usr-card-head {
+        padding: 14px 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        background: linear-gradient(135deg, #fff0f6, #f1f0ff, #f0fff8);
+    }
+
+    .usr-chip-tab {
+        padding: 6px 14px;
+        border-radius: 999px;
+        border: 1px solid #ffe7a8;
+        background: #fff3c9;
+        font-size: 12px;
+        font-weight: 800;
+        color: #8a6d1d;
+    }
+
+    .usr-btn-add {
+        padding: 8px 18px;
+        border-radius: 999px;
+        font-weight: 800;
+        border: none;
+        background: linear-gradient(135deg, #ffb7d5, #cdb7ff, #b9f0e2);
+        color: #4b2b4b;
+        box-shadow: 0 14px 32px rgba(200,150,220,.35);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+    }
+
+        .usr-btn-add:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 18px 40px rgba(200,150,220,.45);
+            color: #4b2b4b;
+        }
+
+    .usr-table-wrap {
+        padding: 0;
+    }
+
+    .usr-table thead tr {
+        background: linear-gradient(90deg, #fff7e1, #ffe4ef, #e6f6ff);
+    }
+
+    .usr-table thead th {
+        border-bottom: none;
+        font-weight: 800;
+        color: #5c3b6f;
+        font-size: 14px;
+    }
+
+    .usr-table tbody tr:nth-child(even) {
+        background: #faf7ff;
+    }
+
+    .usr-table tbody tr:nth-child(odd) {
+        background: #ffffff;
+    }
+
+    .usr-table td,
+    .usr-table th {
+        vertical-align: middle;
+        padding: 10px 16px;
+        border-color: #f2e6f3;
+        font-size: 14px;
+    }
+
+    /* Chips de estado / rol */
+    .usr-chip {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 800;
+        border: 1px solid transparent;
+    }
+
+    .usr-chip-rol-admin {
+        background: #e7e5ff;
+        border-color: #cdb7ff;
+        color: #4b2b9b;
+    }
+
+    .usr-chip-rol-cliente {
+        background: #e4f6ff;
+        border-color: #b7e4ff;
+        color: #25668f;
+    }
+
+    .usr-chip-rol-vendedor {
+        background: #fff3c9;
+        border-color: #ffe7a8;
+        color: #8a6d1d;
+    }
+
+    .usr-chip-ok {
+        background: #f0fff8;
+        border-color: #b9f0e2;
+        color: #2f7f62;
+    }
+
+    .usr-chip-bad {
+        background: #ffe5e9;
+        border-color: #ffb7c3;
+        color: #b0334b;
+    }
+
+    /* Botones de acciones estilo proveedores */
+    .usr-actions {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .usr-pill {
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 800;
+        border: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        text-decoration: none;
+        white-space: nowrap;
+        box-shadow: 0 10px 24px rgba(180,120,180,.18);
+    }
+
+    .usr-pill-view {
+        background: #ffffff;
+        border: 1px solid #ecdff1;
+        color: #6b4c7a;
+    }
+
+    .usr-pill-edit {
+        background: #f1f0ff;
+        border: 1px solid #cdb7ff;
+        color: #5c3b6f;
+    }
+
+    .usr-pill-danger {
+        background: #ffe5e9;
+        border: 1px solid #ffb7c3;
+        color: #b0334b;
+    }
+
+    .usr-pill-activate {
+        background: #f0fff8;
+        border: 1px solid #b9f0e2;
+        color: #2f7f62;
+    }
+
+        .usr-pill:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 14px 32px rgba(180,120,180,.25);
+            opacity: .95;
+        }
+
+    media (max-width: 768px) {
+        .usr-actions {
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+    }
+</style>
+
+<main class="main-content usr-page">
 
     <section class="section-space">
-        <div class="container">
+        <div class="container usr-container">
 
-            <div class="table-responsive shadow-sm border rounded-3 p-4 bg-white">
-                <table class="table table-striped align-middle">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Email</th>
-                            <th>Rol</th>
-                            <th>Estado</th>
-                            <th class="text-end">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+            <div class="usr-header">
+                <h2 class="usr-title">Gestión de Usuarios</h2>
+                <p class="usr-subtitle">
+                    Administra accesos, roles y estado de tus usuarios ✨
+                </p>
+            </div>
 
-                        <tr>
-                            <td>Ana Rodríguez</td>
-                            <td>ana@gmail.com</td>
-                            <td><span class="badge bg-primary">Administrador</span></td>
-                            <td><span class="badge bg-success">Activo</span></td>
-                            <td class="text-end">
-                                <a href="/Usuarios/Edit/1" class="btn btn-warning btn-sm px-3">Editar</a>
-                                <button class="btn btn-danger btn-sm px-3">Desactivar</button>
-                            </td>
-                        </tr>
+            <div class="usr-card">
 
-                        <tr>
-                            <td>Mario López</td>
-                            <td>mario@gmail.com</td>
-                            <td><span class="badge bg-secondary">Cliente</span></td>
-                            <td><span class="badge bg-danger">Inactivo</span></td>
-                            <td class="text-end">
-                                <a href="/Usuarios/Edit/2" class="btn btn-warning btn-sm px-3">Editar</a>
-                                <button class="btn btn-success btn-sm px-3">Activar</button>
-                            </td>
-                        </tr>
+                <!-- Encabezado con tabs + botón -->
+                <div class="usr-card-head">
+                    <span class="usr-chip-tab">Listado</span>
 
-                    </tbody>
-                </table>
+                    <a href="/Usuarios/Create" class="usr-btn-add">
+                        + Crear Usuario
+                    </a>
+                </div>
+
+                <!-- Tabla -->
+                <div class="usr-table-wrap table-responsive">
+                    <table class="table usr-table align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Rol</th>
+                                <th>Estado</th>
+                                <th class="text-end">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <!-- Usuario 1 -->
+                            <tr>
+                                <td><strong>Ana Rodríguez</strong></td>
+                                <td>ana@gmail.com</td>
+                                <td>
+                                    <span class="usr-chip usr-chip-rol-admin">Administrador</span>
+                                </td>
+                                <td>
+                                    <span class="usr-chip usr-chip-ok">Activo</span>
+                                </td>
+                                <td>
+                                    <div class="usr-actions">
+                                        <a href="/Usuarios/Edit/1" class="usr-pill usr-pill-edit">
+                                            Editar ✏️
+                                        </a>
+                                        <a href="/Usuarios/AsignarRol/1" class="usr-pill usr-pill-view">
+                                            Rol ⚙️
+                                        </a>
+                                        <button type="button" class="usr-pill usr-pill-danger">
+                                            Desactivar 🧊
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Usuario 2 -->
+                            <tr>
+                                <td><strong>Mario López</strong></td>
+                                <td>mario@gmail.com</td>
+                                <td>
+                                    <span class="usr-chip usr-chip-rol-cliente">Cliente</span>
+                                </td>
+                                <td>
+                                    <span class="usr-chip usr-chip-bad">Inactivo</span>
+                                </td>
+                                <td>
+                                    <div class="usr-actions">
+                                        <a href="/Usuarios/Edit/2" class="usr-pill usr-pill-edit">
+                                            Editar ✏️
+                                        </a>
+                                        <a href="/Usuarios/AsignarRol/2" class="usr-pill usr-pill-view">
+                                            Rol ⚙️
+                                        </a>
+                                        <button type="button" class="usr-pill usr-pill-activate">
+                                            Activar ✨
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
 
         </div>
     </section>
 
-</main>s
+</main>

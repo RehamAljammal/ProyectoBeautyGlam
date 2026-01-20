@@ -1,56 +1,73 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Inventario Avanzado";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section class="section-space">
-    <div class="container">
-        <h2 class="mb-4">Listado Avanzado</h2>
+<section class="section-space inv-page">
+    <div class="container inv-container">
 
-        <div class="card p-4 mb-4">
-            <h5 class="mb-3">Filtros</h5>
-
-            <div class="row">
-                <div class="col-md-4">
-                    <label>Categoría</label>
-                    <select class="form-control">
-                        <option>Todos</option>
-                        <option>Maquillaje</option>
-                        <option>Cuidado facial</option>
-                        <option>Accesorios</option>
-                    </select>
-                </div>
-
-                <div class="col-md-4">
-                    <label>Stock menor a:</label>
-                    <input type="number" class="form-control" placeholder="Ej: 20">
-                </div>
-
-                <div class="col-md-4">
-                    <label>Buscar producto</label>
-                    <input type="text" class="form-control" placeholder="Nombre o código">
-                </div>
-            </div>
-
-            <button class="btn btn-dark mt-3">Buscar</button>
+        <div class="inv-header">
+            <h2 class="inv-title">Listado Avanzado</h2>
+            <p class="inv-subtitle">Filtra por categoría, stock y búsqueda rápida 💖</p>
         </div>
 
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Producto</th>
-                    <th>Stock</th>
-                    <th>Acción</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Serum The Ordinary</td>
-                    <td>12</td>
-                    <td><a class="btn btn-sm btn-dark" href="#">Editar</a></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="inv-card mb-4">
+            <div class="inv-card-head">
+                <span class="inv-badge">Filtros</span>
+                <h5 class="inv-card-title">Búsqueda inteligente</h5>
+                <p class="inv-card-desc">Encuentra productos y detecta bajo stock en segundos.</p>
+            </div>
+
+            <div class="inv-card-body">
+                <div class="row g-3">
+                    <div class="col-12 col-md-4">
+                        <label class="inv-label">Categoría</label>
+                        <select class="form-control inv-input">
+                            <option>Todos</option>
+                            <option>Maquillaje</option>
+                            <option>Cuidado facial</option>
+                            <option>Accesorios</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <label class="inv-label">Stock menor a</label>
+                        <input type="number" class="form-control inv-input" placeholder="Ej: 20" />
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <label class="inv-label">Buscar producto</label>
+                        <input type="text" class="form-control inv-input" placeholder="Nombre o código" />
+                    </div>
+                </div>
+
+                <div class="inv-center-actions">
+                    <button class="btn inv-btn">Buscar ✨</button>
+                    <a href="@Url.Action("Index","Inventario")" class="btn inv-btn inv-btn-soft">Volver</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="inv-table-wrap">
+            <table class="table inv-table align-middle">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Stock</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong style="color:#5c3b6f;">Serum The Ordinary</strong></td>
+                        <td><span class="inv-chip inv-chip-low">12</span></td>
+                        <td>
+                            <a class="btn inv-btn" href="#">Editar ✏️</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
     </div>
 </section>

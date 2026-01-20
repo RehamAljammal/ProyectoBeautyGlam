@@ -4,71 +4,84 @@
     var pedidoId = ViewBag.IdPedido;
 }
 
-<section class="section-space">
-    <div class="container">
+<section class="section-space prof-page">
+    <div class="container prof-container">
 
-        <h2 class="text-center mb-4">Detalle del pedido #@pedidoId</h2>
+        <div class="prof-header">
+            <h2 class="prof-title">Detalle del pedido #@pedidoId</h2>
+            <p class="prof-subtitle">Información del pedido + productos incluidos ✨</p>
+        </div>
 
-        <div class="shadow-sm border rounded-3 p-4 bg-white mb-4">
+        <div class="prof-card mb-4">
+            <div class="prof-card-head">
+                <span class="prof-badge">Pedido</span>
+                <h4 class="prof-card-title">Información del pedido</h4>
+                <p class="prof-card-desc">Resumen de compra, entrega y pago.</p>
+            </div>
 
-            <h4 class="mb-3">Información del pedido</h4>
-
-            <p><strong>ID del pedido:</strong> @pedidoId</p>
-            <p><strong>Fecha de compra:</strong> 10/02/2025</p>
-            <p><strong>Dirección de entrega:</strong> San José, Costa Rica</p>
-            <p><strong>Método de pago:</strong> Tarjeta Visa</p>
-
-            <hr />
-
-            <h5 class="mb-3">Estado del pedido</h5>
-
-            <div class="mb-4">
-                <div class="progress" style="height: 12px;">
-                    <div class="progress-bar bg-dark" style="width: 70%;"></div>
+            <div class="prof-card-body">
+                <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                        <p class="mb-2"><strong style="color:#5c3b6f;">ID del pedido:</strong> @pedidoId</p>
+                        <p class="mb-2"><strong style="color:#5c3b6f;">Fecha de compra:</strong> 10/02/2025</p>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <p class="mb-2"><strong style="color:#5c3b6f;">Dirección de entrega:</strong> San José, Costa Rica</p>
+                        <p class="mb-2"><strong style="color:#5c3b6f;">Método de pago:</strong> Tarjeta Visa</p>
+                    </div>
                 </div>
 
-                <div class="d-flex justify-content-between mt-2">
+                <hr style="border-color:#f3eaf5; opacity:1;" />
+
+                <h5 class="mb-3" style="font-weight:900;color:#5c3b6f;">Estado del pedido</h5>
+
+                <div class="prof-progress mb-3">
+                    <div class="prof-progress-bar" style="width: 70%;"></div>
+                </div>
+
+                <div class="d-flex justify-content-between" style="font-weight:800;color:#7c6b88;font-size:13px;">
                     <span>Procesado</span>
                     <span>Empacado</span>
                     <span>En camino</span>
-                    <span class="text-muted">Entregado</span>
+                    <span style="opacity:.55;">Entregado</span>
                 </div>
-            </div>
 
-            <hr />
+                <hr style="border-color:#f3eaf5; opacity:1;" />
 
-            <h5 class="mb-3">Productos del pedido</h5>
+                <h5 class="mb-3" style="font-weight:900;color:#5c3b6f;">Productos del pedido</h5>
 
-            <div class="row g-3">
+                <div class="row g-3">
 
-                <!-- Producto 1 -->
-                <div class="col-12 d-flex align-items-center border rounded-3 p-3">
-                    <img src="https://i5.walmartimages.com/seo/Glow-Recipe-Plum-Plump-Hyaluronic-Cream-67oz-20ml_fcabe71b-8928-4ed9-9fa0-e9b11103fbdf.2be8b441a3ae8b859d2b23d1d4414833.jpeg"
-                         width="80" class="rounded me-3" />
-                    <div>
-                        <h6 class="mb-1">Crema hidratante Glow</h6>
-                        <p class="text-muted mb-1">Cantidad: 1</p>
-                        <p class="fw-bold">$32.00</p>
+                    <div class="col-12">
+                        <div class="prof-item">
+                            <img src="https://i5.walmartimages.com/seo/Glow-Recipe-Plum-Plump-Hyaluronic-Cream-67oz-20ml_fcabe71b-8928-4ed9-9fa0-e9b11103fbdf.2be8b441a3ae8b859d2b23d1d4414833.jpeg" alt="Crema hidratante Glow" />
+                            <div class="flex-grow-1">
+                                <h6 class="mb-1" style="font-weight:900;color:#5c3b6f;">Crema hidratante Glow</h6>
+                                <p class="mb-1" style="color:#7c6b88;font-weight:700;">Cantidad: 1</p>
+                                <p class="mb-0" style="font-weight:900;color:#4b2b4b;">$32.00</p>
+                            </div>
+                            <span class="prof-chip prof-chip-soft">Skincare</span>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Producto 2 -->
-                <div class="col-12 d-flex align-items-center border rounded-3 p-3">
-                    <img src="https://m.media-amazon.com/images/I/81+OpYuvH6L._AC_UF894,1000_QL80_.jpg"
-                         width="80" class="rounded me-3" />
-                    <div>
-                        <h6 class="mb-1">Kit limpieza facial</h6>
-                        <p class="text-muted mb-1">Cantidad: 1</p>
-                        <p class="fw-bold">$45.00</p>
+                    <div class="col-12">
+                        <div class="prof-item">
+                            <img src="https://m.media-amazon.com/images/I/81+OpYuvH6L._AC_UF894,1000_QL80_.jpg" alt="Kit limpieza facial" />
+                            <div class="flex-grow-1">
+                                <h6 class="mb-1" style="font-weight:900;color:#5c3b6f;">Kit limpieza facial</h6>
+                                <p class="mb-1" style="color:#7c6b88;font-weight:700;">Cantidad: 1</p>
+                                <p class="mb-0" style="font-weight:900;color:#4b2b4b;">$45.00</p>
+                            </div>
+                            <span class="prof-chip prof-chip-soft">Skincare</span>
+                        </div>
                     </div>
+
                 </div>
 
             </div>
-
         </div>
 
-        <a href="@Url.Action("Seguimiento","Perfil")"
-           class="btn btn-secondary w-100">
+        <a href="@Url.Action("Seguimiento","Perfil")" class="btn prof-btn prof-btn-soft prof-btn-block">
             Volver al seguimiento
         </a>
 

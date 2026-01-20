@@ -3,27 +3,36 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section class="section-space">
-    <div class="container">
-        <h3 class="mb-4">Editar artículo</h3>
+<section class="section-space blog-page">
+    <div class="container blog-container">
 
-        <div class="mb-3">
-            <label>Título</label>
-            <input type="text" class="form-control"
-                   value="Rutina básica de skincare para principiantes" />
+        <div class="blog-form-card">
+            <div class="blog-form-head text-center">
+                <span class="blog-badge">Edición</span>
+                <h3 class="blog-form-title">Editar artículo</h3>
+                <p class="blog-form-desc">Ajusta tu contenido y mantenlo actualizado ✨</p>
+            </div>
+
+            <div class="blog-form-body">
+
+                <div class="mb-3">
+                    <label class="blog-label">Título</label>
+                    <input type="text" class="form-control blog-input"
+                           value="Rutina básica de skincare para principiantes" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="blog-label">Contenido</label>
+                    <textarea class="form-control blog-input" rows="7">Contenido del artículo...</textarea>
+                </div>
+
+                <div class="blog-form-actions">
+                    <button class="btn blog-btn">Guardar cambios 💾</button>
+                    <a href="@Url.Action("Index","BlogBelleza")" class="btn blog-btn blog-btn-soft">Volver</a>
+                </div>
+
+            </div>
         </div>
 
-        <div class="mb-3">
-            <label>Contenido</label>
-            <textarea class="form-control" rows="6">
-Contenido del artículo...
-            </textarea>
-        </div>
-
-        <button class="btn btn-dark btn-sm me-2">Guardar cambios</button>
-        <a href="@Url.Action("Index","BlogBelleza")"
-           class="btn btn-secondary btn-sm">
-            Volver
-        </a>
     </div>
 </section>
