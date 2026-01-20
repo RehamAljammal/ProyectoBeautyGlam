@@ -1,70 +1,64 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Blog de Belleza";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    .btn-blog {
-        padding: 4px 12px;
-        font-size: 12px;
-        border-radius: 6px;
-    }
+<section class="section-space blog-page">
+    <div class="container blog-container">
 
-    .blog-card {
-        border: 1px solid #e5e5e5;
-        border-radius: 10px;
-        padding: 15px;
-        background: #fff;
-        margin-bottom: 15px;
-    }
-</style>
-
-<section class="section-space">
-    <div class="container">
-        <h2 class="mb-4">Blog de Belleza</h2>
-
-        <a href="@Url.Action("Publicar","BlogBelleza")"
-           class="btn btn-dark btn-blog mb-3">
-            Publicar nuevo artículo
-        </a>
-
-        <div class="blog-card">
-            <h5>Rutina básica de skincare para principiantes</h5>
-            <p class="text-muted">Publicado el 10/03/2025</p>
-
-            <a href="@Url.Action("Detalle","BlogBelleza", new { id = 1 })"
-               class="btn btn-outline-dark btn-blog me-2">
-                Ver
-            </a>
-
-            <a href="@Url.Action("Editar","BlogBelleza", new { id = 1 })"
-               class="btn btn-outline-secondary btn-blog me-2">
-                Editar
-            </a>
-
-            <button class="btn btn-outline-danger btn-blog">
-                Desactivar
-            </button>
+        <div class="blog-header">
+            <h2 class="blog-title">Blog de Belleza</h2>
+            <p class="blog-subtitle">Tips, rutinas y recomendaciones para verte y sentirte increíble ✨</p>
         </div>
 
+        <div class="text-center mb-4">
+            <a href="@Url.Action("Publicar","BlogBelleza")" class="btn blog-btn">
+                Publicar nuevo artículo ✍️
+            </a>
+        </div>
+
+        <!-- Card 1 -->
         <div class="blog-card">
-            <h5>Cómo elegir tu base según tu tono</h5>
-            <p class="text-muted">Publicado el 05/03/2025</p>
+            <h5 class="blog-card-title">Rutina básica de skincare para principiantes</h5>
+            <div class="blog-meta">Publicado el 10/03/2025</div>
 
-            <a href="@Url.Action("Detalle","BlogBelleza", new { id = 2 })"
-               class="btn btn-outline-dark btn-blog me-2">
-                Ver
-            </a>
+            <div class="blog-actions">
+                <a href="@Url.Action("Detalle","BlogBelleza", new { id = 1 })"
+                   class="btn blog-btn blog-btn-soft">
+                    Ver 👀
+                </a>
 
-            <a href="@Url.Action("Editar","BlogBelleza", new { id = 2 })"
-               class="btn btn-outline-secondary btn-blog me-2">
-                Editar
-            </a>
+                <a href="@Url.Action("Editar","BlogBelleza", new { id = 1 })"
+                   class="btn blog-btn blog-btn-soft">
+                    Editar ✨
+                </a>
 
-            <button class="btn btn-outline-danger btn-blog">
-                Desactivar
-            </button>
+                <button class="btn blog-btn blog-btn-danger">
+                    Desactivar 🗑
+                </button>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="blog-card">
+            <h5 class="blog-card-title">Cómo elegir tu base según tu tono</h5>
+            <div class="blog-meta">Publicado el 05/03/2025</div>
+
+            <div class="blog-actions">
+                <a href="@Url.Action("Detalle","BlogBelleza", new { id = 2 })"
+                   class="btn blog-btn blog-btn-soft">
+                    Ver 👀
+                </a>
+
+                <a href="@Url.Action("Editar","BlogBelleza", new { id = 2 })"
+                   class="btn blog-btn blog-btn-soft">
+                    Editar ✨
+                </a>
+
+                <button class="btn blog-btn blog-btn-danger">
+                    Desactivar 🗑
+                </button>
+            </div>
         </div>
 
     </div>

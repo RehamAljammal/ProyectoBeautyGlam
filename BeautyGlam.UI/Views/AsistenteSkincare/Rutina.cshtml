@@ -1,23 +1,100 @@
 ﻿@{
-    ViewBag.Title = "Tu Rutina de Skincare";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+        ViewBag.Title = "Tu Rutina de Skincare";
+        Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section class="section-space">
-    <div class="container">
-        <h3 class="mb-4">Rutina recomendada para ti</h3>
+<section class="section-space sk-page">
+    <div class="container sk-container">
 
-        <ul class="list-group mb-4">
-            <li class="list-group-item">🧼 Limpieza suave</li>
-            <li class="list-group-item">💧 Tónico hidratante</li>
-            <li class="list-group-item">✨ Sérum especializado</li>
-            <li class="list-group-item">🧴 Hidratante</li>
-            <li class="list-group-item">☀️ Protector solar</li>
-        </ul>
+        <!-- Header -->
+        <div class="sk-header text-center">
+            <h3 class="sk-title">Tu rutina de skincare</h3>
+            <p class="sk-subtitle">
+                Basada en tu diagnóstico, esta es la rutina ideal para tu piel ✨
+            </p>
+        </div>
 
-        <a href="@Url.Action("PasoAPaso","AsistenteSkincare")"
-           class="btn btn-dark btn-sm">
-            Ver paso a paso
-        </a>
+        <!-- Rutina Mañana -->
+        <div class="sk-card sk-routine">
+            <h5 class="sk-routine-title">🌤 Rutina de mañana</h5>
+
+            <div class="sk-routine-step">
+                <span class="sk-routine-icon">🧼</span>
+                <div>
+                    <strong>Limpieza suave</strong>
+                    <p>Elimina impurezas sin resecar tu piel.</p>
+                </div>
+            </div>
+
+            <div class="sk-routine-step">
+                <span class="sk-routine-icon">💧</span>
+                <div>
+                    <strong>Tónico hidratante</strong>
+                    <p>Equilibra y prepara la piel.</p>
+                </div>
+            </div>
+
+            <div class="sk-routine-step">
+                <span class="sk-routine-icon">✨</span>
+                <div>
+                    <strong>Sérum especializado</strong>
+                    <p>Trata tus necesidades específicas.</p>
+                </div>
+            </div>
+
+            <div class="sk-routine-step">
+                <span class="sk-routine-icon">🧴</span>
+                <div>
+                    <strong>Hidratante</strong>
+                    <p>Sella la hidratación y protege la piel.</p>
+                </div>
+            </div>
+
+            <div class="sk-routine-step">
+                <span class="sk-routine-icon">☀️</span>
+                <div>
+                    <strong>Protector solar</strong>
+                    <p>Indispensable para prevenir el envejecimiento.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rutina Noche -->
+        <div class="sk-card sk-routine">
+            <h5 class="sk-routine-title">🌙 Rutina de noche</h5>
+
+            <div class="sk-routine-step">
+                <span class="sk-routine-icon">🧼</span>
+                <div>
+                    <strong>Limpieza profunda</strong>
+                    <p>Retira maquillaje y residuos del día.</p>
+                </div>
+            </div>
+
+            <div class="sk-routine-step">
+                <span class="sk-routine-icon">✨</span>
+                <div>
+                    <strong>Sérum de tratamiento</strong>
+                    <p>Ayuda a la regeneración nocturna.</p>
+                </div>
+            </div>
+
+            <div class="sk-routine-step">
+                <span class="sk-routine-icon">🧴</span>
+                <div>
+                    <strong>Crema nocturna</strong>
+                    <p>Nutre profundamente mientras duermes.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Acción -->
+        <div class="sk-action">
+            <a href="@Url.Action("PasoAPaso","AsistenteSkincare")"
+               class="btn sk-btn">
+                Ver paso a paso ✨
+            </a>
+        </div>
+
     </div>
 </section>

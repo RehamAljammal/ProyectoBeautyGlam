@@ -3,20 +3,64 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<section class="section-space rep-page">
+    <div class="container rep-container">
 
-<section class="section-space">
-    <div class="container">
-
-        <h2 class="text-center mb-4">Modulo de Reportes</h2>
-
-        <!-- BOTÓN AGREGAR -->
-        <div class="text-end mb-3">
-            <a href="@Url.Action("Crear", "Reportes")" class="btn btn-dark">+ Nuevo Reporte</a>
+        <div class="rep-header">
+            <h2 class="rep-title">Módulo de Reportes</h2>
+            <p class="rep-subtitle">Genera reportes y analiza tu información ✨</p>
         </div>
 
-        <table class="table table-bordered proveedores-table">
-             
-        </table>
+        <div class="rep-card">
+
+            <div class="rep-card-head">
+                <span class="rep-badge">Reportes</span>
+
+                <a href="@Url.Action("Crear","Reportes")" class="rep-btn">
+                    + Nuevo Reporte
+                </a>
+            </div>
+
+            <div class="rep-table-wrap table-responsive">
+                <table class="table table-striped align-middle rep-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Tipo</th>
+                            <th>Fecha</th>
+                            <th>Estado</th>
+                            <th class="text-center" style="width: 260px;">Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @* Si aún no tienes data real, dejamos un “estado vacío” lindo *@
+                        <tr>
+                            <td colspan="5" class="rep-empty">
+                                Aún no hay reportes creados 🫧
+                                <small>Presiona “Nuevo Reporte” para crear el primero.</small>
+                            </td>
+                        </tr>
+
+                        @* EJEMPLO (si luego quieres mostrar filas):
+                            <tr>
+                                <td><strong style="color:#5c3b6f;">Reporte de Ventas</strong></td>
+                                <td>Ventas</td>
+                                <td>07/01/2026</td>
+                                <td><span class="sup-chip sup-chip-ok">Listo</span></td>
+                                <td class="text-center">
+                                    <div class="sup-actions">
+                                        <a class="sup-btn sup-btn-soft sup-btn-sm" href="#">Ver 👀</a>
+                                        <a class="sup-btn sup-btn-outline sup-btn-sm" href="#">Descargar ⬇️</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        *@
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
 
     </div>
 </section>

@@ -3,29 +3,35 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    .btn-inv {
-        padding: 6px 14px !important;
-        font-size: 14px;
-        border-radius: 6px;
-    }
-</style>
+<section class="section-space inv-page">
+    <div class="container inv-container">
 
-<section class="section-space">
-    <div class="container">
-        <h2 class="mb-4">Editar Stock</h2>
+        <div class="inv-header">
+            <h2 class="inv-title">Editar Stock</h2>
+            <p class="inv-subtitle">Actualiza el stock de forma segura y clara ✨</p>
+        </div>
 
-        <div class="card p-4 shadow-sm">
-
-            <label>Stock actual</label>
-            <input type="number" class="form-control mb-3" value="35">
-
-            <div class="mt-3">
-                <button class="btn btn-dark btn-sm btn-inv">Guardar cambios</button>
-                <a href="@Url.Action("Index","Inventario")"
-                   class="btn btn-secondary btn-sm btn-inv ms-2">Cancelar</a>
+        <div class="inv-card">
+            <div class="inv-card-head">
+                <span class="inv-badge">Stock</span>
+                <h5 class="inv-card-title">Actualizar cantidad</h5>
+                <p class="inv-card-desc">Ingresa el valor actualizado del producto.</p>
             </div>
 
+            <div class="inv-card-body">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-6">
+                        <label class="inv-label">Stock actual</label>
+                        <input type="number" class="form-control inv-input" value="35" />
+                    </div>
+                </div>
+
+                <div class="inv-center-actions">
+                    <button class="btn inv-btn">Guardar cambios 💾</button>
+                    <a href="@Url.Action("Index","Inventario")" class="btn inv-btn inv-btn-soft">Cancelar</a>
+                </div>
+            </div>
         </div>
+
     </div>
 </section>

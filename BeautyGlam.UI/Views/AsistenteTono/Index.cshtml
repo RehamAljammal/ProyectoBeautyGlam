@@ -1,22 +1,27 @@
-﻿
-@{
-    ViewBag.Title = "Asistente de Tono";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@{
+        ViewBag.Title = "Asistente de Tono";
+        Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section class="section-space">
-    <div class="container text-center">
+<section class="section-space tone-page">
+    <div class="container tone-container">
 
-        <h2 class="mb-3">Asistente de Tono</h2>
-        <p class="text-muted mb-4">
-            Descubre los productos ideales según tu tono y subtono de piel.
-        </p>
+        <div class="tone-card">
+            <div class="tone-card-head text-center">
+                <span class="tone-badge">Asistente de maquillaje 💖</span>
+                <h2 class="tone-card-title">Asistente de Tono</h2>
+                <p class="tone-card-desc">
+                    Descubre productos ideales según tu tono y subtono de piel.
+                </p>
+            </div>
 
-        <a href="@Url.Action("Cuestionario","AsistenteTono")"
-           class="btn btn-dark btn-sm">
-            Comenzar cuestionario
-        </a>
+            <div class="tone-card-body text-center">
+                <a href="@Url.Action("Cuestionario","AsistenteTono")"
+                   class="btn tone-btn">
+                    Comenzar cuestionario ✨
+                </a>
+            </div>
+        </div>
 
     </div>
 </section>
-

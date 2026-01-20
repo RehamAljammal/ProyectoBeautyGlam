@@ -1,69 +1,125 @@
-﻿@{
-    ViewBag.Title = "Diagnóstico de Skincare";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿<section class="section-space sk-page">
+    <div class="container sk-container">
 
-<style>
-    .sk-box {
-        border: 1px solid #e5e5e5;
-        border-radius: 12px;
-        padding: 20px;
-        margin-bottom: 20px;
-        background: #fff;
-    }
-
-    .btn-skin {
-        padding: 6px 16px;
-        font-size: 14px;
-        border-radius: 6px;
-    }
-</style>
-
-<section class="section-space">
-    <div class="container">
-        <h3 class="mb-4">Cuéntanos sobre tu piel</h3>
-
-        <div class="sk-box">
-            <h6>1. ¿Cómo describirías tu tipo de piel?</h6>
-            <select class="form-select">
-                <option>Selecciona</option>
-                <option>Grasa</option>
-                <option>Seca</option>
-                <option>Mixta</option>
-                <option>Sensible</option>
-            </select>
+        <!-- Header -->
+        <div class="sk-header text-center">
+            <h3 class="sk-title">Cuéntanos sobre tu piel</h3>
+            <p class="sk-subtitle">
+                Responde unas preguntas rápidas para crear tu rutina ideal ✨
+            </p>
         </div>
 
-        <div class="sk-box">
-            <h6>2. ¿Qué es lo que más te preocupa?</h6>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox"> Acné
+        <!-- Card 1 -->
+        <div class="sk-card">
+            <div class="sk-card-head">
+                <span class="sk-step">1</span>
+                <h6 class="sk-question">¿Cómo describirías tu tipo de piel?</h6>
             </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox"> Manchas
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox"> Arrugas
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox"> Resequedad
+
+            <div class="sk-field">
+                <select class="form-select sk-select">
+                    <option selected disabled>Selecciona una opción</option>
+                    <option>Grasa</option>
+                    <option>Seca</option>
+                    <option>Mixta</option>
+                    <option>Sensible</option>
+                </select>
             </div>
         </div>
 
-        <div class="sk-box">
-            <h6>3. ¿Cada cuánto realizas tu rutina?</h6>
-            <select class="form-select">
-                <option>Todos los días</option>
-                <option>Algunas veces a la semana</option>
-                <option>Muy rara vez</option>
-            </select>
+        <!-- Card 2 -->
+        <div class="sk-card">
+            <div class="sk-card-head">
+                <span class="sk-step">2</span>
+                <h6 class="sk-question">¿Qué es lo que más te preocupa?</h6>
+            </div>
+
+            <div class="sk-check-group">
+                <label class="sk-check">
+                    <input type="checkbox">
+                    <span>Acné</span>
+                </label>
+                <label class="sk-check">
+                    <input type="checkbox">
+                    <span>Manchas</span>
+                </label>
+                <label class="sk-check">
+                    <input type="checkbox">
+                    <span>Arrugas</span>
+                </label>
+                <label class="sk-check">
+                    <input type="checkbox">
+                    <span>Resequedad</span>
+                </label>
+            </div>
         </div>
 
-        <div class="text-end mt-4">
+        <!-- Card 3 -->
+        <div class="sk-card">
+            <div class="sk-card-head">
+                <span class="sk-step">3</span>
+                <h6 class="sk-question">¿Cada cuánto realizas tu rutina?</h6>
+            </div>
+
+            <div class="sk-field">
+                <select class="form-select sk-select">
+                    <option>Todos los días</option>
+                    <option>Algunas veces a la semana</option>
+                    <option>Muy rara vez</option>
+                </select>
+            </div>
+        </div><!-- Card 4 -->
+        <div class="sk-card">
+            <div class="sk-card-head">
+                <span class="sk-step">4</span>
+                <h6 class="sk-question">¿Tu piel suele reaccionar con facilidad?</h6>
+            </div>
+
+            <div class="sk-field">
+                <select class="form-select sk-select">
+                    <option selected disabled>Selecciona una opción</option>
+                    <option>Sí, es muy sensible</option>
+                    <option>Algunas veces</option>
+                    <option>No, casi nunca</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="sk-card">
+            <div class="sk-card-head">
+                <span class="sk-step">5</span>
+                <h6 class="sk-question">¿Cuál es tu objetivo principal?</h6>
+            </div>
+
+            <div class="sk-check-group">
+                <label class="sk-check">
+                    <input type="checkbox">
+                    <span>Controlar brillo y grasa</span>
+                </label>
+                <label class="sk-check">
+                    <input type="checkbox">
+                    <span>Hidratar y nutrir</span>
+                </label>
+                <label class="sk-check">
+                    <input type="checkbox">
+                    <span>Reducir imperfecciones</span>
+                </label>
+                <label class="sk-check">
+                    <input type="checkbox">
+                    <span>Prevenir envejecimiento</span>
+                </label>
+            </div>
+        </div>
+
+
+        <!-- Acción -->
+        <div class="sk-action">
             <a href="@Url.Action("Rutina","AsistenteSkincare")"
-               class="btn btn-dark btn-skin">
-                Ver mi rutina
+               class="btn sk-btn">
+                Ver mi rutina ✨
             </a>
         </div>
+
     </div>
 </section>
