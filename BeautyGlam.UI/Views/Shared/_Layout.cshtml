@@ -26,7 +26,7 @@
 
     <!-- Main Style -->
     <link rel="stylesheet" href="~/assets/css/style.min.css" />
-    <link rel="stylesheet" href="~/assets/css/custom.css" />
+    <link rel="stylesheet" href="~/Content/custom.css" />
 
 </head>
 
@@ -45,11 +45,11 @@
                         <div class="widget-about">
                             <a class="widget-logo" href="@Url.Action("Index","Home")">
                                 <img src="@Url.Content("~/Images/logobeauty.jpg")"
-                                     width="95"
+                                     width="150"
                                      height="68"
                                      alt="BeautyGlam Logo" />
                             </a>
-                            
+
                         </div>
                     </div>
 
@@ -59,73 +59,66 @@
                         <div class="header-navigation">
                             <ul class="main-nav justify-content-start">
 
-                                <ul class="main-nav justify-content-start">
+                                <!-- HOME -->
+                                <li>
+                                    <a href="@Url.Action("Index","Home")">Home</a>
+                                </li>
 
-                                    <!-- HOME -->
-                                    <li>
-                                        <a href="@Url.Action("Index","Home")">Home</a>
-                                    </li>
+                                <!-- ADMINISTRACIÓN -->
+                                <li class="has-submenu">
+                                    <a href="#">Administración</a>
+                                    <ul class="submenu">
+                                        <li><a href="@Url.Action("Index","Usuarios")">Usuarios</a></li>
+                                        <li><a href="@Url.Action("Index","Roles")">Roles</a></li>
+                                        <li><a href="@Url.Action("Index","Permisos")">Permisos</a></li>
+                                        <li><a href="@Url.Action("Index","Proveedores")">Proveedores</a></li>
+                                        <li><a href="@Url.Action("Index","Reportes")">Reportes</a></li>
+                                        <li><a href="@Url.Action("Index","Promociones")">Promociones</a></li>
+                                    </ul>
+                                </li>
 
-                                    <!-- ADMINISTRACIÓN -->
-                                    <li class="has-submenu">
-                                        <a href="#">Administración</a>
-                                        <ul class="submenu">
-                                            <li><a href="@Url.Action("Index","Usuarios")">Usuarios</a></li>
-                                            <li><a href="@Url.Action("Index","Roles")">Roles</a></li>
-                                            <li><a href="@Url.Action("Index","Permisos")">Permisos</a></li>
-                                            <li><a href="@Url.Action("Index","Proveedores")">Proveedores</a></li>
-                                            <li><a href="@Url.Action("Index","Reportes")">Reportes</a></li>
-                                            <li><a href="@Url.Action("Index","Promociones")">Promociones</a></li>
+                                <!-- PRODUCTOS -->
+                                <li class="has-submenu">
+                                    <a href="#">Productos</a>
+                                    <ul class="submenu">
+                                        <li><a href="@Url.Action("Index","Productos")">Listado</a></li>
+                                        <li><a href="@Url.Action("Index","Inventario")">Inventario</a></li>
+                                        <li><a href="@Url.Action("Avanzado","Inventario")">Inventario Avanzado</a></li>
+                                        <li><a href="@Url.Action("Movimientos","Inventario", new { id = 1 })">Movimientos</a></li>
+                                        <li><a href="@Url.Action("Index","Catalogo")">Catálogo</a></li>
+                                        <li><a href="@Url.Action("Index","Wishlist")">Wish List</a></li>
+                                    </ul>
+                                </li>
 
-                                        </ul>
-                                    </li>
+                                <!-- ASISTENTES -->
+                                <li class="has-submenu">
+                                    <a href="#">Asistentes</a>
+                                    <ul class="submenu">
+                                        <li><a href="@Url.Action("Index","AsistenteTono")">Asistente de Tono</a></li>
+                                        <li><a href="@Url.Action("Index","AsistenteSkincare")">Skincare</a></li>
+                                        <li><a href="@Url.Action("Cuestionario","AsistenteSkincare")">Cuestionario</a></li>
+                                        <li><a href="@Url.Action("Rutina","AsistenteSkincare")">Rutina</a></li>
+                                        <li><a href="@Url.Action("PasoAPaso","AsistenteSkincare")">Paso a Paso</a></li>
+                                    </ul>
+                                </li>
 
-                                    <!-- PRODUCTOS -->
-                                    <li class="has-submenu">
-                                        <a href="#">Productos</a>
-                                        <ul class="submenu">
-                                            <li><a href="@Url.Action("Index","Productos")">Listado</a></li>
-                                            <li><a href="@Url.Action("Index","Inventario")">Inventario</a></li>
-                                            <li><a href="@Url.Action("Avanzado","Inventario")">Inventario Avanzado</a></li>
-                                            <li><a href="@Url.Action("Movimientos","Inventario", new { id = 1 })">Movimientos</a></li>
-                                            <li><a href="@Url.Action("Index","Catalogo")">Catálogo</a></li>
-                                            <li><a href="@Url.Action("Index","Wishlist")">Wish List</a></li>
+                                <!-- BLOG -->
+                                <li class="has-submenu">
+                                    <a href="#">Blog</a>
+                                    <ul class="submenu">
+                                        <li><a href="@Url.Action("Index","BlogBelleza")">Ver Blog</a></li>
+                                        <li><a href="@Url.Action("Publicar","BlogBelleza")">Publicar</a></li>
+                                    </ul>
+                                </li>
 
-
-                                        </ul>
-                                    </li>
-
-                                    <!-- ASISTENTES -->
-                                    <li class="has-submenu">
-                                        <a href="#">Asistentes</a>
-                                        <ul class="submenu">
-                                            <li><a href="@Url.Action("Index","AsistenteTono")">Asistente de Tono</a></li>
-                                            <li><a href="@Url.Action("Index","AsistenteSkincare")">Skincare</a></li>
-                                            <li><a href="@Url.Action("Cuestionario","AsistenteSkincare")">Cuestionario</a></li>
-                                            <li><a href="@Url.Action("Rutina","AsistenteSkincare")">Rutina</a></li>
-                                            <li><a href="@Url.Action("PasoAPaso","AsistenteSkincare")">Paso a Paso</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <!-- BLOG -->
-                                    <li class="has-submenu">
-                                        <a href="#">Blog</a>
-                                        <ul class="submenu">
-                                            <li><a href="@Url.Action("Index","BlogBelleza")">Ver Blog</a></li>
-                                            <li><a href="@Url.Action("Publicar","BlogBelleza")">Publicar</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <!-- CUENTA -->
-                                    <li class="has-submenu">
-                                        <a href="#">Cuenta</a>
-                                        <ul class="submenu">
-                                            <li><a href="@Url.Action("Login","Account")">Login</a></li>
-                                            <li><a href="@Url.Action("Index","Perfil")">Perfil</a></li>
-                                        </ul>
-                                    </li>
-
-                                </ul>
+                                <!-- CUENTA -->
+                                <li class="has-submenu">
+                                    <a href="#">Cuenta</a>
+                                    <ul class="submenu">
+                                        <li><a href="@Url.Action("Login","Account")">Login</a></li>
+                                        <li><a href="@Url.Action("Index","Perfil")">Perfil</a></li>
+                                    </ul>
+                                </li>
 
                             </ul>
                         </div>
@@ -135,7 +128,7 @@
                     <div class="col-7 col-sm-6 col-lg-3">
                         <div class="header-action justify-content-end">
 
-                            
+
 
                             <!-- Menú móvil -->
                             <button class="header-menu-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#AsideOffcanvasMenu">
