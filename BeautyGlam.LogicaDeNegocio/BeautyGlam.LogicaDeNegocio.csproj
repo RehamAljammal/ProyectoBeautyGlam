@@ -42,6 +42,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proveedores\DetallesDeProveedor\DetallesProveedorLN.cs" />
+    <Compile Include="Proveedores\EditarProveedores\EditarProveedoresLN.cs" />
+    <Compile Include="Proveedores\EliminarProveedor\EliminarProveedorLN.cs" />
+    <Compile Include="Proveedores\ListaDeProveedor\ObtenerLaListaDeProveedoresLN.cs" />
+    <Compile Include="Proveedores\RegistrarProveedor\RegistrarProveedorLN.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\BeautyGlam.Abstracciones\BeautyGlam.Abstracciones.csproj">
+      <Project>{A4800167-45C8-4781-B2AA-50E9BFCC6BFE}</Project>
+      <Name>BeautyGlam.Abstracciones</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BeautyGlam.AccesoADatos\BeautyGlam.AccesoADatos.csproj">
+      <Project>{2773936B-304F-4AEB-969B-1FFC60B5C459}</Project>
+      <Name>BeautyGlam.AccesoADatos</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
