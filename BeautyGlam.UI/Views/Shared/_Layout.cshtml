@@ -30,6 +30,8 @@
 
 </head>
 
+@RenderSection("Scripts", required: false)
+
 <body>
 
     <!--== Wrapper Start ==-->
@@ -73,7 +75,7 @@
                                             <li><a href="@Url.Action("Index","Usuarios")">Usuarios</a></li>
                                             <li><a href="@Url.Action("Index","Roles")">Roles</a></li>
                                             <li><a href="@Url.Action("Index","Permisos")">Permisos</a></li>
-                                            <li><a href="@Url.Action("Index","Proveedores")">Proveedores</a></li>
+                                            <li><a href="@Url.Action("ListaDeProveedores","Proveedores")">Proveedores</a></li>
                                             <li><a href="@Url.Action("Index","Reportes")">Reportes</a></li>
                                             <li><a href="@Url.Action("Index","Promociones")">Promociones</a></li>
 
@@ -131,7 +133,7 @@
                         </div>
                     </div>
 
-        
+
 
 
                     <!-- ICONOS HEADER -->

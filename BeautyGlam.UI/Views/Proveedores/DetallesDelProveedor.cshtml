@@ -1,0 +1,109 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.ProveedoresDto
+
+@{
+    ViewBag.Title = "Detalles del Proveedor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space sup-page">
+    <div class="container sup-container">
+
+        <div class="sup-header">
+            <h2 class="sup-title">Detalles del Proveedor</h2>
+            <p class="sup-subtitle">Información completa del contacto ✨</p>
+        </div>
+
+        <div class="sup-card" style="max-width:820px; margin:0 auto;">
+            <div class="sup-card-head">
+                <span class="sup-badge">Detalle</span>
+                <a href="@Url.Action("ListaDeProveedores","Proveedores")"
+                   class="sup-btn sup-btn-soft">
+                    Volver
+                </a>
+            </div>
+
+            <div class="p-4">
+
+                <!-- Nombre -->
+                <h4 class="mb-3" style="color:#5c3b6f; font-weight:900;">
+                    @Model.nombre
+                </h4>
+
+                <div class="row g-3">
+
+                    <!-- Cédula -->
+                    <div class="col-md-6">
+                        <div class="p-3 rounded-4"
+                             style="border:1px solid #f3eaf5; background:#fff;">
+                            <div class="small" style="color:#8b7a97; font-weight:800;">Cédula</div>
+                            <div style="color:#6b4c7a; font-weight:800;">
+                                @Model.cedula
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Teléfono -->
+                    <div class="col-md-6">
+                        <div class="p-3 rounded-4"
+                             style="border:1px solid #f3eaf5; background:#fff;">
+                            <div class="small" style="color:#8b7a97; font-weight:800;">Teléfono</div>
+                            <div style="color:#6b4c7a; font-weight:800;">
+                                @Model.telefono
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Correo -->
+                    <div class="col-md-6">
+                        <div class="p-3 rounded-4"
+                             style="border:1px solid #f3eaf5; background:#fff;">
+                            <div class="small" style="color:#8b7a97; font-weight:800;">Correo electrónico</div>
+                            <div style="color:#6b4c7a; font-weight:800;">
+                                @Model.correo
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dirección -->
+                    <div class="col-md-6">
+                        <div class="p-3 rounded-4"
+                             style="border:1px solid #f3eaf5; background:#fff;">
+                            <div class="small" style="color:#8b7a97; font-weight:800;">Dirección</div>
+                            <div style="color:#6b4c7a; font-weight:800;">
+                                @Model.direccion
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Estado -->
+                    <div class="col-12">
+                        <div class="p-3 rounded-4 d-flex align-items-center justify-content-between"
+                             style="border:1px solid #f3eaf5;
+                                    background:linear-gradient(135deg,#fff0f6,#f1f0ff,#f0fff8);">
+                            <div style="color:#6b4c7a; font-weight:900;">Estado</div>
+
+                            <span class="sup-chip @(Model.estado ? "sup-chip-ok" : "sup-chip-off")">
+                                @(Model.estado ? "Activo" : "Inactivo")
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Botones -->
+                <div class="d-flex justify-content-end gap-2 mt-4">
+                    <a href="@Url.Action("ListaDeProveedores","Proveedores")"
+                       class="sup-btn sup-btn-soft">
+                        Volver
+                    </a>
+                    <a href="@Url.Action("Editar","Proveedores", new { id = Model.id })"
+                       class="sup-btn sup-btn-outline">
+                        Editar ✏️
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
