@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BeautyGlam.AccesoADatos.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -13,5 +14,8 @@ namespace BeautyGlam.AccesoADatos
         {
             Database.SetInitializer<Contexto>(null);
         }
+
+        public DbSet<ProveedorAD> Proveedor { get; set; }
+
     }
 }

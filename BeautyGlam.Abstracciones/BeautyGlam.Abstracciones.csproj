@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,12 +42,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccesoADatos\Proveedores\DetallesDeProveedor\IDetallesProveedorAD.cs" />
+    <Compile Include="AccesoADatos\Proveedores\EditarProveedores\IEditarProveedorAD.cs" />
+    <Compile Include="AccesoADatos\Proveedores\EliminarProveedor\IEliminarProveedorAD.cs" />
+    <Compile Include="AccesoADatos\Proveedores\ListaDeProveedor\IObtenerListaDeProveedoresAD.cs" />
+    <Compile Include="AccesoADatos\Proveedores\RegistrarProveedor\IRegistrarProveedorAD.cs" />
+    <Compile Include="LogicaDeNegocio\Proveedores\DetallesDeProveedor\IDetallesProveedorLN.cs" />
+    <Compile Include="LogicaDeNegocio\Proveedores\EditarProveedores\IEditarProveedorLN.cs" />
+    <Compile Include="LogicaDeNegocio\Proveedores\EliminarProveedor\IEliminarProveedorLN.cs" />
+    <Compile Include="LogicaDeNegocio\Proveedores\ListaDeProveedor\IObtenerLaListaDeProveedoresLN.cs" />
+    <Compile Include="LogicaDeNegocio\Proveedores\RegistrarProveedor\IRegistrarProveedorLN.cs" />
+    <Compile Include="ModelosParaUI\ProveedoresDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AccesoADatos\" />
-    <Folder Include="LogicaDeNegocio\" />
-    <Folder Include="ModelosParaUI\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
