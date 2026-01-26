@@ -51,7 +51,7 @@ namespace BeautyGlam.UI.Controllers
         public ActionResult DetallesDelProveedor(int id)
         {
             ObtenerProveedorPorIdAD obtenerProveedorPorIdAD = new ObtenerProveedorPorIdAD();
-            ProveedoresDto Proveedor = obtenerProveedorPorIdAD.Obtener(id);
+            ProveedoresDto Proveedor = obtenerProveedorPorIdAD.ObtenerPorId(id);
 
             if (Proveedor == null)
             {
@@ -88,7 +88,7 @@ namespace BeautyGlam.UI.Controllers
         public ActionResult EditarProveedor(int id)
         {
             ObtenerProveedorPorIdAD obtenerProveedorPorIdAD = new ObtenerProveedorPorIdAD();
-            ProveedoresDto Proveedor = obtenerProveedorPorIdAD.Obtener(id);
+            ProveedoresDto Proveedor = obtenerProveedorPorIdAD.ObtenerPorId(id);
 
             if (Proveedor == null)
             {
@@ -106,23 +106,46 @@ namespace BeautyGlam.UI.Controllers
         {
             try
             {
-                int cantidadDeFilasAfectadas = await _editarProveedorLN.Editar(elProveedorParaGuardar);
+                if (!ModelState.IsValid)
+                    return View(elProveedorParaGuardar);
 
-                return RedirectToAction("ListaDeProveedores");
+                // 1️⃣ Obtener el proveedor actual desde la BD
+                ProveedoresDto proveedorActual =
+                    await _editarProveedorLN.ObtenerPorId(elProveedorParaGuardar.id);
+
+                if (proveedorActual == null)
+                {
+                    ModelState.AddModelError("", "No existe el proveedor.");
+                    return View(elProveedorParaGuardar);
+                }
+
+                proveedorActual.nombre = elProveedorParaGuardar.nombre;
+                proveedorActual.telefono = elProveedorParaGuardar.telefono;
+                proveedorActual.correo = elProveedorParaGuardar.correo;
+                proveedorActual.direccion = elProveedorParaGuardar.direccion;
+                proveedorActual.cedula = elProveedorParaGuardar.cedula;
+                proveedorActual.estado = elProveedorParaGuardar.estado;
+
+
+                await _editarProveedorLN.Editar(proveedorActual);
+
+                return RedirectToAction("ListaDeProveedores"); // si tienes lista de proveedores, cámbialo
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ModelState.AddModelError("", "Error al editar: " + ex.Message);
+                return View(elProveedorParaGuardar);
             }
         }
 
-    
-    
+
+
+
         // GET: Proveedor/Delete/5
         public ActionResult EliminarProveedor(int id)
         {
             ObtenerProveedorPorIdAD obtenerProveedorPorIdAD = new ObtenerProveedorPorIdAD();
-            ProveedoresDto Proveedor = obtenerProveedorPorIdAD.Obtener(id);
+            ProveedoresDto Proveedor = obtenerProveedorPorIdAD.ObtenerPorId(id);
 
             if (Proveedor == null)
             {
@@ -134,11 +157,11 @@ namespace BeautyGlam.UI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EliminaProveedor(ProveedoresDto elProveedorParaGuardar)
+        public async Task<ActionResult> EliminarProveedor(ProveedoresDto elProveedorParaGuardar)
         {
             try
             {
-                int cantidadDeFilasAfectadas = await _eliminarProveedorLN.Eliminar(elProveedorParaGuardar);
+                await _eliminarProveedorLN.Eliminar(elProveedorParaGuardar);
                 return RedirectToAction("ListaDeProveedores");
             }
             catch
@@ -146,6 +169,7 @@ namespace BeautyGlam.UI.Controllers
                 return View(elProveedorParaGuardar);
             }
         }
+
 
     }
 }
