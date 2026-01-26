@@ -10,5 +10,8 @@ namespace BeautyGlam.Abstracciones.LogicaDeNegocio.Proveedores.EditarProveedores
     public interface IEditarProveedorLN
     {
         Task<int> Editar(ProveedoresDto elProveedorParaGuardar);
+
+        Task<ProveedoresDto> ObtenerPorId(int id);
+
     }
 }
