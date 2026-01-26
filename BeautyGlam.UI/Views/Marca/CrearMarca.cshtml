@@ -1,7 +1,7 @@
-﻿@model BeautyGlam.Abstracciones.ModelosParaUI.CategoriasDto
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.MarcaDto
 
 @{
-    ViewBag.Title = "Crear Categoría";
+    ViewBag.Title = "Crear Marca";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,8 +9,8 @@
     <div class="container sup-container">
 
         <div class="sup-header">
-            <h2 class="sup-title">Nueva Categoría</h2>
-            <p class="sup-subtitle">Registra una nueva categoría ✨</p>
+            <h2 class="sup-title">Nueva Marca</h2>
+            <p class="sup-subtitle">Registra una nueva marca ✨</p>
         </div>
 
         <div class="sup-card">
@@ -27,14 +27,11 @@
 
                     <div class="mb-3">
                         @Html.LabelFor(m => m.nombre, new { @class = "sup-label" })
-                        @Html.EditorFor(m => m.nombre, new { htmlAttributes = new { @class = "form-control sup-input" } })
+                        @Html.EditorFor(m => m.nombre, new
+                        {
+                            htmlAttributes = new { @class = "form-control sup-input" }
+                        })
                         @Html.ValidationMessageFor(m => m.nombre, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="mb-3">
-                        @Html.LabelFor(m => m.descripcion, new { @class = "sup-label" })
-                        @Html.EditorFor(m => m.descripcion, new { htmlAttributes = new { @class = "form-control sup-input" } })
-                        @Html.ValidationMessageFor(m => m.descripcion, "", new { @class = "text-danger" })
                     </div>
 
                     <div class="mb-3">
@@ -46,7 +43,7 @@
 
                     <div class="sup-actions mt-4">
                         <button type="submit" class="sup-btn">Guardar ✨</button>
-                        <a href="@Url.Action("ListaDeCategorias")" class="sup-btn sup-btn-soft">Cancelar</a>
+                        <a href="@Url.Action("ListaDeMarcas")" class="sup-btn sup-btn-soft">Cancelar</a>
                     </div>
                 </div>
             }
@@ -54,3 +51,6 @@
     </div>
 </section>
 
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
