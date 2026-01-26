@@ -26,6 +26,11 @@ namespace BeautyGlam.LogicaDeNegocio.Proveedores.EditarProveedores
             int cantidadDeFilasAfectas = await _editarProveedorAD.Editar(elProveedorParaGuardar);
             return cantidadDeFilasAfectas;
         }
+
+        public async Task<ProveedoresDto> ObtenerPorId(int id)
+        {
+            return await _editarProveedorAD.ObtenerPorId(id);
+        }
     }
 
 
