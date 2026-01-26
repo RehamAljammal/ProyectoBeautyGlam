@@ -42,16 +42,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccesoADatos\Categoria\DetallesCategoria\IDetallesCategoriaAD.cs" />
+    <Compile Include="AccesoADatos\Categoria\EditarCategoria\IEditarCategoriaAD.cs" />
+    <Compile Include="AccesoADatos\Categoria\EliminarCategoria\IEliminarCategoriaAD.cs" />
+    <Compile Include="AccesoADatos\Categoria\ListaCategoria\IObtenerListaDeCategoriasAD.cs" />
+    <Compile Include="AccesoADatos\Categoria\RegistrarCategoria\IRegistrarCategoriaAD.cs" />
     <Compile Include="AccesoADatos\Proveedores\DetallesDeProveedor\IDetallesProveedorAD.cs" />
     <Compile Include="AccesoADatos\Proveedores\EditarProveedores\IEditarProveedorAD.cs" />
     <Compile Include="AccesoADatos\Proveedores\EliminarProveedor\IEliminarProveedorAD.cs" />
     <Compile Include="AccesoADatos\Proveedores\ListaDeProveedor\IObtenerListaDeProveedoresAD.cs" />
     <Compile Include="AccesoADatos\Proveedores\RegistrarProveedor\IRegistrarProveedorAD.cs" />
+    <Compile Include="LogicaDeNegocio\Categoria\DetallesCategoria\IDetallesCategoriaLN.cs" />
+    <Compile Include="LogicaDeNegocio\Categoria\EditarCategoria\IEditarCategoriaLN.cs" />
+    <Compile Include="LogicaDeNegocio\Categoria\EliminarCategoria\IEliminarCategoriaLN.cs" />
+    <Compile Include="LogicaDeNegocio\Categoria\ListaCategoria\IObtenerLaListaDeCategoriasLN.cs" />
+    <Compile Include="LogicaDeNegocio\Categoria\RegistrarCategoria\IRegistrarCategoriaLN.cs" />
     <Compile Include="LogicaDeNegocio\Proveedores\DetallesDeProveedor\IDetallesProveedorLN.cs" />
     <Compile Include="LogicaDeNegocio\Proveedores\EditarProveedores\IEditarProveedorLN.cs" />
     <Compile Include="LogicaDeNegocio\Proveedores\EliminarProveedor\IEliminarProveedorLN.cs" />
     <Compile Include="LogicaDeNegocio\Proveedores\ListaDeProveedor\IObtenerLaListaDeProveedoresLN.cs" />
     <Compile Include="LogicaDeNegocio\Proveedores\RegistrarProveedor\IRegistrarProveedorLN.cs" />
+    <Compile Include="ModelosParaUI\CategoriasDto.cs" />
     <Compile Include="ModelosParaUI\ProveedoresDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

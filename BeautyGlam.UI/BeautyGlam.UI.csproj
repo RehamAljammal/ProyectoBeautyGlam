@@ -154,6 +154,7 @@
     <Compile Include="Controllers\AsistenteTonoController.cs" />
     <Compile Include="Controllers\BlogBellezaController.cs" />
     <Compile Include="Controllers\CatalogoController.cs" />
+    <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventarioController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
@@ -514,6 +515,11 @@
     <Content Include="Views\Proveedores\CrearProveedor.cshtml" />
     <Content Include="Views\Proveedores\EditarProveedor.cshtml" />
     <Content Include="Views\Proveedores\EliminarProveedor.cshtml" />
+    <Content Include="Views\Categorias\ListaDeCategorias.cshtml" />
+    <Content Include="Views\Categorias\DetalleCategoria.cshtml" />
+    <Content Include="Views\Categorias\CrearCategoria.cshtml" />
+    <Content Include="Views\Categorias\EditarCategoria.cshtml" />
+    <Content Include="Views\Categorias\EliminarCategoria.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
