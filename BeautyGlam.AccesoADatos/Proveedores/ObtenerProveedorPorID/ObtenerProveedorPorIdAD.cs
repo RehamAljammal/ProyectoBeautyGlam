@@ -14,7 +14,7 @@ namespace BeautyGlam.AccesoADatos.Proveedores.ObtenerProveedorPorID
         {
             _elContexto = new Contexto();
         }
-        public ProveedoresDto Obtener(int idDelProveedorABuscar)
+        public ProveedoresDto ObtenerPorId(int idDelProveedorABuscar)
         {
             ProveedoresDto elProveedorEnBaseDeDatos = (from Proveedor in _elContexto.Proveedor
                                                  where Proveedor.id == idDelProveedorABuscar

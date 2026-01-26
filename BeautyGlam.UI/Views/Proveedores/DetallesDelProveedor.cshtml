@@ -92,14 +92,11 @@
 
                 <!-- Botones -->
                 <div class="d-flex justify-content-end gap-2 mt-4">
-                    <a href="@Url.Action("ListaDeProveedores","Proveedores")"
-                       class="sup-btn sup-btn-soft">
-                        Volver
-                    </a>
-                    <a href="@Url.Action("Editar","Proveedores", new { id = Model.id })"
+                    <a href="@Url.Action("EditarProveedor", "Proveedores", new { id = Model.id })"
                        class="sup-btn sup-btn-outline">
                         Editar ✏️
                     </a>
+
                 </div>
 
             </div>
