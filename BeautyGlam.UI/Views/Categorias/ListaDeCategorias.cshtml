@@ -1,0 +1,81 @@
+﻿@model IEnumerable<BeautyGlam.Abstracciones.ModelosParaUI.CategoriasDto>
+
+@{
+    ViewBag.Title = "Categorías";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space sup-page">
+    <div class="container sup-container">
+
+        <div class="sup-header">
+            <h2 class="sup-title">Categorías</h2>
+            <p class="sup-subtitle">Administra las categorías de productos ✨</p>
+        </div>
+
+        <div class="sup-card">
+            <div class="sup-card-head">
+                <span class="sup-badge">Listado</span>
+
+                <a href="@Url.Action("CrearCategoria")" class="sup-btn">
+                    + Registrar Categoría
+                </a>
+            </div>
+
+            <div class="sup-table-wrap table-responsive">
+                <table class="table table-striped align-middle sup-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Estado</th>
+                            <th class="text-center" style="width:300px;">Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <strong style="color:#5c3b6f;">@item.nombre</strong>
+                                </td>
+                                <td>@item.descripcion</td>
+                                <td>
+                                    @if (item.estado)
+                                    {
+                                        <span class="sup-chip sup-chip-ok">Activo</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="sup-chip sup-chip-off">Inactivo</span>
+                                    }
+                                </td>
+
+                                <td class="text-center">
+                                    <div class="sup-actions">
+                                        <a href="@Url.Action("DetalleCategoria", new { id = item.id })"
+                                           class="sup-btn sup-btn-soft sup-btn-sm">
+                                            Ver 👀
+                                        </a>
+
+                                        <a href="@Url.Action("EditarCategoria", new { id = item.id })"
+                                           class="sup-btn sup-btn-outline sup-btn-sm">
+                                            Editar ✏️
+                                        </a>
+
+                                        <a href="@Url.Action("EliminarCategoria", new { id = item.id })"
+                                           class="sup-btn sup-btn-danger sup-btn-sm">
+                                            Inactivar 🗑️
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</section>

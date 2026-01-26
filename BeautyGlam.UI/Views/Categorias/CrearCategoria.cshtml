@@ -1,0 +1,56 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.CategoriasDto
+
+@{
+    ViewBag.Title = "Crear Categoría";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space sup-page">
+    <div class="container sup-container">
+
+        <div class="sup-header">
+            <h2 class="sup-title">Nueva Categoría</h2>
+            <p class="sup-subtitle">Registra una nueva categoría ✨</p>
+        </div>
+
+        <div class="sup-card">
+            <div class="sup-card-head">
+                <span class="sup-badge">Formulario</span>
+            </div>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="sup-form">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.nombre, new { @class = "sup-label" })
+                        @Html.EditorFor(m => m.nombre, new { htmlAttributes = new { @class = "form-control sup-input" } })
+                        @Html.ValidationMessageFor(m => m.nombre, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.descripcion, new { @class = "sup-label" })
+                        @Html.EditorFor(m => m.descripcion, new { htmlAttributes = new { @class = "form-control sup-input" } })
+                        @Html.ValidationMessageFor(m => m.descripcion, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.estado, new { @class = "sup-label" })
+                        <div>
+                            @Html.CheckBoxFor(m => m.estado)
+                        </div>
+                    </div>
+
+                    <div class="sup-actions mt-4">
+                        <button type="submit" class="sup-btn">Guardar ✨</button>
+                        <a href="@Url.Action("ListaDeCategorias")" class="sup-btn sup-btn-soft">Cancelar</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+s
