@@ -12,9 +12,7 @@ using BeautyGlam.LogicaDeNegocio.Proveedores.ListaDeProveedor;
 using BeautyGlam.LogicaDeNegocio.Proveedores.RegistrarProveedor;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace BeautyGlam.UI.Controllers
@@ -109,7 +107,6 @@ namespace BeautyGlam.UI.Controllers
                 if (!ModelState.IsValid)
                     return View(elProveedorParaGuardar);
 
-                // 1️⃣ Obtener el proveedor actual desde la BD
                 ProveedoresDto proveedorActual =
                     await _editarProveedorLN.ObtenerPorId(elProveedorParaGuardar.id);
 
@@ -129,7 +126,7 @@ namespace BeautyGlam.UI.Controllers
 
                 await _editarProveedorLN.Editar(proveedorActual);
 
-                return RedirectToAction("ListaDeProveedores"); // si tienes lista de proveedores, cámbialo
+                return RedirectToAction("ListaDeProveedores"); 
             }
             catch (Exception ex)
             {
@@ -173,4 +170,5 @@ namespace BeautyGlam.UI.Controllers
 
     }
 }
+
 

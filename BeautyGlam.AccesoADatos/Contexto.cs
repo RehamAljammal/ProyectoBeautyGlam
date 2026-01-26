@@ -16,6 +16,8 @@ namespace BeautyGlam.AccesoADatos
         }
 
         public DbSet<ProveedorAD> Proveedor { get; set; }
+        public DbSet<MarcaAD> Marca { get; set; }
+
 
     }
 }

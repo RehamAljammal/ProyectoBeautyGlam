@@ -41,6 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Marca\DetallesMarca\DetallesMarcaLN.cs" />
+    <Compile Include="Marca\EditarMarca\EditarMarcaLN.cs" />
+    <Compile Include="Marca\EliminarMarca\EliminarMarcaLN.cs" />
+    <Compile Include="Marca\ListaDeMarca\ObtenerListaDeMarcaLN.cs" />
+    <Compile Include="Marca\RegistrarMarca\RegistrarMarcaLN.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proveedores\DetallesDeProveedor\DetallesProveedorLN.cs" />
     <Compile Include="Proveedores\EditarProveedores\EditarProveedoresLN.cs" />

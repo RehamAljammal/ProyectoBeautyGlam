@@ -17,7 +17,6 @@ namespace BeautyGlam.LogicaDeNegocio.Proveedores.EditarProveedores
         public EditarProveedorLN()
         {
             _editarProveedorAD = new EditarProveedorAD();
-
         }
 
         public async Task<int> Editar(ProveedoresDto elProveedorParaGuardar)
