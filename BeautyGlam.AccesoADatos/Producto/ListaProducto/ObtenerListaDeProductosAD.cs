@@ -28,6 +28,7 @@ namespace BeautyGlam.AccesoADatos.Producto.ListaProducto
                                                         nombre = p.nombre,
                                                         descripcion = p.descripcion,
                                                         precio = p.precio,
+                                                        imagen = p.imagen,
                                                         idCategoria = p.idCategoria,
                                                         nombreCategoria = c.nombre,
                                                         idMarca = p.idMarca,

@@ -51,6 +51,7 @@ namespace BeautyGlam.AccesoADatos.Producto.RegistrarProducto
                 nombre = elProductoParaGuardar.nombre,
                 descripcion = elProductoParaGuardar.descripcion,
                 precio = elProductoParaGuardar.precio,
+                imagen = elProductoParaGuardar.imagen,
                 idCategoria = elProductoParaGuardar.idCategoria,
                 idMarca = elProductoParaGuardar.idMarca,
                 idProveedor = elProductoParaGuardar.idProveedor,

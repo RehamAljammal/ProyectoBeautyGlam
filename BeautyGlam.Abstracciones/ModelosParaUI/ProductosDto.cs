@@ -20,6 +20,9 @@ namespace BeautyGlam.Abstracciones.ModelosParaUI
         [Display(Name = "Precio")]
         public decimal precio { get; set; }
 
+        [Display(Name = "Imagen")]
+        public string imagen { get; set; }
+
         // ===== CATEGORÍA =====
         [Display(Name = "ID Categoría")]
         public int idCategoria { get; set; }
