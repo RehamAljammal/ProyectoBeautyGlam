@@ -1,0 +1,78 @@
+﻿@model IEnumerable<BeautyGlam.Abstracciones.ModelosParaUI.MovimientoInventarioDto>
+
+@{
+    ViewBag.Title = "Movimientos de Inventario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space inv-page">
+    <div class="container inv-container">
+
+        <div class="inv-header">
+            <h2 class="inv-title">Movimientos del Producto</h2>
+            <p class="inv-subtitle">Historial de entradas y salidas 📈</p>
+        </div>
+
+        <div class="inv-table-wrap">
+            <table class="table table-striped inv-table align-middle">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Tipo</th>
+                        <th>Cantidad</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (BeautyGlam.Abstracciones.ModelosParaUI.MovimientoInventarioDto item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.fechaMovimiento.ToString("dd/MM/yyyy")
+                            </td>
+
+                            <td>
+                                @if (item.tipoMovimiento == "Entrada")
+                                {
+                                    <span class="inv-chip inv-chip-ok">Entrada</span>
+                                }
+                                else
+                                {
+                                    <span class="inv-chip inv-chip-out">Salida</span>
+                                }
+                            </td>
+
+                            <td>
+                                @if (item.tipoMovimiento == "Entrada")
+                                {
+                                    <strong style="color:#2f7f62;">
+                                        +@item.cantidad
+                                    </strong>
+                                }
+                                else
+                                {
+                                    <strong style="color:#8a3b55;">
+                                        -@item.cantidad
+                                    </strong>
+                                }
+                            </td>
+
+                            <td>
+                                @item.observacion
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="@Url.Action("ListaDeInventario","Inventario")"
+               class="btn inv-btn inv-btn-soft">
+                Volver
+            </a>
+        </div>
+
+    </div>
+</section>
