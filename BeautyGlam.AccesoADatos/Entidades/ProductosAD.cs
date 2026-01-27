@@ -19,6 +19,9 @@ namespace BeautyGlam.AccesoADatos.Entidades
         [Column("precio")]
         public decimal precio { get; set; }
 
+        [Column("imagen")]
+        public string imagen { get; set; }
+
         [Column("id_Categoria")]
         public int idCategoria { get; set; }
 

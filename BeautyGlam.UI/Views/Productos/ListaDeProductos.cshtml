@@ -15,9 +15,7 @@
 
         <div class="prod-card">
             <div class="prod-card-head">
-                <div>
-                    <span class="prod-badge">Listado</span>
-                </div>
+                <span class="prod-badge">Listado</span>
 
                 <a href="@Url.Action("CrearProducto","Productos")" class="prod-btn">
                     + Agregar Producto
@@ -28,13 +26,14 @@
                 <table class="table table-striped align-middle prod-table">
                     <thead>
                         <tr>
-                            <th>Nombre</th>
+                            <th style="width:90px;">Imagen</th>
+                            <th>Producto</th>
                             <th>Categoría</th>
                             <th>Marca</th>
                             <th>Proveedor</th>
                             <th>Precio</th>
                             <th>Estado</th>
-                            <th class="text-end" style="width: 320px;">Acciones</th>
+                            <th class="text-end" style="width:320px;">Acciones</th>
                         </tr>
                     </thead>
 
@@ -42,18 +41,24 @@
                         @foreach (var item in Model)
                         {
                             <tr>
+                                <!-- 🖼️ IMAGEN -->
+                                <td>
+                                    <img src="@(string.IsNullOrEmpty(item.imagen)
+                                                 ? Url.Content("~/Content/img/no-image.png")
+                                                 : Url.Content("~" + item.imagen))"
+                                         style="width:70px;height:70px;object-fit:cover;border-radius:12px;" />
+                                </td>
+
+                                <!-- INFO -->
                                 <td>
                                     <strong style="color:#5c3b6f;">@item.nombre</strong>
                                     <div class="small text-muted">@item.descripcion</div>
                                 </td>
 
                                 <td>@item.nombreCategoria</td>
-
                                 <td>@item.nombreMarca</td>
-
                                 <td>@item.nombreProveedor</td>
-
-                                <td>@item.precio</td>
+                                <td>₡ @item.precio</td>
 
                                 <td>
                                     @if (item.estado)
@@ -66,6 +71,7 @@
                                     }
                                 </td>
 
+                                <!-- ACCIONES -->
                                 <td class="text-end">
                                     <div class="prod-actions">
                                         <a href="@Url.Action("DetallesDelProducto","Productos", new { id = item.id })"
