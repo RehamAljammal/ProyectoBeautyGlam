@@ -51,6 +51,11 @@
     <Compile Include="Marca\EliminarMarca\EliminarMarcaLN.cs" />
     <Compile Include="Marca\ObtenerListaDeMarca\ObtenerListaDeMarcaLN.cs" />
     <Compile Include="Marca\RegistrarMarca\RegistrarMarcaLN.cs" />
+    <Compile Include="Producto\DetallesProducto\DetallesProductoLN.cs" />
+    <Compile Include="Producto\EditarProducto\EditarProductoLN.cs" />
+    <Compile Include="Producto\EliminarProducto\EliminarProductoLN.cs" />
+    <Compile Include="Producto\ListaProducto\ObtenerLaListaDeProductoLN.cs" />
+    <Compile Include="Producto\RegistrarProducto\RegistrarProductoLN.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proveedores\DetallesDeProveedor\DetallesProveedorLN.cs" />
     <Compile Include="Proveedores\EditarProveedores\EditarProveedoresLN.cs" />

@@ -1,0 +1,91 @@
+﻿@model IEnumerable<BeautyGlam.Abstracciones.ModelosParaUI.ProductosDTO>
+
+@{
+    ViewBag.Title = "ListaDeProductos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space prod-page">
+    <div class="container prod-container">
+
+        <div class="prod-header">
+            <h2 class="prod-title">Gestión de Productos</h2>
+            <p class="prod-subtitle">Administra catálogo, estado y detalles 💖</p>
+        </div>
+
+        <div class="prod-card">
+            <div class="prod-card-head">
+                <div>
+                    <span class="prod-badge">Listado</span>
+                </div>
+
+                <a href="@Url.Action("CrearProducto","Productos")" class="prod-btn">
+                    + Agregar Producto
+                </a>
+            </div>
+
+            <div class="prod-table-wrap table-responsive">
+                <table class="table table-striped align-middle prod-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Categoría</th>
+                            <th>Marca</th>
+                            <th>Proveedor</th>
+                            <th>Precio</th>
+                            <th>Estado</th>
+                            <th class="text-end" style="width: 320px;">Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <strong style="color:#5c3b6f;">@item.nombre</strong>
+                                    <div class="small text-muted">@item.descripcion</div>
+                                </td>
+
+                                <td>@item.nombreCategoria</td>
+
+                                <td>@item.nombreMarca</td>
+
+                                <td>@item.nombreProveedor</td>
+
+                                <td>@item.precio</td>
+
+                                <td>
+                                    @if (item.estado)
+                                    {
+                                        <span class="prod-chip prod-chip-ok">Activo</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="prod-chip prod-chip-off">Inactivo</span>
+                                    }
+                                </td>
+
+                                <td class="text-end">
+                                    <div class="prod-actions">
+                                        <a href="@Url.Action("DetallesDelProducto","Productos", new { id = item.id })"
+                                           class="prod-btn prod-btn-soft prod-btn-sm">Ver 👀</a>
+
+                                        <a href="@Url.Action("EditarProducto","Productos", new { id = item.id })"
+                                           class="prod-btn prod-btn-outline prod-btn-sm">Editar ✏️</a>
+
+                                        <a href="@Url.Action("EliminarProducto","Productos", new { id = item.id })"
+                                           class="prod-btn prod-btn-danger prod-btn-sm">Desactivar 🗑️</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+</section>

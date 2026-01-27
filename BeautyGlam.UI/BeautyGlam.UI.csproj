@@ -485,11 +485,6 @@
     <Content Include="Views\Perfil\Seguimiento.cshtml" />
     <Content Include="Views\Perfil\DetallePedido.cshtml" />
     <Content Include="Views\Wishlist\Index.cshtml" />
-    <Content Include="Views\Productos\Index.cshtml" />
-    <Content Include="Views\Productos\Crear.cshtml" />
-    <Content Include="Views\Productos\Editar.cshtml" />
-    <Content Include="Views\Productos\Detalle.cshtml" />
-    <Content Include="Views\Productos\Eliminar.cshtml" />
     <Content Include="Views\Inventario\Index.cshtml" />
     <Content Include="Views\Inventario\Avanzado.cshtml" />
     <Content Include="Views\Inventario\Editar.cshtml" />
@@ -526,6 +521,11 @@
     <Content Include="Views\Marca\CrearMarca.cshtml" />
     <Content Include="Views\Marca\EditarMarca.cshtml" />
     <Content Include="Views\Marca\EliminarMarca.cshtml" />
+    <Content Include="Views\Productos\ListaDeProductos.cshtml" />
+    <Content Include="Views\Productos\DetallesDelProducto.cshtml" />
+    <Content Include="Views\Productos\CrearProducto.cshtml" />
+    <Content Include="Views\Productos\EditarProducto.cshtml" />
+    <Content Include="Views\Productos\EliminarProducto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

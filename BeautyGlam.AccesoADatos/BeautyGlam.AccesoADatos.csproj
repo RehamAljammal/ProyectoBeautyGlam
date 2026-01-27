@@ -63,6 +63,7 @@
     <Compile Include="Contexto.cs" />
     <Compile Include="Entidades\CategoriaAD.cs" />
     <Compile Include="Entidades\MarcaAD.cs" />
+    <Compile Include="Entidades\ProductosAD.cs" />
     <Compile Include="Entidades\ProveedorAD.cs" />
     <Compile Include="Entidades\UsuarioAD.cs" />
     <Compile Include="Marca\DetallesMarca\DetallesMarcaAD.cs" />
@@ -71,6 +72,12 @@
     <Compile Include="Marca\ListaDeMarca\ObtenerListaDeMarcaAD.cs" />
     <Compile Include="Marca\ObtenerMarcaPorID\ObtenerMarcaPorIdAD.cs" />
     <Compile Include="Marca\RegistrarMarca\RegistrarMarcaAD.cs" />
+    <Compile Include="Producto\DetallesProducto\DetallesProductoAD.cs" />
+    <Compile Include="Producto\EditarProducto\EditarProductoAD.cs" />
+    <Compile Include="Producto\EliminarProducto\EliminarProductoAD.cs" />
+    <Compile Include="Producto\ListaProducto\ObtenerListaDeProductosAD.cs" />
+    <Compile Include="Producto\ObtenerProductoPorId\ObtenerProductoPorIdAD.cs" />
+    <Compile Include="Producto\RegistrarProducto\RegistrarProductoAD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proveedores\DetallesDeProveedor\DetallesProveedorAD.cs" />
     <Compile Include="Proveedores\EditarProveedores\EditarProveedorAD.cs" />
