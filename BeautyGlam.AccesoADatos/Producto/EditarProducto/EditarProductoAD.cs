@@ -28,6 +28,7 @@ namespace BeautyGlam.AccesoADatos.Producto.EditarProducto
                 elProductoEnBaseDeDatos.nombre = elProductoParaGuardar.nombre;
                 elProductoEnBaseDeDatos.descripcion = elProductoParaGuardar.descripcion;
                 elProductoEnBaseDeDatos.precio = elProductoParaGuardar.precio;
+                elProductoEnBaseDeDatos.imagen = elProductoParaGuardar.imagen;
                 elProductoEnBaseDeDatos.idCategoria = elProductoParaGuardar.idCategoria;
                 elProductoEnBaseDeDatos.idMarca = elProductoParaGuardar.idMarca;
                 elProductoEnBaseDeDatos.idProveedor = elProductoParaGuardar.idProveedor;
