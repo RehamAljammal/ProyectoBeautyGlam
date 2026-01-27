@@ -46,6 +46,10 @@
     <Compile Include="Categorias\EliminarProveedor\EliminarCategoriaLN.cs" />
     <Compile Include="Categorias\ListaDeProveedor\ObtenerLaListaDeCategoriaLN.cs" />
     <Compile Include="Categorias\RegistrarProveedor\RegistrarCategoriaLN.cs" />
+    <Compile Include="Inventario\EditarStockActual\EditarStockActualLN.cs" />
+    <Compile Include="Inventario\EditarStock\EditarStockLN.cs" />
+    <Compile Include="Inventario\ListaDeInventario\ObtenerListaDeInventarioLN.cs" />
+    <Compile Include="Inventario\Movimiento\ObtenerListaDeMovimientosLN.cs" />
     <Compile Include="Marca\DetallesMarca\DetallesMarcaLN.cs" />
     <Compile Include="Marca\EditarMarca\EditarMarcaLN.cs" />
     <Compile Include="Marca\EliminarMarca\EliminarMarcaLN.cs" />

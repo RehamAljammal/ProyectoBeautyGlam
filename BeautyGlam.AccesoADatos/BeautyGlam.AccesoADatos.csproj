@@ -62,10 +62,16 @@
     <Compile Include="Categoria\RegistrarCategoria\RegistrarCategoriaAD.cs" />
     <Compile Include="Contexto.cs" />
     <Compile Include="Entidades\CategoriaAD.cs" />
+    <Compile Include="Entidades\InventarioAD.cs" />
     <Compile Include="Entidades\MarcaAD.cs" />
+    <Compile Include="Entidades\MovimientoInventarioAD.cs" />
     <Compile Include="Entidades\ProductosAD.cs" />
     <Compile Include="Entidades\ProveedorAD.cs" />
     <Compile Include="Entidades\UsuarioAD.cs" />
+    <Compile Include="Inventario\EditarStockActual\EditarStockActualAD.cs" />
+    <Compile Include="Inventario\EditarStock\EditarStockAD.cs" />
+    <Compile Include="Inventario\ListaDeInventario\ObtenerListaDeInventarioAD.cs" />
+    <Compile Include="Inventario\Movimiento\ObtenerListaDeMovimientoAD.cs" />
     <Compile Include="Marca\DetallesMarca\DetallesMarcaAD.cs" />
     <Compile Include="Marca\EditarMarca\EditarMarcaAD.cs" />
     <Compile Include="Marca\EliminarMarca\EliminarMarcaAD.cs" />

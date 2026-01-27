@@ -1,0 +1,81 @@
+﻿@model IEnumerable<BeautyGlam.Abstracciones.ModelosParaUI.InventarioDto>
+
+@{
+    ViewBag.Title = "Inventario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space inv-page">
+    <div class="container inv-container">
+
+        <div class="inv-header">
+            <h2 class="inv-title">Inventario</h2>
+            <p class="inv-subtitle">Controla stock y mínimos/máximos ✨</p>
+        </div>
+
+        <div class="inv-table-wrap">
+            <table class="table table-striped inv-table align-middle">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Stock</th>
+                        <th>Mínimo</th>
+                        <th>Máximo</th>
+                        <th style="width:340px;">Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (BeautyGlam.Abstracciones.ModelosParaUI.InventarioDto item in Model)
+                    {
+                        <tr>
+                            <!-- Producto -->
+                            <td>
+                                <strong style="color:#5c3b6f;">
+                                    @item.nombre
+                                </strong>
+                            </td>
+
+                            <!-- Stock actual con alerta -->
+                            <td>
+                                @if (item.stockActual <= item.stockMinimo)
+                                {
+                                    <span class="inv-chip inv-chip-low">
+                                        @item.stockActual
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="inv-chip inv-chip-ok">
+                                        @item.stockActual
+                                    </span>
+                                }
+                            </td>
+
+                            <td>@item.stockMinimo</td>
+                            <td>@item.stockMaximo</td>
+
+                            <!-- Acciones -->
+                            <td>
+                                <div class="inv-actions">
+                                    <a class="btn inv-btn"
+                                       href="@Url.Action("EditarStockActual","Inventario", new { id = item.idInventario })">
+                                        Editar stock ✏️
+                                    </a>
+
+                                    <a class="btn inv-btn inv-btn-soft"
+                                       href="@Url.Action("EditarStock","Inventario", new { id = item.idInventario })">
+                                        Mín/Máx 📌
+                                    </a>
+
+                                    
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</section>
