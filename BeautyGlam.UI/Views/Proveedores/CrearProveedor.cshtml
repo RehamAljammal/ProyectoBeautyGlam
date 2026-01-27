@@ -1,0 +1,95 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.ProveedoresDto
+
+@{
+    ViewBag.Title = "Agregar Proveedor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space sup-page">
+    <div class="container sup-container">
+
+        <div class="sup-header">
+            <h2 class="sup-title">Agregar Proveedor</h2>
+            <p class="sup-subtitle">Completa los datos y guarda el contacto 💌</p>
+        </div>
+
+        <div class="sup-card" style="max-width:820px; margin:0 auto;">
+            <div class="sup-card-head">
+                <span class="sup-badge">Nuevo</span>
+                <a href="@Url.Action("ListaDeProveedores","Proveedores")"
+                   class="sup-btn sup-btn-soft">
+                    Volver
+                </a>
+            </div>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="row g-3 sup-form">
+
+                    <div class="col-md-7">
+                        <label class="form-label sup-label">Nombre del proveedor</label>
+                        @Html.TextBoxFor(m => m.nombre,
+                            new { @class = "form-control sup-input", placeholder = "Ej: Beauty Imports" })
+                    </div>
+
+                    <div class="col-md-5">
+                        <label class="form-label sup-label">Cédula</label>
+                        @Html.TextBoxFor(m => m.cedula,
+                            new { @class = "form-control sup-input", placeholder = "Cédula jurídica o física" })
+                    </div>
+
+                    <div class="col-md-5">
+                        <label class="form-label sup-label">Teléfono</label>
+                        @Html.TextBoxFor(m => m.telefono,
+                            new { @class = "form-control sup-input", placeholder = "8888-8888" })
+                    </div>
+
+                    <div class="col-md-7">
+                        <label class="form-label sup-label">Correo electrónico</label>
+                        @Html.TextBoxFor(m => m.correo,
+                            new
+                                 {
+                                @class = "form-control sup-input",
+                                placeholder = "correo@proveedor.com",
+                                type = "email"
+                            })
+                    </div>
+
+                    <div class="col-md-5">
+                        <label class="form-label sup-label">Estado</label>
+                        @Html.DropDownListFor(
+                            m => m.estado,
+                            new SelectList(new[] {
+                                new { Value = true, Text = "Activo" },
+                                new { Value = false, Text = "Inactivo" }
+                            }, "Value", "Text", true),
+                            new { @class = "form-control sup-select" }
+                        )
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label sup-label">Dirección</label>
+                        @Html.TextAreaFor(m => m.direccion,
+                            new
+                                 {
+                                @class = "form-control sup-textarea",
+                                rows = 3,
+                                placeholder = "Ej: San José, Costa Rica"
+                            })
+                    </div>
+
+                </div>
+
+                <div class="d-flex justify-content-end gap-2 mt-4">
+                    
+                    <button type="submit" class="sup-btn">
+                        Guardar ✨
+                    </button>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>

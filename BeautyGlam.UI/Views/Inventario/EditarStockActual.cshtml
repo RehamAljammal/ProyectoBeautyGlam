@@ -1,0 +1,80 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.InventarioDto
+
+@{
+    ViewBag.Title = "Editar Stock";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space inv-page">
+    <div class="container inv-container">
+
+        <div class="inv-header">
+            <h2 class="inv-title">Editar Stock</h2>
+            <p class="inv-subtitle">Actualiza el stock de forma segura y clara ✨</p>
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger text-center mb-3" })
+
+            <!-- Campos ocultos necesarios -->
+            @Html.HiddenFor(m => m.idInventario)
+            @Html.HiddenFor(m => m.idProducto)
+            @Html.HiddenFor(m => m.stockMinimo)
+            @Html.HiddenFor(m => m.stockMaximo)
+            @Html.HiddenFor(m => m.nombre)
+
+            <div class="inv-card">
+                <div class="inv-card-head">
+                    <span class="inv-badge">Stock</span>
+                    <h5 class="inv-card-title">@Model.nombre</h5>
+                    <p class="inv-card-desc">Ingresa el valor actualizado del producto.</p>
+                </div>
+
+                <div class="inv-card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-md-6">
+                            <label class="inv-label">Stock actual</label>
+
+                            @Html.TextBoxFor(
+                            m => m.stockActual,
+                            new
+                            {
+                                          @class = "form-control inv-input " +
+                                                   (ViewData.ModelState.ContainsKey("stockActual") &&
+                                                    ViewData.ModelState["stockActual"].Errors.Any()
+                                                    ? "is-invalid" : ""),
+                                          type = "number",
+                                          min = "0"
+                            }
+                            )
+
+
+                            @Html.ValidationMessageFor(
+                                               m => m.stockActual,
+                                               "",
+                                               new { @class = "text-danger" }
+                                           )
+                        </div>
+                    </div>
+
+                    <div class="inv-center-actions">
+                        <button type="submit" class="btn inv-btn">
+                            Guardar cambios 💾
+                        </button>
+
+                        <a href="@Url.Action("ListaDeInventario","Inventario")"
+                           class="btn inv-btn inv-btn-soft">
+                            Cancelar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
