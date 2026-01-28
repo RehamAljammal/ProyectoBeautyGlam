@@ -1,0 +1,88 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.ProductosDTO
+
+@{
+    ViewBag.Title = "Detalle del Producto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space cat-page">
+
+    <div class="container cat-container">
+
+        <div class="prod-card">
+
+            <div class="prod-head text-center">
+
+                <span class="prod-badge">Detalle del producto</span>
+
+                <h2 class="prod-title">
+                    @Model.nombre
+                </h2>
+
+                <p class="prod-meta">
+                    Categoría: @Model.nombreCategoria · @Model.nombreMarca
+                </p>
+
+            </div>
+
+            <div class="prod-body">
+
+                <div class="row g-4 align-items-start">
+
+                    <!-- IMAGEN -->
+                    <div class="col-12 col-lg-6">
+
+                        <img src="@(string.IsNullOrEmpty(Model.imagen)
+                            ? Url.Content("~/img/productos/default.png")
+                            : Url.Content("~" + Model.imagen))"
+                             class="prod-img"
+                             alt="@Model.nombre" />
+
+                    </div>
+
+                    <!-- INFO -->
+                    <div class="col-12 col-lg-6">
+
+                        <div class="prod-price">
+                            ₡ @Model.precio
+                        </div>
+
+
+
+                        <div class="prod-chips">
+                            <span class="prod-chip">@Model.nombreMarca</span>
+                            <span class="prod-chip">@Model.nombreCategoria</span>
+                        </div>
+
+                        <h5 class="mt-3" style="font-weight:900;color:#5c3b6f;">
+                            Información del producto
+                        </h5>
+
+                        <div class="prod-desc mt-2">
+                            @(string.IsNullOrWhiteSpace(Model.descripcion) ? "Este producto no tiene descripción." : Model.descripcion)
+                        </div>
+
+
+                        <div class="prod-actions mt-3">
+                            <a href="@Url.Action("Index","Wishlist")"
+                               class="cat-btn">
+                                Agregar a wishlist ♡
+                            </a>
+
+                            <a href="@Url.Action("Index","Catalogo")"
+                               class="cat-btn cat-btn-soft">
+                                Volver al catálogo
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

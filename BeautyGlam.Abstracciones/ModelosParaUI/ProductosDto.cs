@@ -28,22 +28,22 @@ namespace BeautyGlam.Abstracciones.ModelosParaUI
         public int idCategoria { get; set; }
 
         [Display(Name = "Categoría")]
-        public string nombreCategoria { get; set; }   
+        public string nombreCategoria { get; set; }
 
         // ===== MARCA =====
         [Display(Name = "ID Marca")]
         public int idMarca { get; set; }
 
         [Display(Name = "Marca")]
-        public string nombreMarca { get; set; }      
+        public string nombreMarca { get; set; }
 
         // ===== PROVEEDOR =====
         [Display(Name = "ID Proveedor")]
         public int idProveedor { get; set; }
 
         [Display(Name = "Proveedor")]
-        public string nombreProveedor { get; set; }   
-        
+        public string nombreProveedor { get; set; }
+
 
         [Display(Name = "Estado")]
         public bool estado { get; set; }

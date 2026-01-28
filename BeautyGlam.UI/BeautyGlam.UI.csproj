@@ -487,7 +487,6 @@
     <Content Include="Views\Wishlist\Index.cshtml" />
     <Content Include="Views\Inventario\Avanzado.cshtml" />
     <Content Include="Views\Catalogo\Index.cshtml" />
-    <Content Include="Views\Catalogo\VistaProducto.cshtml" />
     <Content Include="Views\AsistenteTono\Index.cshtml" />
     <Content Include="Views\AsistenteTono\Cuestionario.cshtml" />
     <Content Include="Views\AsistenteTono\Resultado.cshtml" />
@@ -526,6 +525,7 @@
     <Content Include="Views\Inventario\EditarStockActual.cshtml" />
     <Content Include="Views\Inventario\EditarStock.cshtml" />
     <Content Include="Views\Inventario\MovimientosI.cshtml" />
+    <Content Include="Views\Catalogo\Detalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
