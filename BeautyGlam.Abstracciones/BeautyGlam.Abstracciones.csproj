@@ -91,6 +91,7 @@
     <Compile Include="LogicaDeNegocio\Proveedores\ListaDeProveedor\IObtenerLaListaDeProveedoresLN.cs" />
     <Compile Include="LogicaDeNegocio\Proveedores\RegistrarProveedor\IRegistrarProveedorLN.cs" />
     <Compile Include="ModelosParaUI\CategoriasDto.cs" />
+    <Compile Include="ModelosParaUI\InventarioAvanzadoDto.cs" />
     <Compile Include="ModelosParaUI\InventarioDto.cs" />
     <Compile Include="ModelosParaUI\MarcaDto.cs" />
     <Compile Include="ModelosParaUI\MovimientoInventarioDto.cs" />
