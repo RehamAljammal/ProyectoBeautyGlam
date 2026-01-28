@@ -11,6 +11,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Linq;
+using BeautyGlam.Abstracciones.AccesoADatos.Categoria.ListaCategoria;
+using BeautyGlam.AccesoADatos.Categoria.ListaCategoria;
 
 
 namespace BeautyGlam.UI.Controllers
@@ -21,6 +23,7 @@ namespace BeautyGlam.UI.Controllers
         private readonly IEditarStockLN _editarStockLN;                 
         private readonly IEditarStockActualLN _editarStockActualLN;
         private readonly IObtenerListaDeMovimientosLN _listaMovimientosLN;
+        private readonly IObtenerListaDeCategoriasAD _obtenerListaCategoriasLN;
 
 
         public InventarioController()
@@ -29,6 +32,7 @@ namespace BeautyGlam.UI.Controllers
             _editarStockLN = new EditarStockLN();
             _editarStockActualLN = new EditarStockActualLN();
             _listaMovimientosLN = new ObtenerLaListaDeMovimientosLN();
+            _obtenerListaCategoriasLN = new ObtenerListaDeCategoriasAD();
         }
 
         // ================== LISTA ==================
@@ -97,6 +101,7 @@ namespace BeautyGlam.UI.Controllers
             return RedirectToAction("ListaDeInventario");
         }
 
+        /*
         // ================== MOVIMIENTOS ==================
         public ActionResult MovimientosI(int id)
         {
@@ -110,6 +115,31 @@ namespace BeautyGlam.UI.Controllers
 
             return View(movimientos);
         }
+        */
 
+        // ================== Avanzado ==================
+        public ActionResult Avanzado(
+            string nombre = null,
+            int? stockMenorA = null)
+                {
+                    List<InventarioDto> lista =
+                        _obtenerListaDeInventarioLN.Obtener();
+
+                    if (!string.IsNullOrEmpty(nombre))
+                    {
+                        lista = lista
+                            .Where(i => i.nombre.ToLower().Contains(nombre.ToLower()))
+                            .ToList();
+                    }
+
+                    if (stockMenorA.HasValue)
+                    {
+                        lista = lista
+                            .Where(i => i.stockActual <= stockMenorA.Value)
+                            .ToList();
+                    }
+
+                    return View(lista);
+                }
     }
 }
