@@ -1,9 +1,9 @@
-﻿@{
+﻿@model IEnumerable<BeautyGlam.Abstracciones.ModelosParaUI.ProductosDTO>
+
+@{
     ViewBag.Title = "Catálogo de Productos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
 
 <section class="section-space cat-page">
 
@@ -14,69 +14,323 @@
             <p class="cat-subtitle">Explora maquillaje, skincare, accesorios y más 💖</p>
         </div>
 
-        <div class="row g-4">
+        <!-- =========================
+             BUSCADOR / FILTROS
+        ========================= -->
+        <div class="cat-filter-wrap">
 
-            <!-- PRODUCTO 1 -->
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="cat-card">
-                    <div class="cat-img-wrap">
-                        <img src="https://m.media-amazon.com/images/I/41v1RaUH57L._AC_UF1000,1000_QL80_.jpg" class="cat-img" alt="Base Líquida Rare Beauty" />
-                        <div class="cat-price-badge">$29.99</div>
+            <form method="get" action="@Url.Action("Index","Catalogo")" class="cat-filter-card">
+
+                <div class="cat-filter-head">
+                    <div>
+                        <div class="cat-filter-title">Buscar productos</div>
+                        <div class="cat-filter-sub">Nombre · Categoría · Marca · Precio</div>
                     </div>
 
-                    <div class="cat-body">
-                        <h4 class="cat-name">Base Líquida Rare Beauty</h4>
-                        <p class="cat-muted">Maquillaje · Acabado natural</p>
+                    <div class="cat-filter-actions">
+                        <button type="submit" class="cat-btn">
+                            Buscar ✨
+                        </button>
 
-                        <div class="cat-actions">
-                            <a href="@Url.Action("VistaProducto","Catalogo", new { id = 1 })" class="cat-btn">Ver producto ✨</a>
-                            <a href="@Url.Action("Index","Wishlist")" class="cat-btn cat-btn-soft">Agregar a wishlist ♡</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PRODUCTO 2 -->
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="cat-card">
-                    <div class="cat-img-wrap">
-                        <img src="https://walmartcr.vtexassets.com/arquivos/ids/976465/98631_01.jpg?v=638900343014900000" class="cat-img" alt="Crema Hidratante Neutrogena" />
-                        <div class="cat-price-badge">$39.99</div>
-                    </div>
-
-                    <div class="cat-body">
-                        <h4 class="cat-name">Crema Hidratante Neutrogena</h4>
-                        <p class="cat-muted">Skincare · Hidratación</p>
-
-                        <div class="cat-actions">
-                            <a href="@Url.Action("VistaProducto","Catalogo", new { id = 2 })" class="cat-btn">Ver producto ✨</a>
-                            <a href="@Url.Action("Index","Wishlist")" class="cat-btn cat-btn-soft">Agregar a wishlist ♡</a>
-                        </div>
+                        <a href="@Url.Action("Index","Catalogo")" class="cat-btn cat-btn-soft">
+                            Limpiar
+                        </a>
                     </div>
                 </div>
-            </div>
 
-            <!-- PRODUCTO 3 -->
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="cat-card">
-                    <div class="cat-img-wrap">
-                        <img src="https://walmartcr.vtexassets.com/arquivos/ids/986159/79004_01.jpg?v=638919102136500000" class="cat-img" alt="Máscara de Pestañas Maybelline" />
-                        <div class="cat-price-badge">$19.99</div>
-                    </div>
+                <div class="row g-3 mt-1 align-items-end">
 
-                    <div class="cat-body">
-                        <h4 class="cat-name">Máscara de Pestañas Maybelline</h4>
-                        <p class="cat-muted">Maquillaje · Volumen</p>
+                    <!-- BUSCADOR TEXTO -->
+                    <div class="col-12 col-lg-6">
+                        <label class="cat-label">Buscar</label>
 
-                        <div class="cat-actions">
-                            <a href="@Url.Action("VistaProducto","Catalogo", new { id = 3 })" class="cat-btn">Ver producto ✨</a>
-                            <a href="@Url.Action("Index","Wishlist")" class="cat-btn cat-btn-soft">Agregar a wishlist ♡</a>
+                        <div class="cat-input-wrap">
+                            <span class="cat-icon">🔎</span>
+
+                            <input type="text"
+                                   name="q"
+                                   value="@ViewBag.Q"
+                                   class="cat-input cat-input-with-icon"
+                                   placeholder="Ej: base, rarebeauty, skincare..." />
                         </div>
                     </div>
+
+                    <!-- PRECIO -->
+                    <div class="col-12 col-lg-6">
+                        <label class="cat-label">Rango de precio</label>
+
+                        <div class="cat-price-box">
+
+                            <div class="cat-price-grid">
+
+                                <div class="cat-price-item">
+                                    <span class="cat-price-tag">MÍN</span>
+                                    <input type="text"
+                                           class="cat-price-input"
+                                           placeholder="₡ 0"
+                                           oninput="formatPrice(this, 'minReal')" />
+
+                                    <input type="hidden"
+                                           id="minReal"
+                                           name="min"
+                                           value="@ViewBag.Min" />
+                                </div>
+
+                                <div class="cat-price-sep">—</div>
+
+                                <div class="cat-price-item">
+                                    <span class="cat-price-tag">MÁX</span>
+                                    <input type="text"
+                                           class="cat-price-input"
+                                           placeholder="₡ 500,000"
+                                           oninput="formatPrice(this, 'maxReal')" />
+
+                                    <input type="hidden"
+                                           id="maxReal"
+                                           name="max"
+                                           value="@ViewBag.Max" />
+                                </div>
+
+                            </div>
+
+                            <div class="cat-price-help">
+                                Podés escribir solo el mínimo o solo el máximo.
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
-            </div>
+
+            </form>
 
         </div>
 
+        <div style="height:12px;"></div>
+
+        <!-- =========================
+             PRODUCTOS
+        ========================= -->
+        <div class="row g-4">
+
+            @foreach (BeautyGlam.Abstracciones.ModelosParaUI.ProductosDTO producto in Model)
+            {
+                <div class="col-12 col-sm-6 col-lg-4">
+
+                    <div class="cat-card">
+
+                        <div class="cat-img-wrap">
+
+                            <img src="@(string.IsNullOrEmpty(producto.imagen)
+                                ? Url.Content("~/img/productos/default.png")
+                                : Url.Content("~" + producto.imagen))"
+                                 class="cat-img"
+                                 alt="@producto.nombre" />
+
+                            <div class="cat-price-badge">
+                                ₡ @producto.precio
+                            </div>
+
+                        </div>
+
+                        <div class="cat-body">
+
+                            <h4 class="cat-name">@producto.nombre</h4>
+
+                            <p class="cat-muted">
+                                @producto.nombreCategoria · @producto.nombreMarca
+                            </p>
+
+                            <div class="cat-actions">
+
+                                <a href="@Url.Action("Detalle","Catalogo", new { id = producto.id })"
+                                   class="cat-btn">
+                                    Ver producto ✨
+                                </a>
+
+                                <a href="@Url.Action("Index","Wishlist")"
+                                   class="cat-btn cat-btn-soft">
+                                    Agregar a wishlist ♡
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+
+        </div>
+
+        @if (!Model.Any())
+        {
+            <div class="text-center mt-4"
+                 style="color:#6b4c7a;font-weight:700;">
+                No se encontraron productos 😢
+            </div>
+        }
+
     </div>
+
 </section>
+
+<style>
+    .cat-filter-wrap {
+        max-width: 1100px;
+        margin: 0 auto 26px;
+    }
+
+    .cat-filter-card {
+        background: linear-gradient(90deg, #f9f4ff, #f6fbff);
+        border: 1px solid #f1e4f6;
+        border-radius: 22px;
+        padding: 16px 18px 18px;
+        box-shadow: 0 18px 45px rgba(0,0,0,.08);
+    }
+
+    .cat-filter-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        border-bottom: 1px solid rgba(234,215,243,.75);
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+
+    .cat-filter-title {
+        font-weight: 900;
+        color: #5c3b6f;
+        font-size: 18px;
+    }
+
+    .cat-filter-sub {
+        font-size: 13px;
+        color: #6b4c7a;
+        font-weight: 650;
+        margin-top: 4px;
+    }
+
+    .cat-filter-actions {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .cat-label {
+        font-weight: 900;
+        color: #5c3b6f;
+        font-size: 13px;
+        margin-bottom: 6px;
+        display: block;
+    }
+
+    .cat-input-wrap {
+        position: relative;
+    }
+
+    .cat-icon {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: .75;
+    }
+
+    .cat-input {
+        width: 100%;
+        padding: 11px 12px;
+        border-radius: 16px;
+        border: 1px solid #ead7f3;
+        outline: none;
+    }
+
+    .cat-input-with-icon {
+        padding-left: 36px;
+    }
+
+    .cat-price-box {
+        background: #fff;
+        border: 1px solid #ead7f3;
+        border-radius: 16px;
+        padding: 12px;
+    }
+
+    .cat-price-grid {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .cat-price-item {
+        flex: 1;
+        position: relative;
+        min-width: 160px;
+    }
+
+    .cat-price-tag {
+        position: absolute;
+        top: -10px;
+        left: 12px;
+        background: #fff;
+        border: 1px solid #ead7f3;
+        border-radius: 999px;
+        padding: 4px 8px;
+        font-size: 11px;
+        font-weight: 900;
+        color: #5c3b6f;
+    }
+
+    .cat-price-input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 14px;
+        border: 1px solid #ead7f3;
+        font-weight: 800;
+        color: #5c3b6f;
+    }
+
+    .cat-price-sep {
+        font-weight: 900;
+        color: #6b4c7a;
+        opacity: .7;
+    }
+
+    .cat-price-help {
+        margin-top: 10px;
+        font-size: 12px;
+        font-weight: 650;
+        color: #6b4c7a;
+    }
+</style>
+<script>
+    function formatPrice(input, hiddenId) {
+        let raw = input.value.replace(/[^\d]/g, '');
+        let number = raw ? parseInt(raw, 10) : '';
+
+        if (number !== '') {
+            input.value = '₡ ' + number.toLocaleString('es-CR');
+        } else {
+            input.value = '';
+        }
+
+        document.getElementById(hiddenId).value = raw;
+    }
+
+    // Precarga valores cuando vuelve del filtro
+    window.onload = function () {
+        if ('@ViewBag.Min') {
+            let min = '@ViewBag.Min';
+            document.querySelector('[oninput*="minReal"]').value =
+                '₡ ' + parseInt(min).toLocaleString('es-CR');
+        }
+        if ('@ViewBag.Max') {
+            let max = '@ViewBag.Max';
+            document.querySelector('[oninput*="maxReal"]').value =
+                '₡ ' + parseInt(max).toLocaleString('es-CR');
+        }
+    };
+</script>

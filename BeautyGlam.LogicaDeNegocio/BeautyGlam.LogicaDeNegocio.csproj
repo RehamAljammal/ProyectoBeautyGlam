@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Catalogo\ObtenerCatalogoLN.cs" />
     <Compile Include="Categorias\DetallesDeProveedor\DetallesCategoriaLN.cs" />
     <Compile Include="Categorias\EditarProveedores\EditarCategoriaLN.cs" />
     <Compile Include="Categorias\EliminarProveedor\EliminarCategoriaLN.cs" />

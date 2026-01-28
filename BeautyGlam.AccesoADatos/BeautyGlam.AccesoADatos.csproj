@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Catalogo\ObtenerCatalogoAD.cs" />
     <Compile Include="Categoria\DetallesCategoria\DetallesCategoriaAD.cs" />
     <Compile Include="Categoria\EditarCategoria\IEditarCategoriaAD.cs" />
     <Compile Include="Categoria\EliminarCategoria\EliminarCategoriaAD.cs" />
