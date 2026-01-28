@@ -485,11 +485,7 @@
     <Content Include="Views\Perfil\Seguimiento.cshtml" />
     <Content Include="Views\Perfil\DetallePedido.cshtml" />
     <Content Include="Views\Wishlist\Index.cshtml" />
-    <Content Include="Views\Inventario\Index.cshtml" />
     <Content Include="Views\Inventario\Avanzado.cshtml" />
-    <Content Include="Views\Inventario\Editar.cshtml" />
-    <Content Include="Views\Inventario\Minimos.cshtml" />
-    <Content Include="Views\Inventario\Movimientos.cshtml" />
     <Content Include="Views\Catalogo\Index.cshtml" />
     <Content Include="Views\Catalogo\VistaProducto.cshtml" />
     <Content Include="Views\AsistenteTono\Index.cshtml" />
@@ -526,6 +522,10 @@
     <Content Include="Views\Productos\CrearProducto.cshtml" />
     <Content Include="Views\Productos\EditarProducto.cshtml" />
     <Content Include="Views\Productos\EliminarProducto.cshtml" />
+    <Content Include="Views\Inventario\ListaDeInventario.cshtml" />
+    <Content Include="Views\Inventario\EditarStockActual.cshtml" />
+    <Content Include="Views\Inventario\EditarStock.cshtml" />
+    <Content Include="Views\Inventario\MovimientosI.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

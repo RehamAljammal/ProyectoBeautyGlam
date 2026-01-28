@@ -19,6 +19,11 @@ namespace BeautyGlam.AccesoADatos
         public DbSet<CategoriaAD> Categoria { get; set; }
         public DbSet<MarcaAD> Marca { get; set; }
         public DbSet<ProductoAD> Producto { get; set; }
+        public DbSet<InventarioAD> Inventario { get; set; }
+
+        public DbSet<MovimientoInventarioAD> Movimiento { get; set; }
+
+
 
 
 

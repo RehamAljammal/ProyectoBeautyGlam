@@ -1,0 +1,97 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.InventarioDto
+
+@{
+    ViewBag.Title = "Mínimos y Máximos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space inv-page">
+    <div class="container inv-container">
+
+        <div class="inv-header">
+            <h2 class="inv-title">Definir Mínimos y Máximos</h2>
+            <p class="inv-subtitle">Configura alertas y rangos recomendados 💖</p>
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger text-center mb-3" })
+
+            <!-- Campos ocultos necesarios -->
+            @Html.HiddenFor(m => m.idInventario)
+            @Html.HiddenFor(m => m.idProducto)
+            @Html.HiddenFor(m => m.stockActual)
+            @Html.HiddenFor(m => m.nombre)
+
+            <div class="inv-card">
+                <div class="inv-card-head">
+                    <span class="inv-badge">Rangos</span>
+                    <h5 class="inv-card-title">@Model.nombre</h5>
+                    <p class="inv-card-desc">Define valores para evitar faltantes o exceso.</p>
+                </div>
+
+                <div class="inv-card-body">
+                    <div class="row g-3 justify-content-center">
+
+                        <div class="col-12 col-md-5">
+                            <label class="inv-label">Mínimo permitido</label>
+
+                            @Html.TextBoxFor(
+                                     m => m.stockMinimo,
+                                     new
+                                     {
+                                         @class = "form-control inv-input",
+                                         type = "number",
+                                         min = "0"
+                                     }
+                                 )
+
+                            @Html.ValidationMessageFor(
+                                     m => m.stockMinimo,
+                                     "",
+                                     new { @class = "text-danger" }
+                                 )
+                        </div>
+
+                        <div class="col-12 col-md-5">
+                            <label class="inv-label">Máximo permitido</label>
+
+                            @Html.TextBoxFor(
+                                     m => m.stockMaximo,
+                                     new
+                                     {
+                                         @class = "form-control inv-input",
+                                         type = "number",
+                                         min = "0"
+                                     }
+                                 )
+
+                            @Html.ValidationMessageFor(
+                                     m => m.stockMaximo,
+                                     "",
+                                     new { @class = "text-danger" }
+                                 )
+                        </div>
+
+                    </div>
+
+                    <div class="inv-center-actions">
+                        <button type="submit" class="btn inv-btn">
+                            Guardar ✨
+                        </button>
+
+                        <a href="@Url.Action("ListaDeInventario","Inventario")"
+                           class="btn inv-btn inv-btn-soft">
+                            Cancelar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
