@@ -8,7 +8,7 @@ namespace BeautyGlam.LogicaDeNegocio.Productos.RegistrarProducto
 {
     public class RegistrarProductoLN : IRegistrarProductoLN
     {
-        private IRegistrarProductoAD _registrarProductoAD;
+        private readonly IRegistrarProductoAD _registrarProductoAD;
 
         public RegistrarProductoLN()
         {
@@ -19,10 +19,10 @@ namespace BeautyGlam.LogicaDeNegocio.Productos.RegistrarProducto
         {
             elProductoParaGuardar.estado = true;
 
-            int cantidadDeFilasAfectadas =
-                await _registrarProductoAD.Registrar(elProductoParaGuardar);
+            int idProducto = await _registrarProductoAD.Registrar(elProductoParaGuardar);
 
-            return cantidadDeFilasAfectadas;
+            return idProducto;
         }
     }
 }
+

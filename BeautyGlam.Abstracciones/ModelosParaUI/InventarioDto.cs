@@ -1,4 +1,4 @@
-﻿    using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace BeautyGlam.Abstracciones.ModelosParaUI
 {
@@ -15,7 +15,7 @@ namespace BeautyGlam.Abstracciones.ModelosParaUI
         [Display(Name = "Stock Maximo")]
         public int stockMaximo { get; set; }
 
-        public int idProducto { get; set; }
+        public int id { get; set; }
 
         [Display(Name = "Producto")]
         public string nombre { get; set; }

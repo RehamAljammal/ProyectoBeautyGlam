@@ -18,7 +18,7 @@ namespace BeautyGlam.LogicaDeNegocio.Inventario.EditarStockActual
         {
             // Obtener inventario actual de BD
             InventarioDto inventarioEnBD =
-                await _editarStockActualAD.ObtenerPorProducto(elInventarioParaGuardar.idProducto);
+                await _editarStockActualAD.ObtenerPorProducto(elInventarioParaGuardar.id);
 
             if (inventarioEnBD == null)
                 return -1; 
@@ -34,9 +34,9 @@ namespace BeautyGlam.LogicaDeNegocio.Inventario.EditarStockActual
             return await _editarStockActualAD.Editar(elInventarioParaGuardar);
         }
 
-        public async Task<InventarioDto> ObtenerPorProducto(int idProducto)
+        public async Task<InventarioDto> ObtenerPorProducto(int id)
         {
-            return await _editarStockActualAD.ObtenerPorProducto(idProducto);
+            return await _editarStockActualAD.ObtenerPorProducto(id);
         }
     }
 }

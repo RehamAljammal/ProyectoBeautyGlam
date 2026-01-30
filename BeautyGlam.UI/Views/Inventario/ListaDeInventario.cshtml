@@ -59,16 +59,15 @@
                             <td>
                                 <div class="inv-actions">
                                     <a class="btn inv-btn"
-                                       href="@Url.Action("EditarStockActual","Inventario", new { id = item.idInventario })">
+                                       href="@Url.Action("EditarStockActual","Inventario", new { id = item.id })">
                                         Editar stock ✏️
                                     </a>
 
                                     <a class="btn inv-btn inv-btn-soft"
-                                       href="@Url.Action("EditarStock","Inventario", new { id = item.idInventario })">
+                                       href="@Url.Action("EditarStock","Inventario", new { id = item.id })">
                                         Mín/Máx 📌
                                     </a>
 
-                                    
                                 </div>
                             </td>
                         </tr>

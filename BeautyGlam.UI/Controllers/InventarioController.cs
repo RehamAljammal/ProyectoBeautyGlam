@@ -47,9 +47,15 @@ namespace BeautyGlam.UI.Controllers
         // ================== EDITAR STOCK ACTUAL ==================
         public async Task<ActionResult> EditarStockActual(int id)
         {
-            var inventario = await _editarStockActualLN.ObtenerPorProducto(id);
+            InventarioDto inventario =
+                await _editarStockActualLN.ObtenerPorProducto(id);
+
+            if (inventario == null)
+                throw new System.Exception("NO SE ENCONTRÓ INVENTARIO. ID RECIBIDO: " + id);
+
             return View(inventario);
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -105,12 +111,12 @@ namespace BeautyGlam.UI.Controllers
         // ================== MOVIMIENTOS ==================
         public ActionResult MovimientosI(int id)
         {
-            // id = idProducto
+            // id = id
             List<MovimientoInventarioDto> movimientos =
                 _listaMovimientosLN.Obtener();
 
             movimientos = movimientos
-                            .Where(m => m.idProducto == id)
+                            .Where(m => m.id == id)
                             .ToList();
 
             return View(movimientos);

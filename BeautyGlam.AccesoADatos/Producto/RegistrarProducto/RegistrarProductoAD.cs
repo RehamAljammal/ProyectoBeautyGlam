@@ -1,47 +1,86 @@
-﻿using BeautyGlam.Abstracciones.AccesoADatos.Producto.RegistrarProducto;
+﻿using BeautyGlam.Abstracciones.AccesoADatos.Inventario;
+using BeautyGlam.Abstracciones.AccesoADatos.Producto.RegistrarProducto;
 using BeautyGlam.Abstracciones.ModelosParaUI;
 using BeautyGlam.AccesoADatos.Entidades;
-using System;
-using System.Collections.Generic;
+using BeautyGlam.AccesoADatos.Inventario;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BeautyGlam.AccesoADatos.Producto.RegistrarProducto
 {
-   
     public class RegistrarProductoAD : IRegistrarProductoAD
     {
-        private Contexto _elContexto;
+        private readonly Contexto _elContexto;
+        private readonly RegistrarInventarioAD _registrarInventarioAD;
 
         public RegistrarProductoAD()
         {
             _elContexto = new Contexto();
+
+            // ✅ MISMO CONTEXTO
+            _registrarInventarioAD = new RegistrarInventarioAD(_elContexto);
         }
 
         public async Task<int> Registrar(ProductosDTO elProductoParaGuardar)
         {
-            int cantidadDeFilasAfectadas = 0;
-
-            ProductoAD registroExistente = _elContexto.Producto
-            .FirstOrDefault(ap => ap.id == elProductoParaGuardar.id
-             && ap.id == elProductoParaGuardar.id);
-
-            if (registroExistente != null)
+            using (var transaccion = _elContexto.Database.BeginTransaction())
             {
-                if (!registroExistente.estado)
+                try
                 {
+                    // ===== VALIDAR SI EXISTE =====
+                    ProductoAD registroExistente =
+                        _elContexto.Producto.FirstOrDefault(p => p.id == elProductoParaGuardar.id);
 
+                    if (registroExistente != null)
+                    {
+                        if (!registroExistente.estado)
+                        {
+                            registroExistente.nombre = elProductoParaGuardar.nombre;
+                            registroExistente.descripcion = elProductoParaGuardar.descripcion;
+                            registroExistente.precio = elProductoParaGuardar.precio;
+                            registroExistente.imagen = elProductoParaGuardar.imagen;
+                            registroExistente.idCategoria = elProductoParaGuardar.idCategoria;
+                            registroExistente.idMarca = elProductoParaGuardar.idMarca;
+                            registroExistente.idProveedor = elProductoParaGuardar.idProveedor;
+                            registroExistente.estado = true;
+
+                            await _elContexto.SaveChangesAsync();
+                            transaccion.Commit();
+                            return registroExistente.id;
+                        }
+
+                        return 0;
+                    }
+
+                    // ===== CREAR PRODUCTO =====
+                    ProductoAD nuevoProducto = ConvierteObjetoAEntidad(elProductoParaGuardar);
+                    _elContexto.Producto.Add(nuevoProducto);
+                    await _elContexto.SaveChangesAsync();
+
+                    // ===== CREAR INVENTARIO AUTOMÁTICO =====
+                    InventarioAD inventario = new InventarioAD
+                    {
+                        id = nuevoProducto.id,   // FK Producto
+                        stockActual = 0,
+                        stockMinimo = 0,
+                        stockMaximo = 0
+                    };
+
+                    _elContexto.Inventario.Add(inventario);
+                    await _elContexto.SaveChangesAsync();
+
+                    // ===== CONFIRMAR TODO =====
+                    transaccion.Commit();
+
+                    return nuevoProducto.id;
+                }
+                catch
+                {
+                    // ❌ SI FALLA ALGO → ROLLBACK
+                    transaccion.Rollback();
+                    throw; // deja que la capa superior maneje el error
                 }
             }
-            else
-            {
-                ProductoAD nuevoProducto= ConvierteObjetoAEntidad(elProductoParaGuardar);
-                _elContexto.Producto.Add(nuevoProducto);
-                cantidadDeFilasAfectadas = await _elContexto.SaveChangesAsync();
-            }
-
-            return cantidadDeFilasAfectadas;
         }
 
         private ProductoAD ConvierteObjetoAEntidad(ProductosDTO elProductoParaGuardar)
