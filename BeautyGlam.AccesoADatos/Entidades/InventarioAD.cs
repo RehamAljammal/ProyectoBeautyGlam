@@ -26,7 +26,9 @@ namespace BeautyGlam.AccesoADatos.Entidades
         public int stockMaximo { get; set; }
 
         [Column("id")]
-        public int idProducto { get; set; }
-        
+        public int id { get; set; }
+
+        public virtual ProductoAD Producto { get; set; }
+
     }
 }

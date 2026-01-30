@@ -22,9 +22,9 @@ namespace BeautyGlam.LogicaDeNegocio.Inventario.EditarStock
             return cantidadDeFilasAfectadas;
         }
 
-        public async Task<InventarioDto> ObtenerPorProducto(int idProducto)
+        public async Task<InventarioDto> ObtenerPorProducto(int id)
         {
-            return await _editarStockAD.ObtenerPorProducto(idProducto);
+            return await _editarStockAD.ObtenerPorProducto(id);
         }
     }
 }

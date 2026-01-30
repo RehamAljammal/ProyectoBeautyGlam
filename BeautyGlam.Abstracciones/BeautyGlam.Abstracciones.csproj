@@ -51,6 +51,7 @@
     <Compile Include="AccesoADatos\Inventario\EditarStock\IEditarStockAD.cs" />
     <Compile Include="AccesoADatos\Inventario\ListaDeInventario\IObtenerListaDeInventarioAD.cs" />
     <Compile Include="AccesoADatos\Inventario\Movimiento\ListaDeMovimientos\IObtenerMovimientosAD.cs" />
+    <Compile Include="AccesoADatos\Inventario\RegistrarInventario\IRegistrarInventarioAD.cs" />
     <Compile Include="AccesoADatos\Marca\DetallesMarca\IDetallesMarcaAD.cs" />
     <Compile Include="AccesoADatos\Marca\EditarMarca\IEditarMarcaAD.cs" />
     <Compile Include="AccesoADatos\Marca\EliminarMarca\IEliminarMarcaAD.cs" />

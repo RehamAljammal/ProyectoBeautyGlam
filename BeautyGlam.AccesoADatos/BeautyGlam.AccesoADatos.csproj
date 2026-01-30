@@ -73,6 +73,7 @@
     <Compile Include="Inventario\EditarStock\EditarStockAD.cs" />
     <Compile Include="Inventario\ListaDeInventario\ObtenerListaDeInventarioAD.cs" />
     <Compile Include="Inventario\Movimiento\ObtenerListaDeMovimientoAD.cs" />
+    <Compile Include="Inventario\RegistrarInventario\RegistrarInventarioAD.cs" />
     <Compile Include="Marca\DetallesMarca\DetallesMarcaAD.cs" />
     <Compile Include="Marca\EditarMarca\EditarMarcaAD.cs" />
     <Compile Include="Marca\EliminarMarca\EliminarMarcaAD.cs" />

@@ -21,7 +21,7 @@ namespace BeautyGlam.AccesoADatos.Inventario.EditarInventario
 
             InventarioAD inventarioEnBD =
                 await _elContexto.Inventario
-                .FirstOrDefaultAsync(i => i.idProducto == elInventarioParaGuardar.idProducto);
+                .FirstOrDefaultAsync(i => i.id == elInventarioParaGuardar.id);
 
             if (inventarioEnBD != null)
             {
@@ -33,11 +33,11 @@ namespace BeautyGlam.AccesoADatos.Inventario.EditarInventario
             return filasAfectadas;
         }
 
-        public async Task<InventarioDto> ObtenerPorProducto(int idProducto)
+        public async Task<InventarioDto> ObtenerPorProducto(int id)
         {
             InventarioAD entidad =
                 await _elContexto.Inventario
-                .FirstOrDefaultAsync(i => i.idProducto == idProducto);
+                .FirstOrDefaultAsync(i => i.id == id);
 
             if (entidad == null)
                 return null;
@@ -48,7 +48,7 @@ namespace BeautyGlam.AccesoADatos.Inventario.EditarInventario
                 stockActual = entidad.stockActual,
                 stockMinimo = entidad.stockMinimo,
                 stockMaximo = entidad.stockMaximo,
-                idProducto = entidad.idProducto
+                id = entidad.id
             };
         }
     }

@@ -17,24 +17,21 @@ namespace BeautyGlam.AccesoADatos.Inventario
         public List<InventarioDto> Obtener()
         {
             List<InventarioDto> laListaDeInventario =
-                (from i in _elContexto.Inventario
-                 join p in _elContexto.Producto
-                     on i.idProducto equals p.id
-                 join c in _elContexto.Categoria
-                     on p.id equals c.id
+                (from p in _elContexto.Producto
+                 join i in _elContexto.Inventario
+                     on p.id equals i.id   // INNER JOIN
                  select new InventarioDto
                  {
                      idInventario = i.idInventario,
+                     id = p.id,                // 🔥 ID DEL PRODUCTO
+                     nombre = p.nombre,
                      stockActual = i.stockActual,
                      stockMinimo = i.stockMinimo,
-                     stockMaximo = i.stockMaximo,
-                     idProducto = p.id,
-                     nombre = p.nombre,
+                     stockMaximo = i.stockMaximo
                  }).ToList();
 
             return laListaDeInventario;
         }
-
 
     }
 }
