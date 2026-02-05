@@ -1,0 +1,388 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.ProductosDTO
+
+@{
+    ViewBag.Title = "EditarProducto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    // Los combos vienen como SelectList desde el controller
+    SelectList categorias = ViewBag.Categorias as SelectList;
+    SelectList marcas = ViewBag.Marcas as SelectList;
+    SelectList proveedores = ViewBag.Proveedores as SelectList;
+}
+
+<section class="section-space prod-page">
+    <div class="container prod-container">
+
+        <div class="prod-header">
+            <h2 class="prod-title">Editar producto</h2>
+            <p class="prod-subtitle">Actualiza info, precio o estado sin perder el estilo 💅</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+
+                <div class="prod-card">
+                    <div class="prod-card-head">
+                        <div><span class="prod-badge">Edición</span></div>
+                    </div>
+
+                    <div class="p-4">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(m => m.id)
+
+                            <div class="mb-3">
+                                @Html.LabelFor(m => m.nombre, new { @class = "prod-label" })
+                                @Html.EditorFor(m => m.nombre, new { htmlAttributes = new { @class = "form-control prod-input" } })
+                                @Html.ValidationMessageFor(m => m.nombre, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="mt-3">
+                                @Html.LabelFor(m => m.descripcion, new { @class = "prod-label" })
+                                @Html.TextAreaFor(m => m.descripcion, new { @class = "form-control prod-input", rows = "3" })
+                                @Html.ValidationMessageFor(m => m.descripcion, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="row g-3 mt-2">
+                                <div class="col-md-6">
+                                    @Html.LabelFor(m => m.precio, new { @class = "prod-label" })
+                                    @Html.EditorFor(m => m.precio, new { htmlAttributes = new { @class = "form-control prod-input" } })
+                                    @Html.ValidationMessageFor(m => m.precio, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-md-6">
+                                    @Html.LabelFor(m => m.estado, new { @class = "prod-label" })
+                                    <div class="d-flex align-items-center gap-2">
+                                        @Html.CheckBoxFor(m => m.estado)
+                                        <span style="color:#6b4c7a;font-weight:650;">Activo</span>
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.estado, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <hr class="my-4" />
+
+                            <!-- ====== PICKERS (MODAL) ====== -->
+                            <div class="mb-3">
+                                <label class="prod-label" style="display:block;margin-bottom:.35rem;">Categoría</label>
+                                <input type="text" id="txtCategoriaShow" class="form-control prod-input"
+                                       placeholder="Toca para elegir categoría"
+                                       readonly
+                                       onclick="openPicker('cat')" />
+
+                                @Html.HiddenFor(m => m.idCategoria, new { id = "hidCategoriaId" })
+                                @Html.HiddenFor(m => m.nombreCategoria, new { id = "hidCategoriaNombre" })
+                                @Html.ValidationMessageFor(m => m.idCategoria, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="prod-label" style="display:block;margin-bottom:.35rem;">Marca</label>
+                                <input type="text" id="txtMarcaShow" class="form-control prod-input"
+                                       placeholder="Toca para elegir marca"
+                                       readonly
+                                       onclick="openPicker('mar')" />
+
+                                @Html.HiddenFor(m => m.idMarca, new { id = "hidMarcaId" })
+                                @Html.HiddenFor(m => m.nombreMarca, new { id = "hidMarcaNombre" })
+                                @Html.ValidationMessageFor(m => m.idMarca, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="prod-label" style="display:block;margin-bottom:.35rem;">Proveedor</label>
+                                <input type="text" id="txtProveedorShow" class="form-control prod-input"
+                                       placeholder="Toca para elegir proveedor"
+                                       readonly
+                                       onclick="openPicker('prov')" />
+
+                                @Html.HiddenFor(m => m.idProveedor, new { id = "hidProveedorId" })
+                                @Html.HiddenFor(m => m.nombreProveedor, new { id = "hidProveedorNombre" })
+                                @Html.ValidationMessageFor(m => m.idProveedor, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="d-flex justify-content-end gap-2 mt-4 flex-wrap">
+                                <a href="@Url.Action("ListaDeProductos","Productos")" class="prod-btn prod-btn-soft">Cancelar</a>
+                                <button type="submit" class="prod-btn">Guardar cambios 💾</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ==========================
+     MODAL PICKER (REUSABLE)
+=========================== -->
+<div id="pickerOverlay" class="bg-overlay" onclick="closePicker(event)">
+    <div class="picker-modal" onclick="stopClose(event)">
+        <div class="picker-head">
+            <div>
+                <div class="picker-title" id="pickerTitle">Elegir</div>
+                <div class="picker-sub">Busca y selecciona una opción</div>
+            </div>
+            <button type="button" class="picker-x" onclick="forceClose()">✕</button>
+        </div>
+
+        <div class="picker-body">
+            <input type="text" id="pickerSearch" class="form-control prod-input"
+                   placeholder="Buscar..."
+                   oninput="filterPicker()" />
+
+            <div id="pickerList" class="picker-list"></div>
+        </div>
+
+        <div class="picker-foot">
+            <button type="button" class="prod-btn prod-btn-soft" onclick="forceClose()">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <style>
+        .bg-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.35);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            z-index: 9999;
+        }
+
+        .picker-modal {
+            width: 100%;
+            max-width: 560px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,.25);
+            overflow: hidden;
+            border: 1px solid #f1e4f6;
+        }
+
+        .picker-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 16px 18px;
+            background: linear-gradient(90deg, #f9f4ff, #f6fbff);
+            border-bottom: 1px solid #f1e4f6;
+        }
+
+        .picker-title {
+            font-weight: 900;
+            color: #5c3b6f;
+            font-size: 18px;
+        }
+
+        .picker-sub {
+            color: #6b4c7a;
+            font-weight: 650;
+            font-size: 13px;
+            margin-top: 2px;
+        }
+
+        .picker-x {
+            border: none;
+            background: transparent;
+            font-size: 20px;
+            line-height: 1;
+            color: #6b4c7a;
+            cursor: pointer;
+            padding: 4px 8px;
+        }
+
+        .picker-body {
+            padding: 14px 18px;
+        }
+
+        .picker-list {
+            margin-top: 12px;
+            max-height: 320px;
+            overflow: auto;
+            padding-right: 6px;
+        }
+
+        .pick-item {
+            border: 1px solid #ead7f3;
+            border-radius: 14px;
+            padding: 12px 12px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: transform .05s ease;
+        }
+
+            .pick-item:hover {
+                transform: translateY(-1px);
+            }
+
+        .pick-name {
+            color: #5c3b6f;
+            font-weight: 900;
+        }
+
+        .picker-foot {
+            padding: 12px 18px;
+            border-top: 1px solid #f1e4f6;
+            display: flex;
+            justify-content: flex-end;
+        }
+    </style>
+
+    <script>
+        // Datos desde tus SelectList (sin tocar controller) - IDs se usan internamente, NO se muestran
+        var DATA = {
+            cat: [
+                @if (categorias != null)
+                {
+                    foreach (var item in categorias)
+                    {
+                        <text>{ id: "@item.Value", name: "@item.Text" },</text>
+                    }
+                }
+            ],
+            mar: [
+                @if (marcas != null)
+                {
+                    foreach (var item in marcas)
+                    {
+                        <text>{ id: "@item.Value", name: "@item.Text" },</text>
+                    }
+                }
+            ],
+            prov: [
+                @if (proveedores != null)
+                {
+                    foreach (var item in proveedores)
+                    {
+                        <text>{ id: "@item.Value", name: "@item.Text" },</text>
+                    }
+                }
+            ]
+        };
+
+        var currentType = null;
+
+        // Precarga (cuando viene Editar): llena los inputs visibles con lo que ya trae el Model
+        (function preloadSelectedNames() {
+            var catName = "@(Model.nombreCategoria ?? "")";
+            var marName = "@(Model.nombreMarca ?? "")";
+            var provName = "@(Model.nombreProveedor ?? "")";
+
+            if (catName) document.getElementById("txtCategoriaShow").value = catName;
+            if (marName) document.getElementById("txtMarcaShow").value = marName;
+            if (provName) document.getElementById("txtProveedorShow").value = provName;
+
+            // aseguro hidden IDs (ya los trae el model, pero por si acaso)
+            document.getElementById("hidCategoriaId").value = "@Model.idCategoria";
+            document.getElementById("hidMarcaId").value = "@Model.idMarca";
+            document.getElementById("hidProveedorId").value = "@Model.idProveedor";
+
+            // aseguro hidden nombres (si ya venían)
+            document.getElementById("hidCategoriaNombre").value = catName;
+            document.getElementById("hidMarcaNombre").value = marName;
+            document.getElementById("hidProveedorNombre").value = provName;
+        })();
+
+        function openPicker(type) {
+            currentType = type;
+
+            var title = "Elegir";
+            if (type === "cat") title = "Elegir categoría";
+            if (type === "mar") title = "Elegir marca";
+            if (type === "prov") title = "Elegir proveedor";
+
+            document.getElementById("pickerTitle").innerText = title;
+            document.getElementById("pickerSearch").value = "";
+            renderPickerList("");
+
+            document.getElementById("pickerOverlay").style.display = "flex";
+            setTimeout(function () { document.getElementById("pickerSearch").focus(); }, 50);
+        }
+
+        function renderPickerList(query) {
+            var list = document.getElementById("pickerList");
+            list.innerHTML = "";
+
+            var arr = DATA[currentType] || [];
+            var q = (query || "").toLowerCase();
+
+            for (var i = 0; i < arr.length; i++) {
+                var item = arr[i];
+                if (!item || !item.name) continue;
+
+                if (q && item.name.toLowerCase().indexOf(q) === -1) continue;
+
+                var div = document.createElement("div");
+                div.className = "pick-item";
+                div.setAttribute("data-id", item.id);
+                div.setAttribute("data-name", item.name);
+                div.onclick = function () {
+                    var id = this.getAttribute("data-id");
+                    var name = this.getAttribute("data-name");
+                    applySelection(currentType, id, name);
+                    forceClose();
+                };
+
+                // ✅ SOLO NOMBRE (NO ID)
+                div.innerHTML = '<div class="pick-name">' + escapeHtml(item.name) + '</div>';
+
+                list.appendChild(div);
+            }
+        }
+
+        function filterPicker() {
+            var q = document.getElementById("pickerSearch").value;
+            renderPickerList(q);
+        }
+
+        function applySelection(type, id, name) {
+            if (type === "cat") {
+                document.getElementById("hidCategoriaId").value = id;
+                document.getElementById("hidCategoriaNombre").value = name;
+                document.getElementById("txtCategoriaShow").value = name;
+            }
+            if (type === "mar") {
+                document.getElementById("hidMarcaId").value = id;
+                document.getElementById("hidMarcaNombre").value = name;
+                document.getElementById("txtMarcaShow").value = name;
+            }
+            if (type === "prov") {
+                document.getElementById("hidProveedorId").value = id;
+                document.getElementById("hidProveedorNombre").value = name;
+                document.getElementById("txtProveedorShow").value = name;
+            }
+        }
+
+        function forceClose() {
+            document.getElementById("pickerOverlay").style.display = "none";
+        }
+
+        function closePicker(e) {
+            if (e && e.target && e.target.id === "pickerOverlay") {
+                forceClose();
+            }
+        }
+
+        function stopClose(e) {
+            if (e) e.stopPropagation();
+        }
+
+        function escapeHtml(str) {
+            if (str === null || str === undefined) return "";
+            return String(str)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+    </script>
+}

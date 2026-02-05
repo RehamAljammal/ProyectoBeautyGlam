@@ -1,0 +1,94 @@
+﻿@model IEnumerable<BeautyGlam.Abstracciones.ModelosParaUI.ProveedoresDto>
+
+@{
+    ViewBag.Title = "Proveedores";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space sup-page">
+    <div class="container sup-container">
+
+        <div class="sup-header">
+            <h2 class="sup-title">Proveedores</h2>
+            <p class="sup-subtitle">Administra contactos, estado y datos de compra ✨</p>
+        </div>
+
+        <div class="sup-card">
+            <div class="sup-card-head">
+                <span class="sup-badge">Listado</span>
+
+                <a href="@Url.Action("CrearProveedor","Proveedores")" class="sup-btn">
+                    + Agregar Proveedor
+                </a>
+            </div>
+
+            <div class="sup-table-wrap table-responsive">
+                <table class="table table-striped align-middle sup-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Teléfono</th>
+                            <th>Estado</th>
+                            <th class="text-center" style="width:320px;">Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var proveedor in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <strong style="color:#5c3b6f;">@proveedor.nombre</strong>
+                                </td>
+                                <td>@proveedor.correo</td>
+                                <td>@proveedor.telefono</td>
+                                <td>
+                                    @if (proveedor.estado)
+                                    {
+                                        <span class="sup-chip sup-chip-ok">Activo</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="sup-chip sup-chip-off">Inactivo</span>
+                                    }
+                                </td>
+
+                                <td class="text-center">
+                                    <div class="sup-actions">
+                                        <a href="@Url.Action("DetallesDelProveedor","Proveedores", new { id = proveedor.id })"
+                                           class="sup-btn sup-btn-soft sup-btn-sm">
+                                            Ver 👀
+                                        </a>
+
+                                        <a href="@Url.Action("EditarProveedor","Proveedores", new { id = proveedor.id })"
+                                           class="sup-btn sup-btn-outline sup-btn-sm">
+                                            Editar ✏️
+                                        </a>
+
+                                        @if (proveedor.estado)
+                                        {
+                                            <a href="@Url.Action("EliminarProveedor","Proveedores", new { id = proveedor.id })"
+                                               class="sup-btn sup-btn-danger sup-btn-sm">
+                                                Desactivar 🗑️
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("EliminarProveedor","Proveedores", new { id = proveedor.id })"
+                                               class="sup-btn sup-btn-sm">
+                                                Activar ✨
+                                            </a>
+                                        }
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+</section>

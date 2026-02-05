@@ -1,0 +1,61 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.ProductosDTO
+
+@{
+    ViewBag.Title = "EliminarProducto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space prod-page">
+    <div class="container prod-container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-7">
+
+                <div class="prod-card">
+                    <div class="prod-card-head">
+                        <div><span class="prod-badge">Confirmación</span></div>
+                    </div>
+
+                    <div class="p-4 text-center">
+                        <h2 style="color:#7a1f2d; font-weight:900;" class="mb-3">¿Eliminar producto?</h2>
+
+                        <p class="mb-4" style="color:#6b4c7a; font-weight:650;">
+                            Estás por eliminar:
+                            <br />
+                            <strong style="color:#5c3b6f;">@Model.nombre</strong>
+                        </p>
+
+                        <div class="mb-4 text-start" style="max-width:520px;margin:0 auto;">
+                            <p><strong>Descripción:</strong> @Model.descripcion</p>
+                            <p><strong>Precio:</strong> @Model.precio</p>
+
+                            <p><strong>Categoría:</strong> @Model.nombreCategoria</p>
+                            <p><strong>Marca:</strong> @Model.nombreMarca</p>
+                            <p><strong>Proveedor:</strong> @Model.nombreProveedor</p>
+
+                            <p>
+                                <strong>Estado:</strong>
+                                @if (Model.estado)
+                                {<span class="prod-chip prod-chip-ok">Activo</span> }
+                                else
+                                { <span class="prod-chip prod-chip-off">Inactivo</span>}
+                            </p>
+                        </div>
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(m => m.id)
+
+                            <div class="d-flex justify-content-center gap-2 flex-wrap">
+                                <button type="submit" class="prod-btn prod-btn-danger">Sí, eliminar 🗑️</button>
+                                <a href="@Url.Action("ListaDeProductos","Productos")" class="prod-btn prod-btn-soft">Cancelar</a>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

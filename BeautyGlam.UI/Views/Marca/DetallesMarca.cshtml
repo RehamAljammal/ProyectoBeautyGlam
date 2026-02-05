@@ -1,0 +1,44 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.MarcaDto
+
+@{
+    ViewBag.Title = "Detalle Marca";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space sup-page">
+    <div class="container sup-container">
+
+        <div class="sup-card">
+            <div class="sup-card-head">
+                <span class="sup-badge">Detalle</span>
+            </div>
+
+            <div class="sup-form">
+                <p>
+                    <strong>Nombre:</strong>
+                    @Model.nombre
+                </p>
+
+                <p>
+                    <strong>Estado:</strong>
+                    @if (Model.estado)
+                    {
+                        <span class="sup-chip sup-chip-ok">Activo</span>
+                    }
+                    else
+                    {
+                        <span class="sup-chip sup-chip-off">Inactivo</span>
+                    }
+                </p>
+
+                <div class="sup-actions mt-4">
+                    <a href="@Url.Action("EditarMarca", new { id = Model.id_Marca })"
+                       class="sup-btn sup-btn-outline">Editar ✏️</a>
+
+                    <a href="@Url.Action("ListaDeMarcas")"
+                       class="sup-btn sup-btn-soft">Volver</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
