@@ -155,7 +155,7 @@
     <Compile Include="Controllers\BlogBellezaController.cs" />
     <Compile Include="Controllers\CatalogoController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
-    <Compile Include="Controllers\GuiaRController.cs" />
+    <Compile Include="Controllers\GuiaRegalosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventarioController.cs" />
     <Compile Include="Controllers\MarcaController.cs" />
@@ -527,7 +527,12 @@
     <Content Include="Views\Inventario\EditarStock.cshtml" />
     <Content Include="Views\Inventario\MovimientosI.cshtml" />
     <Content Include="Views\Catalogo\Detalle.cshtml" />
-    <Content Include="Views\GuiaR\Index.cshtml" />
+    <Content Include="Views\GuiaRegalos\Index.cshtml" />
+    <Content Include="Views\GuiaRegalos\RegistrarRegalo.cshtml" />
+    <Content Include="Views\GuiaRegalos\Editar.cshtml" />
+    <Content Include="Views\GuiaRegalos\Eliminar.cshtml" />
+    <Content Include="Views\GuiaRegalos\_TablaGuias.cshtml" />
+    <Content Include="Views\GuiaRegalos\Detalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

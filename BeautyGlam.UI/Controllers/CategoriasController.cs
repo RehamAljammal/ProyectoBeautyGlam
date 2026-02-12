@@ -160,8 +160,6 @@ namespace BeautyGlam.UI.Controllers
                 return View(laCategoriaParaGuardar);
             }
         }
-
-
     }
 }
 

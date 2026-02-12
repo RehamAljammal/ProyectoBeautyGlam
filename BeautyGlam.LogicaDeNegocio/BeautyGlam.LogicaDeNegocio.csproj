@@ -47,6 +47,11 @@
     <Compile Include="Categorias\EliminarProveedor\EliminarCategoriaLN.cs" />
     <Compile Include="Categorias\ListaDeProveedor\ObtenerLaListaDeCategoriaLN.cs" />
     <Compile Include="Categorias\RegistrarProveedor\RegistrarCategoriaLN.cs" />
+    <Compile Include="GuiaRegalo\EditarRegalo\EditarGuiaRegaloLN.cs" />
+    <Compile Include="GuiaRegalo\EliminarRegalo\EliminarGuiaRegaloLN.cs" />
+    <Compile Include="GuiaRegalo\ObtenerGuiaRegaloLN.cs" />
+    <Compile Include="GuiaRegalo\ObtenerProductosParaGuia\ObtenerProductosParaGuiaLN.cs" />
+    <Compile Include="GuiaRegalo\RegistrarRegalo\RegistrarGuiaRegaloLN.cs" />
     <Compile Include="Inventario\EditarStockActual\EditarStockActualLN.cs" />
     <Compile Include="Inventario\EditarStock\EditarStockLN.cs" />
     <Compile Include="Inventario\ListaDeInventario\ObtenerListaDeInventarioLN.cs" />
