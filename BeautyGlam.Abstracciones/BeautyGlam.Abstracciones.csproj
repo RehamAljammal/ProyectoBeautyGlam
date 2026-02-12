@@ -67,6 +67,10 @@
     <Compile Include="AccesoADatos\Proveedores\EliminarProveedor\IEliminarProveedorAD.cs" />
     <Compile Include="AccesoADatos\Proveedores\ListaDeProveedor\IObtenerListaDeProveedoresAD.cs" />
     <Compile Include="AccesoADatos\Proveedores\RegistrarProveedor\IRegistrarProveedorAD.cs" />
+    <Compile Include="AccesoADatos\Rol\EditarRol\IEditarRolAD.cs" />
+    <Compile Include="AccesoADatos\Rol\ElimianarRol\IEliminarRolAD.cs" />
+    <Compile Include="AccesoADatos\Rol\LisaRol\IObtenerListaDeRolesAD.cs" />
+    <Compile Include="AccesoADatos\Rol\RegistrarRol\IRegistrarRolAD.cs" />
     <Compile Include="LogicaDeNegocio\Categoria\DetallesCategoria\IDetallesCategoriaLN.cs" />
     <Compile Include="LogicaDeNegocio\Categoria\EditarCategoria\IEditarCategoriaLN.cs" />
     <Compile Include="LogicaDeNegocio\Categoria\EliminarCategoria\IEliminarCategoriaLN.cs" />
@@ -91,13 +95,21 @@
     <Compile Include="LogicaDeNegocio\Proveedores\EliminarProveedor\IEliminarProveedorLN.cs" />
     <Compile Include="LogicaDeNegocio\Proveedores\ListaDeProveedor\IObtenerLaListaDeProveedoresLN.cs" />
     <Compile Include="LogicaDeNegocio\Proveedores\RegistrarProveedor\IRegistrarProveedorLN.cs" />
+    <Compile Include="LogicaDeNegocio\Rol\EditarRol\IEditarRolLN.cs" />
+    <Compile Include="LogicaDeNegocio\Rol\ElimianarRol\IEliminarRolLN.cs" />
+    <Compile Include="LogicaDeNegocio\Rol\LisaRol\IObtenerLaListaDeRolesLN.cs" />
+    <Compile Include="LogicaDeNegocio\Rol\RegistrarRol\IRegistrarRolLN.cs" />
     <Compile Include="ModelosParaUI\CategoriasDto.cs" />
     <Compile Include="ModelosParaUI\InventarioAvanzadoDto.cs" />
     <Compile Include="ModelosParaUI\InventarioDto.cs" />
+    <Compile Include="ModelosParaUI\LoginDto.cs" />
     <Compile Include="ModelosParaUI\MarcaDto.cs" />
     <Compile Include="ModelosParaUI\MovimientoInventarioDto.cs" />
     <Compile Include="ModelosParaUI\ProductosDto.cs" />
     <Compile Include="ModelosParaUI\ProveedoresDto.cs" />
+    <Compile Include="ModelosParaUI\RegisterDto.cs" />
+    <Compile Include="ModelosParaUI\RolDto.cs" />
+    <Compile Include="ModelosParaUI\UsuarioAuthDto.cs" />
     <Compile Include="ModelosParaUI\UsuarioDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

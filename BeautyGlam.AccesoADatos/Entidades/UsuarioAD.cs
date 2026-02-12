@@ -1,42 +1,47 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BeautyGlam.AccesoADatos.Entidades
 {
     [Table("Usuario")]
-
     public class UsuarioAD
     {
-        [Column("ID_USUARIO")]
-        public int idUsuario { get; set; }
+        [Key]
+        [Column("id_Usuario")]
+        public int id_Usuario { get; set; }
 
-        [Column("NOMBRE")]
+        [Column("nombre")]
         public string nombre { get; set; }
 
-        [Column("APELLIDO")]
+        [Column("apellido")]
         public string apellido { get; set; }
 
-        [Column("USERNAME")]
+        [Column("username")]
         public string username { get; set; }
 
-        [Column("CORREO")]
+        [Column("correo")]
         public string correo { get; set; }
 
-        [Column("TELEFONO")]
+        [Column("telefono")]
         public string telefono { get; set; }
 
-        [Column("DIRECCION")]
+        [Column("direccion")]
         public string direccion { get; set; }
 
-        [Column("FECHA_REGISTRO")]
-        public DateTime fechaRegistro { get; set; }
+        [Column("fecha_Registro")]
+        public DateTime fecha_Registro { get; set; }
 
-        [Column("ASPNETUSERID")]
-        public string AspNetUserId { get; set; }
+        [Column("passwordHash")]
+        public byte[] passwordHash { get; set; }
 
-        [Column("ESTADO")]
+        [Column("passwordSalt")]
+        public byte[] passwordSalt { get; set; }
+
+        [Column("rol")]
+        public string rol { get; set; }  // Admin | Usuario
+
+        [Column("estado")]
         public bool estado { get; set; }
-
-
     }
 }

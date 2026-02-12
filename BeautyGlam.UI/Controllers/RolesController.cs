@@ -1,28 +1,164 @@
-﻿using System;
+﻿using BeautyGlam.Abstracciones.AccesoADatos.Rol.ListaRol;
+using BeautyGlam.Abstracciones.LogicaDeNegocio.Rol.EditarRol;
+using BeautyGlam.Abstracciones.LogicaDeNegocio.Rol.EliminarRol;
+using BeautyGlam.Abstracciones.LogicaDeNegocio.Rol.RegistrarRol;
+using BeautyGlam.Abstracciones.ModelosParaUI;
+using BeautyGlam.AccesoADatos.Rol.ListaRol;
+using BeautyGlam.AccesoADatos.Rol.ObtenerRolPorId;
+using BeautyGlam.LogicaDeNegocio.Rol.EditarRol;
+using BeautyGlam.LogicaDeNegocio.Rol.EliminarRol;
+using BeautyGlam.LogicaDeNegocio.Rol.RegistrarRol;
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace BeautyGlam.UI.Controllers
 {
-    public class RolesController : Controller
+    [Authorize(Roles = "Admin")]
+    public class RolController : Controller
     {
-        public ActionResult Index() => View();
+        private readonly IObtenerListaDeRolesAD _obtenerLaListaDeRolesLN;
+        private readonly IRegistrarRolLN _agregarRolLN;
+        private readonly IEditarRolLN _editarRolLN;
+        private readonly IEliminarRolLN _eliminarRolLN;
 
-        public ActionResult Create() => View();
+        public RolController()
+        {
+            _obtenerLaListaDeRolesLN = new ObtenerListaDeRolesAD();
+            _agregarRolLN = new RegistrarRolLN();
+            _editarRolLN = new EditarRolLN();
+            _eliminarRolLN = new EliminarRolLN();
+        }
 
+        // Listar Roles
+        public ActionResult ListaDeRoles()
+        {
+            List<RolDto> laListaDeRoles = _obtenerLaListaDeRolesLN.Obtener();
+            return View(laListaDeRoles);
+        }
+
+        // Ver detalles del Rol
+        public ActionResult DetallesRol(int id)
+        {
+            ObtenerRolPorIdAD obtenerRolPorIdAD = new ObtenerRolPorIdAD();
+            RolDto elRol = obtenerRolPorIdAD.ObtenerPorId(id);
+
+            if (elRol == null)
+            {
+                return RedirectToAction("ListaDeRoles");
+            }
+
+            return View(elRol);
+        }
+
+        // GET: Rol/CrearRol
+        public ActionResult CrearRol()
+        {
+            return View();
+        }
+
+        // POST: Rol/CrearRol
         [HttpPost]
-        public ActionResult Create(FormCollection form) => RedirectToAction("Index");
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CrearRol(RolDto elRolParaGuardar)
+        {
+            try
+            {
+                if (ModelState.IsValid == false)
+                {
+                    return View(elRolParaGuardar);
+                }
 
-        public ActionResult Edit(int id) => View();
+                int cantidadDeFilasAfectadas = await _agregarRolLN.Registrar(elRolParaGuardar);
 
+                return RedirectToAction("ListaDeRoles");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Error al crear: " + ex.Message);
+                return View(elRolParaGuardar);
+            }
+        }
+
+        // GET: Rol/EditarRol/5
+        public ActionResult EditarRol(int id)
+        {
+            ObtenerRolPorIdAD obtenerRolPorIdAD = new ObtenerRolPorIdAD();
+            RolDto elRol = obtenerRolPorIdAD.ObtenerPorId(id);
+
+            if (elRol == null)
+            {
+                return RedirectToAction("ListaDeRoles");
+            }
+
+            return View(elRol);
+        }
+
+        // POST: Rol/EditarRol
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection form) => RedirectToAction("Index");
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EditarRol(RolDto elRolParaGuardar)
+        {
+            try
+            {
+                if (ModelState.IsValid == false)
+                {
+                    return View(elRolParaGuardar);
+                }
 
-        public ActionResult Permisos(int id) => View();
+                RolDto rolActual = await _editarRolLN.ObtenerPorId(elRolParaGuardar.id_Rol);
 
+                if (rolActual == null)
+                {
+                    ModelState.AddModelError("", "No existe el rol.");
+                    return View(elRolParaGuardar);
+                }
+
+                rolActual.nombre_Rol = elRolParaGuardar.nombre_Rol;
+                rolActual.estado = elRolParaGuardar.estado;
+
+                await _editarRolLN.Editar(rolActual);
+
+                return RedirectToAction("ListaDeRoles");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Error al editar: " + ex.Message);
+                return View(elRolParaGuardar);
+            }
+        }
+
+        // GET: Rol/EliminarRol/5
+        public ActionResult EliminarRol(int id)
+        {
+            ObtenerRolPorIdAD obtenerRolPorIdAD = new ObtenerRolPorIdAD();
+            RolDto elRol = obtenerRolPorIdAD.ObtenerPorId(id);
+
+            if (elRol == null)
+            {
+                return RedirectToAction("ListaDeRoles");
+            }
+
+            return View(elRol);
+        }
+
+        // POST: Rol/EliminarRol
         [HttpPost]
-        public ActionResult Permisos(int id, FormCollection form) => RedirectToAction("Index");
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EliminarRol(RolDto elRolParaGuardar)
+        {
+            try
+            {
+                await _eliminarRolLN.Eliminar(elRolParaGuardar);
+                return RedirectToAction("ListaDeRoles");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Error al eliminar: " + ex.Message);
+                return View(elRolParaGuardar);
+            }
+        }
     }
 }

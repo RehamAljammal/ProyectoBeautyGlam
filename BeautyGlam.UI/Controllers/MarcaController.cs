@@ -17,6 +17,7 @@ using System.Web.Mvc;
 
 namespace BeautyGlam.UI.Controllers
 {
+
     public class MarcaController : Controller
     {
 

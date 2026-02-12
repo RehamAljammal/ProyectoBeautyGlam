@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Autenticacion\AuthLN.cs" />
     <Compile Include="Catalogo\ObtenerCatalogoLN.cs" />
     <Compile Include="Categorias\DetallesDeProveedor\DetallesCategoriaLN.cs" />
     <Compile Include="Categorias\EditarProveedores\EditarCategoriaLN.cs" />
@@ -67,6 +68,11 @@
     <Compile Include="Proveedores\EliminarProveedor\EliminarProveedorLN.cs" />
     <Compile Include="Proveedores\ListaDeProveedor\ObtenerLaListaDeProveedoresLN.cs" />
     <Compile Include="Proveedores\RegistrarProveedor\RegistrarProveedorLN.cs" />
+    <Compile Include="Rol\EditarRol\EditarRolLN.cs" />
+    <Compile Include="Rol\ElimianarRol\EliminarRolLN.cs" />
+    <Compile Include="Rol\LisaRol\ObtenerLaListaDeRolesLN.cs" />
+    <Compile Include="Rol\RegistrarRol\RegistrarRolLN.cs" />
+    <Compile Include="Seguridad\PasswordHasher.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

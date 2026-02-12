@@ -14,7 +14,7 @@ namespace BeautyGlam.AccesoADatos
         {
             Database.SetInitializer<Contexto>(null);
         }
-
+        public DbSet<UsuarioAD> Usuario { get; set; }
         public DbSet<ProveedorAD> Proveedor { get; set; }
         public DbSet<CategoriaAD> Categoria { get; set; }
         public DbSet<MarcaAD> Marca { get; set; }
@@ -23,6 +23,7 @@ namespace BeautyGlam.AccesoADatos
 
         public DbSet<MovimientoInventarioAD> Movimiento { get; set; }
 
+        public DbSet<RolAD> Rol { get; set; }
 
 
 
