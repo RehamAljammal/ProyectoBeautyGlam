@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A4800167-45C8-4781-B2AA-50E9BFCC6BFE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BeautyGlam.Abstracciones</RootNamespace>
+    <AssemblyName>BeautyGlam.Abstracciones</AssemblyName>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccesoADatos\Categoria\DetallesCategoria\IDetallesCategoriaAD.cs" />
+    <Compile Include="AccesoADatos\Categoria\EditarCategoria\IEditarCategoriaAD.cs" />
+    <Compile Include="AccesoADatos\Categoria\EliminarCategoria\IEliminarCategoriaAD.cs" />
+    <Compile Include="AccesoADatos\Categoria\ListaCategoria\IObtenerListaDeCategoriasAD.cs" />
+    <Compile Include="AccesoADatos\Categoria\RegistrarCategoria\IRegistrarCategoriaAD.cs" />
+    <Compile Include="AccesoADatos\Inventario\EditarStockActual\IEditarStockActualAD.cs" />
+    <Compile Include="AccesoADatos\Inventario\EditarStock\IEditarStockAD.cs" />
+    <Compile Include="AccesoADatos\Inventario\ListaDeInventario\IObtenerListaDeInventarioAD.cs" />
+    <Compile Include="AccesoADatos\Inventario\Movimiento\ListaDeMovimientos\IObtenerMovimientosAD.cs" />
+    <Compile Include="AccesoADatos\Inventario\RegistrarInventario\IRegistrarInventarioAD.cs" />
+    <Compile Include="AccesoADatos\Marca\DetallesMarca\IDetallesMarcaAD.cs" />
+    <Compile Include="AccesoADatos\Marca\EditarMarca\IEditarMarcaAD.cs" />
+    <Compile Include="AccesoADatos\Marca\EliminarMarca\IEliminarMarcaAD.cs" />
+    <Compile Include="AccesoADatos\Marca\ListaDeMarca\IObtenerListaDeMarcaAD.cs" />
+    <Compile Include="AccesoADatos\Marca\RegistrarMarca\IRegistrarMarcaAD.cs" />
+    <Compile Include="AccesoADatos\Producto\DetallesProducto\IDetallesProductoAD.cs" />
+    <Compile Include="AccesoADatos\Producto\EditarProducto\IEditarProductoAD.cs" />
+    <Compile Include="AccesoADatos\Producto\EliminarProducto\IEliminarProductoAD.cs" />
+    <Compile Include="AccesoADatos\Producto\ListaProducto\IObtenerListaDeProductosAD.cs" />
+    <Compile Include="AccesoADatos\Producto\RegistrarProducto\IRegistrarProductoAD.cs" />
+    <Compile Include="AccesoADatos\Promociones\EditarPromociones\IEditarPromocionesAD.cs" />
+    <Compile Include="AccesoADatos\Promociones\EliminarPromociones\IEliminarPromocionesAD.cs" />
+    <Compile Include="AccesoADatos\Promociones\ListaPromociones\IObtenerListaDePromocionesAD.cs" />
+    <Compile Include="AccesoADatos\Promociones\RegistrarPromociones\IRegistrarPromocionesAD.cs" />
+    <Compile Include="AccesoADatos\Proveedores\DetallesDeProveedor\IDetallesProveedorAD.cs" />
+    <Compile Include="AccesoADatos\Proveedores\EditarProveedores\IEditarProveedorAD.cs" />
+    <Compile Include="AccesoADatos\Proveedores\EliminarProveedor\IEliminarProveedorAD.cs" />
+    <Compile Include="AccesoADatos\Proveedores\ListaDeProveedor\IObtenerListaDeProveedoresAD.cs" />
+    <Compile Include="AccesoADatos\Proveedores\RegistrarProveedor\IRegistrarProveedorAD.cs" />
+    <Compile Include="LogicaDeNegocio\Categoria\DetallesCategoria\IDetallesCategoriaLN.cs" />
+    <Compile Include="LogicaDeNegocio\Categoria\EditarCategoria\IEditarCategoriaLN.cs" />
+    <Compile Include="LogicaDeNegocio\Categoria\EliminarCategoria\IEliminarCategoriaLN.cs" />
+    <Compile Include="LogicaDeNegocio\Categoria\ListaCategoria\IObtenerLaListaDeCategoriasLN.cs" />
+    <Compile Include="LogicaDeNegocio\Categoria\RegistrarCategoria\IRegistrarCategoriaLN.cs" />
+    <Compile Include="LogicaDeNegocio\Inventario\EditarStockActual\IEditarStockActualLN.cs" />
+    <Compile Include="LogicaDeNegocio\Inventario\EditarStock\IEditarStockLN.cs" />
+    <Compile Include="LogicaDeNegocio\Inventario\ListaDeInventario\IObtenerListaDeInventarioLN.cs" />
+    <Compile Include="LogicaDeNegocio\Inventario\Movimiento\ListaDeMovimientos\IObtenerListaDeMovimientosLN.cs" />
+    <Compile Include="LogicaDeNegocio\Marca\DetallesMarca\IDetallesMarcaLN.cs" />
+    <Compile Include="LogicaDeNegocio\Marca\EditarMarca\IEditarMarcaLN.cs" />
+    <Compile Include="LogicaDeNegocio\Marca\EliminarMarca\IEliminarMarcaLN.cs" />
+    <Compile Include="LogicaDeNegocio\Marca\ListaDeMarca\IObtenerListaDeMarcaLN.cs" />
+    <Compile Include="LogicaDeNegocio\Marca\RegistrarMarca\IRegistrarMarcaLN.cs" />
+    <Compile Include="LogicaDeNegocio\Producto\DetallesProducto\IDetallesProductoLN.cs" />
+    <Compile Include="LogicaDeNegocio\Producto\EditarProducto\IEditarProductoLN.cs" />
+    <Compile Include="LogicaDeNegocio\Producto\EliminarProducto\IEliminarProductoLN.cs" />
+    <Compile Include="LogicaDeNegocio\Producto\ListaProducto\IObtenerLaListadeProductosLN.cs" />
+    <Compile Include="LogicaDeNegocio\Producto\RegistrarProducto\IRegistrarProductoLN.cs" />
+    <Compile Include="LogicaDeNegocio\Promociones\EditarPromociones\IEditarpromocionesLN.cs" />
+    <Compile Include="LogicaDeNegocio\Promociones\EliminarPromociones\IEliminarPromocionesLN.cs" />
+    <Compile Include="LogicaDeNegocio\Promociones\ListaPromociones\IObtenerListaDePromocionesLN.cs" />
+    <Compile Include="LogicaDeNegocio\Promociones\RegistrarPromociones\IRegistrarPromocionesLN.cs" />
+    <Compile Include="LogicaDeNegocio\Proveedores\DetallesDeProveedor\IDetallesProveedorLN.cs" />
+    <Compile Include="LogicaDeNegocio\Proveedores\EditarProveedores\IEditarProveedorLN.cs" />
+    <Compile Include="LogicaDeNegocio\Proveedores\EliminarProveedor\IEliminarProveedorLN.cs" />
+    <Compile Include="LogicaDeNegocio\Proveedores\ListaDeProveedor\IObtenerLaListaDeProveedoresLN.cs" />
+    <Compile Include="LogicaDeNegocio\Proveedores\RegistrarProveedor\IRegistrarProveedorLN.cs" />
+    <Compile Include="ModelosParaUI\CategoriasDto.cs" />
+    <Compile Include="ModelosParaUI\InventarioAvanzadoDto.cs" />
+    <Compile Include="ModelosParaUI\InventarioDto.cs" />
+    <Compile Include="ModelosParaUI\MarcaDto.cs" />
+    <Compile Include="ModelosParaUI\MovimientoInventarioDto.cs" />
+    <Compile Include="ModelosParaUI\ProductosDto.cs" />
+    <Compile Include="ModelosParaUI\PromocionesDto.cs" />
+    <Compile Include="ModelosParaUI\ProveedoresDto.cs" />
+    <Compile Include="ModelosParaUI\UsuarioDto.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

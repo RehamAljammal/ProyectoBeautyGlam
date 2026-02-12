@@ -1,0 +1,95 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.PromocionesDTO
+
+@{
+    ViewBag.Title = "Eliminar Promoción";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space sup-page">
+    <div class="container sup-container">
+
+        <div class="sup-header">
+            <h2 class="sup-title">Eliminar Promoción</h2>
+            <p class="sup-subtitle">Esta acción no se puede deshacer 🥺</p>
+        </div>
+
+        <div class="sup-card" style="max-width:820px; margin:0 auto;">
+            <div class="sup-card-head">
+                <span class="sup-badge">Confirmación</span>
+
+                <a href="@Url.Action("ListaDePromociones","Promociones")"
+                   class="sup-btn sup-btn-soft">
+                    Volver
+                </a>
+            </div>
+
+            <div class="p-4">
+
+                <div class="row g-3">
+
+                    <!-- Título -->
+                    <div class="col-md-6">
+                        <div class="p-3 rounded-4"
+                             style="border:1px solid #f3eaf5; background:#fff;">
+                            <div class="small" style="color:#8b7a97; font-weight:800;">Título</div>
+                            <div style="color:#6b4c7a; font-weight:800;">
+                                @Model.titulo
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fechas -->
+                    <div class="col-md-6">
+                        <div class="p-3 rounded-4"
+                             style="border:1px solid #f3eaf5; background:#fff;">
+                            <div class="small" style="color:#8b7a97; font-weight:800;">Vigencia</div>
+                            <div style="color:#6b4c7a; font-weight:800;">
+                                @Model.fecha_Inicio.ToString("dd/MM/yyyy")
+                                -
+                                @Model.fecha_Fin.ToString("dd/MM/yyyy")
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Descripción -->
+                    <div class="col-12">
+                        <div class="p-3 rounded-4"
+                             style="border:1px solid #f3eaf5; background:#fff;">
+                            <div class="small" style="color:#8b7a97; font-weight:800;">Descripción</div>
+                            <div style="color:#6b4c7a; font-weight:800;">
+                                @Model.descripcion
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Estado -->
+                    <div class="col-12">
+                        <div class="p-3 rounded-4 d-flex align-items-center justify-content-between"
+                             style="border:1px solid #f3eaf5; background:linear-gradient(135deg,#fff0f6,#f1f0ff,#f0fff8);">
+                            <div style="color:#6b4c7a; font-weight:900;">Estado</div>
+                            <span class="sup-chip @(Model.estado ? "sup-chip-ok" : "sup-chip-off")">
+                                @(Model.estado ? "Activo" : "Inactivo")
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+
+                @using (Html.BeginForm("EliminarPromociones", "Promociones", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(m => m.id_Promocion)
+
+                    <div class="d-flex justify-content-end gap-2 mt-4">
+
+                        <button type="submit" class="sup-btn sup-btn-danger">
+                            Desactivar 🗑️
+                        </button>
+                    </div>
+                }
+
+            </div>
+        </div>
+
+    </div>
+</section>

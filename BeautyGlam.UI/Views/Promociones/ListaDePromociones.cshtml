@@ -1,0 +1,95 @@
+﻿@model IEnumerable<BeautyGlam.Abstracciones.ModelosParaUI.PromocionesDTO>
+
+@{
+    ViewBag.Title = "Promociones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space promo-page">
+    <div class="container promo-container">
+
+        <div class="promo-header">
+            <h2 class="promo-title">Promociones</h2>
+            <p class="promo-subtitle">Controla tus descuentos 💖</p>
+        </div>
+
+        <div class="promo-card">
+            <div class="promo-card-head">
+                <div>
+                    <span class="promo-badge">Listado</span>
+                </div>
+
+                <a href="@Url.Action("CrearPromociones","Promociones")" class="promo-btn">
+                    + Nueva Promoción
+                </a>
+            </div>
+
+            <div class="promo-table-wrap table-responsive">
+                <table class="table table-striped align-middle promo-table">
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Descripción</th>
+                            <th>Vigencia</th>
+                            <th>Estado</th>
+                            <th class="text-end" style="width:300px;">Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <strong style="color:#5c3b6f;">
+                                        @item.titulo
+                                    </strong>
+                                </td>
+
+                                <td>
+                                    @item.descripcion
+                                </td>
+
+                                <td>
+                                    @item.fecha_Inicio.ToString("dd/MM/yyyy")
+                                    -
+                                    @item.fecha_Fin.ToString("dd/MM/yyyy")
+                                </td>
+
+                                <td>
+                                    @if (item.estado)
+                                    {
+                                        <span class="promo-chip promo-chip-ok">Activo</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="promo-chip promo-chip-off">Inactivo</span>
+                                    }
+                                </td>
+
+                                <td class="text-end">
+                                    <div class="promo-actions">
+
+                                        <a href="@Url.Action("EditarPromociones","Promociones", new { id = item.id_Promocion })"
+                                           class="promo-btn promo-btn-outline promo-btn-sm">
+                                            Editar ✏️
+                                        </a>
+
+                                        <a href="@Url.Action("EliminarPromociones","Promociones", new { id = item.id_Promocion })"
+                                           class="promo-btn promo-btn-danger promo-btn-sm">
+                                            Desactivar 🗑️
+                                        </a>
+
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+</section>

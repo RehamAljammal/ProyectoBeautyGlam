@@ -495,7 +495,36 @@
     <Content Include="Views\BlogBelleza\Editar.cshtml" />
     <Content Include="Views\BlogBelleza\Detalle.cshtml" />
     <Content Include="Views\Reportes\Index.cshtml" />
-    <Content Include="Views\Promociones\Index.cshtml" />
+    <Content Include="Views\Promociones\ListaDePromociones.cshtml" />
+    <Content Include="Views\Proveedores\ListaDeProveedores.cshtml" />
+    <Content Include="Views\Proveedores\DetallesDelProveedor.cshtml" />
+    <Content Include="Views\Proveedores\CrearProveedor.cshtml" />
+    <Content Include="Views\Proveedores\EditarProveedor.cshtml" />
+    <Content Include="Views\Proveedores\EliminarProveedor.cshtml" />
+    <Content Include="Views\Categorias\ListaDeCategorias.cshtml" />
+    <Content Include="Views\Categorias\DetalleCategoria.cshtml" />
+    <Content Include="Views\Categorias\CrearCategoria.cshtml" />
+    <Content Include="Views\Categorias\EditarCategoria.cshtml" />
+    <Content Include="Views\Categorias\EliminarCategoria.cshtml" />
+    <Content Include="Views\Marca\ListaDeMarcas.cshtml" />
+    <Content Include="Views\Marca\DetallesMarca.cshtml" />
+    <Content Include="Views\Marca\CrearMarca.cshtml" />
+    <Content Include="Views\Marca\EditarMarca.cshtml" />
+    <Content Include="Views\Marca\EliminarMarca.cshtml" />
+    <Content Include="Views\Productos\ListaDeProductos.cshtml" />
+    <Content Include="Views\Productos\DetallesDelProducto.cshtml" />
+    <Content Include="Views\Productos\CrearProducto.cshtml" />
+    <Content Include="Views\Productos\EditarProducto.cshtml" />
+    <Content Include="Views\Productos\EliminarProducto.cshtml" />
+    <Content Include="Views\Inventario\ListaDeInventario.cshtml" />
+    <Content Include="Views\Inventario\EditarStockActual.cshtml" />
+    <Content Include="Views\Inventario\EditarStock.cshtml" />
+    <Content Include="Views\Inventario\MovimientosI.cshtml" />
+    <Content Include="Views\Catalogo\Detalle.cshtml" />
+    <Content Include="Views\GuiaR\Index.cshtml" />
+    <Content Include="Views\Promociones\CrearPromociones.cshtml" />
+    <Content Include="Views\Promociones\EditarPromociones.cshtml" />
+    <Content Include="Views\Promociones\EliminarPromociones.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
