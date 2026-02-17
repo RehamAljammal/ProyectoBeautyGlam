@@ -1,0 +1,200 @@
+﻿@model IEnumerable<BeautyGlam.Abstracciones.ModelosParaUI.RolDto>
+
+@{
+    ViewBag.Title = "Lista de Roles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space roles-page">
+    <div class="container roles-container">
+
+        <div class="roles-top">
+            <div>
+                <h2 class="roles-title">Roles del Sistema</h2>
+                <p class="roles-subtitle">Gestiona roles de forma rápida ✨</p>
+            </div>
+
+            <a href="@Url.Action("CrearRol","Rol")" class="btn roles-btn">
+                + Crear Rol
+            </a>
+        </div>
+
+        <div class="roles-card">
+            <div class="table-responsive">
+                <table class="table roles-table align-middle">
+                    <thead>
+                        <tr>
+                            <th style="width:90px;">ID</th>
+                            <th>Rol</th>
+                            <th>Estado</th>
+                            <th class="text-end" style="width: 260px;">Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (BeautyGlam.Abstracciones.ModelosParaUI.RolDto item in Model)
+                        {
+                            <tr>
+                                <td class="text-muted">@item.id_Rol</td>
+
+                                <td>
+                                    <strong class="roles-strong">@item.nombre_Rol</strong>
+                                </td>
+
+                                <td>
+                                    @if (item.estado)
+                                    {
+                                        <span class="roles-pill roles-pill-edit">Activo ✅</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="roles-pill roles-pill-perm">Inactivo ⛔</span>
+                                    }
+                                </td>
+
+                                <td class="text-end">
+                                    <div class="roles-actions">
+                                        <a href="@Url.Action("EditarRol","Rol", new { id = item.id_Rol })"
+                                           class="roles-pill roles-pill-edit">
+                                            Editar ✏️
+                                        </a>
+
+                                        <a href="@Url.Action("EliminarRol","Rol", new { id = item.id_Rol })"
+                                           class="roles-pill roles-pill-perm">
+                                            Eliminar 🗑️
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+
+        @if (Model == null || Model.Any() == false)
+        {
+            <div class="text-center mt-4" style="color:#6b4c7a;font-weight:800;">
+                No hay roles registrados 😢
+            </div>
+        }
+
+    </div>
+</section>
+
+<style>
+    .roles-container {
+        max-width: 1120px;
+        margin: 0 auto;
+    }
+
+    .roles-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 22px;
+        flex-wrap: wrap;
+        gap: 14px;
+    }
+
+    .roles-title {
+        font-weight: 900;
+        color: #5c3b6f;
+        margin: 0;
+        letter-spacing: -0.02em;
+    }
+
+    .roles-subtitle {
+        font-weight: 600;
+        color: #7c6b88;
+        margin: 0;
+    }
+
+    .roles-btn {
+        padding: 10px 18px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #ffb7d5, #cdb7ff, #b9f0e2);
+        font-weight: 900;
+        border: none;
+        color: #4b2b4b;
+        box-shadow: 0 14px 32px rgba(200,150,220,.35);
+        transition: .2s ease;
+        text-decoration: none;
+    }
+
+        .roles-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 44px rgba(200,150,220,.45);
+        }
+
+    .roles-card {
+        background: #fff;
+        border: 1px solid #f2e6f3;
+        border-radius: 26px;
+        box-shadow: 0 20px 45px rgba(180,120,180,.12);
+        overflow: hidden;
+    }
+
+    .roles-table thead tr {
+        background: linear-gradient(90deg, #fff7e1, #ffe4ef, #e6f6ff);
+    }
+
+    .roles-table th {
+        border-bottom: none;
+        color: #5c3b6f;
+        font-weight: 900;
+        font-size: 14px;
+    }
+
+    .roles-table td {
+        border-color: #f2e6f3;
+        padding: 12px 16px;
+    }
+
+    .roles-strong {
+        color: #4b2b4b;
+        font-weight: 800;
+    }
+
+    .roles-actions {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: nowrap;
+    }
+
+    .roles-pill {
+        padding: 6px 16px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 800;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        border: 1px solid transparent;
+        box-shadow: 0 10px 24px rgba(180,120,180,.18);
+        text-decoration: none;
+        white-space: nowrap;
+        transition: .2s ease;
+    }
+
+    .roles-pill-edit {
+        background: #f1f0ff;
+        border-color: #cdb7ff;
+        color: #5c3b6f;
+    }
+
+    .roles-pill-perm {
+        background: #fff3c9;
+        border-color: #ffe7a8;
+        color: #8a6d1d;
+    }
+
+    .roles-pill:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 14px 32px rgba(180,120,180,.25);
+        opacity: .95;
+    }
+</style>

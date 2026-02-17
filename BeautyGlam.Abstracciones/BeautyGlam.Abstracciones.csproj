@@ -47,6 +47,9 @@
     <Compile Include="AccesoADatos\Categoria\EliminarCategoria\IEliminarCategoriaAD.cs" />
     <Compile Include="AccesoADatos\Categoria\ListaCategoria\IObtenerListaDeCategoriasAD.cs" />
     <Compile Include="AccesoADatos\Categoria\RegistrarCategoria\IRegistrarCategoriaAD.cs" />
+
+    <Compile Include="AccesoADatos\Email\IEmailServicioAD.cs" />
+
     <Compile Include="AccesoADatos\Inventario\EditarStockActual\IEditarStockActualAD.cs" />
     <Compile Include="AccesoADatos\Inventario\EditarStock\IEditarStockAD.cs" />
     <Compile Include="AccesoADatos\Inventario\ListaDeInventario\IObtenerListaDeInventarioAD.cs" />
@@ -62,20 +65,38 @@
     <Compile Include="AccesoADatos\Producto\EliminarProducto\IEliminarProductoAD.cs" />
     <Compile Include="AccesoADatos\Producto\ListaProducto\IObtenerListaDeProductosAD.cs" />
     <Compile Include="AccesoADatos\Producto\RegistrarProducto\IRegistrarProductoAD.cs" />
+
     <Compile Include="AccesoADatos\Promociones\EditarPromociones\IEditarPromocionesAD.cs" />
     <Compile Include="AccesoADatos\Promociones\EliminarPromociones\IEliminarPromocionesAD.cs" />
     <Compile Include="AccesoADatos\Promociones\ListaPromociones\IObtenerListaDePromocionesAD.cs" />
     <Compile Include="AccesoADatos\Promociones\RegistrarPromociones\IRegistrarPromocionesAD.cs" />
+
     <Compile Include="AccesoADatos\Proveedores\DetallesDeProveedor\IDetallesProveedorAD.cs" />
     <Compile Include="AccesoADatos\Proveedores\EditarProveedores\IEditarProveedorAD.cs" />
     <Compile Include="AccesoADatos\Proveedores\EliminarProveedor\IEliminarProveedorAD.cs" />
     <Compile Include="AccesoADatos\Proveedores\ListaDeProveedor\IObtenerListaDeProveedoresAD.cs" />
     <Compile Include="AccesoADatos\Proveedores\RegistrarProveedor\IRegistrarProveedorAD.cs" />
+
+    <Compile Include="AccesoADatos\Recuperacion\IRecuperacionContrasenaAD.cs" />
+    <Compile Include="AccesoADatos\Recuperacion\IUsuarioRecuperacionAD.cs" />
+    <Compile Include="AccesoADatos\Rol\EditarRol\IEditarRolAD.cs" />
+    <Compile Include="AccesoADatos\Rol\ElimianarRol\IEliminarRolAD.cs" />
+    <Compile Include="AccesoADatos\Rol\LisaRol\IObtenerListaDeRolesAD.cs" />
+    <Compile Include="AccesoADatos\Rol\RegistrarRol\IRegistrarRolAD.cs" />
+    <Compile Include="AccesoADatos\Usuarios\CambiarEstadoUsuario\IActualizarEstadoUsuarioAD.cs" />
+    <Compile Include="AccesoADatos\Usuarios\EditarUsuario\IEditarUsuarioAD.cs" />
+    <Compile Include="AccesoADatos\Usuarios\LisaUsuario\IObtenerListaDeUsuariosAD.cs" />
+    <Compile Include="AccesoADatos\Usuarios\ObtenerUsuarioPorId\IObtenerUsuarioPorIdAD.cs" />
+    <Compile Include="AccesoADatos\Usuarios\RegistrarUsuario\IRegistrarUsuarioAD.cs" />
+
     <Compile Include="LogicaDeNegocio\Categoria\DetallesCategoria\IDetallesCategoriaLN.cs" />
     <Compile Include="LogicaDeNegocio\Categoria\EditarCategoria\IEditarCategoriaLN.cs" />
     <Compile Include="LogicaDeNegocio\Categoria\EliminarCategoria\IEliminarCategoriaLN.cs" />
     <Compile Include="LogicaDeNegocio\Categoria\ListaCategoria\IObtenerLaListaDeCategoriasLN.cs" />
     <Compile Include="LogicaDeNegocio\Categoria\RegistrarCategoria\IRegistrarCategoriaLN.cs" />
+
+    <Compile Include="LogicaDeNegocio\Email\IEmailLN.cs" />
+
     <Compile Include="LogicaDeNegocio\Inventario\EditarStockActual\IEditarStockActualLN.cs" />
     <Compile Include="LogicaDeNegocio\Inventario\EditarStock\IEditarStockLN.cs" />
     <Compile Include="LogicaDeNegocio\Inventario\ListaDeInventario\IObtenerListaDeInventarioLN.cs" />
@@ -90,15 +111,18 @@
     <Compile Include="LogicaDeNegocio\Producto\EliminarProducto\IEliminarProductoLN.cs" />
     <Compile Include="LogicaDeNegocio\Producto\ListaProducto\IObtenerLaListadeProductosLN.cs" />
     <Compile Include="LogicaDeNegocio\Producto\RegistrarProducto\IRegistrarProductoLN.cs" />
+
     <Compile Include="LogicaDeNegocio\Promociones\EditarPromociones\IEditarpromocionesLN.cs" />
     <Compile Include="LogicaDeNegocio\Promociones\EliminarPromociones\IEliminarPromocionesLN.cs" />
     <Compile Include="LogicaDeNegocio\Promociones\ListaPromociones\IObtenerListaDePromocionesLN.cs" />
     <Compile Include="LogicaDeNegocio\Promociones\RegistrarPromociones\IRegistrarPromocionesLN.cs" />
+
     <Compile Include="LogicaDeNegocio\Proveedores\DetallesDeProveedor\IDetallesProveedorLN.cs" />
     <Compile Include="LogicaDeNegocio\Proveedores\EditarProveedores\IEditarProveedorLN.cs" />
     <Compile Include="LogicaDeNegocio\Proveedores\EliminarProveedor\IEliminarProveedorLN.cs" />
     <Compile Include="LogicaDeNegocio\Proveedores\ListaDeProveedor\IObtenerLaListaDeProveedoresLN.cs" />
     <Compile Include="LogicaDeNegocio\Proveedores\RegistrarProveedor\IRegistrarProveedorLN.cs" />
+
     <Compile Include="ModelosParaUI\CategoriasDto.cs" />
     <Compile Include="ModelosParaUI\InventarioAvanzadoDto.cs" />
     <Compile Include="ModelosParaUI\InventarioDto.cs" />
@@ -107,6 +131,33 @@
     <Compile Include="ModelosParaUI\ProductosDto.cs" />
     <Compile Include="ModelosParaUI\PromocionesDto.cs" />
     <Compile Include="ModelosParaUI\ProveedoresDto.cs" />
+
+    <Compile Include="LogicaDeNegocio\Recuperacion\IRecuperacionContrasenaLN.cs" />
+    <Compile Include="LogicaDeNegocio\Rol\EditarRol\IEditarRolLN.cs" />
+    <Compile Include="LogicaDeNegocio\Rol\ElimianarRol\IEliminarRolLN.cs" />
+    <Compile Include="LogicaDeNegocio\Rol\LisaRol\IObtenerLaListaDeRolesLN.cs" />
+    <Compile Include="LogicaDeNegocio\Rol\RegistrarRol\IRegistrarRolLN.cs" />
+    <Compile Include="LogicaDeNegocio\Usuarios\CambiarEstadoUsuario\IActualizarEstadoUsuarioLN.cs" />
+    <Compile Include="LogicaDeNegocio\Usuarios\EditarUsuario\IEditarUsuarioLN.cs" />
+    <Compile Include="LogicaDeNegocio\Usuarios\ListaUsuario\IObtenerLaListaDeUsuariosLN.cs" />
+    <Compile Include="LogicaDeNegocio\Usuarios\RegistrarUsuario\IRegistrarUsuarioLN.cs" />
+    <Compile Include="ModelosParaUI\CategoriasDto.cs" />
+    <Compile Include="ModelosParaUI\InventarioAvanzadoDto.cs" />
+    <Compile Include="ModelosParaUI\InventarioDto.cs" />
+    <Compile Include="ModelosParaUI\LoginDto.cs" />
+    <Compile Include="ModelosParaUI\MarcaDto.cs" />
+    <Compile Include="ModelosParaUI\MovimientoInventarioDto.cs" />
+    <Compile Include="ModelosParaUI\PasswordResetDto.cs" />
+    <Compile Include="ModelosParaUI\ProductosDto.cs" />
+    <Compile Include="ModelosParaUI\ProveedoresDto.cs" />
+    <Compile Include="ModelosParaUI\RecuperarContrasenaDTO.cs" />
+    <Compile Include="ModelosParaUI\RegisterDto.cs" />
+    <Compile Include="ModelosParaUI\ResetVigenteDTO.cs" />
+    <Compile Include="ModelosParaUI\RestablecerContrasenaDTO.cs" />
+    <Compile Include="ModelosParaUI\RolDto.cs" />
+    <Compile Include="ModelosParaUI\UsuarioAuthDto.cs" />
+    <Compile Include="ModelosParaUI\UsuarioCrearDto.cs" />
+
     <Compile Include="ModelosParaUI\UsuarioDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

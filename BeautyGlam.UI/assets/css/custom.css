@@ -1,3 +1,4 @@
+
 /* =========================
    AUTH / LOGIN – CUTE PASTEL
    ========================= */
@@ -103,12 +104,13 @@
     border-radius: 16px;
     font-weight: 800;
     letter-spacing: .3px;
-    background: linear-gradient(135deg, #ffb7d5, #cdb7ff, #b9f0e2);
+    background: #cdb7ff; /* 💜 lila liso */
     color: #4b2b4b;
     box-shadow: 0 14px 35px rgba(200, 150, 220, .35);
     border: none;
     transition: transform .15s ease, box-shadow .15s ease;
 }
+
 
     .auth-btn:hover {
         transform: translateY(-2px);
@@ -4186,3 +4188,129 @@
     border: 1px solid #ffe7a8;
     color: #8a6d1d;
 }
+
+.is-invalid {
+    border-color: #dc3545;
+}
+
+
+/* =========================
+   CATÁLOGO – IMÁGENES UNIFORMES
+   ========================= */
+
+.cat-img-wrap {
+    width: 100%;
+    height: 260px; 
+    overflow: hidden;
+    position: relative;
+}
+
+.cat-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/*NAV BAR*/
+/* ===== FIX SUBMENU HOVER ===== */
+.has-submenu {
+    position: relative;
+}
+
+    .has-submenu > .submenu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        display: none;
+        z-index: 1000;
+        background: #fff;
+    }
+
+    .has-submenu:hover > .submenu {
+        display: block;
+    }
+
+    .has-submenu > a {
+        display: block;
+        padding: 16px 22px;
+    }
+
+
+    /*Mejoras para pagina principal*/
+
+.widget-logo img {
+    max-width: 170px;
+    height: auto;
+    transition: transform 0.25s ease;
+}
+
+    .widget-logo img:hover {
+        transform: scale(1.03);
+    }
+
+.main-nav > li > a {
+    font-weight: 500;
+    padding: 18px 20px;
+    color: #3a3a3a;
+}
+
+    .main-nav > li > a:hover {
+        color: #c06cab; /* rosado elegante */
+    }
+
+.submenu {
+    border-radius: 10px;
+    box-shadow: 0 18px 40px rgba(0,0,0,.12);
+    padding: 10px 0;
+}
+
+    .submenu li a {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+.sticky-header {
+    background: #fff;
+    box-shadow: 0 10px 25px rgba(0,0,0,.08);
+    z-index: 999;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #fafafa;
+    color: #333;
+}
+
+.wrapper {
+    min-height: 100vh;
+}
+
+.footer-area {
+    background: #111;
+    color: #ccc;
+}
+
+    .footer-area a {
+        color: #ccc;
+    }
+
+        .footer-area a:hover {
+            color: #c06cab;
+        }
+
+.main-nav li a.active {
+    color: #c06cab;
+    font-weight: 600;
+}
+/* Override SOLO color, nada más */
+.auth-btn {
+    background: #cdb7ff !important; /* lila liso */
+    background-image: none !important; /* quita degradado */
+    color: #4b2b4b !important;
+}
+
+    /* Hover igual de limpio */
+    .auth-btn:hover {
+        background: #b9a6f5 !important;
+        color: #4b2b4b !important;
+    }
