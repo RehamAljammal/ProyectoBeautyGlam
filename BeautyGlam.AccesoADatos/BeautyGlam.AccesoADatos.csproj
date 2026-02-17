@@ -72,6 +72,8 @@
     <Compile Include="Email\EmailServicioAD.cs" />
 
     <Compile Include="Entidades\CategoriaAD.cs" />
+    <Compile Include="Entidades\GuiaProductoAD.cs" />
+    <Compile Include="Entidades\GuiaRegaloAD.cs" />
     <Compile Include="Entidades\InventarioAD.cs" />
     <Compile Include="Entidades\MarcaAD.cs" />
     <Compile Include="Entidades\MovimientoInventarioAD.cs" />
@@ -86,6 +88,11 @@
     <Compile Include="Entidades\RolAD.cs" />
 
     <Compile Include="Entidades\UsuarioAD.cs" />
+    <Compile Include="GuiaRegalo\EditarRegalo\EditarGuiaRegaloAD.cs" />
+    <Compile Include="GuiaRegalo\EliminarRegalo\EliminarGuiaRegaloAD.cs" />
+    <Compile Include="GuiaRegalo\ObtenerGuiaRegaloAD.cs" />
+    <Compile Include="GuiaRegalo\ObtenerProductosParaGuiaAD\ObtenerProductosParaGuiaAD.cs" />
+    <Compile Include="GuiaRegalo\RegistrarRegalo\RegistrarGuiaRegaloAD.cs" />
     <Compile Include="Inventario\EditarStockActual\EditarStockActualAD.cs" />
     <Compile Include="Inventario\EditarStock\EditarStockAD.cs" />
     <Compile Include="Inventario\ListaDeInventario\ObtenerListaDeInventarioAD.cs" />
