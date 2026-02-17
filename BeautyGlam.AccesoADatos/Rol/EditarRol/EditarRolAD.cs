@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BeautyGlam.AccesoADatos.Rol.EditarRol
 {
-    public class EditarRolAD : IEditarRolAD
+    public class EditarRolAD : IEditarUsuarioAD
     {
         private readonly Contexto _elContexto;
 

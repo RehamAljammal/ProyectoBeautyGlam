@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace BeautyGlam.Abstracciones.AccesoADatos.Rol.EditarRol
 {
-    public interface IEditarRolAD
+    public interface IEditarUsuarioAD
     {
         Task<int> Editar(RolDto elRolParaGuardar);
         Task<RolDto> ObtenerPorId(int id);

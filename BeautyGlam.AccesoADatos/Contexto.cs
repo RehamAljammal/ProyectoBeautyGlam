@@ -20,6 +20,8 @@ namespace BeautyGlam.AccesoADatos
         public DbSet<MarcaAD> Marca { get; set; }
         public DbSet<ProductoAD> Producto { get; set; }
         public DbSet<InventarioAD> Inventario { get; set; }
+        public DbSet<PasswordResetAD> PasswordReset { get; set; }
+
 
         public DbSet<MovimientoInventarioAD> Movimiento { get; set; }
 

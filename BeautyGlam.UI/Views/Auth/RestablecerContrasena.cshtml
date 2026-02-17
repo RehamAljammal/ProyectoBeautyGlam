@@ -1,0 +1,136 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.RestablecerContrasenaDTO
+
+@{
+    ViewBag.Title = "Restablecer contraseña";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="main-content auth-page">
+
+    <section class="page-header-area pt-10 pb-9 auth-header" data-bg-color="#DFE4FF">
+        <div class="container text-center">
+            <h2 class="page-header-title auth-title">Restablecer contraseña</h2>
+            <p class="auth-subtitle mb-0">Crea una nueva contraseña para tu cuenta</p>
+        </div>
+    </section>
+
+    <section class="section-space">
+        <div class="container">
+
+            <div class="auth-card mx-auto">
+                <div class="auth-card-head">
+                    <span class="auth-badge">Seguridad</span>
+                    <h3 class="auth-card-title mb-1">Nueva contraseña</h3>
+                    <p class="auth-card-desc mb-0">Asegúrate de que sea segura y fácil de recordar.</p>
+                </div>
+
+                @if (TempData["Msg"] != null)
+                {
+                    <div class="alert alert-success mt-3">
+                        @TempData["Msg"]
+                    </div>
+                }
+
+                @using (Html.BeginForm("RestablecerContrasena", "Auth", FormMethod.Post, new { @class = "auth-form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    @* ✅ CLAVE: que el token llegue al POST *@
+                    @Html.HiddenFor(m => m.token)
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.nuevaContrasena, new { @class = "form-label auth-label" })
+
+                        <div class="position-relative">
+                            @Html.PasswordFor(m => m.nuevaContrasena, new
+                            {
+                                @class = "form-control auth-input",
+                                placeholder = "Nueva contraseña",
+                                autocomplete = "new-password",
+                                id = "NuevaContrasena"
+                            })
+
+                            <button type="button" class="auth-eye-btn" onclick="togglePassword('NuevaContrasena', this)">
+                                👁️
+                            </button>
+                        </div>
+
+                        @Html.ValidationMessageFor(m => m.nuevaContrasena, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.confirmarContrasena, new { @class = "form-label auth-label" })
+
+                        <div class="position-relative">
+                            @Html.PasswordFor(m => m.confirmarContrasena, new
+                            {
+                                @class = "form-control auth-input",
+                                placeholder = "Confirmar contraseña",
+                                autocomplete = "new-password",
+                                id = "ConfirmarContrasena"
+                            })
+
+                            <button type="button" class="auth-eye-btn" onclick="togglePassword('ConfirmarContrasena', this)">
+                                👁️
+                            </button>
+                        </div>
+
+                        @Html.ValidationMessageFor(m => m.confirmarContrasena, "", new { @class = "text-danger" })
+                    </div>
+
+                    <button type="submit" class="btn auth-btn w-100 py-2 mb-3">
+                        Actualizar contraseña
+                    </button>
+
+                    <div class="text-center auth-footer">
+                        <a href="@Url.Action("Login","Auth")" class="auth-link fw-bold">Volver a iniciar sesión</a>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+<style>
+    /* Botón ojito dentro del input */
+    .auth-eye-btn {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        border: 1px solid rgba(205, 183, 255, .7);
+        background: #ffffff;
+        border-radius: 999px;
+        font-weight: 800;
+        padding: 6px 10px;
+        cursor: pointer;
+        box-shadow: 0 10px 24px rgba(180,120,180,.12);
+    }
+
+        .auth-eye-btn:hover {
+            transform: translateY(-50%) scale(1.03);
+            box-shadow: 0 14px 32px rgba(180,120,180,.18);
+        }
+</style>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        function togglePassword(inputId, btn) {
+            var input = document.getElementById(inputId);
+            if (!input) return;
+
+            if (input.type === "password") {
+                input.type = "text";
+                btn.innerText = "🙈";
+            } else {
+                input.type = "password";
+                btn.innerText = "👁️";
+            }
+        }
+    </script>
+}

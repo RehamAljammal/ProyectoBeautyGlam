@@ -1,5 +1,7 @@
 using System;
+using System.Linq;
 using System.Security.Principal;
+using System.Threading;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -22,19 +24,43 @@ namespace BeautyGlam.UI
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
         {
-            HttpCookie cookie = Context.Request.Cookies[FormsAuthentication.FormsCookieName];
+            HttpCookie cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
             if (cookie == null) return;
+            if (string.IsNullOrWhiteSpace(cookie.Value)) return;
 
-            FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(cookie.Value);
+            FormsAuthenticationTicket ticket = null;
+
+            try
+            {
+                ticket = FormsAuthentication.Decrypt(cookie.Value);
+            }
+            catch
+            {
+                return; // cookie dañada / inválida
+            }
+
             if (ticket == null) return;
+            if (ticket.Expired) return;
 
-            string[] roles = new string[1];
-            roles[0] = ticket.UserData;
+            // ticket.Name = correo (lo estás guardando así)
+            // ticket.UserData = rol (ej: "Admin") o "Admin,Inventario"
+            string[] roles = new string[0];
 
-            GenericIdentity identity = new GenericIdentity(ticket.Name);
+            if (string.IsNullOrWhiteSpace(ticket.UserData) == false)
+            {
+                roles = ticket.UserData
+                    .Split(new char[] { ',', ';', '|' }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(r => r.Trim())
+                    .Where(r => r.Length > 0)
+                    .Distinct()
+                    .ToArray();
+            }
+
+            GenericIdentity identity = new GenericIdentity(ticket.Name, "Forms");
             GenericPrincipal principal = new GenericPrincipal(identity, roles);
 
             Context.User = principal;
+            Thread.CurrentPrincipal = principal;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<BeautyGlam.Abstracciones.ModelosParaUI.UsuarioDto>
+
+@{
     ViewBag.Title = "Usuarios";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -76,6 +78,7 @@
         align-items: center;
         gap: 8px;
         text-decoration: none;
+        transition: .2s ease;
     }
 
         .usr-btn-add:hover {
@@ -83,10 +86,6 @@
             box-shadow: 0 18px 40px rgba(200,150,220,.45);
             color: #4b2b4b;
         }
-
-    .usr-table-wrap {
-        padding: 0;
-    }
 
     .usr-table thead tr {
         background: linear-gradient(90deg, #fff7e1, #ffe4ef, #e6f6ff);
@@ -99,13 +98,8 @@
         font-size: 14px;
     }
 
-    .usr-table tbody tr:nth-child(even) {
-        background: #faf7ff;
-    }
-
-    .usr-table tbody tr:nth-child(odd) {
-        background: #ffffff;
-    }
+    .usr-table tbody tr:nth-child(even) { background: #faf7ff; }
+    .usr-table tbody tr:nth-child(odd) { background: #ffffff; }
 
     .usr-table td,
     .usr-table th {
@@ -115,7 +109,6 @@
         font-size: 14px;
     }
 
-    /* Chips de estado / rol */
     .usr-chip {
         display: inline-flex;
         align-items: center;
@@ -125,6 +118,7 @@
         font-size: 11px;
         font-weight: 800;
         border: 1px solid transparent;
+        white-space: nowrap;
     }
 
     .usr-chip-rol-admin {
@@ -145,6 +139,12 @@
         color: #8a6d1d;
     }
 
+    .usr-chip-rol-otro {
+        background: #f1f0ff;
+        border-color: #ead7f3;
+        color: #5c3b6f;
+    }
+
     .usr-chip-ok {
         background: #f0fff8;
         border-color: #b9f0e2;
@@ -157,12 +157,12 @@
         color: #b0334b;
     }
 
-    /* Botones de acciones estilo proveedores */
     .usr-actions {
         display: flex;
         justify-content: flex-end;
         align-items: center;
         gap: 8px;
+        flex-wrap: wrap;
     }
 
     .usr-pill {
@@ -178,12 +178,8 @@
         text-decoration: none;
         white-space: nowrap;
         box-shadow: 0 10px 24px rgba(180,120,180,.18);
-    }
-
-    .usr-pill-view {
-        background: #ffffff;
-        border: 1px solid #ecdff1;
-        color: #6b4c7a;
+        transition: .2s ease;
+        cursor: pointer;
     }
 
     .usr-pill-edit {
@@ -204,45 +200,38 @@
         color: #2f7f62;
     }
 
-        .usr-pill:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 14px 32px rgba(180,120,180,.25);
-            opacity: .95;
-        }
+    .usr-pill:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 14px 32px rgba(180,120,180,.25);
+        opacity: .95;
+    }
 
     media (max-width: 768px) {
-        .usr-actions {
-            flex-wrap: wrap;
-            justify-content: flex-start;
-        }
+        .usr-card-head { flex-direction: column; align-items: flex-start; }
+        .usr-actions { justify-content: flex-start; }
     }
 </style>
 
 <main class="main-content usr-page">
-
     <section class="section-space">
         <div class="container usr-container">
 
             <div class="usr-header">
                 <h2 class="usr-title">Gestión de Usuarios</h2>
-                <p class="usr-subtitle">
-                    Administra accesos, roles y estado de tus usuarios ✨
-                </p>
+                <p class="usr-subtitle">Administra accesos, roles y estado de tus usuarios ✨</p>
             </div>
 
             <div class="usr-card">
 
-                <!-- Encabezado con tabs + botón -->
                 <div class="usr-card-head">
                     <span class="usr-chip-tab">Listado</span>
 
-                    <a href="/Usuarios/Create" class="usr-btn-add">
+                    <a href="@Url.Action("CrearUsuario","Usuarios")" class="usr-btn-add">
                         + Crear Usuario
                     </a>
                 </div>
 
-                <!-- Tabla -->
-                <div class="usr-table-wrap table-responsive">
+                <div class="table-responsive">
                     <table class="table usr-table align-middle mb-0">
                         <thead>
                             <tr>
@@ -253,59 +242,78 @@
                                 <th class="text-end">Acciones</th>
                             </tr>
                         </thead>
+
                         <tbody>
+                            @if (Model != null && Model.Any())
+                            {
+                                foreach (BeautyGlam.Abstracciones.ModelosParaUI.UsuarioDto item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <strong>@(item.nombre + " " + item.apellido)</strong>
+                                            <div class="small text-muted">@item.username</div>
+                                        </td>
 
-                            <!-- Usuario 1 -->
-                            <tr>
-                                <td><strong>Ana Rodríguez</strong></td>
-                                <td>ana@gmail.com</td>
-                                <td>
-                                    <span class="usr-chip usr-chip-rol-admin">Administrador</span>
-                                </td>
-                                <td>
-                                    <span class="usr-chip usr-chip-ok">Activo</span>
-                                </td>
-                                <td>
-                                    <div class="usr-actions">
-                                        <a href="/Usuarios/Edit/1" class="usr-pill usr-pill-edit">
-                                            Editar ✏️
-                                        </a>
-                                        <a href="/Usuarios/AsignarRol/1" class="usr-pill usr-pill-view">
-                                            Rol ⚙️
-                                        </a>
-                                        <button type="button" class="usr-pill usr-pill-danger">
-                                            Desactivar 🧊
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
+                                        <td>@item.correo</td>
 
-                            <!-- Usuario 2 -->
-                            <tr>
-                                <td><strong>Mario López</strong></td>
-                                <td>mario@gmail.com</td>
-                                <td>
-                                    <span class="usr-chip usr-chip-rol-cliente">Cliente</span>
-                                </td>
-                                <td>
-                                    <span class="usr-chip usr-chip-bad">Inactivo</span>
-                                </td>
-                                <td>
-                                    <div class="usr-actions">
-                                        <a href="/Usuarios/Edit/2" class="usr-pill usr-pill-edit">
-                                            Editar ✏️
-                                        </a>
-                                        <a href="/Usuarios/AsignarRol/2" class="usr-pill usr-pill-view">
-                                            Rol ⚙️
-                                        </a>
-                                        <button type="button" class="usr-pill usr-pill-activate">
-                                            Activar ✨
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
+                                        <td>
+                                            @if (string.Equals(item.rol, "Admin", StringComparison.OrdinalIgnoreCase))
+                                            {
+                                                <span class="usr-chip usr-chip-rol-admin">Admin</span>
+                                            }
+                                            else if (string.Equals(item.rol, "Usuario", StringComparison.OrdinalIgnoreCase))
+                                            {
+                                                <span class="usr-chip usr-chip-rol-cliente">Usuario</span>
+                                            }
+                                            else if (string.Equals(item.rol, "Vendedor", StringComparison.OrdinalIgnoreCase))
+                                            {
+                                                <span class="usr-chip usr-chip-rol-vendedor">Vendedor</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="usr-chip usr-chip-rol-otro">@item.rol</span>
+                                            }
+                                        </td>
 
+                                        <td>
+                                            @if (item.estado)
+                                            {
+                                                <span class="usr-chip usr-chip-ok">Activo</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="usr-chip usr-chip-bad">Inactivo</span>
+                                            }
+                                        </td>
+
+                                        <td class="text-end">
+                                            <div class="usr-actions">
+
+                                                <a href="@Url.Action("EditarUsuario","Usuarios", new { id = item.id_Usuario })"
+                                                   class="usr-pill usr-pill-edit">
+                                                    Editar ✏️
+                                                </a>
+
+                                                <a href="@Url.Action("CambiarEstado","Usuarios", new { id = item.id_Usuario })"
+                                                   class="usr-pill @(item.estado ? "usr-pill-danger" : "usr-pill-activate")">
+                                                    @(item.estado ? "Desactivar 🧊" : "Activar ✨")
+                                                </a>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="5" class="text-center py-4" style="color:#6b4c7a;font-weight:800;">
+                                        No hay usuarios registrados 😢
+                                    </td>
+                                </tr>
+                            }
                         </tbody>
+
                     </table>
                 </div>
 
@@ -313,5 +321,4 @@
 
         </div>
     </section>
-
 </main>

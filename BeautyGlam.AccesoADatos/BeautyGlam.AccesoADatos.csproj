@@ -64,10 +64,12 @@
     <Compile Include="Categoria\ObtenerProveedorPorID\ObtenerCategoriaPorIdAD.cs" />
     <Compile Include="Categoria\RegistrarCategoria\RegistrarCategoriaAD.cs" />
     <Compile Include="Contexto.cs" />
+    <Compile Include="Email\EmailServicioAD.cs" />
     <Compile Include="Entidades\CategoriaAD.cs" />
     <Compile Include="Entidades\InventarioAD.cs" />
     <Compile Include="Entidades\MarcaAD.cs" />
     <Compile Include="Entidades\MovimientoInventarioAD.cs" />
+    <Compile Include="Entidades\PasswordResetAD.cs" />
     <Compile Include="Entidades\ProductosAD.cs" />
     <Compile Include="Entidades\ProveedorAD.cs" />
     <Compile Include="Entidades\RolAD.cs" />
@@ -97,11 +99,18 @@
     <Compile Include="Proveedores\ObtenerProveedorPorID\ObtenerProveedorPorIdAD.cs" />
     <Compile Include="Proveedores\RegistrarProveedor\RegistrarProveedorAD.cs" />
     <Compile Include="Autenticacion\UsuarioAuthAD.cs" />
+    <Compile Include="Recuperacion\RecuperacionContrasenaAD.cs" />
+    <Compile Include="Recuperacion\UsuarioRecuperacionAD.cs" />
     <Compile Include="Rol\EditarRol\EditarRolAD.cs" />
     <Compile Include="Rol\ElimianarRol\EliminarRolAD.cs" />
     <Compile Include="Rol\LisaRol\ObtenerListaDeRolesAD.cs" />
     <Compile Include="Rol\ObtenerRolPorID\ObtenerRolPorIdAD.cs" />
     <Compile Include="Rol\RegistrarRol\RegistrarRolAD.cs" />
+    <Compile Include="Usuarios\CambiarEstadoUsuario\ActualizarEstadoUsuarioAD.cs" />
+    <Compile Include="Usuarios\EditarUsuario\EditarUsuarioAD.cs" />
+    <Compile Include="Usuarios\ListaUsuario\ObtenerListaDeUsuariosAD.cs" />
+    <Compile Include="Usuarios\ObtenerUsuarioPorId\ObtenerUsuarioPorIdAD.cs" />
+    <Compile Include="Usuarios\RegistrarUsuario\RegistrarUsuarioAD.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

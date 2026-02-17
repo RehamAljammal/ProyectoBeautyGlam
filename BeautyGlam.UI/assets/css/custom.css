@@ -104,12 +104,13 @@
     border-radius: 16px;
     font-weight: 800;
     letter-spacing: .3px;
-    background: linear-gradient(135deg, #ffb7d5, #cdb7ff, #b9f0e2);
+    background: #cdb7ff; /* 💜 lila liso */
     color: #4b2b4b;
     box-shadow: 0 14px 35px rgba(200, 150, 220, .35);
     border: none;
     transition: transform .15s ease, box-shadow .15s ease;
 }
+
 
     .auth-btn:hover {
         transform: translateY(-2px);
@@ -4301,3 +4302,15 @@ body {
     color: #c06cab;
     font-weight: 600;
 }
+/* Override SOLO color, nada más */
+.auth-btn {
+    background: #cdb7ff !important; /* lila liso */
+    background-image: none !important; /* quita degradado */
+    color: #4b2b4b !important;
+}
+
+    /* Hover igual de limpio */
+    .auth-btn:hover {
+        background: #b9a6f5 !important;
+        color: #4b2b4b !important;
+    }

@@ -1,44 +1,85 @@
-﻿using System.Security.Cryptography;
+﻿using System;
+using System.Security.Cryptography;
 
 namespace BeautyGlam.LogicaDeNegocio.Seguridad
 {
     public class PasswordHasher
     {
+        private const int SALT_SIZE = 16;
+        private const int HASH_SIZE = 64;
+        private const int ITERACIONES = 100000;
+
+        // ============================
+        // Generar SALT
+        // ============================
         public byte[] GenerarSalt()
         {
-            byte[] salt = new byte[16];
+            byte[] salt = new byte[SALT_SIZE];
+
             using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
             {
                 rng.GetBytes(salt);
             }
+
             return salt;
         }
 
+        // ============================
+        // Generar HASH
+        // ============================
         public byte[] GenerarHash(string password, byte[] salt)
         {
-            byte[] hash;
-            using (Rfc2898DeriveBytes pbkdf2 = new Rfc2898DeriveBytes(password, salt, 100000))
+            if (string.IsNullOrWhiteSpace(password))
             {
-                hash = pbkdf2.GetBytes(64);
+                throw new ArgumentException("La contraseña no puede ser vacía.");
             }
+
+            if (salt == null || salt.Length != SALT_SIZE)
+            {
+                throw new ArgumentException("Salt inválido.");
+            }
+
+            byte[] hash;
+
+            using (Rfc2898DeriveBytes pbkdf2 =
+                   new Rfc2898DeriveBytes(password, salt, ITERACIONES))
+            {
+                hash = pbkdf2.GetBytes(HASH_SIZE);
+            }
+
             return hash;
         }
 
+        // ============================
+        // Crear HASH + SALT (REGISTRO)
+        // ============================
+        public void CrearHash(string password, out byte[] salt, out byte[] hash)
+        {
+            salt = GenerarSalt();
+            hash = GenerarHash(password, salt);
+        }
+
+        // ============================
+        // Verificar contraseña (LOGIN)
+        // ============================
         public bool Verificar(string password, byte[] salt, byte[] hashEsperado)
         {
+            if (string.IsNullOrWhiteSpace(password)) return false;
+            if (salt == null || salt.Length != SALT_SIZE) return false;
+            if (hashEsperado == null || hashEsperado.Length != HASH_SIZE) return false;
+
             byte[] hashActual = GenerarHash(password, salt);
 
-            if (hashActual.Length != hashEsperado.Length) return false;
-
-            int iguales = 0;
+            int diferencia = 0;
             int i = 0;
+
             while (i < hashActual.Length)
             {
-                iguales = iguales | (hashActual[i] ^ hashEsperado[i]);
+                diferencia |= hashActual[i] ^ hashEsperado[i];
                 i++;
             }
 
-            return iguales == 0;
+            return diferencia == 0;
         }
     }
 }

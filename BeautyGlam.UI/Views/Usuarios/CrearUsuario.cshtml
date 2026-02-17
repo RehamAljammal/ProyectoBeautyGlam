@@ -1,0 +1,100 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.UsuarioCrearDto
+
+@{
+    ViewBag.Title = "Crear Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space users-page">
+    <div class="container users-container">
+
+        <div class="users-top users-top-center">
+            <div class="text-center">
+                <h2 class="users-title">Crear Usuario</h2>
+                <p class="users-subtitle">Completa la información y asigna un rol 💫</p>
+            </div>
+        </div>
+
+        <div class="users-card users-form-card">
+
+            @using (Html.BeginForm("CrearUsuario", "Usuarios", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.nombre, new { @class = "form-label users-label" })
+                    @Html.TextBoxFor(m => m.nombre, new { @class = "form-control users-input" })
+                    @Html.ValidationMessageFor(m => m.nombre, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.apellido, new { @class = "form-label users-label" })
+                    @Html.TextBoxFor(m => m.apellido, new { @class = "form-control users-input" })
+                    @Html.ValidationMessageFor(m => m.apellido, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.username, new { @class = "form-label users-label" })
+                    @Html.TextBoxFor(m => m.username, new { @class = "form-control users-input" })
+                    @Html.ValidationMessageFor(m => m.username, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.correo, new { @class = "form-label users-label" })
+                    @Html.TextBoxFor(m => m.correo, new { @class = "form-control users-input", type = "email" })
+                    @Html.ValidationMessageFor(m => m.correo, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.telefono, new { @class = "form-label users-label" })
+                    @Html.TextBoxFor(m => m.telefono, new { @class = "form-control users-input" })
+                    @Html.ValidationMessageFor(m => m.telefono, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.direccion, new { @class = "form-label users-label" })
+                    @Html.TextBoxFor(m => m.direccion, new { @class = "form-control users-input" })
+                    @Html.ValidationMessageFor(m => m.direccion, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.contrasena, new { @class = "form-label users-label" })
+                    @Html.PasswordFor(m => m.contrasena, new { @class = "form-control users-input", placeholder = "********" })
+                    @Html.ValidationMessageFor(m => m.contrasena, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- ✅ Rol ahora es dropdown -->
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.rol, new { @class = "form-label users-label" })
+                    @Html.DropDownListFor(
+                        m => m.rol,
+                        (SelectList)ViewBag.Roles,
+                        "Seleccione un rol...",
+                        new { @class = "form-control users-input" }
+                    )
+                    @Html.ValidationMessageFor(m => m.rol, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label users-label">Estado</label>
+                    <div class="d-flex align-items-center gap-2">
+                        @Html.CheckBoxFor(m => m.estado)
+                        <span>Activo</span>
+                    </div>
+                </div>
+
+                <div class="users-form-actions">
+                    <button class="btn users-btn" type="submit">Guardar</button>
+                    <a href="@Url.Action("ListaDeUsuarios","Usuarios")" class="btn users-btn-soft">Cancelar</a>
+                </div>
+            }
+
+        </div>
+
+    </div>
+</section>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

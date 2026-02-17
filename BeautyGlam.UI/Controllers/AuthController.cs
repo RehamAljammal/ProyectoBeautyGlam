@@ -1,6 +1,8 @@
-﻿using BeautyGlam.Abstracciones.ModelosParaUI;
+﻿using BeautyGlam.Abstracciones.LogicaDeNegocio.Recuperacion;
+using BeautyGlam.Abstracciones.ModelosParaUI;
 using BeautyGlam.LogicaDeNegocio.Autenticacion;
 using System;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -10,12 +12,15 @@ namespace BeautyGlam.UI.Controllers
     public class AuthController : Controller
     {
         private readonly AuthLN _authLN;
+        private readonly IRecuperacionContrasenaLN _recuperacionLN;
 
         public AuthController()
         {
             _authLN = new AuthLN();
+            _recuperacionLN = new RecuperacionContrasenaLN();
         }
 
+        // ===================== LOGIN =====================
         [HttpGet]
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -58,6 +63,7 @@ namespace BeautyGlam.UI.Controllers
 
             HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted);
             cookie.HttpOnly = true;
+            cookie.Path = "/";
             Response.Cookies.Add(cookie);
 
             if (string.IsNullOrWhiteSpace(returnUrl) == false && Url.IsLocalUrl(returnUrl))
@@ -104,6 +110,74 @@ namespace BeautyGlam.UI.Controllers
             return RedirectToAction("Login");
         }
 
+        // ===================== RECUPERAR (GET) =====================
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult RecuperarContrasena()
+        {
+            RecuperarContrasenaDTO model = new RecuperarContrasenaDTO();
+            return View(model);
+        }
+
+        // ===================== RECUPERAR (POST) =====================
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RecuperarContrasena(RecuperarContrasenaDTO model)
+        {
+            if (ModelState.IsValid == false)
+            {
+                return View(model);
+            }
+
+            string urlBase = Request.Url.GetLeftPart(UriPartial.Authority);
+
+            string error = await _recuperacionLN.SolicitarToken(model.correo, urlBase);
+
+            if (string.IsNullOrWhiteSpace(error) == false)
+            {
+                ModelState.AddModelError("", error);
+                return View(model);
+            }
+
+            TempData["Msg"] = "Si el correo existe, te enviamos un enlace para restablecer tu contraseña.";
+            return RedirectToAction("Login");
+        }
+
+        // ===================== RESTABLECER (GET) =====================
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult RestablecerContrasena(string token)
+        {
+            RestablecerContrasenaDTO model = new RestablecerContrasenaDTO();
+            model.token = token;
+            return View(model);
+        }
+
+        // ===================== RESTABLECER (POST) =====================
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RestablecerContrasena(RestablecerContrasenaDTO model)
+        {
+            if (ModelState.IsValid == false)
+            {
+                return View(model);
+            }
+
+            string error = await _recuperacionLN.Restablecer(model.token, model.nuevaContrasena);
+
+            if (string.IsNullOrWhiteSpace(error) == false)
+            {
+                ModelState.AddModelError("", error);
+                return View(model);
+            }
+
+            TempData["Msg"] = "Contraseña actualizada con éxito. Ya puedes iniciar sesión.";
+            return RedirectToAction("Login");
+        }
+
+        // ===================== LOGOUT =====================
         [Authorize]
         public ActionResult Logout()
         {
@@ -113,6 +187,7 @@ namespace BeautyGlam.UI.Controllers
             {
                 HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName);
                 cookie.Expires = DateTime.Now.AddDays(-1);
+                cookie.Path = "/";
                 Response.Cookies.Add(cookie);
             }
 
