@@ -10,14 +10,28 @@ namespace BeautyGlam.AccesoADatos
             Database.SetInitializer<Contexto>(null);
         }
 
+        public DbSet<UsuarioAD> Usuario { get; set; }
+
         public DbSet<ProveedorAD> Proveedor { get; set; }
         public DbSet<CategoriaAD> Categoria { get; set; }
         public DbSet<MarcaAD> Marca { get; set; }
         public DbSet<ProductoAD> Producto { get; set; }
         public DbSet<InventarioAD> Inventario { get; set; }
         public DbSet<MovimientoInventarioAD> Movimiento { get; set; }
+
         public DbSet<GuiaRegaloAD> GuiaRegalo { get; set; }
         public DbSet<GuiaProductoAD> GuiaProducto { get; set; }
+
+        public DbSet<PromocionesAD> Promocion { get; set; }
+
+
+        public DbSet<PasswordResetAD> PasswordReset { get; set; }
+
+
+        public DbSet<MovimientoInventarioAD> Movimiento { get; set; }
+
+        public DbSet<RolAD> Rol { get; set; }
+
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

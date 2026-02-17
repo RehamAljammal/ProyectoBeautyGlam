@@ -120,7 +120,7 @@ namespace BeautyGlam.UI.Controllers
 
                 await _editarCategoriaLN.Editar(CategoriaActual);
 
-                return RedirectToAction("ListaDeCategorias"); 
+                return RedirectToAction("ListaDeCategorias");
             }
             catch (Exception ex)
             {
@@ -162,5 +162,3 @@ namespace BeautyGlam.UI.Controllers
         }
     }
 }
-
-

@@ -1,0 +1,176 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.UsuarioDto
+
+@{
+    ViewBag.Title = "Editar Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .users-container {
+        max-width: 820px;
+        margin: 0 auto;
+    }
+
+    .users-title {
+        font-weight: 900;
+        color: #5c3b6f;
+        margin: 0;
+        letter-spacing: -0.02em;
+    }
+
+    .users-subtitle {
+        font-weight: 600;
+        color: #7c6b88;
+        margin: 0;
+    }
+
+    .users-card {
+        background: #ffffff;
+        border: 1px solid #f2e6f3;
+        border-radius: 26px;
+        box-shadow: 0 20px 45px rgba(180,120,180,.12);
+        overflow: hidden;
+        padding: 18px 18px 20px;
+    }
+
+    .users-label {
+        font-weight: 900;
+        color: #5c3b6f;
+        margin-bottom: 6px;
+    }
+
+    .users-input {
+        border-radius: 16px;
+        border: 1px solid #ead7f3;
+        padding: 12px 14px;
+    }
+
+    .users-form-actions {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        margin-top: 14px;
+    }
+
+    .users-btn {
+        padding: 10px 18px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #ffb7d5, #cdb7ff, #b9f0e2);
+        font-weight: 900;
+        border: none;
+        color: #4b2b4b;
+        box-shadow: 0 14px 32px rgba(200,150,220,.35);
+        transition: .2s ease;
+    }
+
+        .users-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 18px 44px rgba(200,150,220,.45);
+        }
+
+    .users-btn-soft {
+        padding: 10px 18px;
+        border-radius: 999px;
+        background: #fff;
+        border: 1px solid #ead7f3;
+        color: #5c3b6f;
+        font-weight: 900;
+        text-decoration: none;
+        box-shadow: 0 14px 32px rgba(200,150,220,.12);
+        transition: .2s ease;
+    }
+
+        .users-btn-soft:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 18px 44px rgba(200,150,220,.18);
+        }
+</style>
+
+<section class="section-space users-page">
+    <div class="container users-container">
+
+        <div class="text-center mb-3">
+            <h2 class="users-title">Editar Usuario</h2>
+            <p class="users-subtitle">Actualiza datos y rol del usuario ✨</p>
+        </div>
+
+        <div class="users-card">
+
+            @using (Html.BeginForm("EditarUsuario", "Usuarios", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                @Html.HiddenFor(m => m.id_Usuario)
+
+                <div class="mb-3">
+                    <label class="form-label users-label">ID</label>
+                    <input class="form-control users-input" value="@Model.id_Usuario" disabled />
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.nombre, new { @class = "form-label users-label" })
+                    @Html.TextBoxFor(m => m.nombre, new { @class = "form-control users-input" })
+                    @Html.ValidationMessageFor(m => m.nombre, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.apellido, new { @class = "form-label users-label" })
+                    @Html.TextBoxFor(m => m.apellido, new { @class = "form-control users-input" })
+                    @Html.ValidationMessageFor(m => m.apellido, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.username, new { @class = "form-label users-label" })
+                    @Html.TextBoxFor(m => m.username, new { @class = "form-control users-input" })
+                    @Html.ValidationMessageFor(m => m.username, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.correo, new { @class = "form-label users-label" })
+                    @Html.TextBoxFor(m => m.correo, new { @class = "form-control users-input", type = "email" })
+                    @Html.ValidationMessageFor(m => m.correo, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.telefono, new { @class = "form-label users-label" })
+                    @Html.TextBoxFor(m => m.telefono, new { @class = "form-control users-input" })
+                    @Html.ValidationMessageFor(m => m.telefono, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.direccion, new { @class = "form-label users-label" })
+                    @Html.TextBoxFor(m => m.direccion, new { @class = "form-control users-input" })
+                    @Html.ValidationMessageFor(m => m.direccion, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.rol, new { @class = "form-label users-label" })
+                    @Html.TextBoxFor(m => m.rol, new { @class = "form-control users-input" })
+                    @Html.ValidationMessageFor(m => m.rol, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label users-label">Estado</label>
+                    <div class="d-flex align-items-center gap-2">
+                        @Html.CheckBoxFor(m => m.estado)
+                        <span style="color:#6b4c7a;font-weight:700;">Activo</span>
+                    </div>
+                    @Html.ValidationMessageFor(m => m.estado, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="users-form-actions">
+                    <button type="submit" class="btn users-btn">Guardar</button>
+                    <a href="@Url.Action("ListaDeUsuarios","Usuarios")" class="btn users-btn-soft">Cancelar</a>
+                </div>
+            }
+
+        </div>
+
+    </div>
+</section>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

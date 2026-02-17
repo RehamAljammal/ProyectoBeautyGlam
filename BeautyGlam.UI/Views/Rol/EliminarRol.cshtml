@@ -1,0 +1,90 @@
+﻿
+@model BeautyGlam.Abstracciones.ModelosParaUI.RolDto
+
+@{
+    ViewBag.Title = "Eliminar Rol";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="section-space roles-page">
+    <div class="container roles-container" style="max-width:820px;">
+
+        <div class="roles-top roles-top-center">
+            <div class="text-center">
+                <h2 class="roles-title">Eliminar Rol</h2>
+                <p class="roles-subtitle">Confirma para desactivar o eliminar este rol 🗑️</p>
+            </div>
+        </div>
+
+        <div class="roles-card roles-form-card" style="padding:18px 18px 20px;">
+
+            <div class="mb-3">
+                <div style="color:#5c3b6f;font-weight:900;">Rol</div>
+                <div style="color:#4b2b4b;font-weight:800;font-size:18px;">
+                    @Model.nombre_Rol
+                </div>
+            </div>
+            <div class="mb-3">
+                <div style="color:#5c3b6f;font-weight:900;">Estado actual</div>
+                <div style="color:#7c6b88;font-weight:700;">
+                    @(Model.estado ? "Activo" : "Inactivo")
+                </div>
+            </div>
+            @using (Html.BeginForm("EliminarRol", "Rol", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.id_Rol)
+
+                <div class="roles-form-actions" style="display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;">
+                    <button type="submit" class="btn roles-btn">Sí, eliminar</button>
+                    <a href="@Url.Action("ListaDeRoles","Rol")" class="btn roles-btn-soft">Cancelar</a>
+                </div>
+            }
+
+        </div>
+
+    </div>
+</section>
+
+<style>
+    .roles-btn {
+        padding: 10px 18px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #ffb7d5, #cdb7ff, #b9f0e2);
+        font-weight: 900;
+        border: none;
+        color: #4b2b4b;
+        box-shadow: 0 14px 32px rgba(200,150,220,.35);
+        transition: .2s ease;
+        text-decoration: none;
+    }
+
+        .roles-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 44px rgba(200,150,220,.45);
+        }
+
+    .roles-btn-soft {
+        padding: 10px 18px;
+        border-radius: 999px;
+        background: #fff;
+        border: 1px solid #ead7f3;
+        color: #5c3b6f;
+        font-weight: 900;
+        text-decoration: none;
+        box-shadow: 0 14px 32px rgba(200,150,220,.12);
+        transition: .2s ease;
+    }
+
+        .roles-btn-soft:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 18px 44px rgba(200,150,220,.18);
+        }
+
+    .roles-card.roles-form-card {
+        background: #ffffff;
+        border: 1px solid #f2e6f3;
+        border-radius: 26px;
+        box-shadow: 0 20px 45px rgba(180,120,180,.12);
+        overflow: hidden;
+    }
+</style>

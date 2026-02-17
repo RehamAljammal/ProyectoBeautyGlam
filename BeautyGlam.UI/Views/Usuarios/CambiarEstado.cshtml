@@ -1,0 +1,111 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.UsuarioDto
+
+@{
+    ViewBag.Title = "Cambiar Estado";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .users-container {
+        max-width: 820px;
+        margin: 0 auto;
+    }
+
+    .users-title {
+        font-weight: 900;
+        color: #5c3b6f;
+        margin: 0;
+        letter-spacing: -0.02em;
+    }
+
+    .users-subtitle {
+        font-weight: 600;
+        color: #7c6b88;
+        margin: 0;
+    }
+
+    .users-card {
+        background: #ffffff;
+        border: 1px solid #f2e6f3;
+        border-radius: 26px;
+        box-shadow: 0 20px 45px rgba(180,120,180,.12);
+        overflow: hidden;
+        padding: 18px 18px 20px;
+    }
+
+    .users-btn {
+        padding: 10px 18px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #ffb7d5, #cdb7ff, #b9f0e2);
+        font-weight: 900;
+        border: none;
+        color: #4b2b4b;
+        box-shadow: 0 14px 32px rgba(200,150,220,.35);
+        transition: .2s ease;
+    }
+
+    .users-btn-soft {
+        padding: 10px 18px;
+        border-radius: 999px;
+        background: #fff;
+        border: 1px solid #ead7f3;
+        color: #5c3b6f;
+        font-weight: 900;
+        text-decoration: none;
+        box-shadow: 0 14px 32px rgba(200,150,220,.12);
+        transition: .2s ease;
+    }
+
+    .users-actions {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        margin-top: 14px;
+    }
+</style>
+
+<section class="section-space users-page">
+    <div class="container users-container">
+
+        <div class="text-center mb-3">
+            <h2 class="users-title">Cambiar Estado</h2>
+            <p class="users-subtitle">Confirma para activar o desactivar este usuario ✨</p>
+        </div>
+
+        <div class="users-card">
+
+            <div class="mb-3">
+                <div style="color:#5c3b6f;font-weight:900;">Usuario</div>
+                <div style="color:#4b2b4b;font-weight:800;font-size:18px;">
+                    @(Model.nombre + " " + Model.apellido)
+                </div>
+                <div class="text-muted small">@Model.correo</div>
+            </div>
+
+            <div class="mb-3">
+                <div style="color:#5c3b6f;font-weight:900;">Estado actual</div>
+                <div style="color:#7c6b88;font-weight:700;">
+                    @(Model.estado ? "Activo" : "Inactivo")
+                </div>
+            </div>
+
+            @using (Html.BeginForm("CambiarEstado", "Usuarios", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <input type="hidden" name="id" value="@Model.id_Usuario" />
+                <input type="hidden" name="nuevoEstado" value="@(Model.estado ? "false" : "true")" />
+
+                <div class="users-actions">
+                    <button type="submit" class="btn users-btn">
+                        @(Model.estado ? "Sí, desactivar 🧊" : "Sí, activar ✨")
+                    </button>
+                    <a href="@Url.Action("ListaDeUsuarios","Usuarios")" class="btn users-btn-soft">Cancelar</a>
+                </div>
+            }
+
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,92 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.RegisterDTO
+
+@{
+    ViewBag.Title = "Registro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="main-content auth-page">
+
+    <section class="page-header-area pt-10 pb-9 auth-header" data-bg-color="#FFF3DA">
+        <div class="container text-center">
+            <h2 class="page-header-title auth-title">Crear una Cuenta</h2>
+            <p class="auth-subtitle mb-0">Regístrate para empezar tu experiencia</p>
+        </div>
+    </section>
+
+    <section class="section-space">
+        <div class="container">
+
+            <div class="auth-card mx-auto">
+
+                <div class="auth-card-head">
+                    <span class="auth-badge">Registro</span>
+                    <h3 class="auth-card-title mb-1">Crea tu cuenta</h3>
+                    <p class="auth-card-desc mb-0">
+                        Completa los datos para crear tu perfil.
+                    </p>
+                </div>
+
+                @using (Html.BeginForm("Register", "Auth", FormMethod.Post, new { @class = "auth-form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.nombre, new { @class = "form-label auth-label" })
+                        @Html.TextBoxFor(m => m.nombre, new { @class = "form-control auth-input", placeholder = "Ej: Ana" })
+                        @Html.ValidationMessageFor(m => m.nombre, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.apellido, new { @class = "form-label auth-label" })
+                        @Html.TextBoxFor(m => m.apellido, new { @class = "form-control auth-input", placeholder = "Ej: López" })
+                        @Html.ValidationMessageFor(m => m.apellido, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.username, new { @class = "form-label auth-label" })
+                        @Html.TextBoxFor(m => m.username, new { @class = "form-control auth-input", placeholder = "Ej: analopez" })
+                        @Html.ValidationMessageFor(m => m.username, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.correo, new { @class = "form-label auth-label" })
+                        @Html.TextBoxFor(m => m.correo, new { @class = "form-control auth-input", type = "email", placeholder = "example@gmail.com" })
+                        @Html.ValidationMessageFor(m => m.correo, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.contrasena, new { @class = "form-label auth-label" })
+                        @Html.PasswordFor(m => m.contrasena, new { @class = "form-control auth-input", placeholder = "Crea una contraseña fuerte" })
+                        @Html.ValidationMessageFor(m => m.contrasena, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.confirmarContrasena, new { @class = "form-label auth-label" })
+                        @Html.PasswordFor(m => m.confirmarContrasena, new { @class = "form-control auth-input", placeholder = "Repita la contraseña" })
+                        @Html.ValidationMessageFor(m => m.confirmarContrasena, "", new { @class = "text-danger" })
+                    </div>
+
+                    <button type="submit" class="btn auth-btn w-100 py-2 mb-3">
+                        Registrarse
+                    </button>
+
+                    <div class="text-center auth-footer">
+                        <span class="auth-muted">¿Ya tienes cuenta?</span>
+                        <a href="@Url.Action("Login","Auth")" class="auth-link fw-bold ms-1">
+                            Iniciar sesión
+                        </a>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
