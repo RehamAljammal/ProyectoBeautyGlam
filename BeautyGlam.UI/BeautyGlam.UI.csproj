@@ -492,7 +492,10 @@
     <Content Include="Views\BlogBelleza\Editar.cshtml" />
     <Content Include="Views\BlogBelleza\Detalle.cshtml" />
     <Content Include="Views\Reportes\Index.cshtml" />
-    <Content Include="Views\Promociones\Index.cshtml" />
+
+    <Content Include="Views\Promociones\ListaDePromociones.cshtml" />
+
+
     <Content Include="Views\Proveedores\ListaDeProveedores.cshtml" />
     <Content Include="Views\Proveedores\DetallesDelProveedor.cshtml" />
     <Content Include="Views\Proveedores\CrearProveedor.cshtml" />
@@ -518,6 +521,12 @@
     <Content Include="Views\Inventario\EditarStock.cshtml" />
     <Content Include="Views\Inventario\MovimientosI.cshtml" />
     <Content Include="Views\Catalogo\Detalle.cshtml" />
+
+    <Content Include="Views\GuiaR\Index.cshtml" />
+    <Content Include="Views\Promociones\CrearPromociones.cshtml" />
+    <Content Include="Views\Promociones\EditarPromociones.cshtml" />
+    <Content Include="Views\Promociones\EliminarPromociones.cshtml" />
+
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Auth\Register.cshtml" />
     <Content Include="Views\Rol\ListaDeRoles.cshtml" />
@@ -530,6 +539,7 @@
     <Content Include="Views\Usuarios\CambiarEstado.cshtml" />
     <Content Include="Views\Auth\RecuperarContrasena.cshtml" />
     <Content Include="Views\Auth\RestablecerContrasena.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -55,6 +55,33 @@
                         <div class="header-navigation">
                             <ul class="main-nav justify-content-start">
 
+
+                                <ul class="main-nav justify-content-start">
+
+                                    <!-- HOME -->
+                                    <li>
+                                        <a href="@Url.Action("Index","Home")">Home</a>
+                                    </li>
+
+                                    <!-- ADMINISTRACIÓN -->
+                                    <li class="has-submenu">
+                                        <a href="#">Administración</a>
+                                        <ul class="submenu">
+                                            <li><a href="@Url.Action("Index","Usuarios")">Usuarios</a></li>
+                                            <li><a href="@Url.Action("Index","Roles")">Roles</a></li>
+                                            <li><a href="@Url.Action("Index","Permisos")">Permisos</a></li>
+                                            <li><a href="@Url.Action("Index","Proveedores")">Proveedores</a></li>
+                                            <li><a href="@Url.Action("Index","Reportes")">Reportes</a></li>
+                                            <li><a href="@Url.Action("ListaDeCategorias","Categorias")">Categorías</a></li>
+                                            <li><a href="@Url.Action("ListaDeMarcas","Marca")">Marcas</a></li>
+                                            <li><a href="@Url.Action("ListaDePromociones","Promociones")">Promociones</a></li>
+                                            <li><a href="@Url.Action("ListaDeProductos","Productos")">Productos</a></li>
+                                            <li><a href="@Url.Action("Index","GuiaR")">Guia De Regalos</a></li>
+
+
+                                        </ul>
+                                    </li>
+
                                 <!-- HOME (público) -->
                                 <li>
                                     <a href="@Url.Action("Index","Home")">Home</a>
@@ -80,6 +107,7 @@
                                             </ul>
                                         </li>
                                     }
+
 
                                     <!-- PRODUCTOS -->
                                     <li class="has-submenu">
