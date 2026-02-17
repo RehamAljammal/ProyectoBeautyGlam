@@ -48,7 +48,15 @@
     <Compile Include="AccesoADatos\Categoria\ListaCategoria\IObtenerListaDeCategoriasAD.cs" />
     <Compile Include="AccesoADatos\Categoria\RegistrarCategoria\IRegistrarCategoriaAD.cs" />
 
+    <Compile Include="AccesoADatos\GuiaRegalo\EditarRegalo\IEditarGuiaRegaloAD.cs" />
+    <Compile Include="AccesoADatos\GuiaRegalo\EliminarRegalo\IEliminarGuiaRegaloAD.cs" />
+    <Compile Include="AccesoADatos\GuiaRegalo\IObtenerGuiaRegaloAD.cs" />
+    <Compile Include="AccesoADatos\GuiaRegalo\ObtenerProductosParaGuia\IObtenerProductosParaGuiaAD.cs" />
+    <Compile Include="AccesoADatos\GuiaRegalo\RegistrarRegalo\IRegistrarGuiaRegaloAD.cs" />
+
+
     <Compile Include="AccesoADatos\Email\IEmailServicioAD.cs" />
+
 
     <Compile Include="AccesoADatos\Inventario\EditarStockActual\IEditarStockActualAD.cs" />
     <Compile Include="AccesoADatos\Inventario\EditarStock\IEditarStockAD.cs" />
@@ -95,7 +103,14 @@
     <Compile Include="LogicaDeNegocio\Categoria\ListaCategoria\IObtenerLaListaDeCategoriasLN.cs" />
     <Compile Include="LogicaDeNegocio\Categoria\RegistrarCategoria\IRegistrarCategoriaLN.cs" />
 
+    <Compile Include="LogicaDeNegocio\GuiaRegalo\EditarRegalo\IEditarGuiaRegaloLN.cs" />
+    <Compile Include="LogicaDeNegocio\GuiaRegalo\EliminarRegalo\IEliminarGuiaRegaloLN.cs" />
+    <Compile Include="LogicaDeNegocio\GuiaRegalo\ObtenerProductosParaGuia\IObtenerProductosParaGuiaLN.cs" />
+    <Compile Include="LogicaDeNegocio\GuiaRegalo\RegistrarRegalo\IRegistrarGuiaRegaloLN.cs" />
+
+
     <Compile Include="LogicaDeNegocio\Email\IEmailLN.cs" />
+
 
     <Compile Include="LogicaDeNegocio\Inventario\EditarStockActual\IEditarStockActualLN.cs" />
     <Compile Include="LogicaDeNegocio\Inventario\EditarStock\IEditarStockLN.cs" />
@@ -124,12 +139,17 @@
     <Compile Include="LogicaDeNegocio\Proveedores\RegistrarProveedor\IRegistrarProveedorLN.cs" />
 
     <Compile Include="ModelosParaUI\CategoriasDto.cs" />
+    <Compile Include="ModelosParaUI\GuiaRegaloDto.cs" />
     <Compile Include="ModelosParaUI\InventarioAvanzadoDto.cs" />
     <Compile Include="ModelosParaUI\InventarioDto.cs" />
     <Compile Include="ModelosParaUI\MarcaDto.cs" />
     <Compile Include="ModelosParaUI\MovimientoInventarioDto.cs" />
     <Compile Include="ModelosParaUI\ProductosDto.cs" />
+
+    <Compile Include="ModelosParaUI\ProductoSeleccionadoDto.cs" />
+
     <Compile Include="ModelosParaUI\PromocionesDto.cs" />
+
     <Compile Include="ModelosParaUI\ProveedoresDto.cs" />
 
     <Compile Include="LogicaDeNegocio\Recuperacion\IRecuperacionContrasenaLN.cs" />

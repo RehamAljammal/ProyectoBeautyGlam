@@ -1,0 +1,65 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.GuiaRegaloDto
+
+@{
+    ViewBag.Title = "Desactivar Guía de Regalo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space sup-page">
+    <div class="container sup-container">
+
+        <div class="sup-header">
+            <h2 class="sup-title">Desactivar Guía de Regalo 🎁</h2>
+            <p class="sup-subtitle">Confirma si deseas desactivar esta guía</p>
+        </div>
+
+        <div class="sup-card">
+            <div class="sup-card-head">
+                <span class="sup-badge">Confirmación</span>
+            </div>
+
+            <div class="sup-form">
+
+                <p><strong>Categoría:</strong> @Model.categoria</p>
+                <p><strong>Tipo:</strong> @Model.tipo</p>
+                <p><strong>Presupuesto:</strong> ₡@Model.presupuesto</p>
+                <p><strong>Género:</strong> @Model.genero</p>
+
+                <p>
+                    <strong>Estado actual:</strong>
+                    @if (Model.estado)
+                    {
+                        <span class="sup-chip sup-chip-ok">Activo</span>
+                    }
+                    else
+                    {
+                        <span class="sup-chip sup-chip-off">Inactivo</span>
+                    }
+                </p>
+
+                <hr />
+
+                <p style="color:#7a1f2d; font-weight:700;">
+                    ⚠️ Esta acción desactivará la guía de regalos.
+                </p>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(m => m.idGuia)
+
+                    <div class="sup-actions mt-4">
+                        <button type="submit" class="sup-btn sup-btn-danger">
+                            Confirmar 🗑️
+                        </button>
+
+                        <a href="@Url.Action("Index")"
+                           class="sup-btn sup-btn-soft">
+                            Cancelar
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
