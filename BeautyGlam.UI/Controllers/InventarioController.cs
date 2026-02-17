@@ -17,6 +17,7 @@ using BeautyGlam.AccesoADatos.Categoria.ListaCategoria;
 
 namespace BeautyGlam.UI.Controllers
 {
+
     public class InventarioController : Controller
     {
         private readonly IObtenerListaDeInventarioLN _obtenerListaDeInventarioLN;

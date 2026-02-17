@@ -152,6 +152,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AsistenteSkincareController.cs" />
     <Compile Include="Controllers\AsistenteTonoController.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BlogBellezaController.cs" />
     <Compile Include="Controllers\CatalogoController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
@@ -459,23 +460,13 @@
     <Content Include="Views\Blog\blogRightSidebar.cshtml" />
     <Content Include="Views\Home\aboutUs.cshtml" />
     <Content Include="Views\Home\faq.cshtml" />
-    <Content Include="Views\Auth\accountLogin.cshtml" />
-    <Content Include="Views\Auth\myAcount.cshtml" />
     <Content Include="Views\Error\pageNotFound.cshtml" />
     <Content Include="Views\Home\Blog.cshtml" />
     <Content Include="Views\Home\Product.cshtml" />
-    <Content Include="Views\Usuarios\Index.cshtml" />
-    <Content Include="Views\Usuarios\Create.cshtml" />
-    <Content Include="Views\Usuarios\Edit.cshtml" />
-    <Content Include="Views\Usuarios\AsignarRol.cshtml" />
-    <Content Include="Views\Roles\Index.cshtml" />
-    <Content Include="Views\Roles\Create.cshtml" />
-    <Content Include="Views\Roles\Edit.cshtml" />
-    <Content Include="Views\Roles\Permisos.cshtml" />
     <Content Include="Views\Permisos\Index.cshtml" />
     <Content Include="Views\Permisos\Create.cshtml" />
     <Content Include="Views\Permisos\Edit.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Recuperar.cshtml" />
     <Content Include="Views\Perfil\Index.cshtml" />
@@ -527,7 +518,18 @@
     <Content Include="Views\Inventario\EditarStock.cshtml" />
     <Content Include="Views\Inventario\MovimientosI.cshtml" />
     <Content Include="Views\Catalogo\Detalle.cshtml" />
-    <Content Include="Views\GuiaR\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Auth\Register.cshtml" />
+    <Content Include="Views\Rol\ListaDeRoles.cshtml" />
+    <Content Include="Views\Rol\CrearRol.cshtml" />
+    <Content Include="Views\Rol\EditarRol.cshtml" />
+    <Content Include="Views\Rol\EliminarRol.cshtml" />
+    <Content Include="Views\Usuarios\ListaDeUsuarios.cshtml" />
+    <Content Include="Views\Usuarios\CrearUsuario.cshtml" />
+    <Content Include="Views\Usuarios\EditarUsuario.cshtml" />
+    <Content Include="Views\Usuarios\CambiarEstado.cshtml" />
+    <Content Include="Views\Auth\RecuperarContrasena.cshtml" />
+    <Content Include="Views\Auth\RestablecerContrasena.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

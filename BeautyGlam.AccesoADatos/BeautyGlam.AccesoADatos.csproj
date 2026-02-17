@@ -42,6 +42,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SqlClient, Version=4.6.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SqlClient.4.9.0\lib\net462\System.Data.SqlClient.dll</HintPath>
@@ -54,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Autenticacion\UsuarioRegistroAD.cs" />
     <Compile Include="Catalogo\ObtenerCatalogoAD.cs" />
     <Compile Include="Categoria\DetallesCategoria\DetallesCategoriaAD.cs" />
     <Compile Include="Categoria\EditarCategoria\IEditarCategoriaAD.cs" />
@@ -62,12 +64,15 @@
     <Compile Include="Categoria\ObtenerProveedorPorID\ObtenerCategoriaPorIdAD.cs" />
     <Compile Include="Categoria\RegistrarCategoria\RegistrarCategoriaAD.cs" />
     <Compile Include="Contexto.cs" />
+    <Compile Include="Email\EmailServicioAD.cs" />
     <Compile Include="Entidades\CategoriaAD.cs" />
     <Compile Include="Entidades\InventarioAD.cs" />
     <Compile Include="Entidades\MarcaAD.cs" />
     <Compile Include="Entidades\MovimientoInventarioAD.cs" />
+    <Compile Include="Entidades\PasswordResetAD.cs" />
     <Compile Include="Entidades\ProductosAD.cs" />
     <Compile Include="Entidades\ProveedorAD.cs" />
+    <Compile Include="Entidades\RolAD.cs" />
     <Compile Include="Entidades\UsuarioAD.cs" />
     <Compile Include="Inventario\EditarStockActual\EditarStockActualAD.cs" />
     <Compile Include="Inventario\EditarStock\EditarStockAD.cs" />
@@ -93,6 +98,19 @@
     <Compile Include="Proveedores\ListaDeProveedor\ObtenerListaDeProveedoresAD.cs" />
     <Compile Include="Proveedores\ObtenerProveedorPorID\ObtenerProveedorPorIdAD.cs" />
     <Compile Include="Proveedores\RegistrarProveedor\RegistrarProveedorAD.cs" />
+    <Compile Include="Autenticacion\UsuarioAuthAD.cs" />
+    <Compile Include="Recuperacion\RecuperacionContrasenaAD.cs" />
+    <Compile Include="Recuperacion\UsuarioRecuperacionAD.cs" />
+    <Compile Include="Rol\EditarRol\EditarRolAD.cs" />
+    <Compile Include="Rol\ElimianarRol\EliminarRolAD.cs" />
+    <Compile Include="Rol\LisaRol\ObtenerListaDeRolesAD.cs" />
+    <Compile Include="Rol\ObtenerRolPorID\ObtenerRolPorIdAD.cs" />
+    <Compile Include="Rol\RegistrarRol\RegistrarRolAD.cs" />
+    <Compile Include="Usuarios\CambiarEstadoUsuario\ActualizarEstadoUsuarioAD.cs" />
+    <Compile Include="Usuarios\EditarUsuario\EditarUsuarioAD.cs" />
+    <Compile Include="Usuarios\ListaUsuario\ObtenerListaDeUsuariosAD.cs" />
+    <Compile Include="Usuarios\ObtenerUsuarioPorId\ObtenerUsuarioPorIdAD.cs" />
+    <Compile Include="Usuarios\RegistrarUsuario\RegistrarUsuarioAD.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

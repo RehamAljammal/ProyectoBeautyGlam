@@ -23,6 +23,7 @@ using System.Web.Mvc;
 
 namespace BeautyGlam.UI.Controllers
 {
+
     public class ProductosController : Controller
     {
         private readonly IObtenerLaListadeProductosLN _obtenerLaListaDeProductosLN;

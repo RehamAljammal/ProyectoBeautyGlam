@@ -32,7 +32,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=10.0.0.3, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Configuration.ConfigurationManager.10.0.3\lib\net462\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,12 +46,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Autenticacion\AuthLN.cs" />
+    <Compile Include="Autenticacion\RecuperacionContrasenaLN.cs" />
     <Compile Include="Catalogo\ObtenerCatalogoLN.cs" />
     <Compile Include="Categorias\DetallesDeProveedor\DetallesCategoriaLN.cs" />
     <Compile Include="Categorias\EditarProveedores\EditarCategoriaLN.cs" />
     <Compile Include="Categorias\EliminarProveedor\EliminarCategoriaLN.cs" />
     <Compile Include="Categorias\ListaDeProveedor\ObtenerLaListaDeCategoriaLN.cs" />
     <Compile Include="Categorias\RegistrarProveedor\RegistrarCategoriaLN.cs" />
+    <Compile Include="Email\EmailLN.cs" />
     <Compile Include="Inventario\EditarStockActual\EditarStockActualLN.cs" />
     <Compile Include="Inventario\EditarStock\EditarStockLN.cs" />
     <Compile Include="Inventario\ListaDeInventario\ObtenerListaDeInventarioLN.cs" />
@@ -67,8 +75,19 @@
     <Compile Include="Proveedores\EliminarProveedor\EliminarProveedorLN.cs" />
     <Compile Include="Proveedores\ListaDeProveedor\ObtenerLaListaDeProveedoresLN.cs" />
     <Compile Include="Proveedores\RegistrarProveedor\RegistrarProveedorLN.cs" />
+    <Compile Include="Rol\EditarRol\EditarRolLN.cs" />
+    <Compile Include="Rol\ElimianarRol\EliminarRolLN.cs" />
+    <Compile Include="Rol\LisaRol\ObtenerLaListaDeRolesLN.cs" />
+    <Compile Include="Rol\RegistrarRol\RegistrarRolLN.cs" />
+    <Compile Include="Seguridad\PasswordHasher.cs" />
+    <Compile Include="Usuario\CambiarEstadoUsuario\ActualizarEstadoUsuarioLN.cs" />
+    <Compile Include="Usuario\EditarUsuario\EditarUsuarioLN.cs" />
+    <Compile Include="Usuario\ListaUsuario\ObtenerLaListaDeUsuariosLN.cs" />
+    <Compile Include="Usuario\RegistrarUsuario\RegistrarUsuarioLN.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BeautyGlam.Abstracciones\BeautyGlam.Abstracciones.csproj">
       <Project>{A4800167-45C8-4781-B2AA-50E9BFCC6BFE}</Project>

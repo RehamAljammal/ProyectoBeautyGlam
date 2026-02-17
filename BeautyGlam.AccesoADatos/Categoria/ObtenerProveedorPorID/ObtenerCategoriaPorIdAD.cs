@@ -13,15 +13,15 @@ namespace BeautyGlam.AccesoADatos.Categoria.ObtenerCategoriaPorID
         public CategoriasDto ObtenerPorId(int idDeLaCategoriaABuscar)
         {
             CategoriasDto laCategoriaEnBaseDeDatos = (from Categoria in _elContexto.Categoria
-                                                       where Categoria.id == idDeLaCategoriaABuscar
+                                                      where Categoria.id == idDeLaCategoriaABuscar
                                                       select new CategoriasDto
-                                                       {
-                                                           id = Categoria.id,
-                                                           nombre = Categoria.nombre,
-                                                           descripcion = Categoria.descripcion,
-                                                           estado = Categoria.estado
+                                                      {
+                                                          id = Categoria.id,
+                                                          nombre = Categoria.nombre,
+                                                          descripcion = Categoria.descripcion,
+                                                          estado = Categoria.estado
 
-                                                       }).FirstOrDefault();
+                                                      }).FirstOrDefault();
             return laCategoriaEnBaseDeDatos;
         }
     }
