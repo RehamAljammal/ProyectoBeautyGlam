@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -25,5 +26,8 @@ namespace BeautyGlam.AccesoADatos.Entidades
 
         [Column("estado")]
         public bool estado { get; set; }
+
+        public virtual ICollection<PromocionProductoAD> PromocionProducto { get; set; }
+
     }
 }

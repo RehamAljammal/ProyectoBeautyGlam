@@ -36,5 +36,6 @@ namespace BeautyGlam.AccesoADatos.Entidades
         public bool estado { get; set; } // true = Activo | false = Inactivo
 
         public virtual ICollection<GuiaProductoAD> GuiaProducto { get; set; }
+        public virtual ICollection<PromocionProductoAD> PromocionProducto { get; set; }
     }
 }
