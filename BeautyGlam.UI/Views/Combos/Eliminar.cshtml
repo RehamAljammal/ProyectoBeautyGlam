@@ -1,0 +1,77 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.ComboPromocionalDTO
+
+@{
+    ViewBag.Title = "Eliminar combo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space promo-page">
+    <div class="container promo-container">
+
+        <div class="promo-header">
+            <h2 class="promo-title">Eliminar combo</h2>
+            <p class="promo-subtitle">Confirmación</p>
+        </div>
+
+        <!-- Formulario POST apuntando a ConfirmarEliminar -->
+        @using (Html.BeginForm("ConfirmarEliminar", "Combos", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.HiddenFor(m => m.idCombo)
+
+            <div class="promo-card p-4">
+
+                <p>¿Desea eliminar el siguiente combo?</p>
+
+                <h5 style="color:#5c3b6f;">
+                    @Model.titulo
+                </h5>
+
+                <p class="text-muted">
+                    @Model.descripcion
+                </p>
+
+                <hr />
+
+                <h6>Productos incluidos</h6>
+
+                <table class="table table-sm promo-table">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th class="text-end">Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var p in Model.productos)
+                        {
+                            <tr>
+                                <td>@p.nombre</td>
+                                <td class="text-end">₡ @p.precio</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <div class="d-flex justify-content-between mt-3">
+                    <strong>Total:</strong>
+                    <strong>₡ @Model.precioCombo</strong>
+                </div>
+
+                <div class="text-end mt-4">
+                    <button type="submit" class="promo-btn promo-btn-danger">
+                        Eliminar
+                    </button>
+
+                    <a href="@Url.Action("Index","Combos")"
+                       class="promo-btn promo-btn-outline">
+                        Cancelar
+                    </a>
+                </div>
+
+            </div>
+        }
+
+    </div>
+</section>

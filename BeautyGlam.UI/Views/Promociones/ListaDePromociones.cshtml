@@ -19,9 +19,21 @@
                     <span class="promo-badge">Listado</span>
                 </div>
 
-                <a href="@Url.Action("CrearPromociones","Promociones")" class="promo-btn">
-                    + Nueva Promoción
-                </a>
+                <!-- 👉 BOTONES SUPERIORES -->
+                <div class="d-flex gap-2">
+
+                    <a href="@Url.Action("CrearPromociones","Promociones")"
+                       class="promo-btn">
+                        + Nueva Promoción
+                    </a>
+
+                    <!-- ✅ NUEVO BOTÓN -->
+                    <a href="@Url.Action("Index","Combos")"
+                       class="promo-btn promo-btn-outline">
+                        Ver combos
+                    </a>
+
+                </div>
             </div>
 
             <div class="promo-table-wrap table-responsive">

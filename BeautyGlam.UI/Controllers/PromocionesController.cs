@@ -8,6 +8,7 @@ using BeautyGlam.LogicaDeNegocio.Promociones.EditarPromociones;
 using BeautyGlam.LogicaDeNegocio.Promociones.EliminarPromociones;
 using BeautyGlam.LogicaDeNegocio.Promociones.ListaPromociones;
 using BeautyGlam.LogicaDeNegocio.Promociones.RegistrarPromociones;
+using BeautyGlam.LogicaDeNegocio.Promociones.Combo;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -30,7 +31,9 @@ namespace BeautyGlam.UI.Controllers
             _eliminarPromocionesLN = new EliminarPromocionesLN();
         }
 
-        // GET: Promociones
+        // -----------------------------
+        // LISTADO PROMOCIONES (ADMIN)
+        // -----------------------------
         public ActionResult ListaDePromociones()
         {
             List<PromocionesDTO> laListaDePromociones =
@@ -39,23 +42,20 @@ namespace BeautyGlam.UI.Controllers
             return View(laListaDePromociones);
         }
 
-        // GET: Promociones/Details/5
-
-        // GET: Promociones/Create
+        // -----------------------------
+        // CREAR PROMOCIÓN
+        // -----------------------------
         public ActionResult CrearPromociones()
         {
             return View();
         }
 
-        // POST: Promociones/Create
         [HttpPost]
         public async Task<ActionResult> CrearPromociones(PromocionesDTO laPromocionParaGuardar)
         {
             try
             {
-                int cantidadDeFilasAfectadas =
-                    await _agregarPromocionesLN.Registrar(laPromocionParaGuardar);
-
+                await _agregarPromocionesLN.Registrar(laPromocionParaGuardar);
                 return RedirectToAction("ListaDePromociones");
             }
             catch
@@ -64,7 +64,9 @@ namespace BeautyGlam.UI.Controllers
             }
         }
 
-        // GET: Promociones/EditarPromociones/5
+        // -----------------------------
+        // EDITAR PROMOCIÓN
+        // -----------------------------
         public ActionResult EditarPromociones(int id)
         {
             ObtenerPromocionPorIdAD obtenerPromocionesPorIdAD =
@@ -74,14 +76,11 @@ namespace BeautyGlam.UI.Controllers
                 obtenerPromocionesPorIdAD.ObtenerPorId(id);
 
             if (promocion == null)
-            {
                 return RedirectToAction("ListaDePromociones");
-            }
 
             return View(promocion);
         }
 
-        // POST: Promociones/EditarPromociones
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditarPromociones(PromocionesDTO laPromocionParaGuardar)
@@ -117,7 +116,9 @@ namespace BeautyGlam.UI.Controllers
             }
         }
 
-        // GET: Promociones/EliminarPromociones/5
+        // -----------------------------
+        // DESACTIVAR PROMOCIÓN
+        // -----------------------------
         public ActionResult EliminarPromociones(int id)
         {
             ObtenerPromocionPorIdAD obtenerPromocionesPorIdAD =
@@ -127,9 +128,7 @@ namespace BeautyGlam.UI.Controllers
                 obtenerPromocionesPorIdAD.ObtenerPorId(id);
 
             if (promocion == null)
-            {
                 return RedirectToAction("ListaDePromociones");
-            }
 
             return View(promocion);
         }
@@ -141,13 +140,24 @@ namespace BeautyGlam.UI.Controllers
             try
             {
                 await _eliminarPromocionesLN.Eliminar(laPromocionParaGuardar);
-
                 return RedirectToAction("ListaDePromociones");
             }
             catch
             {
                 return View(laPromocionParaGuardar);
             }
+        }
+
+        // -----------------------------
+        // LISTADO DE COMBOS
+        // -----------------------------
+        public ActionResult CombosPromocionales()
+        {
+            var ln = new ObtenerCombosPromocionalesLN();
+
+            List<ComboPromocionalDTO> lista = ln.Obtener();
+
+            return View(lista);
         }
     }
 }
