@@ -1,0 +1,98 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.ComboPromocionalDTO
+
+@using BeautyGlam.Abstracciones.ModelosParaUI
+@using System.Collections.Generic
+
+@{
+    ViewBag.Title = "Crear combo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var productos = ViewBag.Productos as List<ProductosDTO>;
+}
+
+<section class="section-space promo-page">
+    <div class="container promo-container">
+
+        <div class="promo-header">
+            <h2 class="promo-title">Crear combo promocional</h2>
+            <p class="promo-subtitle">Nuevo combo</p>
+        </div>
+
+        @using (Html.BeginForm("Crear", "Combos", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+    <div class="promo-card p-4">
+
+        <div class="mb-3">
+            @Html.LabelFor(m => m.titulo)
+            @Html.TextBoxFor(m => m.titulo, new { @class = "form-control" })
+        </div>
+
+        <div class="mb-3">
+            @Html.LabelFor(m => m.descripcion)
+            @Html.TextAreaFor(m => m.descripcion, new { @class = "form-control", rows = 3 })
+        </div>
+
+        <div class="mb-3">
+            @Html.LabelFor(m => m.precioCombo)
+            @Html.TextBoxFor(m => m.precioCombo, new { @class = "form-control", type = "number", step = "0.01" })
+        </div>
+
+        <div class="mb-3">
+            @Html.LabelFor(m => m.fechaInicio)
+            @Html.TextBoxFor(m => m.fechaInicio, new { @class = "form-control", type = "date" })
+            @Html.ValidationMessageFor(m => m.fechaInicio)
+        </div>
+
+        <div class="mb-3">
+            @Html.LabelFor(m => m.fechaFin)
+            @Html.TextBoxFor(m => m.fechaFin, new { @class = "form-control", type = "date" })
+            @Html.ValidationMessageFor(m => m.fechaFin)
+        </div>
+        <hr />
+
+        <h5>Productos del combo</h5>
+
+        @if (productos != null && productos.Any())
+        {
+            for (int i = 0; i < productos.Count; i++)
+            {
+                <div class="form-check mb-2">
+
+                    <input type="checkbox"
+                           class="form-check-input"
+                           name="idsProductos"
+                           value="@productos[i].id" />
+
+                    <label class="form-check-label">
+                        @productos[i].nombre
+                        (₡ @productos[i].precio)
+                    </label>
+
+                </div>
+            }
+        }
+        else
+        {
+            <p class="text-muted">
+                No hay productos registrados.
+            </p>
+        }
+
+        <div class="text-end mt-4">
+            <button type="submit" class="promo-btn">
+                Guardar combo
+            </button>
+
+            <a href="@Url.Action("Administrar","Combos")"
+               class="promo-btn promo-btn-outline">
+                Cancelar
+            </a>
+        </div>
+
+    </div>
+        }
+
+    </div>
+</section>
