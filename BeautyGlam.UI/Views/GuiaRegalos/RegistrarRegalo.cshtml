@@ -1,0 +1,151 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.GuiaRegaloDto
+
+@{
+    ViewBag.Title = "Agregar Regalo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space inv-page">
+    <div class="container inv-container">
+
+        <!-- Header -->
+        <div class="inv-header">
+            <h2 class="inv-title">Agregar Regalo 🎁</h2>
+            <p class="inv-subtitle">
+                Registra un nuevo regalo para la guía
+            </p>
+        </div>
+
+        @using (Html.BeginForm("RegistrarRegalo", "GuiaRegalos", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+    <div class="row g-3">
+
+        <!-- Categoría / Ocasión -->
+        <div class="col-md-6">
+            <label class="form-label">Categoría / Ocasión</label>
+            @Html.TextBoxFor(m => m.categoria, new
+            {
+                @class = "form-control",
+                placeholder = "Ej: Cumpleaños, Aniversario"
+            })
+            @Html.ValidationMessageFor(m => m.categoria, "", new { @class = "text-danger" })
+        </div>
+
+        <!-- Presupuesto -->
+        <div class="col-md-6">
+            <label class="form-label">Presupuesto</label>
+            @Html.TextBoxFor(m => m.presupuesto, new
+            {
+                @class = "form-control",
+                type = "number",
+                step = "0.01",
+                placeholder = "Ej: 25000"
+            })
+            @Html.ValidationMessageFor(m => m.presupuesto, "", new { @class = "text-danger" })
+        </div>
+
+        <!-- Género -->
+        <div class="col-md-6">
+            <label class="form-label fw-semibold d-block mb-1">
+                Género
+            </label>
+            @Html.DropDownListFor(m => m.genero,
+                         new SelectList(new[] { "Femenino", "Masculino", "Unisex" }),
+                         "Seleccione",
+                         new
+                         {
+                             @class = "form-select w-100 rounded-pill shadow-sm"
+                         })
+            @Html.ValidationMessageFor(m => m.genero, "", new { @class = "text-danger small" })
+        </div>
+
+        <!-- Tipo -->
+        <div class="col-md-6">
+            <label class="form-label fw-semibold d-block mb-1">
+                Tipo
+            </label>
+            @Html.DropDownListFor(m => m.tipo,
+                         new SelectList(new[] { "Maquillaje", "Skincare", "Perfumes", "Joyas", "Bolsos" }),
+                         "Seleccione",
+                         new
+                         {
+                             @class = "form-select w-100 rounded-pill shadow-sm"
+                         })
+            @Html.ValidationMessageFor(m => m.tipo, "", new { @class = "text-danger small" })
+        </div>
+
+
+
+        <!-- ========================= -->
+        <!-- PRODUCTOS -->
+        <!-- ========================= -->
+        <div class="col-12 mt-4">
+            <label class="form-label fw-semibold">
+                Productos incluidos en la guía
+            </label>
+
+            @if (Model.productosDisponibles != null && Model.productosDisponibles.Any())
+            {
+                <div class="row">
+                    @foreach (var producto in Model.productosDisponibles)
+                    {
+                        <div class="col-md-4 mb-3">
+                            <label class="card h-100 shadow-sm rounded-4 p-2 text-center" for="prod_@producto.id"
+                                   style="cursor:pointer;">
+
+                                <input class="form-check-input position-absolute"
+                                       style="top:10px; left:10px;"
+                                       type="checkbox"
+                                       name="productosSeleccionados"
+                                       value="@producto.id"
+                                       id="prod_@producto.id" />
+
+                                <img src="@(
+                                string.IsNullOrEmpty(producto.imagen)
+                                    ? Url.Content("~/Content/img/no-image.png")
+                                    : Url.Content(producto.imagen)
+                            )"
+                                     alt="@producto.nombre"
+                                     class="img-fluid rounded-3 mb-2"
+                                     style="height:140px; object-fit:cover;" />
+
+                                <h6 class="mt-2">@producto.nombre</h6>
+
+                                <span class="badge bg-success mt-1">
+                                    ₡@producto.precio.ToString("N2")
+                                </span>
+
+                            </label>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <p class="text-muted">
+                    No hay productos disponibles
+                </p>
+            }
+        </div>
+
+
+        <!-- Botones -->
+        <div class="col-12 text-end mt-4">
+            <a href="@Url.Action("Index","GuiaRegalos")"
+               class="btn inv-btn inv-btn-soft me-2">
+                Cancelar
+            </a>
+
+            <button type="submit" class="btn inv-btn">
+                Guardar Regalo 💾
+            </button>
+        </div>
+
+    </div>
+        }
+    </div>
+</section>
+
+

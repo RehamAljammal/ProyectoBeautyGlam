@@ -156,13 +156,14 @@
     <Compile Include="Controllers\BlogBellezaController.cs" />
     <Compile Include="Controllers\CatalogoController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
-    <Compile Include="Controllers\GuiaRController.cs" />
+    <Compile Include="Controllers\GuiaRegalosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventarioController.cs" />
     <Compile Include="Controllers\MarcaController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\PermisosController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
+    <Compile Include="Controllers\CombosController .cs" />
     <Compile Include="Controllers\PromocionesController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
@@ -492,7 +493,7 @@
     <Content Include="Views\BlogBelleza\Editar.cshtml" />
     <Content Include="Views\BlogBelleza\Detalle.cshtml" />
     <Content Include="Views\Reportes\Index.cshtml" />
-    <Content Include="Views\Promociones\Index.cshtml" />
+    <Content Include="Views\Promociones\ListaDePromociones.cshtml" />
     <Content Include="Views\Proveedores\ListaDeProveedores.cshtml" />
     <Content Include="Views\Proveedores\DetallesDelProveedor.cshtml" />
     <Content Include="Views\Proveedores\CrearProveedor.cshtml" />
@@ -518,6 +519,16 @@
     <Content Include="Views\Inventario\EditarStock.cshtml" />
     <Content Include="Views\Inventario\MovimientosI.cshtml" />
     <Content Include="Views\Catalogo\Detalle.cshtml" />
+    <Content Include="Views\GuiaRegalos\Index.cshtml" />
+    <Content Include="Views\GuiaRegalos\RegistrarRegalo.cshtml" />
+    <Content Include="Views\GuiaRegalos\Editar.cshtml" />
+    <Content Include="Views\GuiaRegalos\Eliminar.cshtml" />
+    <Content Include="Views\GuiaRegalos\_TablaGuias.cshtml" />
+    <Content Include="Views\GuiaRegalos\Detalle.cshtml" />
+    <Content Include="Views\GuiaR\Index.cshtml" />
+    <Content Include="Views\Promociones\CrearPromociones.cshtml" />
+    <Content Include="Views\Promociones\EditarPromociones.cshtml" />
+    <Content Include="Views\Promociones\EliminarPromociones.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Auth\Register.cshtml" />
     <Content Include="Views\Rol\ListaDeRoles.cshtml" />
@@ -530,6 +541,10 @@
     <Content Include="Views\Usuarios\CambiarEstado.cshtml" />
     <Content Include="Views\Auth\RecuperarContrasena.cshtml" />
     <Content Include="Views\Auth\RestablecerContrasena.cshtml" />
+    <Content Include="Views\Combos\CombosPromocionales.cshtml" />
+    <Content Include="Views\Combos\Crear.cshtml" />
+    <Content Include="Views\Combos\Editar.cshtml" />
+    <Content Include="Views\Combos\Eliminar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

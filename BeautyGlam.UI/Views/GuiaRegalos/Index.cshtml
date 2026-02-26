@@ -1,0 +1,127 @@
+﻿@model List<BeautyGlam.Abstracciones.ModelosParaUI.GuiaRegaloDto>
+
+@{
+    ViewBag.Title = "Guía de Regalos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space inv-page">
+    <div class="container inv-container">
+
+        <!-- Header -->
+        <div class="inv-header">
+            <h2 class="inv-title">Guía de Regalos 🎁</h2>
+            <p class="inv-subtitle">
+                Encuentra el regalo ideal según la ocasión, presupuesto y estilo ✨
+            </p>
+        </div>
+
+        <!-- Filtros -->
+        <div class="inv-filters mb-4 p-4 rounded-4 bg-white shadow-sm">
+            <form id="filtrosForm" class="row g-3" onsubmit="return false;">
+
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold d-block mb-1">Categoría</label>
+                    <select name="categoria" class="form-control w-100 rounded-pill shadow-sm">
+                        <option value="">Todas</option>
+                        <option>Cumpleaños</option>
+                        <option>Aniversario</option>
+                        <option>Elegante</option>
+                        <option>Casual</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2">
+                    <label class="form-label fw-semibold d-block mb-1">Presupuesto</label>
+                    <select name="presupuesto" class="form-control w-100 rounded-pill shadow-sm">
+                        <option value="">Todos</option>
+                        <option value="1">Bajo</option>
+                        <option value="2">Intermedio</option>
+                        <option value="3">Alto</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2">
+                    <label class="form-label fw-semibold d-block mb-1">Género</label>
+                    <select name="genero" class="form-control w-100 rounded-pill shadow-sm">
+                        <option value="">Todos</option>
+                        <option>Femenino</option>
+                        <option>Masculino</option>
+                        <option>Unisex</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold d-block mb-1">Tipo</label>
+                    <select name="tipo" class="form-control w-100 rounded-pill shadow-sm">
+                        <option value="">Todos</option>
+                        <option>Maquillaje</option>
+                        <option>Skincare</option>
+                        <option>Perfumes</option>
+                        <option>Joyas</option>
+                        <option>Bolsos</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2 d-flex align-items-end">
+                    <button type="button" id="btnFiltrar" class="btn inv-btn w-100 rounded-pill">
+                        Filtrar 🔍
+                    </button>
+                </div>
+
+
+            </form>
+        </div>
+
+        <!-- Tabla -->
+        <div class="inv-table-wrap">
+            <table class="table table-striped inv-table align-middle">
+                <thead>
+                    <tr>
+                        <th>Categoría</th>
+                        <th>Tipo</th>
+                        <th>Presupuesto</th>
+                        <th>Género</th>
+                        <th>Estado</th>
+                        <th style="width:260px;">Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tablaGuias">
+                    @Html.Partial("_TablaGuias", Model)
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Botón Admin -->
+        <div class="mt-4 text-end">
+            <a class="btn inv-btn rounded-pill"
+               href="@Url.Action("RegistrarRegalo", "GuiaRegalos")">
+                Agregar regalo ➕
+            </a>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    const form = document.getElementById("filtrosForm");
+    const btnFiltrar = document.getElementById("btnFiltrar");
+
+    function aplicarFiltros() {
+        const params = new URLSearchParams(new FormData(form)).toString();
+
+        fetch('@Url.Action("Filtrar", "GuiaRegalos")?' + params)
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById("tablaGuias").innerHTML = html;
+            })
+            .catch(err => console.error("Error al filtrar:", err));
+    }
+
+    // Filtra cuando cambian los selects
+    form.addEventListener("change", aplicarFiltros);
+
+    // Filtra cuando presionan el botón
+    btnFiltrar.addEventListener("click", aplicarFiltros);
+</script>

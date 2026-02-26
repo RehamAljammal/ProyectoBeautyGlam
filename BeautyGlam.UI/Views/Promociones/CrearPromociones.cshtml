@@ -1,0 +1,115 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.PromocionesDTO
+
+@{
+    ViewBag.Title = "Agregar Promoción";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space sup-page">
+    <div class="container sup-container">
+
+        <div class="sup-header">
+            <h2 class="sup-title">Agregar Promoción</h2>
+            <p class="sup-subtitle">Completa los datos de la promoción 💌</p>
+        </div>
+
+        <div class="sup-card" style="max-width:820px; margin:0 auto;">
+            <div class="sup-card-head">
+                <span class="sup-badge">Nuevo</span>
+
+                <a href="@Url.Action("ListaDePromociones","Promociones")"
+                   class="sup-btn sup-btn-soft">
+                    Volver
+                </a>
+            </div>
+
+            @using (Html.BeginForm("CrearPromociones", "Promociones", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="row g-3 sup-form">
+
+                    <!-- Título -->
+                    <div class="col-md-12">
+                        <label class="form-label sup-label">
+                            @Html.DisplayNameFor(m => m.titulo)
+                        </label>
+
+                        @Html.TextBoxFor(m => m.titulo,
+                            new { @class = "form-control sup-input", placeholder = "Ej: 2x1 en perfumes" })
+
+                        @Html.ValidationMessageFor(m => m.titulo, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Descripción -->
+                    <div class="col-12">
+                        <label class="form-label sup-label">
+                            @Html.DisplayNameFor(m => m.descripcion)
+                        </label>
+
+                        @Html.TextAreaFor(m => m.descripcion,
+                            new
+                            {
+                                @class = "form-control sup-textarea",
+                                rows = 3,
+                                placeholder = "Describe la promoción"
+                            })
+
+                        @Html.ValidationMessageFor(m => m.descripcion, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Fecha inicio -->
+                    <div class="col-md-6">
+                        <label class="form-label sup-label">
+                            @Html.DisplayNameFor(m => m.fecha_Inicio)
+                        </label>
+
+                        @Html.TextBoxFor(m => m.fecha_Inicio,
+                            new { @class = "form-control sup-input", type = "date" })
+
+                        @Html.ValidationMessageFor(m => m.fecha_Inicio, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Fecha fin -->
+                    <div class="col-md-6">
+                        <label class="form-label sup-label">
+                            @Html.DisplayNameFor(m => m.fecha_Fin)
+                        </label>
+
+                        @Html.TextBoxFor(m => m.fecha_Fin,
+                            new { @class = "form-control sup-input", type = "date" })
+
+                        @Html.ValidationMessageFor(m => m.fecha_Fin, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Estado -->
+                    <div class="col-md-6">
+                        <label class="form-label sup-label">
+                            @Html.DisplayNameFor(m => m.estado)
+                        </label>
+
+                        @Html.DropDownListFor(
+                            m => m.estado,
+                            new SelectList(new[]
+                            {
+                                new { Value = true,  Text = "Activo" },
+                                new { Value = false, Text = "Inactivo" }
+                            }, "Value", "Text", true),
+                            new { @class = "form-control sup-select" }
+                        )
+                    </div>
+
+                </div>
+
+                <div class="d-flex justify-content-end gap-2 mt-4">
+
+                    <button type="submit" class="sup-btn">
+                        Guardar ✨
+                    </button>
+
+                </div>
+            }
+
+        </div>
+    </div>
+</section>

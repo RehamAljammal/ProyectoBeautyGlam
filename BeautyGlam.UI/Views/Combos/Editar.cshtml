@@ -1,0 +1,86 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.ComboPromocionalDTO
+
+@{
+    ViewBag.Title = "Editar combo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space promo-page">
+    <div class="container promo-container">
+
+        <div class="promo-header">
+            <h2 class="promo-title">Editar combo</h2>
+            <p class="promo-subtitle">Modificar información</p>
+        </div>
+
+        @using (Html.BeginForm("Editar", "Combos", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.Hidden("idPromocion", Model.idCombo)
+
+            <div class="promo-card p-4">
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.titulo)
+                    @Html.TextBoxFor(m => m.titulo, new { @class = "form-control" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.descripcion)
+                    @Html.TextAreaFor(m => m.descripcion, new { @class = "form-control", rows = 3 })
+                </div>
+
+                <hr />
+
+                <h6>Productos del combo</h6>
+
+                <table class="table table-sm promo-table">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th class="text-end">Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @for (int i = 0; i < Model.productos.Count; i++)
+                        {
+                            <tr>
+                                <td>
+                                    @Model.productos[i].nombre
+
+                                    @Html.Hidden("productos[" + i + "].idProducto", Model.productos[i].id_Producto)
+                                    @Html.Hidden("productos[" + i + "].nombre", Model.productos[i].nombre)
+                                    @Html.Hidden("productos[" + i + "].precio", Model.productos[i].precio)
+                                </td>
+                                <td class="text-end">
+                                    ₡ @Model.productos[i].precio
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+                <div class="d-flex justify-content-between mt-3">
+                    <strong>Total:</strong>
+                    <strong>₡ @Model.precioCombo</strong>
+                </div>
+
+                <div class="text-end mt-4">
+                    <button type="submit" class="promo-btn">
+                        Guardar cambios
+                    </button>
+
+                    <a href="@Url.Action("Administrar","Combos")"
+                       class="promo-btn promo-btn-outline">
+                        Cancelar
+                    </a>
+                </div>
+
+            </div>
+        }
+
+    </div>
+</section>

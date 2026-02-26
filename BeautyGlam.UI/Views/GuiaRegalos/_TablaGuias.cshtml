@@ -1,0 +1,45 @@
+﻿@model List<BeautyGlam.Abstracciones.ModelosParaUI.GuiaRegaloDto>
+
+@if (!Model.Any())
+{
+    <tr>
+        <td colspan="6" class="text-center text-muted">
+            No hay regalos con esos filtros 🎁
+        </td>
+    </tr>
+}
+else
+{
+    foreach (var item in Model)
+    {
+        <tr>
+            <td><strong style="color:#5c3b6f;">@item.categoria</strong></td>
+            <td>@item.tipo</td>
+            <td>₡@item.presupuesto</td>
+            <td>@item.genero</td>
+            <td>
+                <span class="sup-chip sup-chip-ok">Activo</span>
+            </td>
+            <td>
+                <div class="inv-actions">
+                    <a href="@Url.Action("Editar", "GuiaRegalos", new { id = item.idGuia })"
+                       class="btn inv-btn">
+                        Editar ✏️
+                    </a>
+
+                    <a href="@Url.Action("Eliminar", "GuiaRegalos", new { id = item.idGuia })"
+                       class="btn inv-btn inv-btn-soft">
+                        Desactivar 🗑️
+                    </a>
+
+                    <a href="@Url.Action("Detalle", "GuiaRegalos", new { id = item.idGuia })"
+                       class="btn inv-btn inv-btn-soft">
+                        Ver 👀
+                    </a>
+
+                </div>
+            </td>
+        </tr>
+    }
+}
+

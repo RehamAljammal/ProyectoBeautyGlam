@@ -1,0 +1,95 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.GuiaRegaloDto
+
+@{
+    ViewBag.Title = "Detalle de Guía de Regalo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space inv-page">
+    <div class="container inv-container">
+
+        <!-- Header -->
+        <div class="inv-header">
+            <h2 class="inv-title">Detalle de la Guía 🎁</h2>
+            <p class="inv-subtitle">
+                Información completa y productos incluidos
+            </p>
+        </div>
+
+        <!-- Info de la guía -->
+        <div class="inv-card p-4 rounded-4 bg-white shadow-sm mb-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Categoría:</strong> @Model.categoria</p>
+                    <p><strong>Tipo:</strong> @Model.tipo</p>
+                </div>
+
+                <div class="col-md-6">
+                    <p><strong>Presupuesto:</strong> ₡@Model.presupuesto</p>
+                    <p><strong>Género:</strong> @Model.genero</p>
+                </div>
+            </div>
+
+            <p class="mt-2">
+                <strong>Estado:</strong>
+                @if (Model.estado)
+                {
+                    <span class="sup-chip sup-chip-ok">Activo</span>
+                }
+                else
+                {
+                    <span class="sup-chip sup-chip-off">Inactivo</span>
+                }
+            </p>
+        </div>
+
+        <!-- Productos -->
+        <div class="inv-card p-4 rounded-4 bg-white shadow-sm">
+            <h5 class="mb-3">Productos incluidos 🛍️</h5>
+
+            @if (Model.productosDisponibles != null && Model.productosDisponibles.Any())
+            {
+                <div class="row">
+                    @foreach (var producto in Model.productosDisponibles)
+                    {
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100 shadow-sm rounded-4 p-2 text-center">
+
+                                <img src="@(
+                                        string.IsNullOrEmpty(producto.imagen)
+                                            ? Url.Content("~/Content/img/no-image.png")
+                                            : Url.Content(producto.imagen)
+                                    )"
+                                     alt="@producto.nombre"
+                                     class="img-fluid rounded-3 mb-2"
+                                     style="height:160px; object-fit:cover;" />
+
+
+                                <h6 class="mt-2">@producto.nombre</h6>
+
+                                <span class="badge bg-success mt-1">
+                                    ₡@producto.precio.ToString("N2")
+                                </span>
+
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <p class="text-muted">Esta guía no tiene productos asignados.</p>
+            }
+        </div>
+
+        <!-- Volver -->
+        <div class="mt-4 text-end">
+            <a href="@Url.Action("Index", "GuiaRegalos")"
+               class="btn inv-btn rounded-pill">
+                Volver ⬅️
+            </a>
+        </div>
+
+    </div>
+</section>
+
