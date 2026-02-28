@@ -17,9 +17,19 @@ namespace BeautyGlam.Abstracciones.ModelosParaUI
 
         public bool estado { get; set; }
 
+        public decimal descuento { get; set; }
+
+        public decimal totalConDescuento
+        {
+            get
+            {
+                var total = precioCombo - descuento;
+                return total < 0 ? 0 : total;
+            }
+        }
         public List<int> idsProductos { get; set; }
         public List<ProductoComboDTO> productos { get; set; }
-        public List<ProductosDTO> Productos { get; set; }
+        public List<ProductosDTO> productosDisponibles { get; set; }
 
     }
 }

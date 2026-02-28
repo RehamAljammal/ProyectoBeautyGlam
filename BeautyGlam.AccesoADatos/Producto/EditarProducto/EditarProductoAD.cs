@@ -33,6 +33,7 @@ namespace BeautyGlam.AccesoADatos.Producto.EditarProducto
                 elProductoEnBaseDeDatos.idMarca = elProductoParaGuardar.idMarca;
                 elProductoEnBaseDeDatos.idProveedor = elProductoParaGuardar.idProveedor;
                 elProductoEnBaseDeDatos.estado = elProductoParaGuardar.estado;
+                elProductoEnBaseDeDatos.EsTemporada = elProductoParaGuardar.EsTemporada; 
                 cantidadDeFilasAfectadas = await _elContexto.SaveChangesAsync();
             }
 
@@ -55,7 +56,8 @@ namespace BeautyGlam.AccesoADatos.Producto.EditarProducto
                 idCategoria = entidad.idCategoria,
                 idMarca = entidad.idMarca,
                 idProveedor = entidad.idProveedor,
-                estado = entidad.estado
+                estado = entidad.estado,
+                EsTemporada = entidad.EsTemporada
             };
         }
     }

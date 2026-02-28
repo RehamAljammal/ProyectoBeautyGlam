@@ -13,7 +13,7 @@ namespace BeautyGlam.Abstracciones.ModelosParaUI
         public string nombre { get; set; }
         [Column("precio")]
         public decimal precio { get; set; }
-
+        public string imagen { get; set; }
 
     }
 }

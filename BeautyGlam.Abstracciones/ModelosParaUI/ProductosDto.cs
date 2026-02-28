@@ -42,5 +42,6 @@ namespace BeautyGlam.Abstracciones.ModelosParaUI
 
         [Display(Name = "Estado")]
         public bool estado { get; set; }
+        public bool EsTemporada { get; set; }
     }
 }

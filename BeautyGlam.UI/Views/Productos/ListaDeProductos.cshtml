@@ -16,10 +16,7 @@
         <div class="prod-card">
             <div class="prod-card-head">
                 <span class="prod-badge">Listado</span>
-
-                <a href="@Url.Action("CrearProducto","Productos")" class="prod-btn">
-                    + Agregar Producto
-                </a>
+                <a href="@Url.Action("CrearProducto","Productos")" class="prod-btn">+ Agregar Producto</a>
             </div>
 
             <div class="prod-table-wrap table-responsive">
@@ -33,6 +30,7 @@
                             <th>Proveedor</th>
                             <th>Precio</th>
                             <th>Estado</th>
+                            <th>Temporada</th>
                             <th class="text-end" style="width:320px;">Acciones</th>
                         </tr>
                     </thead>
@@ -41,15 +39,15 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <!-- 🖼️ IMAGEN -->
+                                <!-- IMAGEN -->
                                 <td>
                                     <img src="@(string.IsNullOrEmpty(item.imagen)
                                                  ? Url.Content("~/Content/img/no-image.png")
-                                                 : Url.Content("~" + item.imagen))"
+                                                 : (item.imagen.StartsWith("http") ? item.imagen : Url.Content("~" + item.imagen)))"
                                          style="width:70px;height:70px;object-fit:cover;border-radius:12px;" />
                                 </td>
 
-                                <!-- INFO -->
+                                <!-- INFORMACIÓN -->
                                 <td>
                                     <strong style="color:#5c3b6f;">@item.nombre</strong>
                                     <div class="small text-muted">@item.descripcion</div>
@@ -68,6 +66,18 @@
                                     else
                                     {
                                         <span class="prod-chip prod-chip-off">Inactivo</span>
+                                    }
+                                </td>
+
+                                <!-- TEMPORADA -->
+                                <td>
+                                    @if (item.EsTemporada)
+                                    {
+                                        <span class="prod-chip prod-chip-season">Sí</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="prod-chip prod-chip-off">No</span>
                                     }
                                 </td>
 

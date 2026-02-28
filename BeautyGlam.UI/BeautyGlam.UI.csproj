@@ -545,6 +545,7 @@
     <Content Include="Views\Combos\Crear.cshtml" />
     <Content Include="Views\Combos\Editar.cshtml" />
     <Content Include="Views\Combos\Eliminar.cshtml" />
+    <Content Include="Views\Promociones\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -19,28 +19,27 @@ namespace BeautyGlam.AccesoADatos.Promociones.Combo
                 if (promocion == null)
                     return 0;
 
-                // encabezado del combo
                 promocion.titulo = combo.titulo;
                 promocion.descripcion = combo.descripcion;
                 promocion.fecha_Inicio = combo.fechaInicio;
                 promocion.fecha_Fin = combo.fechaFin;
+                promocion.descuento = combo.descuento;
 
-                // borrar relaciones actuales
                 var relacionesActuales = contexto.PromocionProducto
                     .Where(x => x.id_Promocion == combo.idCombo)
                     .ToList();
 
                 contexto.PromocionProducto.RemoveRange(relacionesActuales);
 
-                // volver a insertar productos
-                if (combo.productos != null)
+                // ✅ USAR idsProductos
+                if (combo.idsProductos != null)
                 {
-                    foreach (var producto in combo.productos)
+                    foreach (var idProducto in combo.idsProductos)
                     {
                         contexto.PromocionProducto.Add(new PromocionProductoAD
                         {
                             id_Promocion = combo.idCombo,
-                            id = producto.id_Producto
+                            id = idProducto
                         });
                     }
                 }
