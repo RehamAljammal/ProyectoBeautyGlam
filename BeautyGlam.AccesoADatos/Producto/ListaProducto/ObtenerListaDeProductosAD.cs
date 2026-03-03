@@ -36,7 +36,10 @@ namespace BeautyGlam.AccesoADatos.Producto.ListaProducto
                                                         idProveedor = p.idProveedor,
                                                         nombreProveedor = pr.nombre,
                                                         estado = p.estado,
-                                                        EsTemporada = p.EsTemporada
+                                                        EsTemporada = p.EsTemporada,
+                                                        tono = p.tono,
+                                                        tipoPiel = p.tipoPiel
+                                                       
 
                                                     }).ToList();
 

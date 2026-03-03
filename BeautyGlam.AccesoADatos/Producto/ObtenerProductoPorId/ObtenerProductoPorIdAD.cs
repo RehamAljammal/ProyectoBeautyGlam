@@ -36,6 +36,8 @@ namespace BeautyGlam.AccesoADatos.Producto.ObtenerProductoPorId
                      descripcion = producto.descripcion,
                      precio = producto.precio,
                      imagen = producto.imagen,  
+                     tipoPiel = producto.tipoPiel,  
+                     tono = producto.tono,
 
                      idCategoria = producto.idCategoria,
                      nombreCategoria = categoria == null ? "" : categoria.nombre,

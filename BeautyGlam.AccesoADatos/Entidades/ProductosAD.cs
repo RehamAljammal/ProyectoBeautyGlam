@@ -35,6 +35,12 @@ namespace BeautyGlam.AccesoADatos.Entidades
         [Column("estado")]
         public bool estado { get; set; } // true = Activo | false = Inactivo
         public bool EsTemporada { get; set; }
+
+        [Display(Name = "Tono")]
+        public string tono { get; set; }          // Claro, Medio, Oscuro, etc.
+
+        [Display(Name = "Tipo de Piel")]
+        public string tipoPiel { get; set; }
         public virtual ICollection<GuiaProductoAD> GuiaProducto { get; set; }
         public virtual ICollection<PromocionProductoAD> PromocionProducto { get; set; }
     }
