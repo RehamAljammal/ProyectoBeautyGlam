@@ -17,7 +17,7 @@
         {
             @Html.AntiForgeryToken()
 
-            @Html.Hidden("idPromocion", Model.idCombo)
+            @Html.HiddenFor(m => m.idCombo)
 
             <div class="promo-card p-4">
 
@@ -29,6 +29,13 @@
                 <div class="mb-3">
                     @Html.LabelFor(m => m.descripcion)
                     @Html.TextAreaFor(m => m.descripcion, new { @class = "form-control", rows = 3 })
+                </div>
+
+                <!-- DESCUENTO -->
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.descuento)
+                    @Html.TextBoxFor(m => m.descuento,
+                        new { @class = "form-control", type = "number", step = "0.01", min = "0" })
                 </div>
 
                 <hr />
@@ -44,18 +51,31 @@
                     </thead>
                     <tbody>
 
-                        @for (int i = 0; i < Model.productos.Count; i++)
+                        @if (Model.productos != null && Model.productos.Any())
+                        {
+                            for (int i = 0; i < Model.productos.Count; i++)
+                            {
+                                <tr>
+                                    <td>
+                                        @Model.productos[i].nombre
+
+                                        <!-- ESTE ES EL QUE HACE QUE SE GUARDE -->
+                                        <input type="hidden"
+                                               name="idsProductos"
+                                               value="@Model.productos[i].id_Producto" />
+
+                                    </td>
+                                    <td class="text-end">
+                                        ₡ @Model.productos[i].precio
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
                         {
                             <tr>
-                                <td>
-                                    @Model.productos[i].nombre
-
-                                    @Html.Hidden("productos[" + i + "].idProducto", Model.productos[i].id_Producto)
-                                    @Html.Hidden("productos[" + i + "].nombre", Model.productos[i].nombre)
-                                    @Html.Hidden("productos[" + i + "].precio", Model.productos[i].precio)
-                                </td>
-                                <td class="text-end">
-                                    ₡ @Model.productos[i].precio
+                                <td colspan="2" class="text-center text-muted">
+                                    No hay productos en este combo.
                                 </td>
                             </tr>
                         }
@@ -64,8 +84,13 @@
                 </table>
 
                 <div class="d-flex justify-content-between mt-3">
-                    <strong>Total:</strong>
+                    <strong>Total sin descuento:</strong>
                     <strong>₡ @Model.precioCombo</strong>
+                </div>
+
+                <div class="d-flex justify-content-between mt-1">
+                    <strong>Total con descuento:</strong>
+                    <strong>₡ @Model.totalConDescuento</strong>
                 </div>
 
                 <div class="text-end mt-4">
@@ -73,7 +98,7 @@
                         Guardar cambios
                     </button>
 
-                    <a href="@Url.Action("Administrar","Combos")"
+                    <a href="@Url.Action("Index","Combos")"
                        class="promo-btn promo-btn-outline">
                         Cancelar
                     </a>

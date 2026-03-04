@@ -17,33 +17,32 @@ namespace BeautyGlam.AccesoADatos.Promociones.Combo
                     titulo = combo.titulo,
                     descripcion = combo.descripcion,
                     estado = true,
-
-                    fecha_Inicio = DateTime.Now,
-                    fecha_Fin = DateTime.Now.AddMonths(1)
+                    fecha_Inicio = combo.fechaInicio,
+                    fecha_Fin = combo.fechaFin,
+                    descuento = combo.descuento
                 };
 
                 contexto.Promocion.Add(promocion);
-
                 await contexto.SaveChangesAsync();
 
-                // protección
-                if (combo.productos != null)
+                if (combo.idsProductos != null && combo.idsProductos.Count > 0)
                 {
-                    foreach (var producto in combo.productos)
+                    foreach (var idProducto in combo.idsProductos)
                     {
                         var relacion = new PromocionProductoAD
                         {
                             id_Promocion = promocion.id_Promocion,
-                            id = producto.id_Producto
-
+                            id = idProducto
                         };
 
                         contexto.PromocionProducto.Add(relacion);
                     }
+
+                    await contexto.SaveChangesAsync();
                 }
 
-                return await contexto.SaveChangesAsync();
+                return promocion.id_Promocion;
             }
         }
     }
-}
+    }

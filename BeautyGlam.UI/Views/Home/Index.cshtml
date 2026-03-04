@@ -256,6 +256,86 @@
     </div>
 </section>
 <!--===================== FIN MEJORES PRODUCTOS =====================-->
+<!--===================== ARTÍCULOS DE TEMPORADA =====================-->
+<section class="section-space pt-0">
+    <div class="container">
+
+        <div class="section-title">
+            <h2 class="title">Artículos de Temporada</h2>
+            <p>Descubre nuestros productos especiales de esta temporada.</p>
+        </div>
+
+        <div class="row mb-n4 mb-sm-n10 g-3 g-sm-6">
+
+            @if (ViewBag.Temporada != null && ViewBag.Temporada.Count > 0)
+            {
+                foreach (var producto in ViewBag.Temporada)
+                {
+                    <div class="col-6 col-lg-4 mb-4 mb-sm-9">
+                        <div class="product-item product-st2-item">
+                            <div class="product-thumb">
+                                <img src="@(producto.imagen.StartsWith("http") ? producto.imagen : Url.Content("~" + producto.imagen))"
+                                     class="img-fluid" alt="@producto.nombre" />
+                                <span class="flag-new">temporada</span>
+                            </div>
+                            <div class="product-info">
+                                <h4 class="title">@producto.nombre</h4>
+                                <div class="prices">
+                                    <span class="price">₡ @producto.precio</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p class="text-center">No hay productos de temporada disponibles.</p>
+            }
+
+        </div>
+    </div>
+    </div>
+</section>
+<!--===================== FIN TEMPORADA =====================-->
+<!--===================== PROMOCIONES DESTACADAS =====================-->
+<section class="section-space promo-home">
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Promociones Destacadas</h2>
+            <p>Descubre nuestras ofertas vigentes 💖</p>
+        </div>
+
+        <div class="row g-4">
+            @if (ViewBag.Promociones != null && ((List<BeautyGlam.Abstracciones.ModelosParaUI.PromocionesDTO>)ViewBag.Promociones).Any())
+            {
+                foreach (var promo in (List<BeautyGlam.Abstracciones.ModelosParaUI.PromocionesDTO>)ViewBag.Promociones)
+                {
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="promo-card">
+                            <div class="promo-card-head">
+                                <span class="promo-badge">Oferta</span>
+                            </div>
+                            <div class="p-3">
+                                <h4>@promo.titulo</h4>
+                                <p>@promo.descripcion</p>
+                                <div class="small text-muted">
+                                    Vigencia: @promo.fecha_Inicio.ToString("dd/MM/yyyy") - @promo.fecha_Fin.ToString("dd/MM/yyyy")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p class="text-center mt-4">No hay promociones vigentes en este momento.</p>
+            }
+        </div>
+
+    </div>
+</section>
 <!--===================== BLOG =====================-->
 <section class="section-space pt-0">
     <div class="container">

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<BeautyGlam.Abstracciones.ModelosParaUI.PromocionesDTO>
+
+@{
+    ViewBag.Title = "Promociones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space promo-page">
+    <div class="container promo-container">
+
+        <div class="promo-header">
+            <h2 class="promo-title">Promociones y Descuentos</h2>
+            <p class="promo-subtitle">Conoce nuestras ofertas vigentes 💖</p>
+        </div>
+
+        <div class="row g-4">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var promo in Model.Where(p => p.estado))  // Solo activas
+                {
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="promo-card">
+                            <div class="promo-card-head">
+                                <span class="promo-badge">Oferta</span>
+                            </div>
+                            <div class="p-3">
+                                <h4 class="promo-title">@promo.titulo</h4>
+                                <p class="promo-subtitle">@promo.descripcion</p>
+                                <div class="small text-muted">
+                                    Vigencia: @promo.fecha_Inicio.ToString("dd/MM/yyyy") - @promo.fecha_Fin.ToString("dd/MM/yyyy")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p class="text-center mt-4">No hay promociones vigentes en este momento.</p>
+            }
+        </div>
+
+    </div>
+</section>

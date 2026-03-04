@@ -47,6 +47,8 @@
     <Compile Include="AccesoADatos\Categoria\EliminarCategoria\IEliminarCategoriaAD.cs" />
     <Compile Include="AccesoADatos\Categoria\ListaCategoria\IObtenerListaDeCategoriasAD.cs" />
     <Compile Include="AccesoADatos\Categoria\RegistrarCategoria\IRegistrarCategoriaAD.cs" />
+    <Compile Include="AccesoADatos\Perfil\EditarPerfil\IEditarPerfilUsuarioAD.cs" />
+    <Compile Include="AccesoADatos\Perfil\ListaDePerfil\IObtenerPerfilUsuarioAD.cs" />
     <Compile Include="AccesoADatos\Promociones\CombosPromociones\AgregarCombo\IAgregarComboPromocionalAD.cs" />
     <Compile Include="AccesoADatos\Promociones\CombosPromociones\EditarCombo\IEditarComboPromocionalAD.cs" />
     <Compile Include="AccesoADatos\Promociones\CombosPromociones\EliminarCombo\IEliminarComboPromocionalAD.cs" />
@@ -98,6 +100,8 @@
     <Compile Include="LogicaDeNegocio\Categoria\EliminarCategoria\IEliminarCategoriaLN.cs" />
     <Compile Include="LogicaDeNegocio\Categoria\ListaCategoria\IObtenerLaListaDeCategoriasLN.cs" />
     <Compile Include="LogicaDeNegocio\Categoria\RegistrarCategoria\IRegistrarCategoriaLN.cs" />
+    <Compile Include="LogicaDeNegocio\Perfil\EditarPerfil\IEditarPerfilUsuarioLN.cs" />
+    <Compile Include="LogicaDeNegocio\Perfil\ListaDePerfil\IObtenerPerfilUsuarioLN.cs" />
     <Compile Include="LogicaDeNegocio\Promociones\CombosPromociones\AgregarCombo\IAgregarComboPromocionalLN.cs" />
     <Compile Include="LogicaDeNegocio\Promociones\CombosPromociones\EditarCombo\IEditarComboPromocionalLN.cs" />
     <Compile Include="LogicaDeNegocio\Promociones\CombosPromociones\EliminarCombo\IEliminarComboPromocionalLN.cs" />

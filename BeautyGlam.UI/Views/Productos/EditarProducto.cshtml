@@ -61,6 +61,26 @@
                                     @Html.ValidationMessageFor(m => m.estado, "", new { @class = "text-danger" })
                                 </div>
                             </div>
+                            <div class="col-md-6 mt-3">
+                                @Html.LabelFor(m => m.EsTemporada, new { @class = "prod-label" })
+                                <div class="d-flex align-items-center gap-2">
+                                    @Html.CheckBoxFor(m => m.EsTemporada)
+                                    <span style="color:#6b4c7a;font-weight:650;">Producto de temporada</span>
+                                </div>
+                                @Html.ValidationMessageFor(m => m.EsTemporada, "", new { @class = "text-danger" })
+                            </div>
+                            <!-- Imagen -->
+                            <div class="col-md-6 mt-3">
+                                @Html.LabelFor(m => m.imagen, new { @class = "prod-label" })
+                                @Html.TextBoxFor(m => m.imagen, new { @class = "form-control prod-input", placeholder = "URL de la imagen" })
+                                @Html.ValidationMessageFor(m => m.imagen, "", new { @class = "text-danger" })
+
+                                @* Preview de la imagen actual *@
+                                @if (!string.IsNullOrEmpty(Model.imagen))
+                                {
+                                    <img src="@Model.imagen" alt="@Model.nombre" style="margin-top:8px;width:100px;height:100px;object-fit:cover;border-radius:12px;" />
+                                }
+                            </div>
 
                             <hr class="my-4" />
 

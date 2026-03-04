@@ -71,6 +71,8 @@
     <Compile Include="Marca\EliminarMarca\EliminarMarcaLN.cs" />
     <Compile Include="Marca\ObtenerListaDeMarca\ObtenerListaDeMarcaLN.cs" />
     <Compile Include="Marca\RegistrarMarca\RegistrarMarcaLN.cs" />
+    <Compile Include="Perfil\EditarPerfil\EditarPerfilUsuarioLN.cs" />
+    <Compile Include="Perfil\ListaDePerfil\ObtenerPerfilUsuarioLN.cs" />
     <Compile Include="Producto\DetallesProducto\DetallesProductoLN.cs" />
     <Compile Include="Producto\EditarProducto\EditarProductoLN.cs" />
     <Compile Include="Producto\EliminarProducto\EliminarProductoLN.cs" />

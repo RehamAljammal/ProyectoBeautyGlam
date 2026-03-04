@@ -42,5 +42,12 @@ namespace BeautyGlam.Abstracciones.ModelosParaUI
 
         [Display(Name = "Estado")]
         public bool estado { get; set; }
+        public bool EsTemporada { get; set; }
+
+        [Display(Name = "Tono")]
+        public string tono { get; set; }          // Claro, Medio, Oscuro, etc.
+
+        [Display(Name = "Tipo de Piel")]
+        public string tipoPiel { get; set; }
     }
 }

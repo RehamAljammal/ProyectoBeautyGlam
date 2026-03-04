@@ -20,6 +20,7 @@ namespace BeautyGlam.AccesoADatos.Promociones.Combo
                         idCombo = p.id_Promocion,
                         titulo = p.titulo,
                         descripcion = p.descripcion,
+                        descuento = p.descuento,
 
                         productos = p.PromocionProducto
                             .Select(pp => new ProductoComboDTO

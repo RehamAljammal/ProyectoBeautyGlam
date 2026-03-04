@@ -8,19 +8,24 @@
 <section class="section-space promo-page">
     <div class="container promo-container">
 
-        <div class="promo-header d-flex justify-content-between align-items-center">
-            <div>
+        <!-- ENCABEZADO -->
+        <div class="promo-header d-flex align-items-center mb-4">
+
+            <div class="flex-grow-1 text-center">
                 <h2 class="promo-title">Combos promocionales</h2>
                 <p class="promo-subtitle">Ofertas combinadas 💖</p>
             </div>
 
-            <!-- SIN ROLES -->
-            <a href="@Url.Action("Crear","Combos")" class="promo-btn">
-                + Nuevo combo
-            </a>
+            <div>
+                <a href="@Url.Action("Crear","Combos")" class="promo-btn">
+                    + Nuevo combo
+                </a>
+            </div>
+
         </div>
 
-        <div class="row">
+        <!-- LISTADO -->
+        <div class="row justify-content-center">
 
             @if (Model != null && Model.Any())
             {
@@ -31,9 +36,7 @@
                         <div class="promo-card h-100">
 
                             <div class="promo-card-head">
-                                <div>
-                                    <span class="promo-badge">Combo</span>
-                                </div>
+                                <span class="promo-badge">Combo</span>
                             </div>
 
                             <div class="p-3">
@@ -62,8 +65,19 @@
                                                 foreach (var producto in combo.productos)
                                                 {
                                                     <tr>
-                                                        <td>@producto.nombre</td>
-                                                        <td class="text-end">₡ @producto.precio</td>
+                                                        <td class="d-flex align-items-center gap-2">
+
+                                                            <img src="@producto.imagen"
+                                                                 alt="@producto.nombre"
+                                                                 style="width:38px;height:38px;object-fit:cover;border-radius:6px;" />
+
+                                                            <span>@producto.nombre</span>
+
+                                                        </td>
+
+                                                        <td class="text-end">
+                                                            ₡ @producto.precio
+                                                        </td>
                                                     </tr>
                                                 }
                                             }
@@ -80,17 +94,27 @@
 
                                 </div>
 
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <strong style="color:#5c3b6f;">
-                                        Total del combo
-                                    </strong>
-
-                                    <strong style="font-size:1.1rem;">
-                                        ₡ @combo.precioCombo
-                                    </strong>
+                                <!-- Totales -->
+                                <div class="d-flex justify-content-between align-items-center mt-2">
+                                    <span><strong>Total sin descuento</strong></span>
+                                    <span><strong>₡ @combo.precioCombo</strong></span>
                                 </div>
 
-                                <!-- SIN ROLES -->
+                                <div class="d-flex justify-content-between align-items-center mt-1">
+                                    <span><strong>Descuento</strong></span>
+                                    <span>₡ @combo.descuento</span>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center mt-1">
+                                    <span style="color:#5c3b6f;">
+                                        <strong>Total con descuento</strong>
+                                    </span>
+                                    <span style="font-size:1.1rem;">
+                                        <strong>₡ @combo.totalConDescuento</strong>
+                                    </span>
+                                </div>
+
+                                <!-- Acciones -->
                                 <div class="promo-actions text-end mt-3">
 
                                     <a href="@Url.Action("Editar","Combos", new { id = combo.idCombo })"
