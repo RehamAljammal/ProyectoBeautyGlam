@@ -98,6 +98,8 @@
     <Compile Include="Marca\ListaDeMarca\ObtenerListaDeMarcaAD.cs" />
     <Compile Include="Marca\ObtenerMarcaPorID\ObtenerMarcaPorIdAD.cs" />
     <Compile Include="Marca\RegistrarMarca\RegistrarMarcaAD.cs" />
+    <Compile Include="Perfil\EditarPerfil\EditarPerfilUsuarioAD.cs" />
+    <Compile Include="Perfil\ListaDePerfil\ObtenerPerfilUsuarioAD.cs" />
     <Compile Include="Producto\DetallesProducto\DetallesProductoAD.cs" />
     <Compile Include="Producto\EditarProducto\EditarProductoAD.cs" />
     <Compile Include="Producto\EliminarProducto\EliminarProductoAD.cs" />

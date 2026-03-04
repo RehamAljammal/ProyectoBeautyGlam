@@ -52,6 +52,8 @@ namespace BeautyGlam.UI.Controllers
                 return View(model);
             }
 
+            // ✔ Guardamos el id del usuario en sesión
+            Session["IdUsuario"] = usuario.id_Usuario;
             FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
                 1,
                 usuario.correo,
