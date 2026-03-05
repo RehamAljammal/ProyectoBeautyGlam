@@ -229,7 +229,7 @@
     <Compile Include="Controllers\AsistenteSkincareController.cs" />
     <Compile Include="Controllers\AsistenteTonoController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
-    <Compile Include="Controllers\BlogBellezaController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CatalogoController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\GuiaRegalosController.cs" />
@@ -531,10 +531,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\indextwo.cshtml" />
-    <Content Include="Views\Blog\blog.cshtml" />
-    <Content Include="Views\Blog\blog-details.cshtml" />
-    <Content Include="Views\Blog\blogLeftSidebar.cshtml" />
-    <Content Include="Views\Blog\blogRightSidebar.cshtml" />
     <Content Include="Views\Home\aboutUs.cshtml" />
     <Content Include="Views\Home\faq.cshtml" />
     <Content Include="Views\Error\pageNotFound.cshtml" />
@@ -564,10 +560,6 @@
     <Content Include="Views\AsistenteSkincare\Rutina.cshtml" />
     <Content Include="Views\AsistenteSkincare\PasoAPaso.cshtml" />
     <Content Include="Views\AsistenteSkincare\Repeticion.cshtml" />
-    <Content Include="Views\BlogBelleza\Index.cshtml" />
-    <Content Include="Views\BlogBelleza\Publicar.cshtml" />
-    <Content Include="Views\BlogBelleza\Editar.cshtml" />
-    <Content Include="Views\BlogBelleza\Detalle.cshtml" />
     <Content Include="Views\Reportes\Index.cshtml" />
     <Content Include="Views\Promociones\ListaDePromociones.cshtml" />
     <Content Include="Views\Proveedores\ListaDeProveedores.cshtml" />
@@ -623,6 +615,12 @@
     <Content Include="Views\Combos\Eliminar.cshtml" />
     <Content Include="Views\Promociones\Index.cshtml" />
     <Content Include="Views\Productos\_TablaProductos.cshtml" />
+    <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Views\Blog\Editar.cshtml" />
+    <Content Include="Views\Blog\Detalle.cshtml" />
+    <Content Include="Views\Blog\Publicar.cshtml" />
+    <Content Include="Views\Blog\Crear.cshtml" />
+    <Content Include="Views\Blog\Desactivar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

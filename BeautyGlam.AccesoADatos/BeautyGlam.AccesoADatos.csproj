@@ -56,6 +56,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Autenticacion\UsuarioRegistroAD.cs" />
+    <Compile Include="Blog\CrearBlog\CrearBlogAD.cs" />
+    <Compile Include="Blog\EditarBlog\EditarBlogAD.cs" />
+    <Compile Include="Blog\EliminarBlog\DesactivarBlogAD.cs" />
+    <Compile Include="Blog\ListaDeBlog\ObtenerListaBlogAD .cs" />
     <Compile Include="Catalogo\ObtenerCatalogoAD.cs" />
     <Compile Include="Categoria\DetallesCategoria\DetallesCategoriaAD.cs" />
     <Compile Include="Categoria\EditarCategoria\IEditarCategoriaAD.cs" />
@@ -63,9 +67,14 @@
     <Compile Include="Categoria\ListaCategoria\ObtenerListaDeCategoriasAD.cs" />
     <Compile Include="Categoria\ObtenerProveedorPorID\ObtenerCategoriaPorIdAD.cs" />
     <Compile Include="Categoria\RegistrarCategoria\RegistrarCategoriaAD.cs" />
+    <Compile Include="Comentario\CrearComentario\CrearComentarioAD.cs" />
+    <Compile Include="Comentario\EliminarComentario\DesactivarComentarioAD.cs" />
+    <Compile Include="Comentario\ListaDeComentario\ObtenerListaComentarioAD.cs" />
     <Compile Include="Contexto.cs" />
     <Compile Include="Email\EmailServicioAD.cs" />
+    <Compile Include="Entidades\BlogAD.cs" />
     <Compile Include="Entidades\CategoriaAD.cs" />
+    <Compile Include="Entidades\ComentarioBlogAD.cs" />
     <Compile Include="Entidades\GuiaProductoAD.cs" />
     <Compile Include="Entidades\GuiaRegaloAD.cs" />
     <Compile Include="Entidades\InventarioAD.cs" />

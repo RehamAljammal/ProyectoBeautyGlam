@@ -1,0 +1,66 @@
+﻿@model List<BeautyGlam.Abstracciones.ModelosParaUI.BlogDto>
+
+@{
+    ViewBag.Title = "Blog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space inv-page">
+    <div class="container inv-container">
+
+        <!-- Header -->
+        <div class="inv-header">
+            <h2 class="inv-title">Blog 📝</h2>
+            <p class="inv-subtitle">
+                Descubre artículos, tips y beneficios de nuestros productos ✨
+            </p>
+        </div>
+
+        <!-- Lista de publicaciones -->
+        <div class="row g-4">
+            @foreach (var publicacion in Model)
+            {
+                <div class="col-lg-6">
+                    <div class="inv-filters p-4 rounded-4 bg-white shadow-sm">
+
+                        <!-- Imagen -->
+                        @if (!string.IsNullOrEmpty(publicacion.imagen))
+                        {
+                            <img src="@Url.Content(publicacion.imagen)" class="img-fluid rounded-4 mb-3" alt="Imagen del blog" />
+                        }
+
+                        <!-- Contenido -->
+                        <h4 class="fw-bold">@publicacion.titulo</h4>
+                        <p class="text-muted mb-2">
+                            @publicacion.resumen
+                        </p>
+                        <small class="text-secondary">
+                            Publicado el @publicacion.fecha_Publicacion.ToString("dd/MM/yyyy")
+                        </small>
+
+                        <!-- Acciones -->
+                        <div class="mt-3 text-end">
+                            <a href="@Url.Action("Detalle", "Blog", new { id = publicacion.id_Blog })"
+                               class="btn inv-btn rounded-pill">
+                                Leer más 📖
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Botón Administrador -->
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="mt-4 text-end">
+                <a href="@Url.Action("Crear", "Blog")"
+                   class="btn inv-btn rounded-pill">
+                    Crear publicación ➕
+                </a>
+            </div>
+        }
+
+    </div>
+</section>

@@ -1,0 +1,88 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.BlogDto
+
+@{
+    ViewBag.Title = "Editar publicación";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space inv-page">
+    <div class="container inv-container">
+
+        <!-- Header -->
+        <div class="inv-header">
+            <h2 class="inv-title">Editar publicación ✏️</h2>
+            <p class="inv-subtitle">
+                Actualiza la información de esta publicación
+            </p>
+        </div>
+
+        @using (Html.BeginForm("Editar", "Blog", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.id_Blog)
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+
+                    <div class="inv-filters p-4 rounded-4 bg-white shadow-sm">
+
+                        <div class="row g-4">
+
+                            <div class="col-md-12">
+                                <label class="form-label fw-semibold">Título</label>
+                                @Html.TextBoxFor(m => m.titulo,
+                                    new { @class = "form-control rounded-pill shadow-sm", required = "required" })
+                                @Html.ValidationMessageFor(m => m.titulo, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="form-label fw-semibold">Resumen</label>
+                                @Html.TextAreaFor(m => m.resumen,
+                                    new { @class = "form-control rounded-4 shadow-sm", rows = "3" })
+                                @Html.ValidationMessageFor(m => m.resumen, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="form-label fw-semibold">Contenido</label>
+                                @Html.TextAreaFor(m => m.contenido,
+                                    new { @class = "form-control rounded-4 shadow-sm", rows = "6", required = "required" })
+                                @Html.ValidationMessageFor(m => m.contenido, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="form-label fw-semibold">Imagen</label>
+                                <input type="file" name="imagen" class="form-control rounded-4 shadow-sm" />
+                                @if (!string.IsNullOrEmpty(Model.imagen))
+                                {
+                                    <img src="@Url.Content(Model.imagen)" class="img-fluid rounded-4 mt-2" alt="Imagen actual" />
+                                }
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-check mt-2">
+                                    @Html.CheckBoxFor(m => m.estado, new { @class = "form-check-input" })
+                                    <label class="form-check-label fw-semibold">Publicado</label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Acciones -->
+                        <div class="mt-4 d-flex justify-content-end gap-2">
+                            <a href="@Url.Action("Index", "Blog")" class="btn btn-outline-secondary rounded-pill">
+                                Cancelar
+                            </a>
+
+                            <button type="submit" class="btn inv-btn rounded-pill">
+                                Guardar cambios 💾
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        }
+
+    </div>
+</section>
