@@ -74,12 +74,17 @@
     <Compile Include="Email\EmailServicioAD.cs" />
     <Compile Include="Entidades\BlogAD.cs" />
     <Compile Include="Entidades\CategoriaAD.cs" />
+    <Compile Include="Entidades\DetalleVentaAD.cs" />
+    <Compile Include="Entidades\DevolucionAD.cs" />
+    <Compile Include="Entidades\FacturaAD.cs" />
+
     <Compile Include="Entidades\ComentarioBlogAD.cs" />
     <Compile Include="Entidades\GuiaProductoAD.cs" />
     <Compile Include="Entidades\GuiaRegaloAD.cs" />
     <Compile Include="Entidades\InventarioAD.cs" />
     <Compile Include="Entidades\MarcaAD.cs" />
     <Compile Include="Entidades\MovimientoInventarioAD.cs" />
+    <Compile Include="Entidades\PagoAD.cs" />
     <Compile Include="Entidades\ProductosAD.cs" />
     <Compile Include="Entidades\PromocionesAD.cs" />
     <Compile Include="Entidades\PromocionProductoAD.cs" />
@@ -89,6 +94,8 @@
     <Compile Include="Entidades\ProveedorAD.cs" />
     <Compile Include="Entidades\RolAD.cs" />
     <Compile Include="Entidades\UsuarioAD.cs" />
+    <Compile Include="Entidades\VentaAD.cs" />
+
     <Compile Include="Entidades\Wishlist.cs" />
     <Compile Include="Entidades\WishlistProducto.cs" />
     <Compile Include="GuiaRegalo\EditarRegalo\EditarGuiaRegaloAD.cs" />
@@ -145,6 +152,13 @@
     <Compile Include="Usuarios\ListaUsuario\ObtenerListaDeUsuariosAD.cs" />
     <Compile Include="Usuarios\ObtenerUsuarioPorId\ObtenerUsuarioPorIdAD.cs" />
     <Compile Include="Usuarios\RegistrarUsuario\RegistrarUsuarioAD.cs" />
+    <Compile Include="Venta\ListadoVenta\ListaVentaAD.cs" />
+    <Compile Include="Venta\RegistrarVentaAD.cs" />
+    <Compile Include="Venta\Reporte\ListaDevolucionAD.cs" />
+    <Compile Include="Venta\Reporte\RegistrarDevolucionAD.cs" />
+    <Compile Include="Venta\Reporte\ReporteAD.cs" />
+    <Compile Include="Venta\Reporte\ReporteDevolucionesAD.cs" />
+
     <Compile Include="Wishlist\NewFolder1\ObtenerWishlistAD.cs" />
   </ItemGroup>
   <ItemGroup>

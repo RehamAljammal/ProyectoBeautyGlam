@@ -1,0 +1,508 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.VentaDto
+
+@{
+    ViewBag.Title = "Registrar Venta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .venta-page {
+        background: radial-gradient(600px 260px at 0% 0%, #ffe4ef, transparent 60%), radial-gradient(520px 280px at 100% 0%, #e6f6ff, transparent 60%);
+    }
+
+    .venta-container {
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    .venta-card {
+        background: #ffffff;
+        border-radius: 26px;
+        border: 1px solid #f2e6f3;
+        box-shadow: 0 22px 45px rgba(180,120,180,.13);
+        padding: 28px;
+    }
+
+    .venta-title {
+        font-weight: 900;
+        color: #5c3b6f;
+        text-align: center;
+    }
+
+    .venta-btn {
+        padding: 10px 20px;
+        border-radius: 999px;
+        font-weight: 800;
+        border: none;
+        background: linear-gradient(135deg, #ffb7d5, #cdb7ff, #b9f0e2);
+        color: #4b2b4b;
+        box-shadow: 0 14px 32px rgba(200,150,220,.35);
+        transition: .2s ease;
+    }
+
+        .venta-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 18px 40px rgba(200,150,220,.45);
+        }
+
+    .venta-resumen {
+        background: #faf7ff;
+        border-radius: 18px;
+        padding: 16px;
+        border: 1px solid #f2e6f3;
+    }
+
+    .venta-table thead tr {
+        background: linear-gradient(90deg, #fff7e1, #ffe4ef, #e6f6ff);
+    }
+
+    .venta-table th {
+        font-weight: 800;
+        color: #5c3b6f;
+    }
+
+    .hr-soft {
+        height: 2px;
+        border: none;
+        background: linear-gradient(90deg, #ffe4ef, #cdb7ff, #e6f6ff);
+        margin-top: 12px;
+        width: 100%;
+    }
+
+
+    .bg-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,.35);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+        z-index: 9999;
+    }
+
+    .picker-modal {
+        width: 100%;
+        max-width: 560px;
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0,0,0,.25);
+        overflow: hidden;
+        border: 1px solid #f1e4f6;
+    }
+
+    .picker-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 16px 18px;
+        background: linear-gradient(90deg, #f9f4ff, #f6fbff);
+        border-bottom: 1px solid #f1e4f6;
+    }
+
+    .picker-title {
+        font-weight: 900;
+        color: #5c3b6f;
+        font-size: 18px;
+    }
+
+    .picker-sub {
+        color: #6b4c7a;
+        font-weight: 650;
+        font-size: 13px;
+        margin-top: 2px;
+    }
+
+    .picker-x {
+        border: none;
+        background: transparent;
+        font-size: 20px;
+        line-height: 1;
+        color: #6b4c7a;
+        cursor: pointer;
+        padding: 4px 8px;
+    }
+
+    .picker-body {
+        padding: 14px 18px;
+    }
+
+    .picker-list {
+        margin-top: 12px;
+        max-height: 320px;
+        overflow: auto;
+        padding-right: 6px;
+    }
+
+    .pick-item {
+        border: 1px solid #ead7f3;
+        border-radius: 14px;
+        padding: 12px 12px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        transition: transform .05s ease;
+    }
+
+        .pick-item:hover {
+            transform: translateY(-1px);
+        }
+
+    .pick-name {
+        color: #5c3b6f;
+        font-weight: 900;
+    }
+
+    .pick-id {
+        color: #6b4c7a;
+        font-weight: 650;
+        font-size: 12px;
+        margin-top: 2px;
+    }
+
+    .picker-foot {
+        padding: 12px 18px;
+        border-top: 1px solid #f1e4f6;
+        display: flex;
+        justify-content: flex-end;
+    }
+</style>
+
+<main class="main-content venta-page">
+    <section class="section-space">
+        <div class="container venta-container">
+            <div class="venta-card">
+                <h2 class="venta-title">Registrar Venta ✨</h2>
+                <p class="text-center text-muted mb-4">Venta confirmada por WhatsApp</p>
+
+                @using (Html.BeginForm("Registrar", "Venta", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <!-- CLIENTE -->
+                    <div class="mb-3">
+                        <label class="prod-label" style="display:block;margin-bottom:.35rem;">Cliente</label>
+                        <input type="text" id="txtClienteShow"
+                               class="form-control prod-input"
+                               placeholder="Toca para elegir cliente"
+                               readonly
+                               onclick="openPicker('cli')" />
+
+                        @Html.HiddenFor(m => m.id_Usuario, new { id = "hidClienteId" })
+                        @Html.Hidden("nombreCliente", "", new { id = "hidClienteNombre" })
+
+                        @Html.ValidationMessageFor(m => m.id_Usuario, "", new { @class = "text-danger" })
+                    </div>
+
+                    <hr class="hr-soft" />
+
+                    <!-- MÉTODO DE PAGO -->
+                    <div class="mb-4">
+                        <label class="fw-bold d-block mb-1">Método de Pago</label>
+                        <input type="text"
+                               id="txtMetodoPagoShow"
+                               class="form-control prod-input"
+                               placeholder="Toca para elegir método de pago"
+                               readonly
+                               onclick="openMetodoPagoPicker()" />
+                        @Html.HiddenFor(m => m.Pago.metodo_Pago, new { id = "hidMetodoPago" })
+                        @Html.ValidationMessageFor(m => m.Pago.metodo_Pago, "", new { @class = "text-danger" })
+                    </div>
+
+                    <hr class="hr-soft" />
+
+                    <!-- Agregar producto -->
+                    <div class="row mb-3">
+                        <div class="mb-3">
+                            <label class="prod-label" style="display:block;margin-bottom:.35rem;">Producto</label>
+                            <input type="text" id="txtProductoShow"
+                                   class="form-control prod-input"
+                                   placeholder="Toca para elegir producto"
+                                   readonly
+                                   onclick="openPicker('prod')" />
+                            <input type="hidden" id="hidProductoId" />
+                            <input type="hidden" id="hidProductoNombre" />
+                            <input type="hidden" id="hidProductoPrecio" />
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="fw-bold">Cantidad</label>
+                            <input type="number" id="cantidadInput" class="form-control" min="1" />
+                        </div>
+
+                        <div class="col-md-4 d-flex align-items-end">
+                            <button type="button" class="venta-btn w-100" onclick="agregarProducto()">+ Agregar</button>
+                        </div>
+                    </div>
+
+                    <!-- Tabla con los productos -->
+                    <div class="venta-resumen mb-4">
+                        <h5 class="fw-bold mb-3">Detalle</h5>
+                        <table class="table venta-table align-middle" id="tablaDetalle">
+                            <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio</th>
+                                    <th>Subtotal</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <div class="text-end fw-bold mt-2">Total: ₡<span id="totalGeneral">0</span></div>
+                    </div>
+
+                    <!-- Botón de guardar la venta -->
+                    <div class="text-center">
+                        <button type="submit" class="venta-btn">Guardar Venta 💾</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</main>
+<!-- MODAL PICKER -->
+<div id="pickerOverlay" class="bg-overlay" onclick="closePicker(event)">
+    <div class="picker-modal" onclick="stopClose(event)">
+        <div class="picker-head">
+            <div>
+                <div class="picker-title" id="pickerTitle">Elegir</div>
+                <div class="picker-sub">Busca y selecciona una opción</div>
+            </div>
+        </div>
+
+        <div class="picker-body">
+            <input type="text" id="pickerSearch" class="form-control prod-input"
+                   placeholder="Buscar..."
+                   oninput="filterPicker()" />
+
+            <div id="pickerList" class="picker-list"></div>
+        </div>
+
+        <div class="picker-foot">
+            <button type="button" class="prod-btn prod-btn-soft" onclick="forceClose()">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<div id="metodoPagoOverlay" class="bg-overlay" onclick="closeMetodoPago(event)">
+    <div class="picker-modal" onclick="stopClose(event)">
+
+        <div class="picker-head">
+            <div class="picker-title">Elegir método de pago</div>
+        </div>
+
+        <div class="picker-body" id="metodoPagoList">
+        </div>
+
+        <div class="picker-foot">
+            <button type="button" class="prod-btn prod-btn-soft" onclick="closeMetodoPagoForce()">
+                Cancelar
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let contador = 0;
+    let total = 0;
+</script>
+
+<script>
+
+    var DATA = {
+        cli: [
+            @foreach (var c in (SelectList)ViewBag.Clientes)
+            {
+                <text>{ id: "@c.Value", name: "@c.Text" },</text>
+            }
+        ],
+        prod: [
+            @foreach (var p in ViewBag.Productos)
+            {
+                <text>{ id: "@p.id", name: "@p.nombre", precio: "@p.precio" },</text>
+            }
+        ]
+    };
+
+    var currentType = null;
+
+    function openPicker(type) {
+        currentType = type;
+
+        var title = "Elegir";
+        if (type === "cli") title = "Elegir cliente";
+        if (type === "prod") title = "Elegir producto";
+
+        document.getElementById("pickerTitle").innerText = title;
+        renderPickerList("");
+
+        document.getElementById("pickerOverlay").style.display = "flex";
+    }
+
+    function renderPickerList(query) {
+
+        var list = document.getElementById("pickerList");
+        list.innerHTML = "";
+
+        var arr = DATA[currentType] || [];
+        var q = (query || "").toLowerCase();
+
+        arr.forEach(function (item) {
+
+            if (!item || !item.name) return;
+
+            if (q && item.name.toLowerCase().indexOf(q) === -1) return;
+
+            var div = document.createElement("div");
+            div.className = "pick-item";
+
+            div.onclick = function () {
+                applySelection(currentType, item.id, item.name, item.precio);
+                forceClose();
+            };
+
+            div.innerHTML =
+                "<div class='pick-name'>" + item.name + "</div>" +
+                (item.precio ? "<div class='pick-id'>₡" + parseFloat(item.precio).toFixed(2) + "</div>" : "");
+
+            list.appendChild(div);
+        });
+
+        if (list.innerHTML === "") {
+            list.innerHTML = "<div style='padding:10px;color:#888;'>No hay resultados</div>";
+        }
+    }
+
+    function filterPicker() {
+        var q = document.getElementById("pickerSearch").value;
+        renderPickerList(q);
+    }
+
+    function applySelection(type, id, name, precio) {
+
+        if (type === "cli") {
+            document.getElementById("hidClienteId").value = id;
+            document.getElementById("hidClienteNombre").value = name;
+            document.getElementById("txtClienteShow").value = name;
+        }
+
+        if (type === "prod") {
+            document.getElementById("hidProductoId").value = id;
+            document.getElementById("hidProductoNombre").value = name;
+            document.getElementById("hidProductoPrecio").value = precio;
+            document.getElementById("txtProductoShow").value =
+                name + " - ₡" + parseFloat(precio).toFixed(2);
+        }
+    }
+
+    function forceClose() {
+        document.getElementById("pickerOverlay").style.display = "none";
+    }
+
+    function closePicker(e) {
+        if (e.target.id === "pickerOverlay") {
+            forceClose();
+        }
+    }
+
+    function stopClose(e) {
+        e.stopPropagation();
+    }
+
+</script>
+
+<script>
+
+    function agregarProducto() {
+
+        var id = document.getElementById("hidProductoId").value;
+        var nombre = document.getElementById("hidProductoNombre").value;
+        var precio = parseFloat(document.getElementById("hidProductoPrecio").value);
+        var cantidad = parseInt(document.getElementById("cantidadInput").value);
+
+        if (!id || !cantidad || cantidad <= 0) {
+            alert("Selecciona producto y cantidad válida.");
+            return;
+        }
+
+        var subtotal = precio * cantidad;
+        total += subtotal;
+
+        var tbody = document.querySelector("#tablaDetalle tbody");
+
+        var fila = document.createElement("tr");
+
+        fila.innerHTML =
+            "<td>" + nombre + "</td>" +
+            "<td>" + cantidad + "</td>" +
+            "<td>₡" + precio.toFixed(2) + "</td>" +
+            "<td>₡" + subtotal.toFixed(2) + "</td>" +
+            "<td><button type='button' onclick='eliminarFila(this," + subtotal + ")'>❌</button></td>" +
+
+            "<input type='hidden' name='VentaItems[" + contador + "].id_Producto' value='" + id + "' />" +
+            "<input type='hidden' name='VentaItems[" + contador + "].cantidad' value='" + cantidad + "' />" +
+            "<input type='hidden' name='VentaItems[" + contador + "].precio' value='" + precio + "' />";
+
+        tbody.appendChild(fila);
+
+        contador++;
+        document.getElementById("totalGeneral").innerText = total.toFixed(2);
+
+        // Limpiar selección
+        document.getElementById("txtProductoShow").value = "";
+        document.getElementById("hidProductoId").value = "";
+        document.getElementById("hidProductoNombre").value = "";
+        document.getElementById("hidProductoPrecio").value = "";
+        document.getElementById("cantidadInput").value = "";
+    }
+
+    function eliminarFila(btn, subtotal) {
+        btn.closest("tr").remove();
+        total -= subtotal;
+        document.getElementById("totalGeneral").innerText = total.toFixed(2);
+    }
+
+</script>
+
+<script>
+    var METODOS_PAGO = [
+        "Sinpe",
+        "Transferencia",
+        "Efectivo",
+        "Tarjeta"
+    ];
+
+    function openMetodoPagoPicker() {
+
+        var list = document.getElementById("metodoPagoList");
+        list.innerHTML = "";
+
+        METODOS_PAGO.forEach(function (metodo) {
+
+            var div = document.createElement("div");
+            div.className = "pick-item";
+            div.innerHTML = "<div class='pick-name'>" + metodo + "</div>";
+
+            div.onclick = function () {
+                document.getElementById("hidMetodoPago").value = metodo;
+                document.getElementById("txtMetodoPagoShow").value = metodo;
+                closeMetodoPagoForce();
+            };
+
+            list.appendChild(div);
+        });
+
+        document.getElementById("metodoPagoOverlay").style.display = "flex";
+    }
+
+    function closeMetodoPago(e) {
+        if (e.target.id === "metodoPagoOverlay") {
+            closeMetodoPagoForce();
+        }
+    }
+
+    function closeMetodoPagoForce() {
+        document.getElementById("metodoPagoOverlay").style.display = "none";
+    }
+</script>

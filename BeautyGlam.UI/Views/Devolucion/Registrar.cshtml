@@ -1,0 +1,337 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.DevolucionDto
+
+@{
+    ViewBag.Title = "Registrar Devolución";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+    .venta-page {
+        background: radial-gradient(600px 260px at 0% 0%, #ffe4ef, transparent 60%), radial-gradient(520px 280px at 100% 0%, #e6f6ff, transparent 60%);
+    }
+
+    .venta-container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .venta-card {
+        background: #fff;
+        border-radius: 26px;
+        border: 1px solid #f2e6f3;
+        box-shadow: 0 22px 45px rgba(180,120,180,.13);
+        padding: 28px;
+    }
+
+    .venta-title {
+        font-weight: 900;
+        color: #5c3b6f;
+        text-align: center;
+    }
+
+    .venta-btn {
+        padding: 10px 20px;
+        border-radius: 999px;
+        font-weight: 800;
+        border: none;
+        background: linear-gradient(135deg,#ffb7d5,#cdb7ff,#b9f0e2);
+        color: #4b2b4b;
+        box-shadow: 0 14px 32px rgba(200,150,220,.35);
+    }
+
+    .venta-resumen {
+        background: #faf7ff;
+        border-radius: 18px;
+        padding: 16px;
+        border: 1px solid #f2e6f3;
+    }
+
+    .venta-table thead tr {
+        background: linear-gradient(90deg,#fff7e1,#ffe4ef,#e6f6ff);
+    }
+
+    .venta-table th {
+        font-weight: 800;
+        color: #5c3b6f;
+    }
+
+    .hr-soft {
+        height: 2px;
+        border: none;
+        background: linear-gradient(90deg,#ffe4ef,#cdb7ff,#e6f6ff);
+        margin-top: 12px;
+    }
+
+    .prod-input {
+        border-radius: 999px;
+        padding: 12px 16px;
+        border: 1px solid #ead7f3;
+    }
+
+    .bg-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,.35);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+        z-index: 9999;
+    }
+
+    .picker-modal {
+        width: 100%;
+        max-width: 560px;
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0,0,0,.25);
+        overflow: hidden;
+        border: 1px solid #f1e4f6;
+    }
+
+    .picker-head {
+        padding: 16px 18px;
+        background: linear-gradient(90deg,#f9f4ff,#f6fbff);
+        border-bottom: 1px solid #f1e4f6;
+    }
+
+    .picker-title {
+        font-weight: 900;
+        color: #5c3b6f;
+        font-size: 18px;
+    }
+
+    .picker-body {
+        padding: 14px 18px;
+    }
+
+    .picker-list {
+        margin-top: 12px;
+        max-height: 300px;
+        overflow: auto;
+    }
+
+    .pick-item {
+        border: 1px solid #ead7f3;
+        border-radius: 14px;
+        padding: 12px;
+        margin-bottom: 10px;
+        cursor: pointer;
+    }
+
+    .pick-name {
+        color: #5c3b6f;
+        font-weight: 900;
+    }
+</style>
+
+<main class="main-content venta-page">
+
+    <section class="section-space">
+
+        <div class="container venta-container">
+
+            <div class="venta-card">
+
+                <h2 class="venta-title">Registrar Devolución 📦</h2>
+                <p class="text-center text-muted mb-4">
+                    Registro de productos devueltos
+                </p>
+
+                @using (Html.BeginForm("Registrar", "Devolucion", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <!-- CLIENTE -->
+
+                    <div class="mb-3">
+
+                        <label class="fw-bold">Cliente</label>
+
+                        <input type="text"
+                               id="txtClienteShow"
+                               class="form-control prod-input"
+                               placeholder="Toca para elegir cliente"
+                               readonly
+                               onclick="openPicker()" />
+
+                        @Html.HiddenFor(m => m.id_Usuario, new { id = "hidClienteId" })
+
+                    </div>
+
+                    <hr class="hr-soft" />
+
+                    <!-- VENTAS -->
+
+                    <div class="venta-resumen mb-4">
+
+                        <h5 class="fw-bold mb-3">Ventas del cliente</h5>
+
+                        <table class="table venta-table" id="tablaVentas">
+
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Venta</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+
+                            <tbody></tbody>
+
+                        </table>
+
+                    </div>
+
+                    <!-- MOTIVO -->
+
+                    <div class="mb-3">
+
+                        <label class="fw-bold">Motivo</label>
+
+                        @Html.TextBoxFor(m => m.motivo, new { @class = "form-control" })
+
+                    </div>
+
+                    <div class="mb-4">
+
+                        <label class="fw-bold">Observación</label>
+
+                        @Html.TextAreaFor(m => m.observacion,
+                        new { @class = "form-control", rows = 3 })
+
+                    </div>
+
+                    <div class="text-center">
+
+                        <button type="submit" class="venta-btn">
+                            Registrar Devolución 📦
+                        </button>
+
+                    </div>
+
+                }
+
+            </div>
+        </div>
+    </section>
+</main>
+
+
+<div id="pickerOverlay" class="bg-overlay" onclick="closePicker(event)">
+
+    <div class="picker-modal" onclick="event.stopPropagation()">
+
+        <div class="picker-head">
+            <div class="picker-title">Elegir cliente</div>
+        </div>
+
+        <div class="picker-body">
+
+            <input type="text"
+                   id="buscarCliente"
+                   class="form-control prod-input"
+                   placeholder="Buscar..."
+                   oninput="filtrarClientes()" />
+
+            <div id="listaClientes" class="picker-list"></div>
+
+        </div>
+
+    </div>
+</div>
+
+<script>
+
+let CLIENTES = [
+@foreach (var c in (SelectList)ViewBag.Clientes)
+{
+    <text>{ id: "@c.Value", name: @Html.Raw(Json.Encode(c.Text)) },</text>
+}
+];
+
+function openPicker() {
+
+    renderClientes("");
+
+    document.getElementById("pickerOverlay").style.display = "flex";
+}
+
+function closePicker(e) {
+
+    if (e.target.id === "pickerOverlay") {
+        document.getElementById("pickerOverlay").style.display = "none";
+    }
+}
+
+function renderClientes(query) {
+
+    let list = document.getElementById("listaClientes");
+
+    list.innerHTML = "";
+
+    CLIENTES.forEach(function (c) {
+
+        if (query && !c.name.toLowerCase().includes(query.toLowerCase()))
+            return;
+
+        let div = document.createElement("div");
+
+        div.className = "pick-item";
+
+        div.innerHTML =
+            "<div class='pick-name'>" + c.name + "</div>";
+
+        div.onclick = function () {
+
+            document.getElementById("hidClienteId").value = c.id;
+
+            document.getElementById("txtClienteShow").value = c.name;
+
+            document.getElementById("pickerOverlay").style.display = "none";
+
+            cargarVentas(c.id);
+        };
+
+        list.appendChild(div);
+    });
+}
+
+function filtrarClientes() {
+
+    let query = document.getElementById("buscarCliente").value;
+
+    renderClientes(query);
+}
+
+function cargarVentas(clienteId) {
+
+    fetch("/Devolucion/ObtenerVentasPorCliente?id_Usuario=" + clienteId)
+
+        .then(r => r.json())
+
+        .then(data => {
+
+            let tbody = document.querySelector("#tablaVentas tbody");
+
+            tbody.innerHTML = "";
+
+            data.forEach(function (v) {
+
+                let tr = document.createElement("tr");
+
+                tr.innerHTML =
+                    "<td><input type='radio' name='id_Venta' value='" + v.id_Venta + "'></td>" +
+                    "<td>#"+ v.id_Venta +"</td>" +
+                    "<td>₡" + v.total + "</td>";
+
+                tbody.appendChild(tr);
+
+            });
+
+        });
+
+}
+
+</script>

@@ -1,0 +1,97 @@
+﻿@model IEnumerable<BeautyGlam.Abstracciones.ModelosParaUI.DevolucionListadoDto>
+
+@{
+    ViewBag.Title = "Devoluciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space sup-page">
+    <div class="container sup-container">
+
+        <div class="sup-header">
+            <h2 class="sup-title">Devoluciones</h2>
+            <p class="sup-subtitle">Administra las devoluciones registradas 📦</p>
+        </div>
+
+        <div class="sup-card">
+            <div class="sup-card-head">
+                <span class="sup-badge">Listado</span>
+
+                <a href="@Url.Action("Registrar", "Devolucion")" class="sup-btn">
+                    + Registrar Devolución
+                </a>
+            </div>
+
+            <div class="sup-table-wrap table-responsive">
+                <table class="table table-striped align-middle sup-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Motivo</th>
+                            <th>Fecha</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @if (Model != null && Model.Any())
+                        {
+                            foreach (var d in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <strong style="color:#5c3b6f;">
+                                            #@d.id_Devolucion
+                                        </strong>
+                                    </td>
+
+                                    
+
+                                    <td>@d.motivo</td>
+
+                                    <td>
+                                        @d.fecha.ToShortDateString()
+                                    </td>
+
+                                    <td>
+                                        @if (d.estado == "Registrada")
+                                        {
+                                            <span class="sup-chip sup-chip-ok">
+                                                Registrada
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="sup-chip sup-chip-off">
+                                                @d.estado
+                                            </span>
+                                        }
+                                    </td>
+
+                                    <td>
+                                        <div class="sup-actions">
+                                            <a href="@Url.Action("Detalle", "Devolucion", new { id = d.id_Devolucion })"
+                                               class="sup-btn sup-btn-soft sup-btn-sm">
+                                                Ver 👀
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="7" class="text-center py-4">
+                                    No hay devoluciones registradas 📭
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

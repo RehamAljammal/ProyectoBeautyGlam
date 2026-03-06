@@ -1,0 +1,63 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.ReporteFiltroDto
+
+@{
+    ViewBag.Title = "Reporte de Ventas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space inv-page">
+    <div class="container inv-container">
+
+        <!-- HEADER -->
+        <div class="inv-header">
+            <h2 class="inv-title">Reporte de Ventas 📊</h2>
+            <p class="inv-subtitle">
+                Analiza ventas por rango de fechas fácilmente
+            </p>
+        </div>
+
+        <!-- CARD FILTRO -->
+        <div class="inv-card mb-4">
+            <div class="inv-card-head">
+                <span class="inv-badge">Filtros</span>
+                <h5 class="inv-card-title">Generar reporte personalizado</h5>
+                <p class="inv-card-desc">
+                    Selecciona el rango de fechas para visualizar las ventas.
+                </p>
+            </div>
+
+            <div class="inv-card-body">
+                @using (Html.BeginForm("Ventas", "Reporte", FormMethod.Post))
+                {
+                    <div class="row g-3 justify-content-center">
+
+                        <div class="col-12 col-md-3">
+                            <label class="inv-label">Fecha Inicio</label>
+                            @Html.TextBoxFor(m => m.FechaInicio,
+                                     new { @class = "form-control inv-input", type = "date" })
+                        </div>
+
+                        <div class="col-12 col-md-3">
+                            <label class="inv-label">Fecha Fin</label>
+                            @Html.TextBoxFor(m => m.FechaFin,
+                                     new { @class = "form-control inv-input", type = "date" })
+                        </div>
+
+                    </div>
+
+                    <div class="inv-center-actions mt-4">
+                        <button type="submit" class="btn inv-btn">
+                            Generar Reporte ✨
+                        </button>
+
+                        <a href="@Url.Action("Ventas","Reporte")"
+                           class="btn inv-btn inv-btn-soft">
+                            Limpiar
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+</section>

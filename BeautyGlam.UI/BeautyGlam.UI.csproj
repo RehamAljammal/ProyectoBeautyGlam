@@ -46,12 +46,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.6.2\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+
+    <Reference Include="itextsharp, Version=5.5.13.5, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.5\lib\net461\itextsharp.dll</HintPath>
+
     <Reference Include="Microsoft.AspNetCore.Authorization, Version=10.0.3.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNetCore.Authorization.10.0.3\lib\net462\Microsoft.AspNetCore.Authorization.dll</HintPath>
     </Reference>
@@ -72,6 +79,7 @@
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=10.0.0.3, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.10.0.3\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Extensions.Configuration, Version=10.0.0.3, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
@@ -232,6 +240,7 @@
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CatalogoController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
+    <Compile Include="Controllers\DevolucionController.cs" />
     <Compile Include="Controllers\GuiaRegalosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventarioController.cs" />
@@ -242,9 +251,10 @@
     <Compile Include="Controllers\CombosController .cs" />
     <Compile Include="Controllers\PromocionesController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
-    <Compile Include="Controllers\ReportesController.cs" />
+    <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Controllers\VentaController.cs" />
     <Compile Include="Controllers\WishlistController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -292,6 +302,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\logobeauty.jpg" />
+    <Content Include="Images\logoPNG.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -560,6 +571,12 @@
     <Content Include="Views\AsistenteSkincare\Rutina.cshtml" />
     <Content Include="Views\AsistenteSkincare\PasoAPaso.cshtml" />
     <Content Include="Views\AsistenteSkincare\Repeticion.cshtml" />
+
+    <Content Include="Views\BlogBelleza\Index.cshtml" />
+    <Content Include="Views\BlogBelleza\Publicar.cshtml" />
+    <Content Include="Views\BlogBelleza\Editar.cshtml" />
+    <Content Include="Views\BlogBelleza\Detalle.cshtml" />
+
     <Content Include="Views\Reportes\Index.cshtml" />
     <Content Include="Views\Promociones\ListaDePromociones.cshtml" />
     <Content Include="Views\Proveedores\ListaDeProveedores.cshtml" />
@@ -613,6 +630,16 @@
     <Content Include="Views\Combos\Crear.cshtml" />
     <Content Include="Views\Combos\Editar.cshtml" />
     <Content Include="Views\Combos\Eliminar.cshtml" />
+    <Content Include="Views\Venta\Registrar.cshtml" />
+    <Content Include="Views\Venta\Listado.cshtml" />
+    <Content Include="Views\Venta\Factura.cshtml" />
+    <Content Include="Views\Reporte\Ventas.cshtml" />
+    <Content Include="Views\Reporte\VentasResultado.cshtml" />
+    <Content Include="Views\Devolucion\Registrar.cshtml" />
+    <Content Include="Views\Devolucion\Listado.cshtml" />
+    <Content Include="Views\Reporte\Devoluciones.cshtml" />
+    <Content Include="Views\Reporte\DevolucionesResultado.cshtml" />
+    <Content Include="Views\Devolucion\Detalle.cshtml" />
     <Content Include="Views\Promociones\Index.cshtml" />
     <Content Include="Views\Productos\_TablaProductos.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />

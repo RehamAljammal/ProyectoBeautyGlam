@@ -1,0 +1,102 @@
+﻿@model IEnumerable<BeautyGlam.Abstracciones.ModelosParaUI.VentaListadoDto>
+
+@{
+    ViewBag.Title = "Ventas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space sup-page">
+    <div class="container sup-container">
+
+        <div class="sup-header">
+            <h2 class="sup-title">Ventas</h2>
+            <p class="sup-subtitle">Administra las ventas registradas ✨</p>
+        </div>
+
+        <div class="sup-card">
+            <div class="sup-card-head">
+                <span class="sup-badge">Listado</span>
+
+                <a href="@Url.Action("Registrar", "Venta")" class="sup-btn">
+                    + Registrar Venta
+                </a>
+            </div>
+
+            <div class="sup-table-wrap table-responsive">
+                <table class="table table-striped align-middle sup-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Cliente</th>
+                            <th>Fecha</th>
+                            <th>Total</th>
+                            <th>Estado Pago</th>
+                            <th class="text-center" style="width:220px;">Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @if (Model != null && Model.Any())
+                        {
+                            foreach (var v in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <strong style="color:#5c3b6f;">
+                                            #@v.id_Venta
+                                        </strong>
+                                    </td>
+
+                                    <td>@v.nombreCliente</td>
+
+                                    <td>
+                                        @v.fecha_Venta.ToShortDateString()
+                                    </td>
+
+                                    <td>
+                                        ₡@v.total
+                                    </td>
+
+                                    <td>
+                                        @if (v.pagado)
+                                        {
+                                            <span class="sup-chip sup-chip-ok">
+                                                Pagado
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="sup-chip sup-chip-off">
+                                                Pendiente
+                                            </span>
+                                        }
+                                    </td>
+
+                                    <td class="text-center">
+                                        <div class="sup-actions">
+
+                                            <a href="@Url.Action("Factura", "Venta", new { id = v.id_Venta })"
+                                               class="sup-btn sup-btn-soft sup-btn-sm">
+                                                Ver Factura 🧾
+                                            </a>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="6" class="text-center py-4">
+                                    No hay ventas registradas 😢
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
