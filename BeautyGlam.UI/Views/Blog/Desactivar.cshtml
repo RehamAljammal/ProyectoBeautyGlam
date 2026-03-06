@@ -1,0 +1,35 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.BlogDto
+
+@{
+    ViewBag.Title = "Desactivar publicación";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space inv-page">
+    <div class="container inv-container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="inv-filters p-4 rounded-4 bg-white shadow-sm text-center">
+
+                    <h3 class="inv-title mb-3">¿Deseas desactivar esta publicación?</h3>
+                    <p class="mb-3"><strong>@Model.titulo</strong></p>
+                    <p class="text-muted">@Model.resumen</p>
+
+                    @using (Html.BeginForm("DesactivarConfirmado", "Blog", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(m => m.id_Blog)
+
+                        <button type="submit" class="btn inv-btn rounded-pill me-2">
+                            Sí, desactivar
+                        </button>
+
+                        <a href="@Url.Action("Index", "Blog")" class="btn btn-outline-secondary rounded-pill">
+                            Cancelar
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

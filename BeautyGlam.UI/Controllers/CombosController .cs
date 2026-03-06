@@ -39,10 +39,12 @@ namespace BeautyGlam.UI.Controllers
         // =========================
         public ActionResult Crear()
         {
-            var productos = new ObtenerLaListaDeProductosLN().Obtener();
-            ViewBag.Productos = productos;
+            var modelo = new ComboPromocionalDTO();
 
-            return View(new ComboPromocionalDTO());
+            modelo.productosDisponibles =
+                new ObtenerLaListaDeProductosLN().Obtener();
+
+            return View(modelo);
         }
 
 
@@ -50,16 +52,19 @@ namespace BeautyGlam.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Crear(ComboPromocionalDTO combo, int[] idsProductos)
         {
+            if (idsProductos == null || idsProductos.Length == 0)
+                ModelState.AddModelError("", "Debe seleccionar al menos un producto.");
+
             if (!ModelState.IsValid)
             {
-                ViewBag.Productos = new ObtenerLaListaDeProductosLN().Obtener();
+                combo.productosDisponibles =
+                    new ObtenerLaListaDeProductosLN().Obtener();
+
                 return View(combo);
             }
 
-            // Asignamos los IDs de productos al DTO
             combo.idsProductos = idsProductos.ToList();
 
-            // Llamada al método con un solo parámetro
             await _agregarLN.Agregar(combo);
 
             return RedirectToAction("Index");
@@ -83,25 +88,24 @@ namespace BeautyGlam.UI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editar(
-            ComboPromocionalDTO combo,
-            int[] idsProductos)
+        public ActionResult Editar(ComboPromocionalDTO combo, int[] idsProductos)
         {
-            if (idsProductos == null || !idsProductos.Any())
-            {
-                ModelState.AddModelError("", "Debe seleccionar al menos un producto.");
-
-                ViewBag.Productos = new ObtenerLaListaDeProductosLN().Obtener();
-                return View(combo);
-            }
-
-            combo.idsProductos = idsProductos.ToList();
-
+            // ✅ primero validamos ModelState normal
             if (!ModelState.IsValid)
             {
                 ViewBag.Productos = new ObtenerLaListaDeProductosLN().Obtener();
                 return View(combo);
             }
+
+            // ✅ luego validamos que vengan productos
+            if (idsProductos == null || idsProductos.Length == 0)
+            {
+                ModelState.AddModelError("", "Debe seleccionar al menos un producto.");
+                ViewBag.Productos = new ObtenerLaListaDeProductosLN().Obtener();
+                return View(combo);
+            }
+
+            combo.idsProductos = idsProductos.ToList();
 
             _editarLN.Editar(combo);
 
@@ -123,9 +127,9 @@ namespace BeautyGlam.UI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ConfirmarEliminar(int id)
+        public ActionResult ConfirmarEliminar(int idCombo)
         {
-            _eliminarLN.Eliminar(id);
+            _eliminarLN.Eliminar(idCombo);
 
             return RedirectToAction("Index");
         }

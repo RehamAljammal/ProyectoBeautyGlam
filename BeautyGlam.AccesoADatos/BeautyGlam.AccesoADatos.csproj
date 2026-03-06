@@ -56,6 +56,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Autenticacion\UsuarioRegistroAD.cs" />
+    <Compile Include="Blog\CrearBlog\CrearBlogAD.cs" />
+    <Compile Include="Blog\EditarBlog\EditarBlogAD.cs" />
+    <Compile Include="Blog\EliminarBlog\DesactivarBlogAD.cs" />
+    <Compile Include="Blog\ListaDeBlog\ObtenerListaBlogAD .cs" />
     <Compile Include="Catalogo\ObtenerCatalogoAD.cs" />
     <Compile Include="Categoria\DetallesCategoria\DetallesCategoriaAD.cs" />
     <Compile Include="Categoria\EditarCategoria\IEditarCategoriaAD.cs" />
@@ -63,12 +67,18 @@
     <Compile Include="Categoria\ListaCategoria\ObtenerListaDeCategoriasAD.cs" />
     <Compile Include="Categoria\ObtenerProveedorPorID\ObtenerCategoriaPorIdAD.cs" />
     <Compile Include="Categoria\RegistrarCategoria\RegistrarCategoriaAD.cs" />
+    <Compile Include="Comentario\CrearComentario\CrearComentarioAD.cs" />
+    <Compile Include="Comentario\EliminarComentario\DesactivarComentarioAD.cs" />
+    <Compile Include="Comentario\ListaDeComentario\ObtenerListaComentarioAD.cs" />
     <Compile Include="Contexto.cs" />
     <Compile Include="Email\EmailServicioAD.cs" />
+    <Compile Include="Entidades\BlogAD.cs" />
     <Compile Include="Entidades\CategoriaAD.cs" />
     <Compile Include="Entidades\DetalleVentaAD.cs" />
     <Compile Include="Entidades\DevolucionAD.cs" />
     <Compile Include="Entidades\FacturaAD.cs" />
+
+    <Compile Include="Entidades\ComentarioBlogAD.cs" />
     <Compile Include="Entidades\GuiaProductoAD.cs" />
     <Compile Include="Entidades\GuiaRegaloAD.cs" />
     <Compile Include="Entidades\InventarioAD.cs" />
@@ -85,6 +95,9 @@
     <Compile Include="Entidades\RolAD.cs" />
     <Compile Include="Entidades\UsuarioAD.cs" />
     <Compile Include="Entidades\VentaAD.cs" />
+
+    <Compile Include="Entidades\Wishlist.cs" />
+    <Compile Include="Entidades\WishlistProducto.cs" />
     <Compile Include="GuiaRegalo\EditarRegalo\EditarGuiaRegaloAD.cs" />
     <Compile Include="GuiaRegalo\EliminarRegalo\EliminarGuiaRegaloAD.cs" />
     <Compile Include="GuiaRegalo\ObtenerGuiaRegaloAD.cs" />
@@ -101,6 +114,8 @@
     <Compile Include="Marca\ListaDeMarca\ObtenerListaDeMarcaAD.cs" />
     <Compile Include="Marca\ObtenerMarcaPorID\ObtenerMarcaPorIdAD.cs" />
     <Compile Include="Marca\RegistrarMarca\RegistrarMarcaAD.cs" />
+    <Compile Include="Perfil\EditarPerfil\EditarPerfilUsuarioAD.cs" />
+    <Compile Include="Perfil\ListaDePerfil\ObtenerPerfilUsuarioAD.cs" />
     <Compile Include="Producto\DetallesProducto\DetallesProductoAD.cs" />
     <Compile Include="Producto\EditarProducto\EditarProductoAD.cs" />
     <Compile Include="Producto\EliminarProducto\EliminarProductoAD.cs" />
@@ -143,6 +158,8 @@
     <Compile Include="Venta\Reporte\RegistrarDevolucionAD.cs" />
     <Compile Include="Venta\Reporte\ReporteAD.cs" />
     <Compile Include="Venta\Reporte\ReporteDevolucionesAD.cs" />
+
+    <Compile Include="Wishlist\NewFolder1\ObtenerWishlistAD.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

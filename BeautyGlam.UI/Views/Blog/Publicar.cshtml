@@ -1,0 +1,83 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.BlogDto
+
+@{
+    ViewBag.Title = "Detalle de publicación";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space inv-page">
+    <div class="container inv-container">
+
+        <!-- Header -->
+        <div class="inv-header">
+            <h2 class="inv-title">@Model.titulo</h2>
+            <p class="inv-subtitle">
+                Publicado el @Model.fecha_Publicacion.ToString("dd/MM/yyyy")
+            </p>
+        </div>
+
+        <!-- Contenido -->
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="inv-filters p-4 rounded-4 bg-white shadow-sm">
+
+                    @if (!string.IsNullOrEmpty(Model.imagen))
+                    {
+                        <img src="@Url.Content(Model.imagen)" class="img-fluid rounded-4 mb-3" alt="Imagen publicación" />
+                    }
+
+                    <div class="mb-3">
+                        <strong>Resumen:</strong>
+                        <p>@Model.resumen</p>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong>Contenido:</strong>
+                        <p>@Model.contenido</p>
+                    </div>
+
+                    <!-- Comentarios -->
+                    <div class="mt-4">
+                        <h5>Comentarios</h5>
+
+                        @if (Model.Comentarios != null && Model.Comentarios.Any())
+                        {
+                            <ul class="list-group list-group-flush">
+                                @foreach (var c in Model.Comentarios)
+                                {
+                                    <li class="list-group-item">
+                                        <strong>@c.id_Usuario:</strong> @c.comentario
+                                        <br />
+                                        <small class="text-muted">@c.fecha.ToString("dd/MM/yyyy HH:mm")</small>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <p class="text-muted">No hay comentarios aún.</p>
+                        }
+                    </div>
+
+                    <!-- Agregar comentario -->
+                    <div class="mt-4">
+                        @using (Html.BeginForm("AgregarComentario", "Blog", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(m => m.id_Blog)
+
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Agregar comentario</label>
+                                <textarea name="comentario" class="form-control" rows="3" required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn inv-btn rounded-pill">Publicar comentario 💬</button>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

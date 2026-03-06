@@ -50,12 +50,19 @@
   <ItemGroup>
     <Compile Include="Autenticacion\AuthLN.cs" />
     <Compile Include="Autenticacion\RecuperacionContrasenaLN.cs" />
+    <Compile Include="Blog\CrearBlog\CrearBlogLN.cs" />
+    <Compile Include="Blog\DesactivarBlog\DesactivarBlogLN.cs" />
+    <Compile Include="Blog\EditarBlog\EditarBlogAD.cs" />
+    <Compile Include="Blog\ListaDeBlog\ObtenerListaBlogLN.cs" />
     <Compile Include="Catalogo\ObtenerCatalogoLN.cs" />
     <Compile Include="Categorias\DetallesDeProveedor\DetallesCategoriaLN.cs" />
     <Compile Include="Categorias\EditarProveedores\EditarCategoriaLN.cs" />
     <Compile Include="Categorias\EliminarProveedor\EliminarCategoriaLN.cs" />
     <Compile Include="Categorias\ListaDeProveedor\ObtenerLaListaDeCategoriaLN.cs" />
     <Compile Include="Categorias\RegistrarProveedor\RegistrarCategoriaLN.cs" />
+    <Compile Include="Comentario\CrearComentario\CrearComentarioLN.cs" />
+    <Compile Include="Comentario\EliminarComentario\DesactivarComentarioLN.cs" />
+    <Compile Include="Comentario\ListaDeComentario\ObtenerListaComentarioLN.cs" />
     <Compile Include="GuiaRegalo\EditarRegalo\EditarGuiaRegaloLN.cs" />
     <Compile Include="GuiaRegalo\EliminarRegalo\EliminarGuiaRegaloLN.cs" />
     <Compile Include="GuiaRegalo\ObtenerGuiaRegaloLN.cs" />
@@ -71,6 +78,8 @@
     <Compile Include="Marca\EliminarMarca\EliminarMarcaLN.cs" />
     <Compile Include="Marca\ObtenerListaDeMarca\ObtenerListaDeMarcaLN.cs" />
     <Compile Include="Marca\RegistrarMarca\RegistrarMarcaLN.cs" />
+    <Compile Include="Perfil\EditarPerfil\EditarPerfilUsuarioLN.cs" />
+    <Compile Include="Perfil\ListaDePerfil\ObtenerPerfilUsuarioLN.cs" />
     <Compile Include="Producto\DetallesProducto\DetallesProductoLN.cs" />
     <Compile Include="Producto\EditarProducto\EditarProductoLN.cs" />
     <Compile Include="Producto\EliminarProducto\EliminarProductoLN.cs" />

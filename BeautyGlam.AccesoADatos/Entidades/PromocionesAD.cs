@@ -27,6 +27,8 @@ namespace BeautyGlam.AccesoADatos.Entidades
         [Column("estado")]
         public bool estado { get; set; }
 
+        [Column("descuento")]
+        public decimal descuento { get; set; }
         public virtual ICollection<PromocionProductoAD> PromocionProducto { get; set; }
 
     }

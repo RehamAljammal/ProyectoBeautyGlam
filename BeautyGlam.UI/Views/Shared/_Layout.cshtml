@@ -102,7 +102,7 @@
                                             <li><a href="@Url.Action("Index","GuiaRegalos")">Guia De Regalos</a></li>
                                             <li><a href="@Url.Action("Index","Catalogo")">Catálogo</a></li>
                                             <li><a href="@Url.Action("Index","Wishlist")">Wish List</a></li>
-                                            <li><a href="@Url.Action("CombosPromocionales","Promociones")">Combos promocionales</a></li>
+                                            <li><a href="@Url.Action("Index","Combos")">Combos promocionales</a></li>
 
                                         </ul>
                                     </li>
@@ -123,10 +123,10 @@
                                     <li class="has-submenu">
                                         <a href="#">Blog</a>
                                         <ul class="submenu">
-                                            <li><a href="@Url.Action("Index","BlogBelleza")">Ver Blog</a></li>
+                                            <li><a href="@Url.Action("Index","Blog")">Ver Blog</a></li>
                                             @if (User.IsInRole("Admin"))
                                             {
-                                                <li><a href="@Url.Action("Publicar","BlogBelleza")">Publicar</a></li>
+                                                <li><a href="@Url.Action("Blog","Detalle")">Publicar</a></li>
                                             }
                                         </ul>
                                     </li>
@@ -201,6 +201,8 @@
                             <li><a href="@Url.Action("About","Home")">About us</a></li>
                             <li><a href="@Url.Action("Contact","Home")">Contact</a></li>
                             <li><a href="@Url.Action("Product","Home")">Shop</a></li>
+                            <li><a href="@Url.Action("Index", "Promociones")">Promociones y Descuentos</a></li> 
+
                         </ul>
                     </div>
 

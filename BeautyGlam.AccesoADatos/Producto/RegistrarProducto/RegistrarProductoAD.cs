@@ -43,6 +43,11 @@ namespace BeautyGlam.AccesoADatos.Producto.RegistrarProducto
                             registroExistente.idMarca = elProductoParaGuardar.idMarca;
                             registroExistente.idProveedor = elProductoParaGuardar.idProveedor;
                             registroExistente.estado = true;
+                            registroExistente.EsTemporada = elProductoParaGuardar.EsTemporada;// <-- agregado
+                            registroExistente.tono = elProductoParaGuardar.tono;
+                            registroExistente.tipoPiel = elProductoParaGuardar.tipoPiel;
+
+
 
                             await _elContexto.SaveChangesAsync();
                             transaccion.Commit();
@@ -94,7 +99,11 @@ namespace BeautyGlam.AccesoADatos.Producto.RegistrarProducto
                 idCategoria = elProductoParaGuardar.idCategoria,
                 idMarca = elProductoParaGuardar.idMarca,
                 idProveedor = elProductoParaGuardar.idProveedor,
-                estado = true
+                estado = true,
+                EsTemporada = elProductoParaGuardar.EsTemporada,// <-- agregado
+                tono = elProductoParaGuardar.tono,
+                tipoPiel = elProductoParaGuardar.tipoPiel
+
             };
         }
     }

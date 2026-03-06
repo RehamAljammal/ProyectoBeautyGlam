@@ -28,6 +28,14 @@ namespace BeautyGlam.AccesoADatos
         public DbSet<PasswordResetAD> PasswordReset { get; set; }
 
         public DbSet<RolAD> Rol { get; set; }
+        public DbSet<BlogAD> Blog { get; set; }
+        public DbSet<ComentarioBlogAD> ComentarioBlog { get; set; }
+
+        // ===============================
+        // WISHLIST
+        // ===============================
+        //  public DbSet<WishlistAD> Wishlist { get; set; }
+        // public DbSet<WishlistProductoAD> WishlistProducto { get; set; }
 
         public DbSet<VentaAD> Venta { get; set; }
         public DbSet<DetalleVentaAD> Detalle_Venta { get; set; }
@@ -68,21 +76,68 @@ namespace BeautyGlam.AccesoADatos
             modelBuilder.Entity<PromocionProductoAD>()
                 .HasKey(pp => new { pp.id_Promocion, pp.id });
 
-            // FK a PROMOCION
             modelBuilder.Entity<PromocionProductoAD>()
                 .HasRequired(pp => pp.Promocion)
                 .WithMany(p => p.PromocionProducto)
                 .HasForeignKey(pp => pp.id_Promocion)
                 .WillCascadeOnDelete(false);
 
-            // FK a PRODUCTO
             modelBuilder.Entity<PromocionProductoAD>()
                 .HasRequired(pp => pp.Producto)
                 .WithMany(p => p.PromocionProducto)
                 .HasForeignKey(pp => pp.id)
                 .WillCascadeOnDelete(false);
 
-            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<ComentarioBlogAD>()
+                .HasRequired(c => c.Blog)
+                .WithMany(b => b.Comentarios)
+                .HasForeignKey(c => c.id_Blog)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ComentarioBlogAD>()
+                .HasRequired(c => c.Usuario)
+                .WithMany(u => u.comentarios)
+                .HasForeignKey(c => c.id_Usuario)
+                .WillCascadeOnDelete(false);
+
+            // ===============================
+            // WISHLIST
+            // ===============================
+
+            //  modelBuilder.Entity<WishlistAD>()
+            //    .ToTable("Wishlist")
+            //    .HasKey(w => w.id_Wishlist);
+
+            // modelBuilder.Entity<WishlistAD>()
+            //     .HasRequired(w => w.Usuario)
+            //// .WithMany(u => u.Wishlist)
+            // .HasForeignKey(w => w.id_Usuario)
+            // .WillCascadeOnDelete(false);
+
+            // ===============================
+            // WISHLIST - PRODUCTO
+            // ===============================
+
+            //* modelBuilder.Entity<WishlistProductoAD>()
+            //     .ToTable("Wishlist_Producto");
+
+            // modelBuilder.Entity<WishlistProductoAD>()
+            //   .HasKey(wp => new { wp.id_Wishlist, wp.id });
+
+            //modelBuilder.Entity<WishlistProductoAD>()
+            //   .HasRequired(wp => wp.Wishlist)
+            //  .WithMany(w => w.WishlistProducto)
+            //  .HasForeignKey(wp => wp.id_Wishlist)
+            // .WillCascadeOnDelete(false);
+
+            // modelBuilder.Entity<WishlistProductoAD>()
+            //     .HasRequired(wp => wp.Producto)
+            ///    .WithMany(p => p.WishlistProducto)
+            //    .HasForeignKey(wp => wp.id)
+            //    .WillCascadeOnDelete(false);
+
+            // base.OnModelCreating(modelBuilder);
         }
     }
 }
