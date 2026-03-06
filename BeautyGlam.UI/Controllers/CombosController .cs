@@ -88,16 +88,14 @@ namespace BeautyGlam.UI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editar(ComboPromocionalDTO combo, int[] idsProductos)
+        public async Task<ActionResult> Editar(ComboPromocionalDTO combo, int[] idsProductos)
         {
-            // ✅ primero validamos ModelState normal
             if (!ModelState.IsValid)
             {
                 ViewBag.Productos = new ObtenerLaListaDeProductosLN().Obtener();
                 return View(combo);
             }
 
-            // ✅ luego validamos que vengan productos
             if (idsProductos == null || idsProductos.Length == 0)
             {
                 ModelState.AddModelError("", "Debe seleccionar al menos un producto.");
@@ -107,7 +105,7 @@ namespace BeautyGlam.UI.Controllers
 
             combo.idsProductos = idsProductos.ToList();
 
-            _editarLN.Editar(combo);
+            await _editarLN.Editar(combo);
 
             return RedirectToAction("Index");
         }

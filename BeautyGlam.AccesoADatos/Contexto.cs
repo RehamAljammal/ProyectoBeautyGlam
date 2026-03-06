@@ -30,6 +30,7 @@ namespace BeautyGlam.AccesoADatos
         public DbSet<RolAD> Rol { get; set; }
         public DbSet<BlogAD> Blog { get; set; }
         public DbSet<ComentarioBlogAD> ComentarioBlog { get; set; }
+        public DbSet<TonoAD> Tono { get; set; }
 
         // ===============================
         // WISHLIST

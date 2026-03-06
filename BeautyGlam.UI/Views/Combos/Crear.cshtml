@@ -1,7 +1,5 @@
 ﻿@model BeautyGlam.Abstracciones.ModelosParaUI.ComboPromocionalDTO
 
-@using BeautyGlam.Abstracciones.ModelosParaUI
-
 @{
     ViewBag.Title = "Crear combo";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,7 +10,7 @@
 
         <div class="promo-header">
             <h2 class="promo-title">Crear combo promocional</h2>
-            <p class="promo-subtitle">Nuevo combo</p>
+            <p class="promo-subtitle">Selecciona productos para el combo</p>
         </div>
 
         @using (Html.BeginForm("Crear", "Combos", FormMethod.Post))
@@ -23,62 +21,57 @@
 
                 <div class="mb-3">
                     @Html.LabelFor(m => m.titulo)
-                    @Html.TextBoxFor(m => m.titulo, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.titulo, new { @class = "form-control prod-input" })
                 </div>
 
                 <div class="mb-3">
                     @Html.LabelFor(m => m.descripcion)
-                    @Html.TextAreaFor(m => m.descripcion, new { @class = "form-control", rows = 3 })
+                    @Html.TextAreaFor(m => m.descripcion, new { @class = "form-control prod-input", rows = 3 })
                 </div>
 
                 <div class="mb-3">
                     @Html.LabelFor(m => m.descuento)
                     @Html.TextBoxFor(m => m.descuento,
-                        new { @class = "form-control", type = "number", step = "0.01", min = "0" })
+                        new { @class = "form-control prod-input", type = "number", step = "0.01" })
                 </div>
 
-                <div class="mb-3">
-                    @Html.LabelFor(m => m.fechaInicio)
-                    @Html.TextBoxFor(m => m.fechaInicio,
-                        new { @class = "form-control", type = "date" })
-                    @Html.ValidationMessageFor(m => m.fechaInicio)
-                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        @Html.LabelFor(m => m.fechaInicio)
+                        @Html.TextBoxFor(m => m.fechaInicio,
+                            new { @class = "form-control prod-input", type = "date" })
+                    </div>
 
-                <div class="mb-3">
-                    @Html.LabelFor(m => m.fechaFin)
-                    @Html.TextBoxFor(m => m.fechaFin,
-                        new { @class = "form-control", type = "date" })
-                    @Html.ValidationMessageFor(m => m.fechaFin)
+                    <div class="col-md-6 mb-3">
+                        @Html.LabelFor(m => m.fechaFin)
+                        @Html.TextBoxFor(m => m.fechaFin,
+                            new { @class = "form-control prod-input", type = "date" })
+                    </div>
                 </div>
 
                 <hr />
 
                 <h5>Productos del combo</h5>
 
-                @if (Model.productosDisponibles != null && Model.productosDisponibles.Any())
-                {
-                    foreach (var p in Model.productosDisponibles)
-                    {
-                        <div class="form-check mb-2">
+                <!-- BUSCADOR -->
+                <div class="mb-3">
 
-                            <input type="checkbox"
-                                   class="form-check-input"
-                                   name="idsProductos"
-                                   value="@p.id" />
+                    <input type="text"
+                           id="buscarProducto"
+                           class="form-control prod-input"
+                           placeholder="Buscar o seleccionar producto..."
+                           onclick="mostrarProductos()"
+                           onkeyup="filtrarProductos()" />
 
-                            <label class="form-check-label">
-                                @p.nombre (₡ @p.precio)
-                            </label>
+                    <div id="listaProductos" class="picker-list mt-2"></div>
 
-                        </div>
-                    }
-                }
-                else
-                {
-                    <p class="text-muted">
-                        No hay productos registrados.
-                    </p>
-                }
+                </div>
+
+                <!-- PRODUCTOS SELECCIONADOS -->
+                <div class="mt-4">
+                    <h6>Productos agregados</h6>
+                    <div id="productosSeleccionados"></div>
+                </div>
 
                 <div class="text-end mt-4">
                     <button type="submit" class="promo-btn">
@@ -96,3 +89,119 @@
 
     </div>
 </section>
+
+<style>
+
+    .picker-list {
+        max-height: 260px;
+        overflow: auto;
+    }
+
+    .pick-item {
+        border: 1px solid #ead7f3;
+        border-radius: 14px;
+        padding: 12px;
+        margin-bottom: 8px;
+        cursor: pointer;
+        background: white;
+    }
+
+        .pick-item:hover {
+            background: #faf6ff;
+        }
+
+    .pick-name {
+        font-weight: 700;
+        color: #5c3b6f;
+    }
+
+    .pick-precio {
+        font-size: 13px;
+        color: #6b4c7a;
+    }
+</style>
+
+<script>
+
+var productos = [
+
+@foreach (var p in Model.productosDisponibles)
+{
+<text>
+{
+id:"@p.id",
+nombre:"@p.nombre",
+precio:"@p.precio"
+},
+</text>
+}
+
+];
+
+function mostrarProductos(){
+
+renderLista(productos);
+
+}
+
+function filtrarProductos(){
+
+var texto = document.getElementById("buscarProducto").value.toLowerCase();
+
+var filtrados = productos.filter(function(p){
+
+return p.nombre.toLowerCase().includes(texto);
+
+});
+
+renderLista(filtrados);
+
+}
+
+function renderLista(lista){
+
+var contenedor = document.getElementById("listaProductos");
+
+contenedor.innerHTML="";
+
+lista.forEach(function(p){
+
+var div = document.createElement("div");
+
+div.className="pick-item";
+
+div.innerHTML =
+'<div class="pick-name">'+p.nombre+'</div>'+
+'<div class="pick-precio">₡ '+p.precio+'</div>';
+
+div.onclick=function(){
+
+agregarProducto(p);
+
+};
+
+contenedor.appendChild(div);
+
+});
+
+}
+
+function agregarProducto(p){
+
+var contenedor = document.getElementById("productosSeleccionados");
+
+var html =
+'<div class="pick-item">'+
+'<div class="pick-name">'+p.nombre+'</div>'+
+'<div class="pick-precio">₡ '+p.precio+'</div>'+
+
+'<input type="hidden" name="idsProductos" value="'+p.id+'">'+
+
+'<button type="button" class="promo-btn promo-btn-outline mt-2" onclick="this.parentElement.remove()">Quitar</button>'+
+'</div>';
+
+contenedor.insertAdjacentHTML("beforeend",html);
+
+}
+
+</script>

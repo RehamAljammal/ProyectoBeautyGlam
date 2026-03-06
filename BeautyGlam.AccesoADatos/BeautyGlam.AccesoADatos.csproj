@@ -88,6 +88,7 @@
     <Compile Include="Entidades\ProductosAD.cs" />
     <Compile Include="Entidades\ProveedorAD.cs" />
     <Compile Include="Entidades\RolAD.cs" />
+    <Compile Include="Entidades\TonoAD.cs" />
     <Compile Include="Entidades\UsuarioAD.cs" />
     <Compile Include="Entidades\Wishlist.cs" />
     <Compile Include="Entidades\WishlistProducto.cs" />
@@ -140,6 +141,10 @@
     <Compile Include="Rol\LisaRol\ObtenerListaDeRolesAD.cs" />
     <Compile Include="Rol\ObtenerRolPorID\ObtenerRolPorIdAD.cs" />
     <Compile Include="Rol\RegistrarRol\RegistrarRolAD.cs" />
+    <Compile Include="Tono\CrearTono\CrearTonoAD.cs" />
+    <Compile Include="Tono\DesactivarTono\DesactivarTonoAD.cs" />
+    <Compile Include="Tono\EditarTono\EditarTonoAD.cs" />
+    <Compile Include="Tono\ListaDeTono\ObtenerListaTonoAD.cs" />
     <Compile Include="Usuarios\CambiarEstadoUsuario\ActualizarEstadoUsuarioAD.cs" />
     <Compile Include="Usuarios\EditarUsuario\EditarUsuarioAD.cs" />
     <Compile Include="Usuarios\ListaUsuario\ObtenerListaDeUsuariosAD.cs" />

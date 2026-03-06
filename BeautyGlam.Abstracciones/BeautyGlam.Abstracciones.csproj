@@ -99,6 +99,10 @@
     <Compile Include="AccesoADatos\Rol\ElimianarRol\IEliminarRolAD.cs" />
     <Compile Include="AccesoADatos\Rol\LisaRol\IObtenerListaDeRolesAD.cs" />
     <Compile Include="AccesoADatos\Rol\RegistrarRol\IRegistrarRolAD.cs" />
+    <Compile Include="AccesoADatos\Tono\CrearTono\ICrearTonoAD.cs" />
+    <Compile Include="AccesoADatos\Tono\EditarTono\IEditarTonoAD.cs" />
+    <Compile Include="AccesoADatos\Tono\EliminarTono\IDesactivarTonoAD.cs" />
+    <Compile Include="AccesoADatos\Tono\ListaDeTono\IObtenerListaTonoAD.cs" />
     <Compile Include="AccesoADatos\Usuarios\CambiarEstadoUsuario\IActualizarEstadoUsuarioAD.cs" />
     <Compile Include="AccesoADatos\Usuarios\EditarUsuario\IEditarUsuarioAD.cs" />
     <Compile Include="AccesoADatos\Usuarios\LisaUsuario\IObtenerListaDeUsuariosAD.cs" />
@@ -187,6 +191,7 @@
     <Compile Include="ModelosParaUI\ResetVigenteDTO.cs" />
     <Compile Include="ModelosParaUI\RestablecerContrasenaDTO.cs" />
     <Compile Include="ModelosParaUI\RolDto.cs" />
+    <Compile Include="ModelosParaUI\TonoDto.cs" />
     <Compile Include="ModelosParaUI\UsuarioAuthDto.cs" />
     <Compile Include="ModelosParaUI\UsuarioCrearDto.cs" />
     <Compile Include="ModelosParaUI\UsuarioDto.cs" />

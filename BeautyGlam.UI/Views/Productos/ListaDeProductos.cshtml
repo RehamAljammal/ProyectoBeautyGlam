@@ -29,12 +29,13 @@
                         <label class="form-label fw-semibold small d-block mb-1">
                             Tono
                         </label>
-                        <select name="tono" class="form-control rounded-pill">
-                            <option value="">Todos</option>
-                            <option>Claro</option>
-                            <option>Medio</option>
-                            <option>Oscuro</option>
-                        </select>
+
+                        @Html.DropDownList(
+                            "id_Tono",
+                            ViewBag.Tonos as SelectList,
+                            "Todos",
+                            new { @class = "form-control rounded-pill" }
+                        )
                     </div>
 
                     <div class="col-md-2">

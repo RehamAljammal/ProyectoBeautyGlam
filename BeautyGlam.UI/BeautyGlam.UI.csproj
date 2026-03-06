@@ -245,6 +245,7 @@
     <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Controllers\TonoController.cs" />
     <Compile Include="Controllers\WishlistController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -621,6 +622,10 @@
     <Content Include="Views\Blog\Publicar.cshtml" />
     <Content Include="Views\Blog\Crear.cshtml" />
     <Content Include="Views\Blog\Desactivar.cshtml" />
+    <Content Include="Views\Tono\Index.cshtml" />
+    <Content Include="Views\Tono\Crear.cshtml" />
+    <Content Include="Views\Tono\Editar.cshtml" />
+    <Content Include="Views\Tono\Desactivar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

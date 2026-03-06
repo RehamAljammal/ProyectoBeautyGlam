@@ -18,7 +18,7 @@
         {
             @Html.AntiForgeryToken()
 
-            @Html.HiddenFor(m => m.idCombo)
+            <input type="hidden" name="idCombo" value="@Model.idCombo" />
 
             <div class="promo-card p-4">
 
@@ -43,6 +43,7 @@
                             <th class="text-end">Precio</th>
                         </tr>
                     </thead>
+
                     <tbody>
                         @foreach (var p in Model.productos)
                         {
@@ -60,17 +61,20 @@
                 </div>
 
                 <div class="text-end mt-4">
+
                     <button type="submit" class="promo-btn promo-btn-danger">
                         Eliminar
                     </button>
 
-                    <a href="@Url.Action("Index","Combos")
+                    <a href="@Url.Action("Index","Combos")"
                        class="promo-btn promo-btn-outline">
                         Cancelar
                     </a>
+
                 </div>
 
             </div>
+        }
         }
 
     </div>

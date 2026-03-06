@@ -110,6 +110,10 @@
     <Compile Include="Rol\LisaRol\ObtenerLaListaDeRolesLN.cs" />
     <Compile Include="Rol\RegistrarRol\RegistrarRolLN.cs" />
     <Compile Include="Seguridad\PasswordHasher.cs" />
+    <Compile Include="Tono\CrearTono\CrearTonoLN.cs" />
+    <Compile Include="Tono\DesactivarTono\DesactivarTonoLN.cs" />
+    <Compile Include="Tono\EditarTono\EditarTonoLN.cs" />
+    <Compile Include="Tono\ListaDeTono\ObtenerListaTonoLN.cs" />
     <Compile Include="Usuario\CambiarEstadoUsuario\ActualizarEstadoUsuarioLN.cs" />
     <Compile Include="Usuario\EditarUsuario\EditarUsuarioLN.cs" />
     <Compile Include="Usuario\ListaUsuario\ObtenerLaListaDeUsuariosLN.cs" />
