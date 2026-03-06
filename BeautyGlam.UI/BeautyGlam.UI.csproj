@@ -58,7 +58,7 @@
 
     <Reference Include="itextsharp, Version=5.5.13.5, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\iTextSharp.5.5.13.5\lib\net461\itextsharp.dll</HintPath>
-
+	</Reference>
     <Reference Include="Microsoft.AspNetCore.Authorization, Version=10.0.3.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNetCore.Authorization.10.0.3\lib\net462\Microsoft.AspNetCore.Authorization.dll</HintPath>
     </Reference>
