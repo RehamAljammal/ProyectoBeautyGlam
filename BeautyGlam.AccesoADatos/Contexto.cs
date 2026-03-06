@@ -29,6 +29,14 @@ namespace BeautyGlam.AccesoADatos
 
         public DbSet<RolAD> Rol { get; set; }
 
+        public DbSet<VentaAD> Venta { get; set; }
+        public DbSet<DetalleVentaAD> Detalle_Venta { get; set; }
+        public DbSet<PagoAD> Pago { get; set; }
+        public DbSet<FacturaAD> Factura { get; set; }
+
+        public DbSet<DevolucionAD> Devolucion { get; set; }
+
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             // ===============================

@@ -93,6 +93,12 @@
     <Compile Include="Proveedores\EliminarProveedor\EliminarProveedorLN.cs" />
     <Compile Include="Proveedores\ListaDeProveedor\ObtenerLaListaDeProveedoresLN.cs" />
     <Compile Include="Proveedores\RegistrarProveedor\RegistrarProveedorLN.cs" />
+    <Compile Include="Venta\ListadoVenta\ListadoVentaLN.cs" />
+    <Compile Include="Venta\RegistrarVentaLN.cs" />
+    <Compile Include="Venta\Reporte\ListaDevolucionLN.cs" />
+    <Compile Include="Venta\Reporte\RegistrarDevolucionLN.cs" />
+    <Compile Include="Venta\Reporte\ReporteDevolucionesLN.cs" />
+    <Compile Include="Venta\Reporte\ReporteLN.cs" />
   </ItemGroup>
   <!-- Rol, Seguridad y Usuario -->
   <ItemGroup>

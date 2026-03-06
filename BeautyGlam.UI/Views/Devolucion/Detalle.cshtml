@@ -1,0 +1,65 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.DevolucionListadoDto
+
+@{
+    ViewBag.Title = "Detalle Devolución";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space sup-page">
+    <div class="container sup-container">
+
+        <div class="sup-header">
+            <h2 class="sup-title">Detalle de Devolución</h2>
+            <p class="sup-subtitle">Información completa de la devolución 📦</p>
+        </div>
+
+        <div class="sup-card p-4">
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <strong>ID:</strong> #@Model.id_Devolucion
+                </div>
+                <div class="col-md-6">
+                    <strong>Fecha:</strong> @Model.fecha.ToShortDateString()
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <strong>Motivo:</strong>
+                <div class="mt-2">
+                    @Model.motivo
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <strong>Observación:</strong>
+                <div class="mt-2 p-3 sup-box-soft">
+                    @Model.observacion
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <strong>Estado:</strong>
+                @if (Model.estado == "Registrada")
+                {
+                    <span class="sup-chip sup-chip-ok">
+                        Registrada
+                    </span>
+                }
+                else
+                {
+                    <span class="sup-chip sup-chip-off">
+                        @Model.estado
+                    </span>
+                }
+            </div>
+
+            <a href="@Url.Action("Listado", "Devolucion")"
+               class="sup-btn">
+                Volver
+            </a>
+
+        </div>
+    </div>
+</section>
+

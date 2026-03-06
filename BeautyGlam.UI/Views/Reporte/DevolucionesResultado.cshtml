@@ -1,0 +1,98 @@
+﻿@model List<BeautyGlam.Abstracciones.ModelosParaUI.ReporteDevolucionesDto>
+
+@{
+    ViewBag.Title = "Resultado Reporte Devoluciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space inv-page">
+    <div class="container inv-container">
+
+        <div class="inv-header">
+            <h2 class="inv-title">Resultado del Reporte ↩️</h2>
+            <p class="inv-subtitle">
+                Visualización detallada de devoluciones
+            </p>
+        </div>
+
+        <div class="inv-card">
+
+            <div class="inv-card-head">
+                <span class="inv-badge">Devoluciones</span>
+                <h5 class="inv-card-title">Listado generado</h5>
+            </div>
+
+            <div class="inv-card-body">
+
+                @if (Model == null || !Model.Any())
+                {
+                    <div class="text-center p-4">
+                        <h5 style="color:#c75b5b;">No hay datos para mostrar 🚫</h5>
+                        <p class="text-muted">
+                            Intenta seleccionar otro rango de fechas.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    var totalDevoluciones = Model.Count();
+
+                    <div class="table-responsive">
+                        <table class="table table-striped align-middle">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Administrador</th>
+                                    <th>Venta</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Fecha.ToString("dd/MM/yyyy")</td>
+                                        <td>@item.Admin</td>
+                                        <td>#@item.Venta</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- TOTAL -->
+                    <div class="text-end mt-4">
+                        <div class="sup-total-box">
+                            <h5>Total Devoluciones</h5>
+                            <h3 style="color:#5c3b6f;">
+                                @totalDevoluciones
+                            </h3>
+                        </div>
+                    </div>
+                }
+
+                <div class="inv-center-actions mt-4">
+
+                    @using (Html.BeginForm("ExportarPDFDevoluciones", "Reporte", FormMethod.Get))
+                    {
+                        <input type="hidden" name="FechaInicio" value="@Request["FechaInicio"]" />
+                        <input type="hidden" name="FechaFin" value="@Request["FechaFin"]" />
+
+                        <button type="submit" class="btn inv-btn">
+                            Exportar PDF 📄
+                        </button>
+                    }
+
+                    <a href="@Url.Action("Devoluciones","Reporte")"
+                       class="btn inv-btn inv-btn-soft">
+                        Nuevo Reporte ⬅️
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    
+
+</section>

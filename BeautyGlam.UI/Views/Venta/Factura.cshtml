@@ -1,0 +1,170 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.VentaFacturaDto
+
+@{
+    ViewBag.Title = "Factura";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space sup-page">
+    <div class="container sup-container">
+
+        <div class="sup-header">
+            <h2 class="sup-title">Factura 🧾</h2>
+            <p class="sup-subtitle">Detalle completo de la venta</p>
+        </div>
+
+        <div class="sup-card">
+
+            <div class="sup-card-head d-flex justify-content-between align-items-center">
+
+                <!-- LADO IZQUIERDO -->
+                <div class="d-flex align-items-center gap-3">
+                    <span class="sup-badge">
+                        Factura #@Model.numeroFactura
+                    </span>
+
+                    <a href="@Url.Action("Listado", "Venta")"
+                       class="sup-btn sup-btn-soft sup-btn-sm">
+                        Volver
+                    </a>
+                </div>
+
+                <!-- LADO DERECHO -->
+                <div class="d-flex gap-2">
+                    <button onclick="window.print()"
+                            class="sup-btn sup-btn-soft sup-btn-sm">
+                        Imprimir 🖨
+                    </button>
+
+                    <a href="@Url.Action("DescargarPDF", "Venta", new { id = Model.id_Venta })"
+                       class="sup-btn sup-btn-sm">
+                        Descargar PDF 📄
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="p-4">
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="sup-info-box">
+                            <strong>Fecha:</strong><br />
+                            @Model.fecha.ToString("dd/MM/yyyy")
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 text-md-end">
+                        <div class="sup-info-box">
+                            <strong>Cliente:</strong><br />
+                            @Model.cliente
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <strong>Método de pago:</strong>
+                        <div class="sup-chip sup-chip-ok mt-1">
+                            @Model.metodoPago
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 text-md-end">
+                        <strong>Estado:</strong>
+                        <div class="mt-1">
+                            @if (Model.estado == "Pagado")
+                            {
+                                <span class="sup-chip sup-chip-ok">
+                                    @Model.estado
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="sup-chip sup-chip-off">
+                                    @Model.estado
+                                </span>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sup-table-wrap table-responsive">
+                    <table class="table table-striped align-middle sup-table">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Detalles)
+                            {
+                                <tr>
+                                    <td>@item.producto</td>
+                                    <td>@item.cantidad</td>
+                                    <td>₡@item.precio.ToString("N2")</td>
+                                    <td>₡@item.subtotal.ToString("N2")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="text-end mt-4">
+                    <div class="sup-total-box">
+                        <h4>Total</h4>
+                        <h3 style="color:#5c3b6f;">
+                            ₡@Model.total.ToString("N2")
+                        </h3>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+<style>
+    @@media print {
+        /* Oculta navbar del layout */
+        nav,
+        .navbar {
+            display: none !important;
+        }
+        /* Oculta footer del layout */
+        footer {
+            display: none !important;
+        }
+        /* Oculta botones */
+        .sup-card-head .d-flex {
+            display: none !important;
+        }
+        /* Quita márgenes del layout */
+        body {
+            margin: 0;
+        }
+        /* Hace que la factura use toda la hoja */
+        .section-space {
+            padding: 0 !important;
+        }
+
+        .container {
+            max-width: 100% !important;
+            width: 100% !important;
+        }
+        /* Evita que la tabla se corte raro */
+        table {
+            page-break-inside: auto;
+        }
+
+        tr {
+            page-break-inside: avoid;
+            page-break-after: auto;
+        }
+    }
+</style>
+
