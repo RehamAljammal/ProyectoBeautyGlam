@@ -5,13 +5,14 @@ using BeautyGlam.Abstracciones.LogicaDeNegocio.Marca.EliminarMarca;
 using BeautyGlam.Abstracciones.LogicaDeNegocio.Marca.RegistrarMarca;
 using BeautyGlam.Abstracciones.ModelosParaUI;
 using BeautyGlam.AccesoADatos.Marcaes.ObtenerMarcaPorID;
+using BeautyGlam.LogicaDeNegocio.Marca.ActivarDesactivar;
 using BeautyGlam.LogicaDeNegocio.Marca.DetallesMarca;
 using BeautyGlam.LogicaDeNegocio.Marca.EditarMarca;
-using BeautyGlam.LogicaDeNegocio.Marca.EliminarMarca;
 using BeautyGlam.LogicaDeNegocio.Marca.ListaDeMarca;
 using BeautyGlam.LogicaDeNegocio.Marca.RegistrarMarca;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -24,26 +25,54 @@ namespace BeautyGlam.UI.Controllers
         private readonly IObtenerListaDeMarcaAD _obtenerLaListaDeMarcasLN;
         private readonly IRegistrarMarcaLN _agregarMarcaLN;
         private readonly IEditarMarcaLN _editarMarcaLN;
-        private readonly IEliminarMarcaLN _eliminarMarcaLN;
         private readonly IDetallesMarcaLN _detallesMarcaLN;
+        private readonly IActivarDesactivarMarcaLN _activarDesactivarMarcaLN;
 
         public MarcaController()
         {
             _obtenerLaListaDeMarcasLN = new ObtenerListaDeMarcaLN();
             _agregarMarcaLN = new RegistrarMarcaLN();
             _editarMarcaLN = new EditarMarcaLN();
-            _eliminarMarcaLN = new EliminarMarcaLN();
             _detallesMarcaLN = new DetallesMarcaLN();
-
+            _activarDesactivarMarcaLN = new ActivarDesactivarMarcaLN();
 
         }
 
 
         // Listar Marca
-        public ActionResult ListaDeMarcas()
+        public ActionResult ListaDeMarcas(string buscar, int pagina = 1)
         {
-            List<MarcaDto> laListaDeMarcas = _obtenerLaListaDeMarcasLN.Obtener();
-            return View(laListaDeMarcas);
+            int registrosPorPagina = 10;
+
+            List<MarcaDto> lista = _obtenerLaListaDeMarcasLN.Obtener();
+
+            // BUSCADOR
+            if (!string.IsNullOrWhiteSpace(buscar))
+            {
+                buscar = buscar.ToLower().Trim();
+
+                lista = lista.Where(m =>
+                    (m.nombre ?? "").ToLower().Contains(buscar)
+                ).ToList();
+            }
+
+            // ORDENAR POR MÁS NUEVO
+            lista = lista
+                .OrderByDescending(x => x.estado)
+                .OrderByDescending(x => x.id_Marca).ToList();
+
+            int totalRegistros = lista.Count();
+
+            var marcasPaginadas = lista
+                .Skip((pagina - 1) * registrosPorPagina)
+                .Take(registrosPorPagina)
+                .ToList();
+
+            ViewBag.PaginaActual = pagina;
+            ViewBag.TotalPaginas = Math.Ceiling((double)totalRegistros / registrosPorPagina);
+            ViewBag.Buscar = buscar;
+
+            return View(marcasPaginadas);
         }
 
         // Ver detalles de la Marca
@@ -133,35 +162,19 @@ namespace BeautyGlam.UI.Controllers
         }
 
 
-
-
-        // GET: Marca/Delete/5
-        public ActionResult EliminarMarca(int id)
+        public async Task<ActionResult> ActivarDesactivarMarca(int id)
         {
-            ObtenerMarcaPorIdAD obtenerMarcaPorIdAD = new ObtenerMarcaPorIdAD();
-            MarcaDto Marca = obtenerMarcaPorIdAD.ObtenerPorId(id);
+            var marca = _obtenerLaListaDeMarcasLN.Obtener()
+                            .FirstOrDefault(x => x.id_Marca == id);
 
-            if (Marca == null)
+            if (marca == null)
             {
                 return RedirectToAction("ListaDeMarcas");
             }
 
-            return View(Marca);
-        }
+            await _activarDesactivarMarcaLN.ActivarDesactivar(marca);
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EliminarMarca(MarcaDto elMarcaParaGuardar)
-        {
-            try
-            {
-                await _eliminarMarcaLN.Eliminar(elMarcaParaGuardar);
-                return RedirectToAction("ListaDeMarcas");
-            }
-            catch
-            {
-                return View(elMarcaParaGuardar);
-            }
+            return RedirectToAction("ListaDeMarcas");
         }
     }
 }

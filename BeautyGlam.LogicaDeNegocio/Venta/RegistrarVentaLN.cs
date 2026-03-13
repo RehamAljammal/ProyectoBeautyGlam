@@ -12,12 +12,14 @@ public class RegistrarVentaLN : IRegistrarVentaLN
     private readonly IRegistrarVentaAD _registrarVentaAD;
     private readonly IObtenerListaDeUsuariosAD _obtenerListaDeUsuariosAD;
     private readonly IObtenerListaDeProductosAD _obtenerListaDeProductosAD;
+    private readonly IRegistrarMovimientoInventarioLN _movimientoLN;
 
-    public RegistrarVentaLN(IRegistrarVentaAD registrarVentaAD, IObtenerListaDeUsuariosAD usuarioAD, IObtenerListaDeProductosAD productoAD)
+    public RegistrarVentaLN(IRegistrarVentaAD registrarVentaAD, IObtenerListaDeUsuariosAD usuarioAD, IObtenerListaDeProductosAD productoAD, IRegistrarMovimientoInventarioLN movimientoLN)
     {
         _registrarVentaAD = registrarVentaAD;
         _obtenerListaDeUsuariosAD = usuarioAD;
         _obtenerListaDeProductosAD = productoAD;
+        _movimientoLN = movimientoLN;
     }
 
     public async Task<int> Registrar(VentaDto venta)
@@ -31,16 +33,27 @@ public class RegistrarVentaLN : IRegistrarVentaLN
         if (venta.Pago == null)
             throw new Exception("Debe seleccionar un método de pago.");
 
-        // Convertir VentaItems a Detalles
         venta.Detalles = venta.VentaItems.Select(x => new DetalleVentaDto
         {
-            id = x.id_Producto,
+            id_Producto = x.id_Producto,
             cantidad = x.cantidad,
-            precio_Unitario = x.precio,
-            subtotal = x.cantidad * x.precio
+            precio = x.precio
         }).ToList();
 
-        venta.total = venta.Detalles.Sum(d => d.subtotal);
+        venta.total = venta.Detalles.Sum(d => d.precio * d.cantidad);
+
+        foreach (var item in venta.VentaItems)
+        {
+            MovimientoInventarioDto movimiento = new MovimientoInventarioDto
+            {
+                idProducto = item.id_Producto,
+                tipoMovimiento = "Venta",
+                cantidad = -item.cantidad,
+                observacion = "Venta realizada"
+            };
+
+            await _movimientoLN.Registrar(movimiento);
+        }
 
         return await _registrarVentaAD.Registrar(venta);
     }

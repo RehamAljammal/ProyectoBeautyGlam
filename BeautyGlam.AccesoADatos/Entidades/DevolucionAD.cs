@@ -26,7 +26,6 @@ namespace BeautyGlam.AccesoADatos.Entidades
         [Column("estado")]
         public string estado { get; set; }
 
-
         [ForeignKey("id_Admin")]
         public UsuarioAD Admin { get; set; }
 
@@ -35,5 +34,11 @@ namespace BeautyGlam.AccesoADatos.Entidades
 
         [ForeignKey("id_Venta")]
         public VentaAD Venta { get; set; }
+
+        [Column("id_Producto")]
+        public int id_Producto { get; set; }
+
+        [Column("cantidad")]
+        public int cantidad { get; set; }
     }
 }

@@ -5,6 +5,55 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .sup-pagination {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        margin-top: 18px;
+    }
+
+    .sup-page-link {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 700;
+        color: #6b4c7a;
+        background: #f6f1fb;
+        border: 1px solid #eadff3;
+        transition: .2s;
+    }
+
+        .sup-page-link:hover {
+            background: #efe6fa;
+        }
+
+        .sup-page-link.active {
+            background: linear-gradient(135deg,#ffb7d5,#cdb7ff);
+            color: white;
+            border: none;
+        }
+
+    .sup-actions {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+    }
+
+        .sup-actions .sup-btn {
+            min-width: 120px;
+            text-align: center;
+            white-space: nowrap;
+        }
+</style>
+
 <section class="section-space sup-page">
     <div class="container sup-container">
 
@@ -20,6 +69,26 @@
                 <a href="@Url.Action("CrearProveedor","Proveedores")" class="sup-btn">
                     + Agregar Proveedor
                 </a>
+            </div>
+
+            <div style="padding:15px;">
+                <form method="get" action="@Url.Action("ListaDeProveedores","Proveedores")">
+
+                    <div class="d-flex gap-2">
+
+                        <input type="text"
+                               name="buscar"
+                               value="@ViewBag.Buscar"
+                               class="form-control"
+                               placeholder="Buscar proveedor..." />
+
+                        <button type="submit" class="sup-btn">
+                            Buscar 🔎
+                        </button>
+
+                    </div>
+
+                </form>
             </div>
 
             <div class="sup-table-wrap table-responsive">
@@ -86,6 +155,18 @@
                         }
                     </tbody>
                 </table>
+
+                <div class="sup-pagination">
+
+                    @for (int i = 1; i <= ViewBag.TotalPaginas; i++)
+                    {
+                        <a class="sup-page-link @(i == ViewBag.PaginaActual ? "active" : "")"
+                           href="@Url.Action("ListaDeProveedores", new { pagina = i, buscar = ViewBag.Buscar })">
+                            @i
+                        </a>
+                    }
+
+                </div>
             </div>
 
         </div>

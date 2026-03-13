@@ -5,6 +5,43 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+
+    .ven-pagination {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        margin-top: 18px;
+    }
+
+    .ven-page-link {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 700;
+        color: #6b4c7a;
+        background: #f6f1fb;
+        border: 1px solid #eadff3;
+        transition: .2s ease;
+    }
+
+        .ven-page-link:hover {
+            background: #efe6fa;
+            transform: translateY(-1px);
+        }
+
+        .ven-page-link.active {
+            background: linear-gradient(135deg,#ffb7d5,#cdb7ff);
+            color: white;
+            border: none;
+        }
+</style>
+
 <section class="section-space sup-page">
     <div class="container sup-container">
 
@@ -20,6 +57,58 @@
                 <a href="@Url.Action("Registrar", "Venta")" class="sup-btn">
                     + Registrar Venta
                 </a>
+            </div>
+
+            <div class="inv-filters mb-4 p-4 rounded-4 bg-white shadow-sm">
+
+                <form method="get" action="@Url.Action("Listado","Venta")" class="row g-3">
+
+                    <div class="col-md-3">
+                        <label class="form-label fw-semibold d-block mb-1">
+                            Desde
+                        </label>
+
+                        <input type="date"
+                               name="fechaInicio"
+                               class="form-control rounded-pill shadow-sm"
+                               value="@ViewBag.FechaInicio" />
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label fw-semibold d-block mb-1">
+                            Hasta
+                        </label>
+
+                        <input type="date"
+                               name="fechaFin"
+                               class="form-control rounded-pill shadow-sm"
+                               value="@ViewBag.FechaFin" />
+                    </div>
+
+                    <div class="col-md-3 d-flex align-items-end">
+
+                        <button type="submit"
+                                class="btn inv-btn w-100 rounded-pill">
+
+                            Filtrar 🔍
+
+                        </button>
+
+                    </div>
+
+                    <div class="col-md-3 d-flex align-items-end">
+
+                        <a href="@Url.Action("Listado","Venta")"
+                           class="btn inv-btn inv-btn-soft w-100 rounded-pill">
+
+                            Limpiar
+
+                        </a>
+
+                    </div>
+
+                </form>
+
             </div>
 
             <div class="sup-table-wrap table-responsive">
@@ -96,6 +185,24 @@
                     </tbody>
 
                 </table>
+
+                <div class="ven-pagination">
+
+                    @for (int i = 1; i <= ViewBag.TotalPaginas; i++)
+                    {
+                        <a class="ven-page-link @(i == ViewBag.PaginaActual ? "active" : "")"
+                           href="@Url.Action("Listado", new {
+                            pagina = i,
+                            fechaInicio = ViewBag.FechaInicio,
+                            fechaFin = ViewBag.FechaFin
+                       })">
+
+                            @i
+
+                        </a>
+                    }
+
+                </div>
             </div>
         </div>
     </div>

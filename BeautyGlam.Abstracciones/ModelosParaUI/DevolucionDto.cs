@@ -15,5 +15,7 @@ namespace BeautyGlam.Abstracciones.ModelosParaUI
         public int id_Admin { get; set; }
         public string observacion { get; set; }
         public string estado { get; set; }
+
+
     }
 }

@@ -21,7 +21,7 @@ namespace BeautyGlam.AccesoADatos.Producto.ListaProducto
                                                     join c in _elContexto.Categoria on p.idCategoria equals c.id
                                                     join m in _elContexto.Marca on p.idMarca equals m.id_Marca
                                                      join pr in _elContexto.Proveedor on p.idProveedor equals pr.id
-                                                    where p.estado == true
+
                                                     select new ProductosDTO
                                                     {
                                                         id = p.id,

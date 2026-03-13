@@ -55,10 +55,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-
     <Reference Include="itextsharp, Version=5.5.13.5, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\iTextSharp.5.5.13.5\lib\net461\itextsharp.dll</HintPath>
-	</Reference>
+    </Reference>
     <Reference Include="Microsoft.AspNetCore.Authorization, Version=10.0.3.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNetCore.Authorization.10.0.3\lib\net462\Microsoft.AspNetCore.Authorization.dll</HintPath>
     </Reference>
@@ -79,7 +78,6 @@
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=10.0.0.3, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.10.0.3\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
-
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Extensions.Configuration, Version=10.0.0.3, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
@@ -245,6 +243,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventarioController.cs" />
     <Compile Include="Controllers\MarcaController.cs" />
+    <Compile Include="Controllers\OcasionesController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\PermisosController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
@@ -571,13 +570,10 @@
     <Content Include="Views\AsistenteSkincare\Rutina.cshtml" />
     <Content Include="Views\AsistenteSkincare\PasoAPaso.cshtml" />
     <Content Include="Views\AsistenteSkincare\Repeticion.cshtml" />
-
     <Content Include="Views\BlogBelleza\Index.cshtml" />
     <Content Include="Views\BlogBelleza\Publicar.cshtml" />
     <Content Include="Views\BlogBelleza\Editar.cshtml" />
     <Content Include="Views\BlogBelleza\Detalle.cshtml" />
-
-    <Content Include="Views\Reportes\Index.cshtml" />
     <Content Include="Views\Promociones\ListaDePromociones.cshtml" />
     <Content Include="Views\Proveedores\ListaDeProveedores.cshtml" />
     <Content Include="Views\Proveedores\DetallesDelProveedor.cshtml" />
@@ -610,7 +606,6 @@
     <Content Include="Views\GuiaRegalos\Eliminar.cshtml" />
     <Content Include="Views\GuiaRegalos\_TablaGuias.cshtml" />
     <Content Include="Views\GuiaRegalos\Detalle.cshtml" />
-    <Content Include="Views\GuiaR\Index.cshtml" />
     <Content Include="Views\Promociones\CrearPromociones.cshtml" />
     <Content Include="Views\Promociones\EditarPromociones.cshtml" />
     <Content Include="Views\Promociones\EliminarPromociones.cshtml" />
@@ -648,6 +643,15 @@
     <Content Include="Views\Blog\Publicar.cshtml" />
     <Content Include="Views\Blog\Crear.cshtml" />
     <Content Include="Views\Blog\Desactivar.cshtml" />
+    <Content Include="Views\Ocasiones\ListaOcasiones.cshtml" />
+    <Content Include="Views\Ocasiones\Crear.cshtml" />
+    <Content Include="Views\Ocasiones\Editar.cshtml" />
+    <Content Include="Views\Ocasiones\Eliminar.cshtml" />
+    <Content Include="Views\Inventario\HistorialInventario.cshtml" />
+    <Content Include="Views\Inventario\Movimientos.cshtml" />
+    <Content Include="Views\Ocasiones\ActivarDesactivar.cshtml" />
+    <Content Include="Views\Productos\ActivarDesactivarProducto.cshtml" />
+    <Content Include="Views\Promociones\ActivarDesactivarPromocion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

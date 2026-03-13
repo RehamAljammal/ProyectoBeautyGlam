@@ -177,11 +177,27 @@
                                     <th>Total</th>
                                 </tr>
                             </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                    <div class="venta-resumen mb-4">
+
+                        <h5 class="fw-bold mb-3">Productos de la venta</h5>
+
+                        <table class="table venta-table" id="tablaProductos">
+
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Producto</th>
+                                    <th>Cantidad comprada</th>
+                                    <th>Cantidad a devolver</th>
+                                </tr>
+                            </thead>
 
                             <tbody></tbody>
-
                         </table>
-
                     </div>
 
                     <!-- MOTIVO -->
@@ -199,7 +215,7 @@
                         <label class="fw-bold">Observación</label>
 
                         @Html.TextAreaFor(m => m.observacion,
-                        new { @class = "form-control", rows = 3 })
+                             new { @class = "form-control", rows = 3 })
 
                     </div>
 
@@ -322,8 +338,8 @@ function cargarVentas(clienteId) {
                 let tr = document.createElement("tr");
 
                 tr.innerHTML =
-                    "<td><input type='radio' name='id_Venta' value='" + v.id_Venta + "'></td>" +
-                    "<td>#"+ v.id_Venta +"</td>" +
+                    "<td><input type='radio' name='id_Venta' value='" + v.id_Venta + "' onchange='cargarProductos(" + v.id_Venta + ")'></td>" +
+                    "<td>#" + v.id_Venta + "</td>" +
                     "<td>₡" + v.total + "</td>";
 
                 tbody.appendChild(tr);
@@ -333,5 +349,33 @@ function cargarVentas(clienteId) {
         });
 
 }
+    function cargarProductos(idVenta) {
 
+        fetch("/Devolucion/ObtenerProductosPorVenta?id_Venta=" + idVenta)
+
+            .then(r => r.json())
+
+            .then(data => {
+
+                let tbody = document.querySelector("#tablaProductos tbody");
+
+                tbody.innerHTML = "";
+
+                data.forEach(function (p) {
+
+                    let tr = document.createElement("tr");
+
+                    tr.innerHTML =
+                        "<td><input type='radio' name='id_Producto' value='" + p.id_Producto + "'></td>" +
+                        "<td>" + p.nombre + "</td>" +
+                        "<td>" + p.cantidad + "</td>" +
+                        "<td><input type='number' name='cantidad' min='1' max='" + p.cantidad + "' class='form-control'></td>";
+
+                    tbody.appendChild(tr);
+
+                });
+
+            });
+
+    }
 </script>

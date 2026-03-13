@@ -3,6 +3,9 @@ using BeautyGlam.Abstracciones.LogicaDeNegocio.Rol.EditarRol;
 using BeautyGlam.Abstracciones.LogicaDeNegocio.Rol.EliminarRol;
 using BeautyGlam.Abstracciones.LogicaDeNegocio.Rol.RegistrarRol;
 using BeautyGlam.Abstracciones.ModelosParaUI;
+using BeautyGlam.AccesoADatos;
+using BeautyGlam.AccesoADatos.Entidades;
+using BeautyGlam.AccesoADatos.Modulo.ListaModulo;
 using BeautyGlam.AccesoADatos.Rol.ListaRol;
 using BeautyGlam.AccesoADatos.Rol.ObtenerRolPorId;
 using BeautyGlam.LogicaDeNegocio.Rol.EditarRol;
@@ -56,6 +59,9 @@ namespace BeautyGlam.UI.Controllers
         // GET: Rol/CrearRol
         public ActionResult CrearRol()
         {
+            ObtenerListaDeModulosAD obtener = new ObtenerListaDeModulosAD();
+            ViewBag.Modulos = obtener.Obtener();
+
             return View();
         }
 
@@ -66,22 +72,45 @@ namespace BeautyGlam.UI.Controllers
         {
             try
             {
-                if (ModelState.IsValid == false)
+                if (!ModelState.IsValid)
                 {
+                    ObtenerListaDeModulosAD obtenerModulos = new ObtenerListaDeModulosAD();
+                    ViewBag.Modulos = obtenerModulos.Obtener();
+
                     return View(elRolParaGuardar);
                 }
 
-                int cantidadDeFilasAfectadas = await _agregarRolLN.Registrar(elRolParaGuardar);
+                int idRolCreado = await _agregarRolLN.Registrar(elRolParaGuardar);
+
+                if (elRolParaGuardar.ModulosSeleccionados != null)
+                {
+                    Contexto contexto = new Contexto();
+
+                    foreach (var idModulo in elRolParaGuardar.ModulosSeleccionados)
+                    {
+                        RolModuloAD rolModulo = new RolModuloAD();
+
+                        rolModulo.id_Rol = idRolCreado;
+                        rolModulo.id_Modulo = idModulo;
+
+                        contexto.RolModulo.Add(rolModulo);
+                    }
+
+                    await contexto.SaveChangesAsync();
+                }
 
                 return RedirectToAction("ListaDeRoles");
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError("", "Error al crear: " + ex.Message);
+
+                ObtenerListaDeModulosAD obtenerModulos = new ObtenerListaDeModulosAD();
+                ViewBag.Modulos = obtenerModulos.Obtener();
+
                 return View(elRolParaGuardar);
             }
         }
-
         // GET: Rol/EditarRol/5
         public ActionResult EditarRol(int id)
         {

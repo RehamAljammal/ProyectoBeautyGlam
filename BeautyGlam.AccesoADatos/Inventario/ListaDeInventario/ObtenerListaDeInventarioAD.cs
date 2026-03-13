@@ -19,11 +19,11 @@ namespace BeautyGlam.AccesoADatos.Inventario
             List<InventarioDto> laListaDeInventario =
                 (from p in _elContexto.Producto
                  join i in _elContexto.Inventario
-                     on p.id equals i.id   // INNER JOIN
+                     on p.id equals i.id   
                  select new InventarioDto
                  {
                      idInventario = i.idInventario,
-                     id = p.id,                // 🔥 ID DEL PRODUCTO
+                     id = p.id,               
                      nombre = p.nombre,
                      stockActual = i.stockActual,
                      stockMinimo = i.stockMinimo,

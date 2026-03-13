@@ -5,6 +5,53 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .promo-pagination {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        margin-top: 20px;
+    }
+
+    .promo-page-link {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+        color: #6b4c7a;
+        background: #f6f1fb;
+        border: 1px solid #eadff3;
+    }
+
+        .promo-page-link.active {
+            background: linear-gradient(135deg,#ffb7d5,#cdb7ff);
+            color: white;
+            border: none;
+        }
+
+    .promo-actions {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+    }
+
+        .promo-actions .promo-btn {
+            white-space: nowrap;
+        }
+
+        .promo-actions .promo-btn {
+            min-width: 120px;
+            text-align: center;
+        }
+</style>
+
 <section class="section-space promo-page">
     <div class="container promo-container">
 
@@ -19,7 +66,8 @@
                     <span class="promo-badge">Listado</span>
                 </div>
 
-                <!-- 👉 BOTONES SUPERIORES -->
+
+
                 <div class="d-flex gap-2">
 
                     <a href="@Url.Action("CrearPromociones","Promociones")"
@@ -27,13 +75,32 @@
                         + Nueva Promoción
                     </a>
 
-                    <!-- ✅ NUEVO BOTÓN -->
                     <a href="@Url.Action("Index","Combos")"
                        class="promo-btn promo-btn-outline">
                         Ver combos
                     </a>
 
                 </div>
+            </div>
+
+            <div style="padding:15px;">
+                <form method="get" action="@Url.Action("ListaDePromociones","Promociones")">
+
+                    <div class="d-flex gap-2">
+
+                        <input type="text"
+                               name="buscar"
+                               value="@ViewBag.Buscar"
+                               class="form-control"
+                               placeholder="Buscar promoción..." />
+
+                        <button type="submit" class="promo-btn">
+                            Buscar 🔎
+                        </button>
+
+                    </div>
+
+                </form>
             </div>
 
             <div class="promo-table-wrap table-responsive">
@@ -87,10 +154,20 @@
                                             Editar ✏️
                                         </a>
 
-                                        <a href="@Url.Action("EliminarPromociones","Promociones", new { id = item.id_Promocion })"
-                                           class="promo-btn promo-btn-danger promo-btn-sm">
-                                            Desactivar 🗑️
-                                        </a>
+                                        @if (item.estado)
+                                        {
+                                            <a href="@Url.Action("ActivarDesactivar", "Promociones", new { id = item.id_Promocion })"
+                                               class="promo-btn sup-btn-danger sup-btn-sm">
+                                                Desactivar 🗑️
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("ActivarDesactivar", "Promociones", new { id = item.id_Promocion })"
+                                               class="promo-btn sup-btn-sm">
+                                                Activar ✨
+                                            </a>
+                                        }
 
                                     </div>
                                 </td>
@@ -99,6 +176,17 @@
                     </tbody>
 
                 </table>
+                <div class="promo-pagination">
+
+                    @for (int i = 1; i <= ViewBag.TotalPaginas; i++)
+                    {
+                        <a class="promo-page-link @(i == ViewBag.PaginaActual ? "active" : "")"
+                           href="@Url.Action("ListaDePromociones", new { pagina = i, buscar = ViewBag.Buscar })">
+                            @i
+                        </a>
+                    }
+
+                </div>
             </div>
 
         </div>

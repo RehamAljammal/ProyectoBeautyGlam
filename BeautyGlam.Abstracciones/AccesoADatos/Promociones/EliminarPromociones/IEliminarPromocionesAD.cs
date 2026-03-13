@@ -5,7 +5,6 @@ namespace BeautyGlam.Abstracciones.AccesoADatos.Promocion.DesactivarPromocion
 {
     public interface IEliminarPromocionesAD
     {
-        Task<int> Eliminar(PromocionesDTO laPromocionParaGuardar);
-
+        Task<int> ActivarDesactivarPromocion(PromocionesDTO laPromocionParaGuardar);
     }
 }

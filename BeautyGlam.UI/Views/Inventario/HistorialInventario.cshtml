@@ -1,0 +1,46 @@
+﻿@model List<BeautyGlam.Abstracciones.ModelosParaUI.MovimientoInventarioDto>
+
+@{
+    ViewBag.Title = "Historial de Inventario";
+}
+
+<h2>Historial de Movimientos</h2>
+
+@if (ViewBag.Mensaje != null)
+{
+    <div class="alert alert-warning">
+        @ViewBag.Mensaje
+    </div>
+}
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Tipo de Movimiento</th>
+            <th>Cantidad</th>
+            <th>Fecha</th>
+            <th>Observación</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var movimiento in Model)
+        {
+            <tr>
+                <td>@movimiento.tipoMovimiento</td>
+
+                <td>@movimiento.cantidad</td>
+
+                <td>
+                    @movimiento.fechaMovimiento.ToString("dd/MM/yyyy HH:mm")
+                </td>
+
+                <td>@movimiento.observacion</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Index","Inventario")" class="btn btn-primary">
+    Volver al Inventario
+</a>

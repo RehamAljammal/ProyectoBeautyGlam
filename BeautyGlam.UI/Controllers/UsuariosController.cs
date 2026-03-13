@@ -63,12 +63,43 @@ namespace BeautyGlam.UI.Controllers
         // =========================
         // LISTA
         // =========================
-        public ActionResult ListaDeUsuarios()
+        public ActionResult ListaDeUsuarios(string buscar, int pagina = 1)
         {
-            List<UsuarioDto> lista = _obtenerLaListaDeUsuariosLN.Obtener();
-            return View(lista);
-        }
+            int registrosPorPagina = 10;
 
+            List<UsuarioDto> lista = _obtenerLaListaDeUsuariosLN.Obtener();
+
+            // BUSCADOR
+            if (!string.IsNullOrWhiteSpace(buscar))
+            {
+                buscar = buscar.ToLower().Trim();
+
+                lista = lista.Where(u =>
+                    ((u.nombre ?? "") + " " + (u.apellido ?? "")).ToLower().Contains(buscar) ||
+                    (u.correo ?? "").ToLower().Contains(buscar) ||
+                    (u.username ?? "").ToLower().Contains(buscar)
+                ).ToList();
+            }
+
+            // ORDENAR DEL MÁS NUEVO AL MÁS VIEJO
+            lista = lista
+                .OrderByDescending(x => x.estado)
+                .OrderByDescending(x => x.id_Usuario).ToList();
+
+            // PAGINACIÓN
+            int totalRegistros = lista.Count();
+
+            List<UsuarioDto> usuariosPaginados = lista
+                .Skip((pagina - 1) * registrosPorPagina)
+                .Take(registrosPorPagina)
+                .ToList();
+
+            ViewBag.PaginaActual = pagina;
+            ViewBag.TotalPaginas = Math.Ceiling((double)totalRegistros / registrosPorPagina);
+            ViewBag.Buscar = buscar;
+
+            return View(usuariosPaginados);
+        }
         // =========================
         // CREAR (GET)
         // =========================
@@ -91,7 +122,6 @@ namespace BeautyGlam.UI.Controllers
         {
             try
             {
-                // IMPORTANTE: recargar roles SIEMPRE antes de retornar la vista
                 CargarRoles(elUsuarioParaGuardar.rol);
 
                 if (ModelState.IsValid == false)

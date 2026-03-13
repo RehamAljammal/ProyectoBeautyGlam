@@ -47,8 +47,8 @@ public class ListaVentaAD : IVentaAD
                 {
                     producto = d.Producto.nombre,
                     cantidad = d.cantidad,
-                    precio = d.precio_Unitario,
-                    subtotal = d.subtotal
+                    precio = d.precio,
+                    subtotal = d.precio * d.cantidad
                 }).ToList()
             })
             .FirstOrDefault();

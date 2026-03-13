@@ -11,8 +11,11 @@ namespace BeautyGlam.AccesoADatos.Entidades
         [Column("id_Guia")]
         public int idGuia { get; set; }
 
-        [Column("categoria")]
-        public string categoria { get; set; }
+        [Column("id_Ocasion")]
+        public int idOcasion { get; set; }
+
+        [ForeignKey("idOcasion")]
+        public virtual OcasionAD Ocasion { get; set; }
 
         [Column("presupuesto")]
         public decimal presupuesto { get; set; }
@@ -20,8 +23,8 @@ namespace BeautyGlam.AccesoADatos.Entidades
         [Column("genero")]
         public string genero { get; set; }
 
-        [Column("tipo")]
-        public string tipo { get; set; }
+        [Column("id_Categoria")]
+        public int id{ get; set; }
 
         [Column("estado")]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]

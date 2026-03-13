@@ -1,0 +1,152 @@
+﻿@model IEnumerable<BeautyGlam.Abstracciones.ModelosParaUI.OcasionDto>
+
+@{
+    ViewBag.Title = "Ocasiones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .usr-pagination {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        margin-top: 18px;
+    }
+
+    .usr-page-link {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 700;
+        color: #6b4c7a;
+        background: #f6f1fb;
+        border: 1px solid #eadff3;
+        transition: .2s ease;
+    }
+
+        .usr-page-link:hover {
+            background: #efe6fa;
+            transform: translateY(-1px);
+        }
+
+        .usr-page-link.active {
+            background: linear-gradient(135deg, #ffb7d5, #cdb7ff);
+            color: white;
+            border: none;
+        }
+</style>
+
+<section class="section-space sup-page">
+    <div class="container sup-container">
+        <div class="sup-header">
+            <h2 class="sup-title">Ocasiones</h2>
+            <p class="sup-subtitle">Administra las ocasiones para las guías de regalo 🎁</p>
+        </div>
+
+        <div class="sup-card">
+            <div class="sup-card-head">
+                <span class="sup-badge">Listado</span>
+
+                <a href="@Url.Action("Crear", "Ocasiones")" class="sup-btn">
+                    + Agregar Ocasión
+                </a>
+            </div>
+
+            <div style="padding:15px;">
+                <form method="get" action="@Url.Action("ListaOcasiones", "Ocasiones")">
+                    <div class="d-flex gap-2">
+                        <input type="text"
+                               name="buscar"
+                               value="@ViewBag.Buscar"
+                               class="form-control"
+                               placeholder="Buscar ocasión..." />
+
+                        <button type="submit" class="sup-btn">
+                            Buscar 🔎
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="sup-table-wrap table-responsive">
+                <table class="table table-striped align-middle sup-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Estado</th>
+                            <th class="text-center" style="width:300px;">Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <strong style="color:#5c3b6f;">
+                                        @item.nombre
+                                    </strong>
+                                </td>
+
+                                <td>
+                                    @if (item.estado)
+                                    {
+                                        <span class="sup-chip sup-chip-ok">Activo</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="sup-chip sup-chip-off">Inactivo</span>
+                                    }
+                                </td>
+
+                                <td class="text-center">
+                                    <div class="sup-actions">
+
+                                        <a href="@Url.Action("Editar", "Ocasiones", new { id = item.idOcasion })"
+                                           class="sup-btn sup-btn-outline sup-btn-sm">
+                                            Editar ✏️
+                                        </a>
+
+                                        @if (item.estado)
+                                        {
+                                            <!-- Activar Desactivar en el mismo botón -->
+                                            <a href="@Url.Action("ActivarDesactivar", "Ocasiones", new { id = item.idOcasion })"
+                                               class="sup-btn sup-btn-danger sup-btn-sm">
+                                                Desactivar 🗑️
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("ActivarDesactivar", "Ocasiones", new { id = item.idOcasion })"
+                                               class="sup-btn sup-btn-sm">
+                                                Activar ✨
+                                            </a>
+                                        }
+
+                                    </div>
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <div class="usr-pagination">
+                    @for (int i = 1; i <= ViewBag.TotalPaginas; i++)
+                    {
+                        <a class="usr-page-link @(i == ViewBag.PaginaActual ? "active" : "")"
+                           href="@Url.Action("ListaOcasiones", new { pagina = i, buscar = ViewBag.Buscar })">
+                            @i
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

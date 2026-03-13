@@ -43,5 +43,6 @@ namespace BeautyGlam.AccesoADatos.Entidades
         public string tipoPiel { get; set; }
         public virtual ICollection<GuiaProductoAD> GuiaProducto { get; set; }
         public virtual ICollection<PromocionProductoAD> PromocionProducto { get; set; }
+        public ICollection<DetalleVentaAD> DetalleVentas { get; set; }
     }
 }

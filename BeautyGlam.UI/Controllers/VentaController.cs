@@ -37,17 +37,19 @@ namespace BeautyGlam.UI.Controllers
         {
             var contexto = new Contexto();
 
-            // ADs
             IRegistrarVentaAD registrarVentaAD = new RegistrarVentaAD(contexto);
             IObtenerListaDeUsuariosAD usuariosAD = new ObtenerListaDeUsuariosAD();
             IObtenerListaDeProductosAD productosAD = new ObtenerLaListaDeProductosAD();
             IVentaAD obtenerListaVentasAD = new ListaVentaAD(contexto);
 
-            // LNs
+            IRegistrarMovimientoInventarioLN movimientoLN =
+                new RegistrarMovimientoInventarioLN();
+
             _registrarVentaLN = new RegistrarVentaLN(
                 registrarVentaAD,
                 usuariosAD,
-                productosAD);
+                productosAD,
+                movimientoLN);  
 
             _obtenerUsuariosLN = new ObtenerLaListaDeUsuariosLN();
             _obtenerProductosLN = new ObtenerLaListaDeProductosLN();
@@ -55,21 +57,54 @@ namespace BeautyGlam.UI.Controllers
             _obtenerListaVentasLN = new ListadoVentaLN(obtenerListaVentasAD);
         }
 
-        // ================== LISTADO ==================
-        public ActionResult Listado()
+        public ActionResult Listado(DateTime? fechaInicio, DateTime? fechaFin, int pagina = 1)
         {
-            List<VentaListadoDto> ventas = _obtenerListaVentasLN.ObtenerVentas();
-            return View(ventas);
+            int registrosPorPagina = 10;
+
+            var ventas = _obtenerListaVentasLN.ObtenerVentas();
+
+            // FILTRO POR FECHA
+            if (fechaInicio.HasValue)
+            {
+                ventas = ventas
+                    .Where(v => v.fecha_Venta.Date >= fechaInicio.Value.Date)
+                    .ToList();
+            }
+
+            if (fechaFin.HasValue)
+            {
+                ventas = ventas
+                    .Where(v => v.fecha_Venta.Date <= fechaFin.Value.Date)
+                    .ToList();
+            }
+
+            // ORDENAR DE MAS NUEVA A MAS VIEJA
+            ventas = ventas
+                .OrderByDescending(v => v.fecha_Venta)
+                .ToList();
+
+            int totalRegistros = ventas.Count();
+
+            var ventasPaginadas = ventas
+                .Skip((pagina - 1) * registrosPorPagina)
+                .Take(registrosPorPagina)
+                .ToList();
+
+            ViewBag.PaginaActual = pagina;
+            ViewBag.TotalPaginas = Math.Ceiling((double)totalRegistros / registrosPorPagina);
+
+            ViewBag.FechaInicio = fechaInicio;
+            ViewBag.FechaFin = fechaFin;
+
+            return View(ventasPaginadas);
         }
 
-        // ================== REGISTRAR (GET) ==================
         public ActionResult Registrar()
         {
             CargarCombos();
             return View(new VentaDto());
         }
 
-        // ================== REGISTRAR (POST) ==================
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Registrar(VentaDto modelo)
@@ -166,21 +201,18 @@ namespace BeautyGlam.UI.Controllers
 
                 doc.Add(tablaHeader);
 
-                // ===== LINEA SUAVE =====
                 LineSeparator line = new LineSeparator();
                 line.LineColor = pastelLinea;
                 line.LineWidth = 1.5f;
                 doc.Add(new Chunk(line));
                 doc.Add(new Paragraph(" "));
 
-                // ===== INFORMACIÓN =====
                 doc.Add(new Paragraph("Número: " + factura.numeroFactura, boldFont));
                 doc.Add(new Paragraph("Cliente: " + factura.cliente, normalFont));
                 doc.Add(new Paragraph("Fecha: " + factura.fecha.ToString("dd/MM/yyyy"), normalFont));
                 doc.Add(new Paragraph("Método de Pago: " + factura.metodoPago, normalFont));
                 doc.Add(new Paragraph(" "));
 
-                // ===== TABLA DETALLE =====
                 PdfPTable tabla = new PdfPTable(4);
                 tabla.WidthPercentage = 100;
                 tabla.SetWidths(new float[] { 3, 1, 1.5f, 1.5f });
@@ -223,7 +255,6 @@ namespace BeautyGlam.UI.Controllers
                 doc.Add(tabla);
                 doc.Add(new Paragraph(" "));
 
-                // ===== TOTAL DESTACADO =====
                 Paragraph total = new Paragraph(
                     "TOTAL: ₡" + factura.total.ToString("N2"),
                     FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 14, pastelLavanda)
@@ -239,7 +270,6 @@ namespace BeautyGlam.UI.Controllers
             }
         }
 
-        // ================== MÉTODO PRIVADO PARA COMBOS ==================
         private void CargarCombos()
         {
             var clientes = _registrarVentaLN.ObtenerClientesActivos();
