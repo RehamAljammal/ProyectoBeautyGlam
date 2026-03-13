@@ -12,34 +12,76 @@ else
 {
     foreach (var item in Model)
     {
-        <tr>
-            <td><strong style="color:#5c3b6f;">@item.categoria</strong></td>
-            <td>@item.tipo</td>
-            <td>₡@item.presupuesto</td>
-            <td>@item.genero</td>
-            <td>
-                <span class="sup-chip sup-chip-ok">Activo</span>
-            </td>
-            <td>
-                <div class="inv-actions">
-                    <a href="@Url.Action("Editar", "GuiaRegalos", new { id = item.idGuia })"
-                       class="btn inv-btn">
-                        Editar ✏️
-                    </a>
+<tr>
+    <td><strong style="color:#5c3b6f;">@item.nombreOcasion</strong></td>
+    <td>@item.nombreCategoria</td>
+    <td>₡@item.presupuesto</td>
+    <td>@item.genero</td>
+    <td>
+        @if (item.estado)
+        {
+            <span class="sup-chip sup-chip-ok">Activo</span>
+        }
+        else
+        {
+            <span class="sup-chip sup-chip-danger">Inactivo</span>
+        }
+    </td>
+    <td>
+        <div class="inv-actions">
 
-                    <a href="@Url.Action("Eliminar", "GuiaRegalos", new { id = item.idGuia })"
-                       class="btn inv-btn inv-btn-soft">
+            <a href="@Url.Action("Detalle", "GuiaRegalos", new { id = item.idGuia })"
+               class="btn inv-btn inv-btn-soft">
+                Ver 👀
+            </a>
+
+            @if (User.IsInRole("Admin"))
+            {
+                <a href="@Url.Action("Editar", "GuiaRegalos", new { id = item.idGuia })"
+                   class="btn inv-btn">
+                    Editar ✏️
+                </a>
+
+                if (item.estado)
+                {
+                    <a href="@Url.Action("ActivarDesactivar", "GuiaRegalos", new { id = item.idGuia })"
+                       class="btn inv-btn inv-btn-danger">
                         Desactivar 🗑️
                     </a>
-
-                    <a href="@Url.Action("Detalle", "GuiaRegalos", new { id = item.idGuia })"
+                }
+                else
+                {
+                    <a href="@Url.Action("ActivarDesactivar", "GuiaRegalos", new { id = item.idGuia })"
                        class="btn inv-btn inv-btn-soft">
-                        Ver 👀
+                        Activar ✨
                     </a>
+                }
+            }
 
-                </div>
-            </td>
-        </tr>
+        </div>
+    </td>
+
+</tr>
     }
 }
+
+<style>
+    .inv-actions {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+    }
+
+        .inv-actions .inv-btn {
+            white-space: nowrap;
+        }
+
+        .inv-actions .inv-btn {
+            min-width: 120px;
+            text-align: center;
+        }
+
+</style>
 

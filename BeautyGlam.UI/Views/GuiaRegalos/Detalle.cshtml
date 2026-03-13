@@ -20,12 +20,12 @@
         <div class="inv-card p-4 rounded-4 bg-white shadow-sm mb-4">
             <div class="row">
                 <div class="col-md-6">
-                    <p><strong>Categoría:</strong> @Model.categoria</p>
-                    <p><strong>Tipo:</strong> @Model.tipo</p>
+                    <p><strong>Ocasión:</strong> @Model.nombreOcasion</p>
+                    <p><strong>Categoría:</strong> @Model.nombreCategoria</p>
                 </div>
 
                 <div class="col-md-6">
-                    <p><strong>Presupuesto:</strong> ₡@Model.presupuesto</p>
+                    <p><strong>Presupuesto:</strong> ₡@Model.presupuesto.ToString("N2")</p>
                     <p><strong>Género:</strong> @Model.genero</p>
                 </div>
             </div>
@@ -56,14 +56,13 @@
                             <div class="card h-100 shadow-sm rounded-4 p-2 text-center">
 
                                 <img src="@(
-                                        string.IsNullOrEmpty(producto.imagen)
-                                            ? Url.Content("~/Content/img/no-image.png")
-                                            : Url.Content(producto.imagen)
-                                    )"
+                                    string.IsNullOrEmpty(producto.imagen)
+                                        ? Url.Content("~/Content/img/no-image.png")
+                                        : Url.Content(producto.imagen)
+                                )"
                                      alt="@producto.nombre"
                                      class="img-fluid rounded-3 mb-2"
                                      style="height:160px; object-fit:cover;" />
-
 
                                 <h6 class="mt-2">@producto.nombre</h6>
 
@@ -92,4 +91,3 @@
 
     </div>
 </section>
-

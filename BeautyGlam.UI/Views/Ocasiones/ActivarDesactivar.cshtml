@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Activar/Desactivar Ocasión";
+}
+
+<h2>Activar/Desactivar Ocasión</h2>
+
+<div class="sup-table-wrap table-responsive">
+    <table class="table table-striped align-middle sup-table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Estado</th>
+                <th class="text-center" style="width:300px;">Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <strong style="color:#5c3b6f;">
+                            @item.nombre
+                        </strong>
+                    </td>
+
+                    <td>
+                        @if (item.estado)
+                        {
+                            <span class="sup-chip sup-chip-ok">Activo</span>
+                        }
+                        else
+                        {
+                            <span class="sup-chip sup-chip-off">Inactivo</span>
+                        }
+                    </td>
+
+                    <td class="text-center">
+                        <div class="sup-actions">
+                            <a href="@Url.Action("Editar", "Ocasiones", new { id = item.idOcasion })"
+                               class="sup-btn sup-btn-outline sup-btn-sm">
+                                Editar ✏️
+                            </a>
+
+                            @if (item.estado)
+                            {
+                                <a href="@Url.Action("ActivarDesactivar", "Ocasiones", new { id = item.idOcasion })"
+                                   class="sup-btn sup-btn-danger sup-btn-sm">
+                                    Desactivar 🗑️
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("ActivarDesactivar", "Ocasiones", new { id = item.idOcasion })"
+                                   class="sup-btn sup-btn-sm">
+                                    Activar ✨
+                                </a>
+                            }
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

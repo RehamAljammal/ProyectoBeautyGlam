@@ -5,147 +5,181 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section class="section-space inv-page">
-    <div class="container inv-container">
+<section class="section-space prod-page">
+    <div class="container prod-container">
 
-        <!-- Header -->
-        <div class="inv-header">
-            <h2 class="inv-title">Agregar Regalo 🎁</h2>
-            <p class="inv-subtitle">
-                Registra un nuevo regalo para la guía
+        <div class="prod-header">
+            <h2 class="prod-title">Agregar Guía de Regalo</h2>
+            <p class="prod-subtitle">
+                Crea una nueva guía seleccionando ocasión, categoría y productos ✨
             </p>
         </div>
 
-        @using (Html.BeginForm("RegistrarRegalo", "GuiaRegalos", FormMethod.Post))
-        {
-            @Html.AntiForgeryToken()
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
 
-    <div class="row g-3">
+                <div class="prod-card">
+                    <div class="prod-card-head">
+                        <span class="prod-badge">Nuevo</span>
+                    </div>
 
-        <!-- Categoría / Ocasión -->
-        <div class="col-md-6">
-            <label class="form-label">Categoría / Ocasión</label>
-            @Html.TextBoxFor(m => m.categoria, new
-            {
-                @class = "form-control",
-                placeholder = "Ej: Cumpleaños, Aniversario"
-            })
-            @Html.ValidationMessageFor(m => m.categoria, "", new { @class = "text-danger" })
-        </div>
+                    <div class="p-4">
 
-        <!-- Presupuesto -->
-        <div class="col-md-6">
-            <label class="form-label">Presupuesto</label>
-            @Html.TextBoxFor(m => m.presupuesto, new
-            {
-                @class = "form-control",
-                type = "number",
-                step = "0.01",
-                placeholder = "Ej: 25000"
-            })
-            @Html.ValidationMessageFor(m => m.presupuesto, "", new { @class = "text-danger" })
-        </div>
+                        @using (Html.BeginForm("RegistrarRegalo", "GuiaRegalos", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
 
-        <!-- Género -->
-        <div class="col-md-6">
-            <label class="form-label fw-semibold d-block mb-1">
-                Género
-            </label>
-            @Html.DropDownListFor(m => m.genero,
-                         new SelectList(new[] { "Femenino", "Masculino", "Unisex" }),
-                         "Seleccione",
-                         new
-                         {
-                             @class = "form-select w-100 rounded-pill shadow-sm"
-                         })
-            @Html.ValidationMessageFor(m => m.genero, "", new { @class = "text-danger small" })
-        </div>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <!-- Tipo -->
-        <div class="col-md-6">
-            <label class="form-label fw-semibold d-block mb-1">
-                Tipo
-            </label>
-            @Html.DropDownListFor(m => m.tipo,
-                         new SelectList(new[] { "Maquillaje", "Skincare", "Perfumes", "Joyas", "Bolsos" }),
-                         "Seleccione",
-                         new
-                         {
-                             @class = "form-select w-100 rounded-pill shadow-sm"
-                         })
-            @Html.ValidationMessageFor(m => m.tipo, "", new { @class = "text-danger small" })
-        </div>
+                        <div class="row g-3">
 
+                            <!-- OCASION -->
+                            <div class="col-md-6">
+                                <label class="prod-label d-block mb-1">Ocasión</label>
 
+                                @Html.DropDownListFor(m => m.idOcasion,
+                                        new SelectList(ViewBag.Ocasiones, "idOcasion", "nombre"),
+                                        "Seleccione una ocasión",
+                                        new { @class = "form-control prod-input" })
 
-        <!-- ========================= -->
-        <!-- PRODUCTOS -->
-        <!-- ========================= -->
-        <div class="col-12 mt-4">
-            <label class="form-label fw-semibold">
-                Productos incluidos en la guía
-            </label>
+                                @Html.ValidationMessageFor(m => m.idOcasion, "", new { @class = "text-danger" })
+                            </div>
 
-            @if (Model.productosDisponibles != null && Model.productosDisponibles.Any())
-            {
-                <div class="row">
-                    @foreach (var producto in Model.productosDisponibles)
-                    {
-                        <div class="col-md-4 mb-3">
-                            <label class="card h-100 shadow-sm rounded-4 p-2 text-center" for="prod_@producto.id"
-                                   style="cursor:pointer;">
+                            <!-- CATEGORIA -->
+                            <div class="col-md-6">
+                                <label class="prod-label d-block mb-1">Categoría</label>
 
-                                <input class="form-check-input position-absolute"
-                                       style="top:10px; left:10px;"
-                                       type="checkbox"
-                                       name="productosSeleccionados"
-                                       value="@producto.id"
-                                       id="prod_@producto.id" />
+                                @Html.DropDownListFor(m => m.id,
+                                        new SelectList(ViewBag.Categorias, "id", "nombre"),
+                                        "Seleccione una categoría",
+                                        new { @class = "form-control prod-input" })
 
-                                <img src="@(
-                                string.IsNullOrEmpty(producto.imagen)
-                                    ? Url.Content("~/Content/img/no-image.png")
-                                    : Url.Content(producto.imagen)
-                            )"
-                                     alt="@producto.nombre"
-                                     class="img-fluid rounded-3 mb-2"
-                                     style="height:140px; object-fit:cover;" />
+                                @Html.ValidationMessageFor(m => m.id, "", new { @class = "text-danger" })
+                            </div>
 
-                                <h6 class="mt-2">@producto.nombre</h6>
+                            <!-- PRESUPUESTO -->
+                            <div class="col-md-6">
+                                <label class="prod-label d-block mb-1">Presupuesto</label>
 
-                                <span class="badge bg-success mt-1">
-                                    ₡@producto.precio.ToString("N2")
-                                </span>
+                                @Html.TextBoxFor(m => m.presupuesto, new
+                                {
+                                    @class = "form-control prod-input",
+                                    type = "number",
+                                    step = "0.01",
+                                    placeholder = "Ej: 25000"
+                                })
 
-                            </label>
+                                @Html.ValidationMessageFor(m => m.presupuesto, "", new { @class = "text-danger" })
+                            </div>
+
+                            <!-- GENERO -->
+                            <div class="col-md-6">
+                                <label class="prod-label d-block mb-1">Género</label>
+
+                                @Html.DropDownListFor(m => m.genero,
+                                        new SelectList(new[] { "Femenino", "Masculino", "Unisex" }),
+                                        "Seleccione",
+                                        new { @class = "form-control prod-input" })
+
+                                @Html.ValidationMessageFor(m => m.genero, "", new { @class = "text-danger" })
+                            </div>
+
                         </div>
-                    }
+
+                            <hr class="my-4" />
+
+                            <!-- PRODUCTOS -->
+                            <div>
+                                <label class="prod-label mb-3">
+                                    Productos incluidos en la guía
+                                </label>
+
+                                @if (Model.productosDisponibles != null && Model.productosDisponibles.Any())
+                                {
+                                    <div class="row">
+
+                                        @foreach (var producto in Model.productosDisponibles)
+                                        {
+                                            <div class="col-md-4 mb-3">
+
+                                                <label class="card h-100 shadow-sm rounded-4 p-3 text-center producto-card"
+                                                       for="prod_@producto.id"
+                                                       style="cursor:pointer; position:relative;">
+
+                                                    <input class="form-check-input position-absolute"
+                                                           style="top:12px; left:12px;"
+                                                           type="checkbox"
+                                                           name="productosSeleccionados"
+                                                           value="@producto.id"
+                                                           id="prod_@producto.id" />
+
+                                                    <img src="@(
+                                                        string.IsNullOrEmpty(producto.imagen)
+                                                        ? Url.Content("~/Content/img/no-image.png")
+                                                        : Url.Content(producto.imagen)
+                                                    )"
+                                                         alt="@producto.nombre"
+                                                         class="img-fluid rounded-3 mb-2"
+                                                         style="height:140px; object-fit:cover;" />
+
+                                                    <h6 class="mt-2">@producto.nombre</h6>
+
+                                                    <span class="badge bg-success mt-1">
+                                                        ₡@producto.precio.ToString("N2")
+                                                    </span>
+
+                                                </label>
+
+                                            </div>
+                                        }
+
+                                    </div>
+                                }
+                                else
+                                {
+                                    <p class="text-muted">
+                                        No hay productos disponibles
+                                    </p>
+                                }
+                            </div>
+
+                            <div class="d-flex justify-content-end gap-2 mt-4 flex-wrap">
+
+                                <a href="@Url.Action("Index","GuiaRegalos")"
+                                   class="prod-btn prod-btn-soft">
+                                    Cancelar
+                                </a>
+
+                                <button type="submit" class="prod-btn">
+                                    Guardar Guía 🎁
+                                </button>
+
+                            </div>
+
+                        }
+
+                    </div>
                 </div>
-            }
-            else
-            {
-                <p class="text-muted">
-                    No hay productos disponibles
-                </p>
-            }
+
+            </div>
         </div>
 
-
-        <!-- Botones -->
-        <div class="col-12 text-end mt-4">
-            <a href="@Url.Action("Index","GuiaRegalos")"
-               class="btn inv-btn inv-btn-soft me-2">
-                Cancelar
-            </a>
-
-            <button type="submit" class="btn inv-btn">
-                Guardar Regalo 💾
-            </button>
-        </div>
-
-    </div>
-        }
     </div>
 </section>
 
+<style>
 
+    .producto-card {
+        transition: all .2s ease;
+        border: 1px solid #ead7f3;
+    }
+
+        .producto-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,.12);
+        }
+
+        .producto-card input:checked {
+            accent-color: #7b4fb3;
+        }
+</style>

@@ -8,29 +8,43 @@ namespace BeautyGlam.LogicaDeNegocio.Inventario.EditarStockActual
     public class EditarStockActualLN : IEditarStockActualLN
     {
         private EditarStockActualAD _editarStockActualAD;
+        private IRegistrarMovimientoInventarioLN _movimientoLN;
 
         public EditarStockActualLN()
         {
             _editarStockActualAD = new EditarStockActualAD();
+            _movimientoLN = new RegistrarMovimientoInventarioLN();
         }
 
         public async Task<int> Editar(InventarioDto elInventarioParaGuardar)
         {
-            // Obtener inventario actual de BD
             InventarioDto inventarioEnBD =
                 await _editarStockActualAD.ObtenerPorProducto(elInventarioParaGuardar.id);
 
             if (inventarioEnBD == null)
-                return -1; 
+                return -1;
 
-            // VALIDACIONES
             if (elInventarioParaGuardar.stockActual < inventarioEnBD.stockMinimo)
-                return -2; 
+                return -2;
 
             if (elInventarioParaGuardar.stockActual > inventarioEnBD.stockMaximo)
-                return -3; 
+                return -3;
 
-            // Si pasa validaciones, guardar
+            int diferencia = elInventarioParaGuardar.stockActual - inventarioEnBD.stockActual;
+
+            if (diferencia != 0)
+            {
+                MovimientoInventarioDto movimiento = new MovimientoInventarioDto
+                {
+                    idProducto = elInventarioParaGuardar.id,
+                    tipoMovimiento = diferencia > 0 ? "Ingreso" : "Ajuste",
+                    cantidad = diferencia,
+                    observacion = "Actualización de inventario"
+                };
+
+                await _movimientoLN.Registrar(movimiento);
+            }
+
             return await _editarStockActualAD.Editar(elInventarioParaGuardar);
         }
 

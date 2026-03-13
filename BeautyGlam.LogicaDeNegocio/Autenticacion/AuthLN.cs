@@ -31,7 +31,6 @@ namespace BeautyGlam.LogicaDeNegocio.Autenticacion
         }
 
       
-        // Devuelve null si todo bien, o un mensaje de error si falla
         public string Registrar(RegisterDTO model)
         {
             if (_usuarioRegistroAD.ExisteCorreo(model.correo))

@@ -18,7 +18,6 @@ namespace BeautyGlam.AccesoADatos.Marca.ListaDeMarca
         {
             List<MarcaDto> laListaDeMarca =
                 (from Marca in _elContexto.Marca
-                 where Marca.estado == true
                  select new MarcaDto
                  {
                      id_Marca = Marca.id_Marca,

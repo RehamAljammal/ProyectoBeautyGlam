@@ -4,23 +4,22 @@ using BeautyGlam.Abstracciones.AccesoADatos.Promocion.DesactivarPromocion;
 using BeautyGlam.AccesoADatos.Promociones.EliminarPromociones;
 using System.Threading.Tasks;
 
-namespace BeautyGlam.LogicaDeNegocio.Promociones.EliminarPromociones
-{
-    public class EliminarPromocionesLN : IEliminarPromocionesLN
+
+    namespace BeautyGlam.LogicaDeNegocio.Promociones.EliminarPromociones
     {
-        private IEliminarPromocionesAD _eliminarPromocionesAD;
-
-        public EliminarPromocionesLN()
+        public class EliminarPromocionesLN : IEliminarPromocionesLN
         {
-            _eliminarPromocionesAD = new EliminarPromocionesAD();
-        }
+            private readonly IEliminarPromocionesAD _eliminarPromocionesAD;
 
-        public async Task<int> Eliminar(PromocionesDTO laPromocionParaGuardar)
-        {
-            int cantidadDeFilasAfectas =
-                await _eliminarPromocionesAD.Eliminar(laPromocionParaGuardar);
+            public EliminarPromocionesLN()
+            {
+                _eliminarPromocionesAD = new EliminarPromocionesAD();
+            }
 
-            return cantidadDeFilasAfectas;
+            public async Task<int> ActivarDesactivarPromocion(PromocionesDTO laPromocionParaGuardar)
+            {
+                return await _eliminarPromocionesAD.ActivarDesactivarPromocion(laPromocionParaGuardar);
+            }
         }
     }
-}
+

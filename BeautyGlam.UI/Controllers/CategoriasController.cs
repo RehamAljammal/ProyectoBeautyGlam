@@ -1,17 +1,18 @@
 ﻿using BeautyGlam.Abstracciones.AccesoADatos.Categoria.ListaCategoria;
+using BeautyGlam.Abstracciones.LogicaDeNegocio.Categoria.ActivarDesactivar;
 using BeautyGlam.Abstracciones.LogicaDeNegocio.Categoria.DetallesCategoria;
 using BeautyGlam.Abstracciones.LogicaDeNegocio.Categoria.EditarCategoria;
-using BeautyGlam.Abstracciones.LogicaDeNegocio.Categoria.EliminarCategoria;
 using BeautyGlam.Abstracciones.LogicaDeNegocio.Categoria.RegistrarCategoria;
 using BeautyGlam.Abstracciones.ModelosParaUI;
 using BeautyGlam.AccesoADatos.Categoria.ObtenerCategoriaPorID;
+using BeautyGlam.LogicaDeNegocio.Categoria.ActivarDesactivar;
 using BeautyGlam.LogicaDeNegocio.Categorias.DetallesDeCategoria;
 using BeautyGlam.LogicaDeNegocio.Categorias.EditarCategorias;
-using BeautyGlam.LogicaDeNegocio.Categorias.EliminarCategoria;
 using BeautyGlam.LogicaDeNegocio.Categorias.ListaDeCategoria;
 using BeautyGlam.LogicaDeNegocio.Categorias.RegistrarCategoria;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -22,24 +23,50 @@ namespace BeautyGlam.UI.Controllers
         private readonly IObtenerListaDeCategoriasAD _obtenerLaListaDeCategoriasLN;
         private readonly IRegistrarCategoriaLN _agregarCategoriaLN;
         private readonly IEditarCategoriaLN _editarCategoriaLN;
-        private readonly IEliminarCategoriaLN _eliminarCategoriaLN;
         private readonly IDetallesCategoriaLN _detallesCategoriaLN;
+        private readonly IActivarDesactivarCategoriaLN _activarDesactivarCategoriaLN;
         public CategoriasController()
         {
             _obtenerLaListaDeCategoriasLN = new ObtenerLaListaDeCategoriasLN();
             _agregarCategoriaLN = new RegistrarCategoriaLN();
             _editarCategoriaLN = new EditarCategoriaLN();
-            _eliminarCategoriaLN = new EliminarCategoriaLN();
             _detallesCategoriaLN = new DetallesCategoriaLN();
-
-
+            _activarDesactivarCategoriaLN = new ActivarDesactivarCategoriaLN();
         }
 
         // GET: Categorias
-        public ActionResult ListaDeCategorias()
+        public ActionResult ListaDeCategorias(string buscar, int pagina = 1)
         {
-            List<CategoriasDto> laListaDeCategorias = _obtenerLaListaDeCategoriasLN.Obtener();
-            return View(laListaDeCategorias);
+            int registrosPorPagina = 10;
+
+            List<CategoriasDto> lista = _obtenerLaListaDeCategoriasLN.Obtener();
+
+            // BUSCADOR
+            if (!string.IsNullOrWhiteSpace(buscar))
+            {
+                buscar = buscar.ToLower().Trim();
+
+                lista = lista.Where(c =>
+                    (c.nombre ?? "").ToLower().Contains(buscar)
+                ).ToList();
+            }
+
+            // ORDENAR POR MÁS NUEVO
+            lista = lista.OrderByDescending(x => x.estado)
+                .OrderByDescending(x => x.id).ToList();
+
+            int totalRegistros = lista.Count();
+
+            var categoriasPaginadas = lista
+                .Skip((pagina - 1) * registrosPorPagina)
+                .Take(registrosPorPagina)
+                .ToList();
+
+            ViewBag.PaginaActual = pagina;
+            ViewBag.TotalPaginas = Math.Ceiling((double)totalRegistros / registrosPorPagina);
+            ViewBag.Buscar = buscar;
+
+            return View(categoriasPaginadas);
         }
 
         // GET: Categorias/Details/5
@@ -129,36 +156,19 @@ namespace BeautyGlam.UI.Controllers
             }
         }
 
-
-
-
-        // GET: Categoria/Delete/5
-        public ActionResult EliminarCategoria(int id)
+        public async Task<ActionResult> ActivarDesactivarCategoria(int id)
         {
-            ObtenerCategoriaPorIdAD obtenerCategoriaPorIdAD = new ObtenerCategoriaPorIdAD();
-            CategoriasDto Categoria = obtenerCategoriaPorIdAD.ObtenerPorId(id);
+            var categoria = _obtenerLaListaDeCategoriasLN.Obtener()
+                                .FirstOrDefault(x => x.id == id);
 
-            if (Categoria == null)
+            if (categoria == null)
             {
                 return RedirectToAction("ListaDeCategorias");
             }
 
-            return View(Categoria);
-        }
+            await _activarDesactivarCategoriaLN.ActivarDesactivar(categoria);
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EliminarCategoria(CategoriasDto laCategoriaParaGuardar)
-        {
-            try
-            {
-                await _eliminarCategoriaLN.Eliminar(laCategoriaParaGuardar);
-                return RedirectToAction("ListaDeCategorias");
-            }
-            catch
-            {
-                return View(laCategoriaParaGuardar);
-            }
+            return RedirectToAction("ListaDeCategorias");
         }
     }
 }

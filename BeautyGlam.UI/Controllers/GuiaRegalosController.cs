@@ -1,16 +1,18 @@
 ﻿using BeautyGlam.Abstracciones.AccesoADatos.GuiaRegalo.EditarGuiaRegalo;
 using BeautyGlam.Abstracciones.AccesoADatos.GuiaRegalo.ObtenerProductosParaGuia;
+using BeautyGlam.Abstracciones.LogicaDeNegocio.GuiaRegalo.ActivarDesactivarGuiaRegalo;
 using BeautyGlam.Abstracciones.LogicaDeNegocio.GuiaRegalo.EditarGuiaRegalo;
-using BeautyGlam.Abstracciones.LogicaDeNegocio.GuiaRegalo.EliminarGuiaRegalo;
 using BeautyGlam.Abstracciones.LogicaDeNegocio.GuiaRegalo.RegistrarGuiaRegalo;
 using BeautyGlam.Abstracciones.ModelosParaUI;
+using BeautyGlam.AccesoADatos;
 using BeautyGlam.AccesoADatos.GuiaRegalo.EditarGuiaRegalo;
 using BeautyGlam.AccesoADatos.GuiaRegalo.ObtenerProductosParaGuia;
 using BeautyGlam.LogicaDeNegocio;
 using BeautyGlam.LogicaDeNegocio.GuiaRegalo;
+using BeautyGlam.LogicaDeNegocio.GuiaRegalo.ActivarDesactivarGuiaRegalo;
 using BeautyGlam.LogicaDeNegocio.GuiaRegalo.EditarGuiaRegalo;
-using BeautyGlam.LogicaDeNegocio.GuiaRegalo.EliminarGuiaRegalo;
 using BeautyGlam.LogicaDeNegocio.GuiaRegalo.RegistrarGuiaRegalo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,8 +27,7 @@ namespace BeautyGlam.UI.Controllers
         private readonly ObtenerProductosParaGuiaLN _obtenerProductosLN;
         private readonly IObtenerProductosParaGuiaAD _obtenerProductosAD;
         private readonly IEditarGuiaRegaloLN _editarGuiaRegaloLN;
-        private readonly IEliminarGuiaRegaloLN _eliminarGuiaRegaloLN;
-
+        private readonly IActivarDesactivarGuiaRegaloLN _activarDesactivarGuiaLN;
         public GuiaRegalosController()
         {
             _obtenerListaGuiaRegaloLN = new ObtenerGuiaRegaloLN();
@@ -36,64 +37,92 @@ namespace BeautyGlam.UI.Controllers
             _obtenerProductosLN = new ObtenerProductosParaGuiaLN(_obtenerProductosAD);
             IEditarGuiaRegaloAD editarAD = new EditarGuiaRegaloAD();
             _editarGuiaRegaloLN = new EditarGuiaRegaloLN(editarAD);
-            _eliminarGuiaRegaloLN = new EliminarGuiaRegaloLN();
-
+            _activarDesactivarGuiaLN = new ActivarDesactivarGuiaRegaloLN();
         }
 
-        public ActionResult Index(string categoria, int? presupuesto, string genero, string tipo)
+        public ActionResult Index(
+            int? idOcasion,
+            int? idCategoria,
+            decimal? precioMin,
+            decimal? precioMax,
+            string genero,
+            int pagina = 1)
         {
-            var lista = _obtenerListaGuiaRegaloLN.Obtener()
-                .Where(x => x.estado) 
-                .ToList();
+            int registrosPorPagina = 8;
 
-            if (!string.IsNullOrEmpty(categoria))
-                lista = lista.Where(x => x.categoria == categoria).ToList();
+            var lista = _obtenerListaGuiaRegaloLN.Obtener();
 
-            if (presupuesto.HasValue)
-                lista = lista.Where(x => x.presupuesto == presupuesto.Value).ToList();
+            if (idOcasion.HasValue)
+                lista = lista.Where(x => x.idOcasion == idOcasion.Value).ToList();
+
+            if (idCategoria.HasValue)
+                lista = lista.Where(x => x.id == idCategoria.Value).ToList();
+
+            if (precioMin.HasValue)
+                lista = lista.Where(x => x.presupuesto >= precioMin.Value).ToList();
+
+            if (precioMax.HasValue)
+                lista = lista.Where(x => x.presupuesto <= precioMax.Value).ToList();
 
             if (!string.IsNullOrEmpty(genero))
                 lista = lista.Where(x => x.genero == genero).ToList();
 
-            if (!string.IsNullOrEmpty(tipo))
-                lista = lista.Where(x => x.tipo == tipo).ToList();
+            lista = lista.OrderByDescending(x => x.estado)
+                         .ThenByDescending(x => x.idGuia)
+                         .ToList();
 
-            ViewBag.categoria = categoria;
-            ViewBag.presupuesto = presupuesto;
-            ViewBag.genero = genero;
-            ViewBag.tipo = tipo;
+            int totalRegistros = lista.Count();
+            var guiasPaginadas = lista
+                .Skip((pagina - 1) * registrosPorPagina)
+                .Take(registrosPorPagina)
+                .ToList();
 
-            return View(lista);
+            ViewBag.PaginaActual = pagina;
+            ViewBag.TotalPaginas = Math.Ceiling((double)totalRegistros / registrosPorPagina);
+
+            var contexto = new Contexto();
+            ViewBag.Ocasiones = contexto.Ocasiones.Where(o => o.estado).ToList();
+            ViewBag.Categorias = contexto.Categoria.Where(c => c.estado).ToList();
+
+            return View(guiasPaginadas);
         }
 
-        public ActionResult Filtrar(string categoria, string presupuesto, string genero, string tipo)
+        public ActionResult Filtrar(int? idOcasion, int? idCategoria, decimal? precioMin, decimal? precioMax, string genero)
         {
-            var lista = _obtenerListaGuiaRegaloLN.Obtener()
-                .Where(x => x.estado == true); 
+            var lista = _obtenerListaGuiaRegaloLN.Obtener();
 
-            if (!string.IsNullOrEmpty(categoria))
-                lista = lista.Where(x => x.categoria == categoria);
+            if (idOcasion.HasValue)
+                lista = lista.Where(x => x.idOcasion == idOcasion.Value).ToList();
 
-            if (!string.IsNullOrEmpty(presupuesto))
-            {
-                if (presupuesto == "1") lista = lista.Where(x => x.presupuesto < 5000);
-                if (presupuesto == "2") lista = lista.Where(x => x.presupuesto >= 10000 && x.presupuesto <= 15000);
-                if (presupuesto == "3") lista = lista.Where(x => x.presupuesto > 20000);
-            }
+            if (idCategoria.HasValue)
+                lista = lista.Where(x => x.id == idCategoria.Value).ToList();
+
+            if (precioMin.HasValue)
+                lista = lista.Where(x => x.presupuesto >= precioMin.Value).ToList();
+
+            if (precioMax.HasValue)
+                lista = lista.Where(x => x.presupuesto <= precioMax.Value).ToList();
 
             if (!string.IsNullOrEmpty(genero))
-                lista = lista.Where(x => x.genero == genero);
+                lista = lista.Where(x => x.genero == genero).ToList();
 
-            if (!string.IsNullOrEmpty(tipo))
-                lista = lista.Where(x => x.tipo == tipo);
-
-            return PartialView("_TablaGuias", lista.ToList());
+            return PartialView("_TablaGuias", lista);
         }
 
 
 
         public async Task<ActionResult> RegistrarRegalo()
         {
+            var contexto = new Contexto();
+
+            ViewBag.Ocasiones = contexto.Ocasiones
+                .Where(o => o.estado)
+                .ToList();
+
+            ViewBag.Categorias = contexto.Categoria
+                .Where(c => c.estado)
+                .ToList();
+
             GuiaRegaloDto modelo = new GuiaRegaloDto
             {
                 productosDisponibles = await _obtenerProductosLN.Obtener(),
@@ -103,7 +132,7 @@ namespace BeautyGlam.UI.Controllers
             return View(modelo);
         }
 
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult> RegistrarRegalo(GuiaRegaloDto elRegaloParaGuardar)
         {
@@ -111,6 +140,12 @@ namespace BeautyGlam.UI.Controllers
             {
                 elRegaloParaGuardar.productosDisponibles =
                     await _obtenerProductosLN.Obtener();
+
+                var ocasiones = new Contexto().Ocasiones
+                    .Where(o => o.estado)
+                    .ToList();
+
+                ViewBag.Ocasiones = ocasiones;
 
                 return View(elRegaloParaGuardar);
             }
@@ -121,7 +156,7 @@ namespace BeautyGlam.UI.Controllers
             return RedirectToAction("Index");
         }
 
-
+        
         public async Task<ActionResult> Editar(int id)
         {
             List<GuiaRegaloDto> guias =
@@ -141,10 +176,21 @@ namespace BeautyGlam.UI.Controllers
             if (guia.productosSeleccionados == null)
                 guia.productosSeleccionados = new List<int>();
 
+
+            var contexto = new Contexto();
+
+            ViewBag.Ocasiones = contexto.Ocasiones
+                .Where(o => o.estado)
+                .ToList();
+
+            ViewBag.Categorias = contexto.Categoria
+                .Where(c => c.estado)
+                .ToList();
+
             return View(guia);
         }
 
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Editar(GuiaRegaloDto modelo)
@@ -156,6 +202,16 @@ namespace BeautyGlam.UI.Controllers
 
                 modelo.productosDisponibles = productos;
 
+                var contexto = new Contexto();
+
+                ViewBag.Ocasiones = contexto.Ocasiones
+                    .Where(o => o.estado)
+                    .ToList();
+
+                ViewBag.Categorias = contexto.Categoria
+                    .Where(c => c.estado)
+                    .ToList();
+
                 return View(modelo);
             }
 
@@ -164,31 +220,19 @@ namespace BeautyGlam.UI.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Eliminar(int id)
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult> ActivarDesactivar(int id)
         {
-            var lista = _obtenerListaGuiaRegaloLN.Obtener();
-
-            GuiaRegaloDto guia = lista.FirstOrDefault(g => g.idGuia == id);
+            var guia = _obtenerListaGuiaRegaloLN
+                .Obtener()
+                .FirstOrDefault(g => g.idGuia == id);
 
             if (guia == null)
                 return RedirectToAction("Index");
 
-            return View(guia);
-        }
+            await _activarDesactivarGuiaLN.ActivarDesactivar(guia);
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Eliminar(GuiaRegaloDto laGuiaParaEliminar)
-        {
-            try
-            {
-                await _eliminarGuiaRegaloLN.Eliminar(laGuiaParaEliminar);
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View(laGuiaParaEliminar);
-            }
+            return RedirectToAction("Index");
         }
 
         public async Task<ActionResult> Detalle(int id)

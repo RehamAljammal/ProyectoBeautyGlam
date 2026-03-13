@@ -20,9 +20,9 @@
 
             <div class="sup-form">
 
-                <p><strong>Categoría:</strong> @Model.categoria</p>
-                <p><strong>Tipo:</strong> @Model.tipo</p>
-                <p><strong>Presupuesto:</strong> ₡@Model.presupuesto</p>
+                <p><strong>Ocasión:</strong> @Model.nombreOcasion</p>
+                <p><strong>Categoría:</strong> @Model.nombreCategoria</p>
+                <p><strong>Presupuesto:</strong> ₡@Model.presupuesto.ToString("N2")</p>
                 <p><strong>Género:</strong> @Model.genero</p>
 
                 <p>
@@ -49,6 +49,7 @@
                     @Html.HiddenFor(m => m.idGuia)
 
                     <div class="sup-actions mt-4">
+
                         <button type="submit" class="sup-btn sup-btn-danger">
                             Confirmar 🗑️
                         </button>
@@ -57,9 +58,11 @@
                            class="sup-btn sup-btn-soft">
                             Cancelar
                         </a>
+
                     </div>
                 }
             </div>
         </div>
+
     </div>
 </section>

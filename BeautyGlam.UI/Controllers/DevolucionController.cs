@@ -24,7 +24,11 @@ namespace BeautyGlam.UI.Controllers
             var contexto = new Contexto();
 
             IRegistrarDevolucionAD ad = new RegistrarDevolucionAD(contexto);
-            _ln = new RegistrarDevolucionLN(ad);
+
+            IRegistrarMovimientoInventarioLN movimientoLN =
+                new RegistrarMovimientoInventarioLN();
+
+            _ln = new RegistrarDevolucionLN(ad, movimientoLN);
 
             _productosAD = new ObtenerLaListaDeProductosAD();
 
@@ -33,10 +37,46 @@ namespace BeautyGlam.UI.Controllers
         }
 
         // LISTADO
-        public ActionResult Listado()
+        public ActionResult Listado(DateTime? fechaInicio, DateTime? fechaFin, int pagina = 1)
         {
+            int registrosPorPagina = 10;
+
             var devoluciones = _listaLN.Obtener();
-            return View(devoluciones);
+
+            // FILTRO POR FECHA
+            if (fechaInicio.HasValue)
+            {
+                devoluciones = devoluciones
+                    .Where(d => d.fecha.Date >= fechaInicio.Value.Date)
+                    .ToList();
+            }
+
+            if (fechaFin.HasValue)
+            {
+                devoluciones = devoluciones
+                    .Where(d => d.fecha.Date <= fechaFin.Value.Date)
+                    .ToList();
+            }
+
+            // ORDENAR DE MAS NUEVAS A MAS VIEJAS
+            devoluciones = devoluciones
+                .OrderByDescending(d => d.fecha)
+                .ToList();
+
+            int totalRegistros = devoluciones.Count();
+
+            var devolucionesPaginadas = devoluciones
+                .Skip((pagina - 1) * registrosPorPagina)
+                .Take(registrosPorPagina)
+                .ToList();
+
+            ViewBag.PaginaActual = pagina;
+            ViewBag.TotalPaginas = Math.Ceiling((double)totalRegistros / registrosPorPagina);
+
+            ViewBag.FechaInicio = fechaInicio;
+            ViewBag.FechaFin = fechaFin;
+
+            return View(devolucionesPaginadas);
         }
 
         // DETALLE
@@ -107,13 +147,32 @@ namespace BeautyGlam.UI.Controllers
             ViewBag.Clientes = new SelectList(usuarios, "id_Usuario", "nombreCompleto");
         }
 
-       
+
 
         public JsonResult ObtenerVentasPorCliente(int id_Usuario)
         {
             var ventas = _ln.ObtenerPorCliente(id_Usuario);
-
             return Json(ventas, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ObtenerProductosPorVenta(int id_Venta)
+        {
+            var contexto = new Contexto();
+
+            var productos = contexto.DetalleVenta
+                .Where(d => d.id_Venta == id_Venta)
+                .Join(contexto.Producto,
+                    d => d.id_Producto,
+                    p => p.id,
+                    (d, p) => new
+                    {
+                        id_Producto = p.id,
+                        nombre = p.nombre,
+                        cantidad = d.cantidad
+                    })
+                .ToList();
+
+            return Json(productos, JsonRequestBehavior.AllowGet);
         }
     }
 }

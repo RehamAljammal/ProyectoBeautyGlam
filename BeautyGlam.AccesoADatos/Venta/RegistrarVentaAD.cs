@@ -17,7 +17,7 @@ namespace BeautyGlam.AccesoADatos.Venta
 
         public async Task<int> Registrar(VentaDto venta)
         {
-            // ===== 1. Guardar Venta =====
+            // ===== Guardar Venta =====
             var entidadVenta = new VentaAD
             {
                 id_Usuario = venta.id_Usuario,
@@ -29,24 +29,23 @@ namespace BeautyGlam.AccesoADatos.Venta
             _contexto.Venta.Add(entidadVenta);
             await _contexto.SaveChangesAsync();
 
-            // ===== 2. Guardar Detalles =====
+            // ===== Guardar Detalle =====
             foreach (var detalle in venta.Detalles)
             {
                 var entidadDetalle = new DetalleVentaAD
                 {
                     id_Venta = entidadVenta.id_Venta,
-                    id = detalle.id,
+                    id_Producto = detalle.id_Producto,
                     cantidad = detalle.cantidad,
-                    precio_Unitario = detalle.precio_Unitario,
-                    subtotal = detalle.subtotal
+                    precio = detalle.precio
                 };
 
-                _contexto.Detalle_Venta.Add(entidadDetalle);
+                _contexto.DetalleVenta.Add(entidadDetalle);
             }
 
             await _contexto.SaveChangesAsync();
 
-            // ===== 3. Guardar Pago =====
+            // ===== Guardar Pago =====
             var pago = new PagoAD
             {
                 id_Venta = entidadVenta.id_Venta,
@@ -59,7 +58,7 @@ namespace BeautyGlam.AccesoADatos.Venta
             _contexto.Pago.Add(pago);
             await _contexto.SaveChangesAsync();
 
-            // ===== 4. Generar Factura =====
+            // ===== Generar Factura =====
             var numeroFactura = $"FAC-{entidadVenta.id_Venta.ToString("D4")}";
 
             var factura = new FacturaAD

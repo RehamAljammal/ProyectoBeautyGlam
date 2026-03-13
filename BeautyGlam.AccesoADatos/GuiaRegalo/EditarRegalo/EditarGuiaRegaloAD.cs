@@ -27,13 +27,11 @@ namespace BeautyGlam.AccesoADatos.GuiaRegalo.EditarGuiaRegalo
             if (guia == null)
                 return;
 
-            // 📝 Datos básicos
-            guia.categoria = dto.categoria;
+            guia.idOcasion = dto.idOcasion;
             guia.presupuesto = dto.presupuesto;
             guia.genero = dto.genero;
-            guia.tipo = dto.tipo;
+            guia.id = dto.id;
 
-            // 🔄 Eliminar relaciones actuales
             List<GuiaProductoAD> relacionesActuales =
                 _contexto.GuiaProducto
                 .Where(x => x.id_Guia == guia.idGuia)
@@ -41,7 +39,6 @@ namespace BeautyGlam.AccesoADatos.GuiaRegalo.EditarGuiaRegalo
 
             _contexto.GuiaProducto.RemoveRange(relacionesActuales);
 
-            // ➕ Insertar nuevas relaciones
             foreach (int idProducto in dto.productosSeleccionados)
             {
                 GuiaProductoAD relacion = new GuiaProductoAD

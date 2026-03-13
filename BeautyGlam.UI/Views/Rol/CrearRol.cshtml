@@ -1,5 +1,4 @@
-﻿
-@model BeautyGlam.Abstracciones.ModelosParaUI.RolDto
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.RolDto
 
 @{
     ViewBag.Title = "Crear Rol";
@@ -43,6 +42,24 @@
                     @Html.ValidationMessageFor(m => m.estado, "", new { @class = "text-danger" })
                 </div>
 
+                <!-- MODULOS -->
+                <div class="mb-3">
+                    <label class="form-label roles-label">Módulos del Sistema</label>
+
+                    <div class="roles-modulos">
+                        @foreach (var modulo in ViewBag.Modulos)
+                        {
+                            <label class="roles-modulo-item">
+                                <input type="checkbox"
+                                       name="ModulosSeleccionados"
+                                       value="@modulo.id_Modulo" />
+
+                                <span>@modulo.nombre_Modulo</span>
+                            </label>
+                        }
+                    </div>
+                </div>
+
                 <div class="roles-form-actions">
                     <button type="submit" class="btn roles-btn">Guardar</button>
                     <a href="@Url.Action("ListaDeRoles","Rol")" class="btn roles-btn-soft">Cancelar</a>
@@ -55,6 +72,7 @@
 </section>
 
 <style>
+
     .roles-container {
         max-width: 820px;
         margin: 0 auto;
@@ -84,6 +102,33 @@
         border: 1px solid #ead7f3;
         padding: 12px 14px;
     }
+
+    /* MODULOS */
+
+    .roles-modulos {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px,1fr));
+        gap: 10px;
+        margin-top: 8px;
+    }
+
+    .roles-modulo-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 12px;
+        border: 1px solid #ead7f3;
+        cursor: pointer;
+        font-weight: 600;
+        color: #5c3b6f;
+        background: #faf7ff;
+        transition: .2s ease;
+    }
+
+        .roles-modulo-item:hover {
+            background: #f4ebff;
+        }
 
     .roles-form-actions {
         display: flex;

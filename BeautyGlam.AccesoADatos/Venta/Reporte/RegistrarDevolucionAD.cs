@@ -22,6 +22,8 @@ namespace BeautyGlam.AccesoADatos.Devolucion
             var entidad = new DevolucionAD
             {
                 id_Venta = dto.id_Venta,
+                id_Producto = dto.id_Producto,
+                cantidad = dto.cantidad,
                 motivo = dto.motivo,
                 fecha_Devolucion = DateTime.Now,
                 id_Admin = dto.id_Admin,

@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 public class RegistrarDevolucionLN : IRegistrarDevolucionLN
 {
     private readonly IRegistrarDevolucionAD _ad;
+    private readonly IRegistrarMovimientoInventarioLN _movimientoLN;
 
-    public RegistrarDevolucionLN(IRegistrarDevolucionAD ad)
+    public RegistrarDevolucionLN(IRegistrarDevolucionAD ad, IRegistrarMovimientoInventarioLN movimientoLN)
     {
         _ad = ad;
+        _movimientoLN = movimientoLN;
     }
 
     public async Task<int> Registrar(DevolucionDto devolucion)
@@ -21,6 +23,16 @@ public class RegistrarDevolucionLN : IRegistrarDevolucionLN
 
         if (string.IsNullOrEmpty(devolucion.motivo))
             throw new Exception("Debe indicar el motivo.");
+
+        MovimientoInventarioDto movimiento = new MovimientoInventarioDto
+        {
+            idProducto = devolucion.id_Producto,
+            tipoMovimiento = "Devolucion",
+            cantidad = devolucion.cantidad,
+            observacion = devolucion.motivo
+        };
+
+        await _movimientoLN.Registrar(movimiento);
 
         return await _ad.Registrar(devolucion);
     }

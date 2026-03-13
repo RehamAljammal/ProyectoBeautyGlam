@@ -19,7 +19,6 @@ namespace BeautyGlam.AccesoADatos.Categoria.ListaCategoria
             {
                 List<CategoriasDto> laListaDeCategoria =
                     (from Categoria in _elContexto.Categoria
-                     where Categoria.estado == true
                      select new CategoriasDto
                      {
                          id = Categoria.id,

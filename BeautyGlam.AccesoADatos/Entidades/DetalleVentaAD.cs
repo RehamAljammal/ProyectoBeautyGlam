@@ -13,22 +13,16 @@ namespace BeautyGlam.AccesoADatos.Entidades
         [Column("id_Venta")]
         public int id_Venta { get; set; }
 
-        [Column("id")]
-        public int id { get; set; }
+        [Column("id_Producto")]
+        public int id_Producto { get; set; }
 
         [Column("cantidad")]
         public int cantidad { get; set; }
 
-        [Column("precio_Unitario")]
-        public decimal precio_Unitario { get; set; }
+        [Column("precio")]
+        public decimal precio { get; set; }
 
-        [Column("subtotal")]
-        public decimal subtotal { get; set; }
-
-        [ForeignKey("id_Venta")]
-        public VentaAD Venta { get; set; }
-
-        [ForeignKey("id")]
+        [ForeignKey("id_Producto")]
         public ProductoAD Producto { get; set; }
     }
 }

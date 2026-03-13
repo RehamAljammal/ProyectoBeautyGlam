@@ -17,7 +17,7 @@ namespace BeautyGlam.AccesoADatos.Promociones.EliminarPromociones
             _elContexto = new Contexto();
         }
 
-        public async Task<int> Eliminar(PromocionesDTO laPromocionParaGuardar)
+        public async Task<int> ActivarDesactivarPromocion(PromocionesDTO laPromocionParaGuardar)
         {
             int cantidadDeFilasAfectadas = 0;
 
@@ -29,13 +29,12 @@ namespace BeautyGlam.AccesoADatos.Promociones.EliminarPromociones
 
             if (laPromocionEnBaseDeDatos != null)
             {
-                laPromocionEnBaseDeDatos.estado = false;
+                laPromocionEnBaseDeDatos.estado = !laPromocionEnBaseDeDatos.estado; 
                 cantidadDeFilasAfectadas = await _elContexto.SaveChangesAsync();
             }
 
             return cantidadDeFilasAfectadas;
         }
-
     }
 
 }

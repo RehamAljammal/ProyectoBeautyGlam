@@ -42,11 +42,11 @@ namespace BeautyGlam.AccesoADatos.GuiaRegalo.RegistrarGuiaRegalo
         {
             return new GuiaRegaloAD
             {
-                categoria = dto.categoria,
+                idOcasion = dto.idOcasion,
                 presupuesto = dto.presupuesto,
                 genero = dto.genero,
-                tipo = dto.tipo,
-                estado = true  
+                id = dto.id,
+                estado = true
             };
         }
     }

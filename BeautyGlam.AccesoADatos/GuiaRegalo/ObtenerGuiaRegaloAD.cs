@@ -17,20 +17,24 @@ namespace BeautyGlam.AccesoADatos.GuiaRegalo.Lista
         public List<GuiaRegaloDto> Obtener()
         {
             return (from g in _contexto.GuiaRegalo
+                    join o in _contexto.Ocasiones
+                        on g.idOcasion equals o.idOcasion
+                    join c in _contexto.Categoria
+                        on g.id equals c.id
+
                     select new GuiaRegaloDto
                     {
                         idGuia = g.idGuia,
-                        categoria = g.categoria,
+                        idOcasion = g.idOcasion,
+                        nombreOcasion = o.nombre,
+                        id = c.id,
+                        nombreCategoria = c.nombre,
                         presupuesto = g.presupuesto,
                         genero = g.genero,
-                        tipo = g.tipo,
                         estado = g.estado,
-
-                        // RELACIÓN CON GUIA_PRODUCTO
-                        productosSeleccionados =
-                            g.GuiaProducto
-                             .Select(x => x.id)
-                             .ToList()
+                        productosSeleccionados = g.GuiaProducto
+                                                   .Select(x => x.id)
+                                                   .ToList()
                     }).ToList();
         }
     }
