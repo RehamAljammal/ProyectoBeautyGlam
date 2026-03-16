@@ -21,7 +21,6 @@ namespace BeautyGlam.AccesoADatos.Proveedores.ListaDeProveedor
         {
             List<ProveedoresDto> laListaDeProveedor =
                 (from Proveedor in _elContexto.Proveedor
-                 where Proveedor.estado == true
                  select new ProveedoresDto
                  {
                      id = Proveedor.id,

@@ -4,13 +4,14 @@ using BeautyGlam.Abstracciones.LogicaDeNegocio.Promociones.EliminarPromociones;
 using BeautyGlam.Abstracciones.LogicaDeNegocio.Promociones.RegistrarPromociones;
 using BeautyGlam.Abstracciones.ModelosParaUI;
 using BeautyGlam.AccesoADatos.Promociones.ObtenerPromocionPorId;
+using BeautyGlam.LogicaDeNegocio.Promociones.Combo;
 using BeautyGlam.LogicaDeNegocio.Promociones.EditarPromociones;
 using BeautyGlam.LogicaDeNegocio.Promociones.EliminarPromociones;
 using BeautyGlam.LogicaDeNegocio.Promociones.ListaPromociones;
 using BeautyGlam.LogicaDeNegocio.Promociones.RegistrarPromociones;
-using BeautyGlam.LogicaDeNegocio.Promociones.Combo;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -34,12 +35,40 @@ namespace BeautyGlam.UI.Controllers
         // -----------------------------
         // LISTADO PROMOCIONES (ADMIN)
         // -----------------------------
-        public ActionResult ListaDePromociones()
+        public ActionResult ListaDePromociones(string buscar, int pagina = 1)
         {
-            List<PromocionesDTO> laListaDePromociones =
+            int registrosPorPagina = 10;
+
+            List<PromocionesDTO> lista =
                 _obtenerLaListaDePromocionesLN.Obtener();
 
-            return View(laListaDePromociones);
+            // BUSCADOR
+            if (!string.IsNullOrWhiteSpace(buscar))
+            {
+                buscar = buscar.ToLower().Trim();
+                pagina = 1; 
+
+                lista = lista.Where(p =>
+                    (p.titulo ?? "").ToLower().Contains(buscar)
+                ).ToList();
+            }
+
+            // ORDENAR POR MÁS NUEVO
+            lista = lista.OrderByDescending(x => x.estado)
+                .OrderByDescending(x => x.id_Promocion).ToList();
+
+            int totalRegistros = lista.Count();
+
+            var promocionesPaginadas = lista
+                .Skip((pagina - 1) * registrosPorPagina)
+                .Take(registrosPorPagina)
+                .ToList();
+
+            ViewBag.PaginaActual = pagina;
+            ViewBag.TotalPaginas = Math.Ceiling((double)totalRegistros / registrosPorPagina);
+            ViewBag.Buscar = buscar;
+
+            return View(promocionesPaginadas);
         }
 
         // -----------------------------
@@ -119,33 +148,14 @@ namespace BeautyGlam.UI.Controllers
         // -----------------------------
         // DESACTIVAR PROMOCIÓN
         // -----------------------------
-        public ActionResult EliminarPromociones(int id)
+        public async Task<ActionResult> ActivarDesactivar(int id)
         {
-            ObtenerPromocionPorIdAD obtenerPromocionesPorIdAD =
-                new ObtenerPromocionPorIdAD();
+            PromocionesDTO promocion = new PromocionesDTO();
+            promocion.id_Promocion = id;
 
-            PromocionesDTO promocion =
-                obtenerPromocionesPorIdAD.ObtenerPorId(id);
+            await _eliminarPromocionesLN.ActivarDesactivarPromocion(promocion);
 
-            if (promocion == null)
-                return RedirectToAction("ListaDePromociones");
-
-            return View(promocion);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EliminarPromociones(PromocionesDTO laPromocionParaGuardar)
-        {
-            try
-            {
-                await _eliminarPromocionesLN.Eliminar(laPromocionParaGuardar);
-                return RedirectToAction("ListaDePromociones");
-            }
-            catch
-            {
-                return View(laPromocionParaGuardar);
-            }
+            return RedirectToAction("ListaDePromociones");
         }
 
         // -----------------------------

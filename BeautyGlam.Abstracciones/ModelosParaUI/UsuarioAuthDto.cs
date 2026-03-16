@@ -12,7 +12,6 @@ namespace BeautyGlam.Abstracciones.ModelosParaUI
         public string correo { get; set; }
         public string rol { get; set; }
         public bool estado { get; set; }
-
         public byte[] passwordHash { get; set; }
         public byte[] passwordSalt { get; set; }
     }

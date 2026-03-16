@@ -5,7 +5,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace BeautyGlam.AccesoADatos.Entidades
 {
     [Table("Movimiento_Inventario")]
-
     public class MovimientoInventarioAD
     {
         [Key]
@@ -26,7 +25,5 @@ namespace BeautyGlam.AccesoADatos.Entidades
 
         [Column("id")]
         public int idProducto { get; set; }
-
-
     }
 }

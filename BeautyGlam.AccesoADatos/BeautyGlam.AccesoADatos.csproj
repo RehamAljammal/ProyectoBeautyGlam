@@ -63,7 +63,7 @@
     <Compile Include="Catalogo\ObtenerCatalogoAD.cs" />
     <Compile Include="Categoria\DetallesCategoria\DetallesCategoriaAD.cs" />
     <Compile Include="Categoria\EditarCategoria\IEditarCategoriaAD.cs" />
-    <Compile Include="Categoria\EliminarCategoria\EliminarCategoriaAD.cs" />
+    <Compile Include="Categoria\EliminarCategoria\ActivarDesactivarCategoriaAD.cs" />
     <Compile Include="Categoria\ListaCategoria\ObtenerListaDeCategoriasAD.cs" />
     <Compile Include="Categoria\ObtenerProveedorPorID\ObtenerCategoriaPorIdAD.cs" />
     <Compile Include="Categoria\RegistrarCategoria\RegistrarCategoriaAD.cs" />
@@ -74,12 +74,18 @@
     <Compile Include="Email\EmailServicioAD.cs" />
     <Compile Include="Entidades\BlogAD.cs" />
     <Compile Include="Entidades\CategoriaAD.cs" />
+    <Compile Include="Entidades\DetalleVentaAD.cs" />
+    <Compile Include="Entidades\DevolucionAD.cs" />
+    <Compile Include="Entidades\FacturaAD.cs" />
     <Compile Include="Entidades\ComentarioBlogAD.cs" />
     <Compile Include="Entidades\GuiaProductoAD.cs" />
     <Compile Include="Entidades\GuiaRegaloAD.cs" />
     <Compile Include="Entidades\InventarioAD.cs" />
     <Compile Include="Entidades\MarcaAD.cs" />
+    <Compile Include="Entidades\ModuloAD.cs" />
     <Compile Include="Entidades\MovimientoInventarioAD.cs" />
+    <Compile Include="Entidades\OcasionesAD.cs" />
+    <Compile Include="Entidades\PagoAD.cs" />
     <Compile Include="Entidades\ProductosAD.cs" />
     <Compile Include="Entidades\PromocionesAD.cs" />
     <Compile Include="Entidades\PromocionProductoAD.cs" />
@@ -88,31 +94,46 @@
     <Compile Include="Entidades\ProductosAD.cs" />
     <Compile Include="Entidades\ProveedorAD.cs" />
     <Compile Include="Entidades\RolAD.cs" />
+
     <Compile Include="Entidades\TonoAD.cs" />
     <Compile Include="Entidades\UsuarioAD.cs" />
     <Compile Include="Entidades\WishlistAD.cs" />
     <Compile Include="Entidades\WishlistProductoAD.cs" />
+
+    <Compile Include="Entidades\RolModuloAD.cs" />
+    <Compile Include="Entidades\UsuarioAD.cs" />
+    <Compile Include="Entidades\VentaAD.cs" />
+    <Compile Include="Entidades\Wishlist.cs" />
+    <Compile Include="Entidades\WishlistProducto.cs" />
+
     <Compile Include="GuiaRegalo\EditarRegalo\EditarGuiaRegaloAD.cs" />
-    <Compile Include="GuiaRegalo\EliminarRegalo\EliminarGuiaRegaloAD.cs" />
+    <Compile Include="GuiaRegalo\EliminarRegalo\ActivarDesactivarGuiaRegaloAD.cs" />
     <Compile Include="GuiaRegalo\ObtenerGuiaRegaloAD.cs" />
     <Compile Include="GuiaRegalo\ObtenerProductosParaGuiaAD\ObtenerProductosParaGuiaAD.cs" />
     <Compile Include="GuiaRegalo\RegistrarRegalo\RegistrarGuiaRegaloAD.cs" />
     <Compile Include="Inventario\EditarStockActual\EditarStockActualAD.cs" />
     <Compile Include="Inventario\EditarStock\EditarStockAD.cs" />
     <Compile Include="Inventario\ListaDeInventario\ObtenerListaDeInventarioAD.cs" />
-    <Compile Include="Inventario\Movimiento\ObtenerListaDeMovimientoAD.cs" />
     <Compile Include="Inventario\RegistrarInventario\RegistrarInventarioAD.cs" />
     <Compile Include="Marca\DetallesMarca\DetallesMarcaAD.cs" />
     <Compile Include="Marca\EditarMarca\EditarMarcaAD.cs" />
-    <Compile Include="Marca\EliminarMarca\EliminarMarcaAD.cs" />
+    <Compile Include="Marca\EliminarMarca\ActivarDesactivarMarcaAD.cs" />
     <Compile Include="Marca\ListaDeMarca\ObtenerListaDeMarcaAD.cs" />
     <Compile Include="Marca\ObtenerMarcaPorID\ObtenerMarcaPorIdAD.cs" />
     <Compile Include="Marca\RegistrarMarca\RegistrarMarcaAD.cs" />
+    <Compile Include="Modulos\ObtenerModulosPorRol\ObtenerModulosPorRolAD.cs" />
+    <Compile Include="Modulos\ObtenerModulos\ObtenerListaDeModulosAD.cs" />
+    <Compile Include="Movimientos\ObtenerMovimientos\ObtenerMovimientosInventarioAD.cs" />
+    <Compile Include="Movimientos\Registrar\RegistrarMovimientoInventarioAD.cs" />
+    <Compile Include="Ocasiones\Editar\EditarOcasionAD.cs" />
+    <Compile Include="Ocasiones\Eliminar\ActivarDesactivarOcasionAD.cs" />
+    <Compile Include="Ocasiones\ObtenerListaDeOcasiones\ObtenerOcasionesAD.cs" />
+    <Compile Include="Ocasiones\Registrar\RegistrarOcasionAD.cs" />
     <Compile Include="Perfil\EditarPerfil\EditarPerfilUsuarioAD.cs" />
     <Compile Include="Perfil\ListaDePerfil\ObtenerPerfilUsuarioAD.cs" />
     <Compile Include="Producto\DetallesProducto\DetallesProductoAD.cs" />
     <Compile Include="Producto\EditarProducto\EditarProductoAD.cs" />
-    <Compile Include="Producto\EliminarProducto\EliminarProductoAD.cs" />
+    <Compile Include="Producto\EliminarProducto\ActivarDesactivarProductoAD.cs" />
     <Compile Include="Producto\ListaProducto\ObtenerListaDeProductosAD.cs" />
     <Compile Include="Producto\ObtenerProductoPorId\ObtenerProductoPorIdAD.cs" />
     <Compile Include="Producto\RegistrarProducto\RegistrarProductoAD.cs" />
@@ -150,10 +171,21 @@
     <Compile Include="Usuarios\ListaUsuario\ObtenerListaDeUsuariosAD.cs" />
     <Compile Include="Usuarios\ObtenerUsuarioPorId\ObtenerUsuarioPorIdAD.cs" />
     <Compile Include="Usuarios\RegistrarUsuario\RegistrarUsuarioAD.cs" />
+
     <Compile Include="Wishlist\AgregarP\AgregarProductoWishlistAD.cs" />
     <Compile Include="Wishlist\Crear\CrearWishlistAD.cs" />
     <Compile Include="Wishlist\EliminarP\EliminarProductoWishlistAD.cs" />
     <Compile Include="Wishlist\ListaDeWishlt\ObtenerWishlistPorUsuarioAD.cs" />
+
+    <Compile Include="Venta\ListadoVenta\ListaVentaAD.cs" />
+    <Compile Include="Venta\ObtenerDetalleVenta\ObtenerDetalleVentaAD.cs" />
+    <Compile Include="Venta\RegistrarVentaAD.cs" />
+    <Compile Include="Venta\Reporte\ListaDevolucionAD.cs" />
+    <Compile Include="Venta\Reporte\RegistrarDevolucionAD.cs" />
+    <Compile Include="Venta\Reporte\ReporteAD.cs" />
+    <Compile Include="Venta\Reporte\ReporteDevolucionesAD.cs" />
+    <Compile Include="Wishlist\NewFolder1\ObtenerWishlistAD.cs" />
+
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

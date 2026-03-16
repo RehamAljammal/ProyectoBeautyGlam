@@ -4,6 +4,48 @@
     ViewBag.Title = "Inventario";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .inv-chip-warning {
+        background: #fff4cc;
+        color: #b38b00;
+        padding: 6px 10px;
+        border-radius: 20px;
+    }
+
+    .usr-pagination {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        margin-top: 18px;
+    }
+
+    .usr-page-link {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 700;
+        color: #6b4c7a;
+        background: #f6f1fb;
+        border: 1px solid #eadff3;
+        transition: .2s ease;
+    }
+
+        .usr-page-link:hover {
+            background: #efe6fa;
+            transform: translateY(-1px);
+        }
+
+        .usr-page-link.active {
+            background: linear-gradient(135deg,#ffb7d5,#cdb7ff);
+            color: white;
+            border: none;
+        }
+</style>
 
 <section class="section-space inv-page">
     <div class="container inv-container">
@@ -11,6 +53,21 @@
         <div class="inv-header">
             <h2 class="inv-title">Inventario</h2>
             <p class="inv-subtitle">Controla stock y mínimos/máximos ✨</p>
+        </div>
+
+        <div style="padding:15px;">
+            <form method="get" action="@Url.Action("ListaDeInventario","Inventario")">
+                <div class="d-flex gap-2">
+                    <input type="text"
+                           name="buscar"
+                           value="@ViewBag.Buscar"
+                           class="form-control"
+                           placeholder="Buscar producto..." />
+                    <button type="submit" class="sup-btn">
+                        Buscar 🔎
+                    </button>
+                </div>
+            </form>
         </div>
 
         <div class="inv-table-wrap">
@@ -41,13 +98,25 @@
                                 @if (item.stockActual <= item.stockMinimo)
                                 {
                                     <span class="inv-chip inv-chip-low">
-                                        @item.stockActual
+                                        @item.stockActual 🔴
+                                    </span>
+                                }
+                                else if (item.stockActual <= item.stockMinimo + 2)
+                                {
+                                    <span class="inv-chip inv-chip-warning">
+                                        @item.stockActual ⚠
+                                    </span>
+                                }
+                                else if (item.stockActual >= item.stockMaximo)
+                                {
+                                    <span class="inv-chip inv-chip-high">
+                                        @item.stockActual 📦
                                     </span>
                                 }
                                 else
                                 {
                                     <span class="inv-chip inv-chip-ok">
-                                        @item.stockActual
+                                        @item.stockActual ✔
                                     </span>
                                 }
                             </td>
@@ -74,6 +143,16 @@
                     }
                 </tbody>
             </table>
+
+            <div class="usr-pagination">
+                @for (int i = 1; i <= ViewBag.TotalPaginas; i++)
+                {
+                    <a class="usr-page-link @(i == ViewBag.PaginaActual ? "active" : "")"
+                       href="@Url.Action("ListaDeInventario", new { pagina = i, buscar = ViewBag.Buscar })">
+                        @i
+                    </a>
+                }
+            </div>
         </div>
 
     </div>

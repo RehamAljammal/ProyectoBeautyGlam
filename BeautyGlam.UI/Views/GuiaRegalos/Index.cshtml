@@ -5,6 +5,49 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+
+    .usr-pagination {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        margin-top: 18px;
+    }
+
+    .usr-page-link {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 700;
+        color: #6b4c7a;
+        background: #f6f1fb;
+        border: 1px solid #eadff3;
+        transition: .2s ease;
+    }
+
+        .usr-page-link:hover {
+            background: #efe6fa;
+            transform: translateY(-1px);
+        }
+
+        .usr-page-link.active {
+            background: linear-gradient(135deg,#ffb7d5,#cdb7ff);
+            color: white;
+            border: none;
+        }
+
+    
+    .sup-chip-danger {
+        background: #ffe3e3;
+        color: #b42318;
+    }
+</style>
+
 <section class="section-space inv-page">
     <div class="container inv-container">
 
@@ -16,28 +59,27 @@
             </p>
         </div>
 
+        <!-- Botón Admin -->
+        <div class="mt-4 text-end">
+            <a class="btn inv-btn rounded-pill"
+               href="@Url.Action("RegistrarRegalo", "GuiaRegalos")">
+                Agregar regalo ➕
+            </a>
+        </div>
+
         <!-- Filtros -->
         <div class="inv-filters mb-4 p-4 rounded-4 bg-white shadow-sm">
             <form id="filtrosForm" class="row g-3" onsubmit="return false;">
 
-                <div class="col-md-3">
-                    <label class="form-label fw-semibold d-block mb-1">Categoría</label>
-                    <select name="categoria" class="form-control w-100 rounded-pill shadow-sm">
-                        <option value="">Todas</option>
-                        <option>Cumpleaños</option>
-                        <option>Aniversario</option>
-                        <option>Elegante</option>
-                        <option>Casual</option>
-                    </select>
-                </div>
-
                 <div class="col-md-2">
-                    <label class="form-label fw-semibold d-block mb-1">Presupuesto</label>
-                    <select name="presupuesto" class="form-control w-100 rounded-pill shadow-sm">
-                        <option value="">Todos</option>
-                        <option value="1">Bajo</option>
-                        <option value="2">Intermedio</option>
-                        <option value="3">Alto</option>
+                    <label class="form-label fw-semibold d-block mb-1">Ocasión</label>
+                    <select name="idOcasion" class="form-control w-100 rounded-pill shadow-sm">
+                        <option value="">Todas</option>
+
+                        @foreach (var o in ViewBag.Ocasiones)
+                        {
+                            <option value="@o.idOcasion">@o.nombre</option>
+                        }
                     </select>
                 </div>
 
@@ -51,16 +93,34 @@
                     </select>
                 </div>
 
-                <div class="col-md-3">
-                    <label class="form-label fw-semibold d-block mb-1">Tipo</label>
-                    <select name="tipo" class="form-control w-100 rounded-pill shadow-sm">
-                        <option value="">Todos</option>
-                        <option>Maquillaje</option>
-                        <option>Skincare</option>
-                        <option>Perfumes</option>
-                        <option>Joyas</option>
-                        <option>Bolsos</option>
+                <div class="col-md-2">
+                    <label class="form-label fw-semibold d-block mb-1">Categoría</label>
+
+                    <select name="idCategoria" class="form-control w-100 rounded-pill shadow-sm">
+                        <option value="">Todas</option>
+
+                        @foreach (var c in ViewBag.Categorias)
+                        {
+                            <option value="@c.id">@c.nombre</option>
+                        }
+
                     </select>
+                </div>
+
+                <div class="col-md-2">
+                    <label class="form-label fw-semibold d-block mb-1">Precio mín</label>
+                    <input type="number"
+                           name="precioMin"
+                           class="form-control rounded-pill shadow-sm"
+                           placeholder="₡0" />
+                </div>
+
+                <div class="col-md-2">
+                    <label class="form-label fw-semibold d-block mb-1">Precio máx</label>
+                    <input type="number"
+                           name="precioMax"
+                           class="form-control rounded-pill shadow-sm"
+                           placeholder="₡50000" />
                 </div>
 
                 <div class="col-md-2 d-flex align-items-end">
@@ -78,9 +138,9 @@
             <table class="table table-striped inv-table align-middle">
                 <thead>
                     <tr>
+                        <th>Ocasión</th>
                         <th>Categoría</th>
-                        <th>Tipo</th>
-                        <th>Presupuesto</th>
+                        <th>Precio</th>
                         <th>Género</th>
                         <th>Estado</th>
                         <th style="width:260px;">Acciones</th>
@@ -91,15 +151,20 @@
                     @Html.Partial("_TablaGuias", Model)
                 </tbody>
             </table>
+            <div class="usr-pagination">
+
+                @for (int i = 1; i <= ViewBag.TotalPaginas; i++)
+                {
+                    <a class="usr-page-link @(i == ViewBag.PaginaActual ? "active" : "")"
+                       href="@Url.Action("Index", new { pagina = i })">
+                        @i
+                    </a>
+                }
+
+            </div>
         </div>
 
-        <!-- Botón Admin -->
-        <div class="mt-4 text-end">
-            <a class="btn inv-btn rounded-pill"
-               href="@Url.Action("RegistrarRegalo", "GuiaRegalos")">
-                Agregar regalo ➕
-            </a>
-        </div>
+
     </div>
 </section>
 
@@ -119,9 +184,7 @@
             .catch(err => console.error("Error al filtrar:", err));
     }
 
-    // Filtra cuando cambian los selects
     form.addEventListener("change", aplicarFiltros);
 
-    // Filtra cuando presionan el botón
     btnFiltrar.addEventListener("click", aplicarFiltros);
 </script>

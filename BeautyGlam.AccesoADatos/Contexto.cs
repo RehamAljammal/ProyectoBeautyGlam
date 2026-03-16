@@ -17,7 +17,7 @@ namespace BeautyGlam.AccesoADatos
         public DbSet<MarcaAD> Marca { get; set; }
         public DbSet<ProductoAD> Producto { get; set; }
         public DbSet<InventarioAD> Inventario { get; set; }
-        public DbSet<MovimientoInventarioAD> Movimiento { get; set; }
+        public DbSet<MovimientoInventarioAD> MovimientoInventario { get; set; }
 
         public DbSet<GuiaRegaloAD> GuiaRegalo { get; set; }
         public DbSet<GuiaProductoAD> GuiaProducto { get; set; }
@@ -30,9 +30,31 @@ namespace BeautyGlam.AccesoADatos
         public DbSet<RolAD> Rol { get; set; }
         public DbSet<BlogAD> Blog { get; set; }
         public DbSet<ComentarioBlogAD> ComentarioBlog { get; set; }
+
         public DbSet<TonoAD> Tono { get; set; }
         public DbSet<WishlistAD> Wishlist { get; set; }
         public DbSet<WishlistProductoAD> WishlistProducto { get; set; }
+
+
+        public DbSet<OcasionAD> Ocasiones { get; set; }
+        public DbSet<VentaAD> Venta { get; set; }
+        public DbSet<DetalleVentaAD> DetalleVenta { get; set; }
+        public DbSet<PagoAD> Pago { get; set; }
+        public DbSet<FacturaAD> Factura { get; set; }
+
+        public DbSet<DevolucionAD> Devolucion { get; set; }
+
+        public DbSet<ModuloAD> Modulo { get; set; }
+
+        public DbSet<RolModuloAD> RolModulo { get; set; }
+
+
+        // ===============================
+        // WISHLIST
+        // ===============================
+        //  public DbSet<WishlistAD> Wishlist { get; set; }
+        // public DbSet<WishlistProductoAD> WishlistProducto { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

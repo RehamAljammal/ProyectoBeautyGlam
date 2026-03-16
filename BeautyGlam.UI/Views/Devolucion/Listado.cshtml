@@ -1,0 +1,193 @@
+﻿@model IEnumerable<BeautyGlam.Abstracciones.ModelosParaUI.DevolucionListadoDto>
+
+@{
+    ViewBag.Title = "Devoluciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+
+    .ven-pagination {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        margin-top: 18px;
+    }
+
+    .ven-page-link {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 700;
+        color: #6b4c7a;
+        background: #f6f1fb;
+        border: 1px solid #eadff3;
+        transition: .2s ease;
+    }
+
+        .ven-page-link:hover {
+            background: #efe6fa;
+            transform: translateY(-1px);
+        }
+
+        .ven-page-link.active {
+            background: linear-gradient(135deg,#ffb7d5,#cdb7ff);
+            color: white;
+            border: none;
+        }
+</style>
+<section class="section-space sup-page">
+    <div class="container sup-container">
+
+        <div class="sup-header">
+            <h2 class="sup-title">Devoluciones</h2>
+            <p class="sup-subtitle">Administra las devoluciones registradas 📦</p>
+        </div>
+
+        <div class="sup-card">
+            <div class="sup-card-head">
+                <span class="sup-badge">Listado</span>
+
+                <a href="@Url.Action("Registrar", "Devolucion")" class="sup-btn">
+                    + Registrar Devolución
+                </a>
+            </div>
+
+            <div class="inv-filters mb-4 p-4 rounded-4 bg-white shadow-sm">
+
+                <form method="get" action="@Url.Action("Listado","Devolucion")" class="row g-3">
+
+                    <div class="col-md-3">
+                        <label class="form-label fw-semibold mb-1">Desde</label>
+
+                        <input type="date"
+                               name="fechaInicio"
+                               class="form-control rounded-pill shadow-sm"
+                               value="@ViewBag.FechaInicio" />
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label fw-semibold mb-1">Hasta</label>
+
+                        <input type="date"
+                               name="fechaFin"
+                               class="form-control rounded-pill shadow-sm"
+                               value="@ViewBag.FechaFin" />
+                    </div>
+
+                    <div class="col-md-3 d-flex align-items-end">
+
+                        <button type="submit"
+                                class="btn inv-btn w-100 rounded-pill">
+
+                            Filtrar 🔍
+
+                        </button>
+
+                    </div>
+
+                    <div class="col-md-3 d-flex align-items-end">
+
+                        <a href="@Url.Action("Listado","Devolucion")"
+                           class="btn inv-btn inv-btn-soft w-100 rounded-pill">
+
+                            Limpiar
+
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="sup-table-wrap table-responsive">
+                <table class="table table-striped align-middle sup-table">
+                    <thead>
+                        <tr>
+                            <th>Motivo</th>
+                            <th>Fecha</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @if (Model != null && Model.Any())
+                        {
+                            foreach (var d in Model)
+                            {
+                                <tr>
+                                    
+
+
+
+                                    <td>@d.motivo</td>
+
+                                    <td>
+                                        @d.fecha.ToShortDateString()
+                                    </td>
+
+                                    <td>
+                                        @if (d.estado == "Registrada")
+                                        {
+                                            <span class="sup-chip sup-chip-ok">
+                                                Registrada
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="sup-chip sup-chip-off">
+                                                @d.estado
+                                            </span>
+                                        }
+                                    </td>
+
+                                    <td>
+                                        <div class="sup-actions">
+                                            <a href="@Url.Action("Detalle", "Devolucion", new { id = d.id_Devolucion })"
+                                               class="sup-btn sup-btn-soft sup-btn-sm">
+                                                Ver 👀
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="7" class="text-center py-4">
+                                    No hay devoluciones registradas 📭
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+
+                <div class="ven-pagination">
+
+                    @for (int i = 1; i <= ViewBag.TotalPaginas; i++)
+                    {
+                        <a class="ven-page-link @(i == ViewBag.PaginaActual ? "active" : "")"
+                           href="@Url.Action("Listado", new {
+                        pagina = i,
+                        fechaInicio = ViewBag.FechaInicio,
+                        fechaFin = ViewBag.FechaFin
+                   })">
+
+                            @i
+
+                        </a>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

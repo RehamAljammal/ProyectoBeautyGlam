@@ -41,10 +41,40 @@ namespace BeautyGlam.UI.Controllers
 
 
         // Listar proveedores
-        public ActionResult ListaDeProveedores()
+        public ActionResult ListaDeProveedores(string buscar, int pagina = 1)
+        {
+            int registrosPorPagina = 10;
+
+            List<ProveedoresDto> lista = _obtenerLaListaDeProveedoresLN.Obtener();
+
+            // BUSCADOR
+            if (!string.IsNullOrWhiteSpace(buscar))
             {
-            List<ProveedoresDto> laListaDeProveedores = _obtenerLaListaDeProveedoresLN.Obtener();
-            return View(laListaDeProveedores);
+                buscar = buscar.ToLower().Trim();
+
+                lista = lista.Where(p =>
+                    (p.nombre ?? "").ToLower().Contains(buscar) ||
+                    (p.correo ?? "").ToLower().Contains(buscar) ||
+                    (p.telefono ?? "").ToLower().Contains(buscar)
+                ).ToList();
+            }
+
+            // ORDENAR POR MÁS NUEVO
+            lista = lista.OrderByDescending(x => x.estado)
+                .OrderByDescending(x => x.id).ToList();
+
+            int totalRegistros = lista.Count();
+
+            var proveedoresPaginados = lista
+                .Skip((pagina - 1) * registrosPorPagina)
+                .Take(registrosPorPagina)
+                .ToList();
+
+            ViewBag.PaginaActual = pagina;
+            ViewBag.TotalPaginas = Math.Ceiling((double)totalRegistros / registrosPorPagina);
+            ViewBag.Buscar = buscar;
+
+            return View(proveedoresPaginados);
         }
 
         // Ver detalles del proveedor

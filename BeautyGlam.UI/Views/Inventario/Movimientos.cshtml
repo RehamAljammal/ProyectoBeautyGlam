@@ -1,0 +1,224 @@
+﻿@model List<BeautyGlam.Abstracciones.ModelosParaUI.MovimientoInventarioDto>
+
+@{
+    ViewBag.Title = "Movimientos de Inventario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .mov-chip {
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 13px;
+        display: inline-block;
+    }
+
+    .mov-ingreso {
+        background: #e6f7ee;
+        color: #1f8f5f;
+        border: 1px solid #9fd7bb;
+    }
+
+    .mov-ajuste {
+        background: #fdeaea;
+        color: #c0392b;
+        border: 1px solid #f1a5a5;
+    }
+
+    .mov-devolucion {
+        background: #eaf3ff;
+        color: #2f6fed;
+        border: 1px solid #a8c5ff;
+    }
+
+    .mov-venta {
+        background: #f3eaff;
+        color: #6c4ccf;
+        border: 1px solid #c7b8ff;
+    }
+
+    .usr-pagination {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        margin-top: 18px;
+    }
+
+    .usr-page-link {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 700;
+        color: #6b4c7a;
+        background: #f6f1fb;
+        border: 1px solid #eadff3;
+        transition: .2s ease;
+    }
+
+        .usr-page-link:hover {
+            background: #efe6fa;
+            transform: translateY(-1px);
+        }
+
+        .usr-page-link.active {
+            background: linear-gradient(135deg,#ffb7d5,#cdb7ff);
+            color: white;
+            border: none;
+        }
+</style>
+
+<section class="section-space inv-page">
+
+    <div class="container inv-container">
+
+        <div class="inv-header">
+            <h2 class="inv-title">Movimientos de Inventario</h2>
+            <p class="inv-subtitle">
+                Historial de entradas, salidas y devoluciones 📦
+            </p>
+        </div>
+
+        @if (ViewBag.Mensaje != null)
+        {
+            <div class="alert alert-info">
+                @ViewBag.Mensaje
+            </div>
+        }
+
+        <!-- Filtros -->
+        <div class="inv-filters mb-4 p-4 rounded-4 bg-white shadow-sm">
+            <form method="get" class="row g-3">
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold d-block mb-1">
+                        Desde
+                    </label>
+
+                    <input type="date"
+                           name="fechaInicio"
+                           class="form-control rounded-pill shadow-sm"
+                           value="@ViewBag.FechaInicio" />
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold d-block mb-1">
+                        Hasta
+                    </label>
+
+                    <input type="date"
+                           name="fechaFin"
+                           class="form-control rounded-pill shadow-sm"
+                           value="@ViewBag.FechaFin" />
+                </div>
+
+                <div class="col-md-3 d-flex align-items-end">
+                    <button type="submit"
+                            class="btn inv-btn w-100 rounded-pill">
+                        Filtrar 🔍
+                    </button>
+                </div>
+
+                <div class="col-md-3 d-flex align-items-end">
+                    <a href="@Url.Action("Movimientos","Inventario")"
+                       class="btn inv-btn inv-btn-soft w-100 rounded-pill">
+                        Limpiar
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <div class="inv-table-wrap">
+            <table class="table table-striped inv-table align-middle">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Movimiento</th>
+                        <th>Cantidad</th>
+                        <th>Fecha</th>
+                        <th>Observación</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <!-- Producto -->
+                            <td>
+                                <strong style="color:#5c3b6f;">
+                                    @item.nombreProducto
+                                </strong>
+                            </td>
+
+                            <!-- Tipo movimiento -->
+                            <td>
+                                @if (item.tipoMovimiento == "Ingreso")
+                                {
+                                    <span class="mov-chip mov-ingreso">
+                                        Ingreso
+                                    </span>
+                                }
+                                else if (item.tipoMovimiento == "Ajuste")
+                                {
+                                    <span class="mov-chip mov-ajuste">
+                                        Ajuste
+                                    </span>
+                                }
+                                else if (item.tipoMovimiento == "Devolucion")
+                                {
+                                    <span class="mov-chip mov-devolucion">
+                                        Devolución
+                                    </span>
+                                }
+                                else if (item.tipoMovimiento == "Venta")
+                                {
+                                    <span class="mov-chip mov-venta">
+                                        Venta
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="mov-chip">
+                                        @item.tipoMovimiento
+                                    </span>
+                                }
+                            </td>
+
+                            <!-- Cantidad -->
+                            <td>
+                                <strong>@item.cantidad</strong>
+                            </td>
+
+                            <!-- Fecha -->
+                            <td>
+                                @item.fechaMovimiento.ToString("dd/MM/yyyy HH:mm")
+                            </td>
+
+                            <!-- Observacion -->
+                            <td>
+                                @item.observacion
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="usr-pagination">
+            @for (int i = 1; i <= ViewBag.TotalPaginas; i++)
+            {
+                <a class="usr-page-link @(i == ViewBag.PaginaActual ? "active" : "")"
+                   href="@Url.Action("Movimientos", new { pagina = i, fechaInicio = ViewBag.FechaInicio, fechaFin = ViewBag.FechaFin })">
+                    @i
+                </a>
+            }
+        </div>
+
+    </div>
+
+</section>

@@ -17,6 +17,7 @@ namespace BeautyGlam.AccesoADatos.Producto.ListaProducto
         public List<ProductosDTO> Obtener()
         {
             List<ProductosDTO> laListaDeProductos =
+
                 (from p in _elContexto.Producto
 
                  join c in _elContexto.Categoria
@@ -57,6 +58,33 @@ namespace BeautyGlam.AccesoADatos.Producto.ListaProducto
                      EsTemporada = p.EsTemporada,
                      tipoPiel = p.tipoPiel
                  }).ToList();
+
+                                                    (from p in _elContexto.Producto
+                                                    join c in _elContexto.Categoria on p.idCategoria equals c.id
+                                                    join m in _elContexto.Marca on p.idMarca equals m.id_Marca
+                                                     join pr in _elContexto.Proveedor on p.idProveedor equals pr.id
+
+                                                    select new ProductosDTO
+                                                    {
+                                                        id = p.id,
+                                                        nombre = p.nombre,
+                                                        descripcion = p.descripcion,
+                                                        precio = p.precio,
+                                                        imagen = p.imagen,
+                                                        idCategoria = p.idCategoria,
+                                                        nombreCategoria = c.nombre,
+                                                        idMarca = p.idMarca,
+                                                        nombreMarca = m.nombre,
+                                                        idProveedor = p.idProveedor,
+                                                        nombreProveedor = pr.nombre,
+                                                        estado = p.estado,
+                                                        EsTemporada = p.EsTemporada,
+                                                        tono = p.tono,
+                                                        tipoPiel = p.tipoPiel
+                                                       
+
+                                                    }).ToList();
+
 
             return laListaDeProductos;
         }

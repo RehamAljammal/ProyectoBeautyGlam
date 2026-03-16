@@ -9,8 +9,7 @@ namespace BeautyGlam.Abstracciones.LogicaDeNegocio.Promociones.EliminarPromocion
 {
     public interface IEliminarPromocionesLN
     {
-        Task<int> Eliminar(PromocionesDTO laPromocionParaGuardar);
-
+        Task<int> ActivarDesactivarPromocion(PromocionesDTO laPromocionParaGuardar);
 
     }
 }

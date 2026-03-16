@@ -1,9 +1,10 @@
-﻿using BeautyGlam.Abstracciones.LogicaDeNegocio.Producto.DetallesProducto;
+﻿using BeautyGlam.Abstracciones.LogicaDeNegocio.Producto.ActivarDesactivarProducto;
+using BeautyGlam.Abstracciones.LogicaDeNegocio.Producto.DetallesProducto;
 using BeautyGlam.Abstracciones.LogicaDeNegocio.Producto.EditarProducto;
-using BeautyGlam.Abstracciones.LogicaDeNegocio.Producto.EliminarProducto;
 using BeautyGlam.Abstracciones.LogicaDeNegocio.Producto.ListaProducto;
 using BeautyGlam.Abstracciones.LogicaDeNegocio.Producto.RegistrarProducto;
 using BeautyGlam.Abstracciones.ModelosParaUI;
+using BeautyGlam.AccesoADatos.Producto.EliminarProducto;
 using BeautyGlam.AccesoADatos.Producto.ObtenerProductoPorId;
 using BeautyGlam.LogicaDeNegocio.Categorias.ListaDeCategoria;
 using BeautyGlam.LogicaDeNegocio.Marca.ListaDeMarca;
@@ -29,7 +30,7 @@ namespace BeautyGlam.UI.Controllers
         private readonly IObtenerLaListadeProductosLN _obtenerLaListaDeProductosLN;
         private readonly IRegistrarProductoLN _agregarProductoLN;
         private readonly IEditarProductoLN _editarProductoLN;
-        private readonly IEliminarProductoLN _eliminarProductoLN;
+        private readonly IActivarDesactivarProductoLN _eliminarProductoLN;
         private readonly IDetallesProductoLN _detallesProductoLN;
 
         private readonly ObtenerLaListaDeCategoriasLN _obtenerLaListaDeCategoriasLN;
@@ -41,7 +42,7 @@ namespace BeautyGlam.UI.Controllers
             _obtenerLaListaDeProductosLN = new ObtenerLaListaDeProductosLN();
             _agregarProductoLN = new RegistrarProductoLN();
             _editarProductoLN = new EditarProductoLN();
-            _eliminarProductoLN = new EliminarProductoLN();
+            _eliminarProductoLN = new ActivarDesactivarProductoLN();
             _detallesProductoLN = new DetallesProductoLN();
 
             _obtenerLaListaDeCategoriasLN = new ObtenerLaListaDeCategoriasLN();
@@ -84,19 +85,34 @@ namespace BeautyGlam.UI.Controllers
 
         // ================== LISTA DE PRODUCTOS CON FILTROS ==================
         public ActionResult ListaDeProductos(
+            string buscar,
             int? idCategoria,
             int? id_Tono,
             string tipoPiel,
             int? idMarca,
             decimal? precioMin,
-            decimal? precioMax
-        )
+            decimal? precioMax,
+            int pagina = 1
+)
         {
-            var productos = _obtenerLaListaDeProductosLN.Obtener()
-                             .Where(p => p.estado)
-                             .ToList();
+            int registrosPorPagina = 10;
 
-            // Aplicar filtros
+            var productos = _obtenerLaListaDeProductosLN.Obtener()
+                .OrderByDescending(p => p.estado)  
+                .ThenByDescending(p => p.id)      
+                .ToList();
+            // BUSCADOR
+            if (!string.IsNullOrWhiteSpace(buscar))
+            {
+                buscar = buscar.ToLower().Trim();
+
+                productos = productos.Where(p =>
+                    (p.nombre ?? "").ToLower().Contains(buscar) ||
+                    (p.descripcion ?? "").ToLower().Contains(buscar)
+                ).ToList();
+            }
+
+            // FILTROS
             if (idCategoria.HasValue)
                 productos = productos.Where(p => p.idCategoria == idCategoria.Value).ToList();
 
@@ -115,13 +131,30 @@ namespace BeautyGlam.UI.Controllers
             if (precioMax.HasValue)
                 productos = productos.Where(p => p.precio <= precioMax.Value).ToList();
 
-            if (!productos.Any())
-                ViewBag.Mensaje = "No se encontraron productos que coincidan con los filtros";
 
-            // Cargar combos para filtros
-            CargarCombos();
+            // 🟢 ACTIVOS PRIMERO
+            productos = productos
+                .OrderByDescending(p => p.estado)
+                .ThenByDescending(p => p.id)
+                .ToList();
 
-            // Mantener valores seleccionados
+
+            int totalRegistros = productos.Count();
+
+            var productosPaginados = productos
+                .Skip((pagina - 1) * registrosPorPagina)
+                .Take(registrosPorPagina)
+                .ToList();
+
+
+            // PAGINACION
+            ViewBag.PaginaActual = pagina;
+            ViewBag.TotalPaginas = Math.Ceiling((double)totalRegistros / registrosPorPagina);
+
+            // BUSQUEDA
+            ViewBag.Buscar = buscar;
+
+            // FILTROS
             ViewBag.idCategoria = idCategoria;
             ViewBag.id_Tono = id_Tono;
             ViewBag.tipoPiel = tipoPiel;
@@ -129,7 +162,9 @@ namespace BeautyGlam.UI.Controllers
             ViewBag.precioMin = precioMin;
             ViewBag.precioMax = precioMax;
 
-            return View(productos);
+            CargarCombos();
+
+            return View(productosPaginados);
         }
 
         // Acción AJAX para actualización dinámica de la tabla
@@ -142,9 +177,7 @@ namespace BeautyGlam.UI.Controllers
             decimal? precioMax
         )
         {
-            var productos = _obtenerLaListaDeProductosLN.Obtener()
-                             .Where(p => p.estado)
-                             .ToList();
+            var productos = _obtenerLaListaDeProductosLN.Obtener().ToList();
 
             if (idCategoria.HasValue)
                 productos = productos.Where(p => p.idCategoria == idCategoria.Value).ToList();
@@ -276,18 +309,23 @@ namespace BeautyGlam.UI.Controllers
         }
 
         // ================== ELIMINAR PRODUCTO ==================
-        public ActionResult EliminarProducto(int id)
+        public ActionResult ActivarDesactivarProducto(int id)
         {
             ProductosDTO producto = new ObtenerProductoPorIdAD().Obtener(id);
             if (producto == null) return RedirectToAction("ListaDeProductos");
+
+            // Mostrar la vista de confirmación para activar/desactivar
             return View(producto);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EliminarProducto(ProductosDTO elProductoParaGuardar)
+        public async Task<ActionResult> ActivarDesactivarProducto(ProductosDTO elProductoParaGuardar)
         {
-            await _eliminarProductoLN.Eliminar(elProductoParaGuardar);
+            // Cambiar el estado del producto (activar/desactivar)
+            elProductoParaGuardar.estado = !elProductoParaGuardar.estado;
+
+            await _eliminarProductoLN.ActivarDesactivar(elProductoParaGuardar);  // Llamamos a la lógica para actualizar el producto
             return RedirectToAction("ListaDeProductos");
         }
     }

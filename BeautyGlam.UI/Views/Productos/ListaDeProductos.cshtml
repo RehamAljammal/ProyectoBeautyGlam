@@ -5,6 +5,53 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .prod-pagination {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        margin-top: 20px;
+    }
+
+    .prod-page-link {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+        color: #6b4c7a;
+        background: #f6f1fb;
+        border: 1px solid #eadff3;
+    }
+
+        .prod-page-link.active {
+            background: linear-gradient(135deg,#ffb7d5,#cdb7ff);
+            color: white;
+            border: none;
+        }
+
+    .prod-actions {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+    }
+
+        .prod-actions .prod-btn {
+            white-space: nowrap;
+        }
+
+        .prod-actions .prod-btn {
+            min-width: 120px;
+            text-align: center;
+        }
+</style>
+
 <section class="section-space prod-page">
     <div class="container">
 
@@ -112,7 +159,31 @@
 
 
 
+
         <!-- ================= TABLA PRODUCTOS ================= -->
+
+
+        <div style="padding:15px;">
+            <form method="get" action="@Url.Action("ListaDeProductos","Productos")">
+
+                <div class="d-flex gap-2">
+
+                    <input type="text"
+                           name="buscar"
+                           value="@ViewBag.Buscar"
+                           class="form-control"
+                           placeholder="Buscar producto..." />
+
+                    <button type="submit" class="sup-btn">
+                        Buscar 🔎
+                    </button>
+
+                </div>
+
+            </form>
+        </div>
+
+        <!-- ================= CARD LISTA ================= -->
 
         <div class="bg-white rounded-4 shadow-sm p-3">
 
@@ -200,10 +271,20 @@
                                                 Editar
                                             </a>
 
-                                            <a href="@Url.Action("EliminarProducto","Productos", new { id = item.id })"
-                                               class="prod-btn prod-btn-danger prod-btn-sm">
-                                                Eliminar
-                                            </a>
+                                            @if (item.estado)
+                                            {
+                                                <a href="@Url.Action("ActivarDesactivarProducto", "Productos", new { id = item.id })"
+                                                   class="prod-btn prod-btn-danger prod-btn-sm">
+                                                    Desactivar
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a href="@Url.Action("ActivarDesactivarProducto", "Productos", new { id = item.id })"
+                                                   class="prod-btn prod-btn-sm">
+                                                    Activar
+                                                </a>
+                                            }
 
                                         </div>
 
@@ -217,12 +298,26 @@
 
                 </table>
 
+                <div class="prod-pagination">
+
+                    @for (int i = 1; i <= ViewBag.TotalPaginas; i++)
+                    {
+                        <a class="prod-page-link @(i == ViewBag.PaginaActual ? "active" : "")"
+                           href="@Url.Action("ListaDeProductos", new { pagina = i, buscar = ViewBag.Buscar })">
+                            @i
+                        </a>
+                    }
+
+                </div>
+
             </div>
         </div>
 
 
 
+
         <!-- BOTON AGREGAR -->
+
 
         <div class="d-flex justify-content-end mt-4">
 

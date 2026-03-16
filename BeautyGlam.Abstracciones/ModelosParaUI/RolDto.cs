@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace BeautyGlam.Abstracciones.ModelosParaUI
 {
@@ -13,5 +14,7 @@ namespace BeautyGlam.Abstracciones.ModelosParaUI
 
         [Display(Name = "Estado")]
         public bool estado { get; set; }
+
+        public List<int> ModulosSeleccionados { get; set; }
     }
 }
