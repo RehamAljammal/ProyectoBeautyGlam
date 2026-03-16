@@ -107,12 +107,19 @@
     <Compile Include="Proveedores\EliminarProveedor\EliminarProveedorLN.cs" />
     <Compile Include="Proveedores\ListaDeProveedor\ObtenerLaListaDeProveedoresLN.cs" />
     <Compile Include="Proveedores\RegistrarProveedor\RegistrarProveedorLN.cs" />
+
+    <Compile Include="Wishlist\AgregarP\AgregarProductoWishlistLN.cs" />
+    <Compile Include="Wishlist\Crear\CrearWishlistLN.cs" />
+    <Compile Include="Wishlist\EliminarP\EliminarProductoWishlistLN.cs" />
+    <Compile Include="Wishlist\ListaDeWishlist\ObtenerWishlistPorUsuarioLN.cs" />
+
     <Compile Include="Venta\ListadoVenta\ListadoVentaLN.cs" />
     <Compile Include="Venta\RegistrarVentaLN.cs" />
     <Compile Include="Venta\Reporte\ListaDevolucionLN.cs" />
     <Compile Include="Venta\Reporte\RegistrarDevolucionLN.cs" />
     <Compile Include="Venta\Reporte\ReporteDevolucionesLN.cs" />
     <Compile Include="Venta\Reporte\ReporteLN.cs" />
+
   </ItemGroup>
   <!-- Rol, Seguridad y Usuario -->
   <ItemGroup>
@@ -121,6 +128,10 @@
     <Compile Include="Rol\LisaRol\ObtenerLaListaDeRolesLN.cs" />
     <Compile Include="Rol\RegistrarRol\RegistrarRolLN.cs" />
     <Compile Include="Seguridad\PasswordHasher.cs" />
+    <Compile Include="Tono\CrearTono\CrearTonoLN.cs" />
+    <Compile Include="Tono\DesactivarTono\DesactivarTonoLN.cs" />
+    <Compile Include="Tono\EditarTono\EditarTonoLN.cs" />
+    <Compile Include="Tono\ListaDeTono\ObtenerListaTonoLN.cs" />
     <Compile Include="Usuario\CambiarEstadoUsuario\ActualizarEstadoUsuarioLN.cs" />
     <Compile Include="Usuario\EditarUsuario\EditarUsuarioLN.cs" />
     <Compile Include="Usuario\ListaUsuario\ObtenerLaListaDeUsuariosLN.cs" />

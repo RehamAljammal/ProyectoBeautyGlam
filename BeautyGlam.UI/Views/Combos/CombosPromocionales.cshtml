@@ -17,9 +17,12 @@
             </div>
 
             <div>
-                <a href="@Url.Action("Crear","Combos")" class="promo-btn">
-                    + Nuevo combo
-                </a>
+                @if (Session["Rol"]?.ToString() == "Admin")
+                {
+                    <a href="@Url.Action("Crear","Combos")" class="promo-btn">
+                        + Nuevo combo
+                    </a>
+                }
             </div>
 
         </div>
@@ -114,18 +117,35 @@
                                     </span>
                                 </div>
 
-                                <!-- Acciones -->
+                                <!-- ACCIONES -->
                                 <div class="promo-actions text-end mt-3">
 
-                                    <a href="@Url.Action("Editar","Combos", new { id = combo.idCombo })"
-                                       class="promo-btn promo-btn-outline promo-btn-sm">
-                                        Editar ✏️
-                                    </a>
+                                    @if (Session["Rol"]?.ToString() == "Admin")
+                                    {
+                                        <a href="@Url.Action("Editar","Combos", new { id = combo.idCombo })"
+                                           class="promo-btn promo-btn-outline promo-btn-sm">
+                                            Editar ✏️
+                                        </a>
 
-                                    <a href="@Url.Action("Eliminar","Combos", new { id = combo.idCombo })"
-                                       class="promo-btn promo-btn-danger promo-btn-sm">
-                                        Eliminar 🗑️
-                                    </a>
+                                        <a href="@Url.Action("Eliminar","Combos", new { id = combo.idCombo })"
+                                           class="promo-btn promo-btn-danger promo-btn-sm">
+                                            Eliminar 🗑️
+                                        </a>
+                                    }
+                                    else if (Session["IdUsuario"] != null)
+                                    {
+                                        <button class="cat-btn cat-btn-soft"
+                                                onclick="agregarWishlist(@combo.idCombo, this)">
+                                            Agregar a favoritos ♡
+                                        </button>
+                                            }
+                                    else
+                                    {
+                                        <a href="@Url.Action("Login","Cuenta")"
+                                           class="promo-btn">
+                                            Inicia sesión ❤️
+                                        </a>
+                                    }
 
                                 </div>
 
@@ -146,4 +166,36 @@
         </div>
 
     </div>
+
+    <script>
+
+        function agregarWishlist(idCombo, boton) {
+
+            fetch('/Wishlist/Agregar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'idProducto=' + idCombo
+            })
+                .then(r => r.json())
+                .then(data => {
+
+                    if (data.login) {
+                        window.location = "/Cuenta/Login";
+                        return;
+                    }
+
+                    if (data.ok) {
+
+                        boton.innerHTML = "❤️ En favoritos";
+                        boton.disabled = true;
+
+                    }
+
+                });
+
+        }
+
+    </script>
 </section>

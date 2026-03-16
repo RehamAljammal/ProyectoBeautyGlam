@@ -1,146 +1,198 @@
-﻿@{
-    ViewBag.Title = "Wishlist";
+﻿@model IEnumerable<BeautyGlam.Abstracciones.ModelosParaUI.WishlistProductoDto>
+
+@{
+    ViewBag.Title = "Mi Wishlist";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section class="section-space wishlist-page">
+<section class="section-space">
     <div class="container">
 
-        <!-- HEADER LIMPIO -->
-        <div class="wishlist-header text-center mb-5">
-            <p class="wishlist-breadcrumb">Home / Wishlist</p>
-            <h2 class="wishlist-title">Mis Favoritos</h2>
-            <p class="wishlist-subtitle">
-                Aquí están todos los productos que amas 💖
+        <h2 class="wishlist-title">❤️ Mis Productos Favoritos</h2>
+
+        @if (!Model.Any())
+        {
+            <div class="wishlist-empty">
+
+                <h4>No tienes productos en tu wishlist</h4>
+
+                <p>Explora nuestros productos y agrega tus favoritos ❤️</p>
+
+                <a href="@Url.Action("Index","Catalogo")"
+                   class="wishlist-btn">
+                    Ver Productos
+                </a>
+
+            </div>
+        }
+        else
+        {
+
+            <div class="wishlist-grid">
+
+                @foreach (var item in Model)
+                {
+
+                    <div class="wishlist-card">
+
+                        <img src="@Url.Content("~" + item.imagen)"
+                             class="wishlist-img" />
+
+                        <div class="wishlist-info">
+
+                            <h5>@item.nombre</h5>
+
+                            <div class="wishlist-price">
+                                ₡ @item.precio
+                            </div>
+
+                            <div class="wishlist-actions">
+
+                                <form method="post"
+                                      action="@Url.Action("Eliminar","Wishlist")">
+
+                                    <input type="hidden"
+                                           name="idWishlist"
+                                           value="@item.id_Wishlist" />
+
+                                    <input type="hidden"
+                                           name="idProducto"
+                                           value="@item.idProducto" />
+
+                                    <button class="cat-btn cat-btn-soft">
+                                        Eliminar
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                }
+
+            </div>
+
+        }
+
+        <!-- PROMOCIONES DE TEMPORADA -->
+
+        @if (ViewBag.Promociones != null)
+        {
+
+            <hr style="margin-top:40px">
+
+            <h3 class="wishlist-promo-title">
+                🔥 Promociones de temporada
+            </h3>
+
+            <p class="wishlist-promo-sub">
+                Aprovecha estas ofertas especiales 💖
             </p>
-        </div>
 
-        <!-- =========================
-         FAVORITOS
-    ========================== -->
-        <div class="row g-4 justify-content-center">
+            <div class="wishlist-grid">
 
-            <!-- ITEM -->
-            <div class="col-6 col-md-4 col-lg-3">
-                <div class="wishlist-card">
+                @foreach (var promo in ViewBag.Promociones)
+                {
 
-                    <img src="https://media.kohlsimg.com/is/image/kohls/63cef9cedb4cf16a9de331175c86c3c8c7376519"
-                         class="wishlist-img" />
+                    <div class="wishlist-card">
 
-                    <h5 class="wishlist-name">Rare Beauty – Soft Pinch Blush</h5>
-                    <p class="wishlist-desc">Tono: Joy</p>
+                        <img src="@Url.Content("~" + promo.imagen)"
+                             class="wishlist-img"
+                             alt="@promo.titulo" />
 
-                    <div class="wishlist-footer">
-                        <span class="wishlist-price">$23.00</span>
-                        <button class="btn wishlist-btn">Quitar ✕</button>
-                    </div>
+                        <h5>@promo.titulo</h5>
 
-                </div>
-            </div>
+                        <p>@promo.descripcion</p>
 
-            <!-- ITEM -->
-            <div class="col-6 col-md-4 col-lg-3">
-                <div class="wishlist-card">
-
-                    <img src="https://hibeautycr.com/cdn/shop/products/image_f162c51e-65a0-40f5-b7bf-3f0af3075a99_1024x.jpg?v=1614112243"
-                         class="wishlist-img" />
-
-                    <h5 class="wishlist-name">The Ordinary – Niacinamide 10%</h5>
-                    <p class="wishlist-desc">30ml</p>
-
-                    <div class="wishlist-footer">
-                        <span class="wishlist-price">$12.00</span>
-                        <button class="btn wishlist-btn">Quitar ✕</button>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- ITEM -->
-            <div class="col-6 col-md-4 col-lg-3">
-                <div class="wishlist-card">
-
-                    <img src="https://siman.vtexassets.com/arquivos/ids/6926873-800-auto?v=638836357033200000"
-                         class="wishlist-img" />
-
-                    <h5 class="wishlist-name">Bolso – Colección Chic Beige</h5>
-                    <p class="wishlist-desc">Edición 2025</p>
-
-                    <div class="wishlist-footer">
-                        <span class="wishlist-price">$49.00</span>
-                        <button class="btn wishlist-btn">Quitar ✕</button>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-
-        <!-- PROMOCIONES SUGERIDAS (en un bloque pro) -->
-        <div class="wl-block mt-5">
-            <div class="wl-block-head">
-                <span class="wl-badge">Para ti</span>
-                <h3 class="wl-section-title mb-1">Promociones sugeridas</h3>
-                <p class="wl-section-subtitle mb-0">Basado en tus favoritos recientes 💞</p>
-            </div>
-
-            <div class="wl-block-body">
-                <div class="row g-4 g-sm-4">
-
-                    <!-- Promo 1 -->
-                    <div class="col-12 col-sm-6 col-lg-4">
-                        <div class="wl-card">
-                            <div class="wl-thumb mb-3">
-                                <img src="https://m.media-amazon.com/images/I/61IAcOGdL2L._SL1500_.jpg"
-                                     alt="MAC lipstick" />
-                            </div>
-
-                            <h5 class="wl-name">MAC Lipstick – Ruby Woo</h5>
-                            <p class="wl-meta">15% de descuento</p>
-
-                            <button class="wl-btn wl-btn-primary w-100 mt-2" type="button">
-                                Agregar 💖
-                            </button>
+                        <div class="wishlist-price">
+                            ₡ @promo.totalConDescuento
                         </div>
+
+                       
+
+
+
                     </div>
 
-                    <!-- Promo 2 -->
-                    <div class="col-12 col-sm-6 col-lg-4">
-                        <div class="wl-card">
-                            <div class="wl-thumb mb-3">
-                                <img src="https://www.beautycreationscosmetics.com/cdn/shop/products/floral-bloom-eye-bloom-palette-eyes-beauty-creations-ep12-336575.jpg?v=1740008489"
-                                     alt="Beauty Creations Palette" />
-                            </div>
+                }
 
-                            <h5 class="wl-name">Beauty Creations – Pro Palette</h5>
-                            <p class="wl-meta">Nuevo lanzamiento</p>
-
-                            <button class="wl-btn wl-btn-primary w-100 mt-2" type="button">
-                                Agregar 💖
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Promo 3 -->
-                    <div class="col-12 col-sm-6 col-lg-4">
-                        <div class="wl-card">
-                            <div class="wl-thumb mb-3">
-                                <img src="https://image3.nihaojewelry.com/fit-in/800x800/filters:quality(80)/filters:format(webp)/product/2025/10/9/1976206595268415488/Trendy-Minimalist-Titanium-Steel-18K-Gold-Plated-Heart-Necklace-Women-s-Jewelry-Set-Luxury-Fashion-Simple-Style-Earrings-0.jpg"
-                                     alt="Joyas gold" />
-                            </div>
-
-                            <h5 class="wl-name">Joyas Minimalistas – Aretes Gold</h5>
-                            <p class="wl-meta">Envío gratis</p>
-
-                            <button class="wl-btn wl-btn-primary w-100 mt-2" type="button">
-                                Agregar 💖
-                            </button>
-                        </div>
-                    </div>
-
-                </div>
             </div>
-        </div>
+
+        }
+
     </div>
 </section>
 
+<style>
+
+    .wishlist-title {
+        text-align: center;
+        color: #5c3b6f;
+        font-weight: 700;
+        margin-bottom: 30px;
+    }
+
+    .wishlist-empty {
+        text-align: center;
+        margin-top: 40px;
+        color: #6b4c7a;
+    }
+
+    .wishlist-btn {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 10px 18px;
+        background: #5c3b6f;
+        color: white;
+        border-radius: 12px;
+        text-decoration: none;
+    }
+
+    .wishlist-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+        gap: 20px;
+        margin-top: 25px;
+    }
+
+    .wishlist-card {
+        background: white;
+        padding: 18px;
+        border-radius: 18px;
+        box-shadow: 0 10px 25px rgba(0,0,0,.08);
+        text-align: center;
+    }
+
+    .wishlist-img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        margin-bottom: 12px;
+    }
+
+    .wishlist-price {
+        font-weight: 700;
+        color: #5c3b6f;
+        margin: 8px 0;
+    }
+
+    .wishlist-actions {
+        margin-top: 10px;
+    }
+
+    .wishlist-promo-title {
+        text-align: center;
+        margin-top: 40px;
+        color: #5c3b6f;
+        font-weight: 700;
+    }
+
+    .wishlist-promo-sub {
+        text-align: center;
+        color: #6b4c7a;
+        margin-bottom: 15px;
+    }
+</style>

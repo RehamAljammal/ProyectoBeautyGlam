@@ -1,0 +1,100 @@
+﻿@model IEnumerable<BeautyGlam.Abstracciones.ModelosParaUI.TonoDTO>
+
+@{
+    ViewBag.Title = "Tonos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space sup-page">
+    <div class="container sup-container">
+
+        <div class="sup-header">
+            <h2 class="sup-title">Tonos</h2>
+            <p class="sup-subtitle">Administra los tonos disponibles en los productos ✨</p>
+        </div>
+
+        <div class="sup-card">
+
+            <div class="sup-card-head">
+                <span class="sup-badge">Listado</span>
+
+                <a href="@Url.Action("Crear","Tono")" class="sup-btn">
+                    + Registrar Tono
+                </a>
+            </div>
+
+            <div class="sup-table-wrap table-responsive">
+                <table class="table table-striped align-middle sup-table">
+
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Estado</th>
+                            <th class="text-center" style="width:300px;">Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    <strong style="color:#5c3b6f;">
+                                        @item.nombre
+                                    </strong>
+                                </td>
+
+                                <td>
+                                    @if (item.estado)
+                                    {
+                                        <span class="sup-chip sup-chip-ok">
+                                            Activo
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="sup-chip sup-chip-off">
+                                            Inactivo
+                                        </span>
+                                    }
+                                </td>
+
+                                <td class="text-center">
+
+                                    <div class="sup-actions">
+
+                                        <a href="@Url.Action("Editar","Tono", new { id = item.id_Tono })"
+                                           class="sup-btn sup-btn-outline sup-btn-sm">
+                                            Editar ✏️
+                                        </a>
+
+                                        @if (item.estado)
+                                        {
+                                            using (Html.BeginForm("Desactivar", "Tono", FormMethod.Post))
+                                            {
+                                                @Html.Hidden("id", item.id_Tono)
+
+                                                <button type="submit"
+                                                        class="sup-btn sup-btn-danger sup-btn-sm">
+                                                    Inactivar 🗑️
+                                                </button>
+                                            }
+                                        }
+
+                                    </div>
+
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+</section>

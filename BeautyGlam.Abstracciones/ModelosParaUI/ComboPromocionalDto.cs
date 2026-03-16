@@ -19,6 +19,7 @@ namespace BeautyGlam.Abstracciones.ModelosParaUI
 
         public decimal descuento { get; set; }
 
+        public string imagen { get; set;  }
         public decimal totalConDescuento
         {
             get
