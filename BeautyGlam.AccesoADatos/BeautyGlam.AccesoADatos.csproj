@@ -90,8 +90,8 @@
     <Compile Include="Entidades\RolAD.cs" />
     <Compile Include="Entidades\TonoAD.cs" />
     <Compile Include="Entidades\UsuarioAD.cs" />
-    <Compile Include="Entidades\Wishlist.cs" />
-    <Compile Include="Entidades\WishlistProducto.cs" />
+    <Compile Include="Entidades\WishlistAD.cs" />
+    <Compile Include="Entidades\WishlistProductoAD.cs" />
     <Compile Include="GuiaRegalo\EditarRegalo\EditarGuiaRegaloAD.cs" />
     <Compile Include="GuiaRegalo\EliminarRegalo\EliminarGuiaRegaloAD.cs" />
     <Compile Include="GuiaRegalo\ObtenerGuiaRegaloAD.cs" />
@@ -150,7 +150,10 @@
     <Compile Include="Usuarios\ListaUsuario\ObtenerListaDeUsuariosAD.cs" />
     <Compile Include="Usuarios\ObtenerUsuarioPorId\ObtenerUsuarioPorIdAD.cs" />
     <Compile Include="Usuarios\RegistrarUsuario\RegistrarUsuarioAD.cs" />
-    <Compile Include="Wishlist\NewFolder1\ObtenerWishlistAD.cs" />
+    <Compile Include="Wishlist\AgregarP\AgregarProductoWishlistAD.cs" />
+    <Compile Include="Wishlist\Crear\CrearWishlistAD.cs" />
+    <Compile Include="Wishlist\EliminarP\EliminarProductoWishlistAD.cs" />
+    <Compile Include="Wishlist\ListaDeWishlt\ObtenerWishlistPorUsuarioAD.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

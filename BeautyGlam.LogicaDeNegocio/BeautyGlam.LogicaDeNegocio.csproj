@@ -102,6 +102,10 @@
     <Compile Include="Proveedores\EliminarProveedor\EliminarProveedorLN.cs" />
     <Compile Include="Proveedores\ListaDeProveedor\ObtenerLaListaDeProveedoresLN.cs" />
     <Compile Include="Proveedores\RegistrarProveedor\RegistrarProveedorLN.cs" />
+    <Compile Include="Wishlist\AgregarP\AgregarProductoWishlistLN.cs" />
+    <Compile Include="Wishlist\Crear\CrearWishlistLN.cs" />
+    <Compile Include="Wishlist\EliminarP\EliminarProductoWishlistLN.cs" />
+    <Compile Include="Wishlist\ListaDeWishlist\ObtenerWishlistPorUsuarioLN.cs" />
   </ItemGroup>
   <!-- Rol, Seguridad y Usuario -->
   <ItemGroup>

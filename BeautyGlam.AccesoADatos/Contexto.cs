@@ -31,12 +31,8 @@ namespace BeautyGlam.AccesoADatos
         public DbSet<BlogAD> Blog { get; set; }
         public DbSet<ComentarioBlogAD> ComentarioBlog { get; set; }
         public DbSet<TonoAD> Tono { get; set; }
-
-        // ===============================
-        // WISHLIST
-        // ===============================
-        //  public DbSet<WishlistAD> Wishlist { get; set; }
-        // public DbSet<WishlistProductoAD> WishlistProducto { get; set; }
+        public DbSet<WishlistAD> Wishlist { get; set; }
+        public DbSet<WishlistProductoAD> WishlistProducto { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

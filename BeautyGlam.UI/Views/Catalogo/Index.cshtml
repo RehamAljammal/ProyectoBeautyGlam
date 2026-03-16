@@ -148,10 +148,10 @@
                                     Ver producto ✨
                                 </a>
 
-                                <a href="@Url.Action("Index","Wishlist")"
-                                   class="cat-btn cat-btn-soft">
+                                <button class="cat-btn cat-btn-soft"
+                                        onclick="agregarWishlist(@producto.id, this)">
                                     Agregar a wishlist ♡
-                                </a>
+                                </button>
 
                             </div>
 
@@ -320,6 +320,7 @@
         document.getElementById(hiddenId).value = raw;
     }
 
+
     // Precarga valores cuando vuelve del filtro
     window.onload = function () {
         if ('@ViewBag.Min') {
@@ -333,4 +334,39 @@
                 '₡ ' + parseInt(max).toLocaleString('es-CR');
         }
     };
+
+</script>
+<script>
+
+    function agregarWishlist(idProducto, boton) {
+
+        fetch('/Wishlist/Agregar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'idProducto=' + idProducto
+        })
+            .then(response => response.json())
+            .then(data => {
+
+                if (data.login) {
+                    window.location = '/Cuenta/Login';
+                    return;
+                }
+
+                if (data.ok) {
+
+                    boton.innerHTML = "❤️ En favoritos";
+                    boton.disabled = true;
+
+                }
+
+            })
+            .catch(error => {
+                console.log("Error al agregar a wishlist");
+            });
+
+    }
+
 </script>

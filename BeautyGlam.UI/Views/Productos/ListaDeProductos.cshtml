@@ -8,72 +8,87 @@
 <section class="section-space prod-page">
     <div class="container">
 
-        <!-- Encabezado -->
+        <!-- ================= FILTROS ================= -->
         <div class="bg-white rounded-4 shadow-sm p-4 mb-4">
 
             <form id="filtrosForm">
 
                 <div class="row g-3">
 
+                    <!-- CATEGORIA -->
                     <div class="col-md-2">
-                        <label class="form-label fw-semibold small d-block mb-1">
-                            Categoría
-                        </label>
-                        @Html.DropDownList("idCategoria",
-                            (SelectList)ViewBag.Categorias,
-                            "Todas",
-                            new { @class = "form-control rounded-pill" })
+                        <label class="form-label fw-semibold small d-block mb-1">Categoría</label>
+
+                        <input type="text"
+                               id="txtCategoriaShow"
+                               class="form-control rounded-pill"
+                               placeholder="Todas"
+                               readonly
+                               onclick="openPicker('cat')" />
+
+                        <input type="hidden" name="idCategoria" id="hidCategoriaId" />
                     </div>
 
-                    <div class="col-md-2">
-                        <label class="form-label fw-semibold small d-block mb-1">
-                            Tono
-                        </label>
 
-                        @Html.DropDownList(
-                            "id_Tono",
-                            ViewBag.Tonos as SelectList,
-                            "Todos",
-                            new { @class = "form-control rounded-pill" }
-                        )
+                    <!-- TONO -->
+                    <div class="col-md-2">
+                        <label class="form-label fw-semibold small d-block mb-1">Tono</label>
+
+                        <input type="text"
+                               id="txtTonoShow"
+                               class="form-control rounded-pill"
+                               placeholder="Todos"
+                               readonly
+                               onclick="openPicker('tono')" />
+
+                        <input type="hidden" name="id_Tono" id="hidTonoId" />
                     </div>
 
+
+                    <!-- TIPO DE PIEL -->
                     <div class="col-md-2">
-                        <label class="form-label fw-semibold small d-block mb-1">
-                            Tipo de piel
-                        </label>
-                        <select name="tipoPiel" class="form-control rounded-pill">
-                            <option value="">Todos</option>
-                            <option>Seca</option>
-                            <option>Grasa</option>
-                            <option>Mixta</option>
-                            <option>Sensible</option>
-                        </select>
+                        <label class="form-label fw-semibold small d-block mb-1">Tipo de piel</label>
+
+                        <input type="text"
+                               id="txtTipoPielShow"
+                               class="form-control rounded-pill"
+                               placeholder="Todos"
+                               readonly
+                               onclick="openPicker('piel')" />
+
+                        <input type="hidden" name="tipoPiel" id="hidTipoPiel" />
                     </div>
 
+
+                    <!-- MARCA -->
                     <div class="col-md-2">
-                        <label class="form-label fw-semibold small d-block mb-1">
-                            Marca
-                        </label>
-                        @Html.DropDownList("idMarca",
-                            (SelectList)ViewBag.Marcas,
-                            "Todas",
-                            new { @class = "form-control rounded-pill" })
+                        <label class="form-label fw-semibold small d-block mb-1">Marca</label>
+
+                        <input type="text"
+                               id="txtMarcaShow"
+                               class="form-control rounded-pill"
+                               placeholder="Todas"
+                               readonly
+                               onclick="openPicker('mar')" />
+
+                        <input type="hidden" name="idMarca" id="hidMarcaId" />
                     </div>
 
+
+                    <!-- PRECIO MIN -->
                     <div class="col-md-2">
-                        <label class="form-label fw-semibold small d-block mb-1">
-                            Precio mín
-                        </label>
+                        <label class="form-label fw-semibold small d-block mb-1">Precio mín</label>
+
                         <input type="number"
                                name="precioMin"
                                class="form-control rounded-pill" />
                     </div>
 
+
+                    <!-- PRECIO MAX -->
                     <div class="col-md-2">
-                        <label class="form-label fw-semibold small d-block mb-1">
-                            Precio máx
-                        </label>
+                        <label class="form-label fw-semibold small d-block mb-1">Precio máx</label>
+
                         <input type="number"
                                name="precioMax"
                                class="form-control rounded-pill" />
@@ -93,11 +108,12 @@
                 </div>
 
             </form>
-
         </div>
 
 
-        <!-- ================= CARD LISTA ================= -->
+
+        <!-- ================= TABLA PRODUCTOS ================= -->
+
         <div class="bg-white rounded-4 shadow-sm p-3">
 
             <div class="table-responsive">
@@ -137,10 +153,10 @@
 
                                     <td>
                                         <img src="@(string.IsNullOrEmpty(item.imagen)
-                                        ? Url.Content("~/Content/img/no-image.png")
-                                        : (item.imagen.StartsWith("http")
-                                            ? item.imagen
-                                            : Url.Content("~" + item.imagen)))"
+? Url.Content("~/Content/img/no-image.png")
+: (item.imagen.StartsWith("http")
+? item.imagen
+: Url.Content("~" + item.imagen)))"
                                              style="width:46px;height:46px;object-fit:cover;border-radius:8px;" />
                                     </td>
 
@@ -171,6 +187,7 @@
                                     <td>@item.tipoPiel</td>
 
                                     <td class="text-end">
+
                                         <div class="d-inline-flex gap-1">
 
                                             <a href="@Url.Action("DetallesDelProducto","Productos", new { id = item.id })"
@@ -189,6 +206,7 @@
                                             </a>
 
                                         </div>
+
                                     </td>
 
                                 </tr>
@@ -200,9 +218,12 @@
                 </table>
 
             </div>
-
         </div>
-        <!-- BOTÓN AGREGAR PRODUCTO (fuera del listado) -->
+
+
+
+        <!-- BOTON AGREGAR -->
+
         <div class="d-flex justify-content-end mt-4">
 
             <a href="@Url.Action("CrearProducto","Productos")"
@@ -216,31 +237,332 @@
     </div>
 </section>
 
+<!-- ================= MODAL PICKER ================= -->
+
+<div id="pickerOverlay" class="bg-overlay" onclick="closePicker(event)">
+
+    <div class="picker-modal" onclick="stopClose(event)">
+
+        <!-- HEADER -->
+        <div class="picker-head">
+
+            <div>
+                <div class="picker-title" id="pickerTitle">Elegir</div>
+                <div class="picker-sub">Busca y selecciona una opción</div>
+            </div>
+
+            <!-- BOTON X -->
+            <button type="button" class="picker-x" onclick="forceClose()">✕</button>
+
+        </div>
+
+        <!-- BODY -->
+        <div class="picker-body">
+
+            <input type="text"
+                   id="pickerSearch"
+                   class="form-control prod-input"
+                   placeholder="Buscar..."
+                   oninput="filterPicker()" />
+
+            <div id="pickerList" class="picker-list"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    /* OVERLAY */
+
+    .bg-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,.35);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+        z-index: 9999;
+    }
+
+
+    /* MODAL */
+
+    .picker-modal {
+        width: 100%;
+        max-width: 520px;
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0,0,0,.25);
+        overflow: hidden;
+        border: 1px solid #eee;
+    }
+
+
+    /* HEADER */
+
+    .picker-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 16px 18px;
+        background: linear-gradient(90deg,#f9f4ff,#f6fbff);
+        border-bottom: 1px solid #eee;
+    }
+
+    .picker-title {
+        font-weight: 800;
+        color: #5c3b6f;
+        font-size: 18px;
+    }
+
+    .picker-sub {
+        color: #6b4c7a;
+        font-weight: 600;
+        font-size: 13px;
+        margin-top: 2px;
+    }
+
+
+    /* BOTON CERRAR */
+
+    .picker-x {
+        border: none;
+        background: transparent;
+        font-size: 22px;
+        line-height: 1;
+        color: #6b4c7a;
+        cursor: pointer;
+        padding: 4px 8px;
+        border-radius: 6px;
+        transition: background .15s;
+    }
+
+        .picker-x:hover {
+            background: #eee;
+        }
+
+
+    /* BODY */
+
+    .picker-body {
+        padding: 16px 18px;
+    }
+
+
+    /* LISTA */
+
+    .picker-list {
+        margin-top: 12px;
+        max-height: 300px;
+        overflow: auto;
+        padding-right: 4px;
+    }
+
+    .pick-item {
+        border: 1px solid #eee;
+        border-radius: 12px;
+        padding: 10px 12px;
+        margin-bottom: 8px;
+        cursor: pointer;
+        transition: .1s;
+    }
+
+        .pick-item:hover {
+            background: #f7f7f7;
+        }
+
+    .pick-name {
+        font-weight: 600;
+        color: #333;
+    }
+</style>
+
 
 <script>
 
-    const form = document.getElementById("filtrosForm");
-    const btnFiltrar = document.getElementById("btnFiltrar");
-    const btnLimpiar = document.getElementById("btnLimpiar");
+/* ================= DATOS ================= */
 
-    function aplicarFiltros() {
+var DATA = {
 
-        const params = new URLSearchParams(new FormData(form)).toString();
+cat:[
+@foreach (var item in (SelectList)ViewBag.Categorias)
+{
+<text>{id:"@item.Value",name:"@item.Text"},</text>
+}
+],
 
-        fetch('@Url.Action("FiltrarProductos", "Productos")?' + params)
-            .then(r => r.text())
-            .then(html => {
-                document.getElementById("tablaProductos").innerHTML = html;
-            });
-    }
+mar:[
+@foreach (var item in (SelectList)ViewBag.Marcas)
+{
+<text>{id:"@item.Value",name:"@item.Text"},</text>
+}
+],
 
-    function limpiarFiltros() {
-        form.reset();
-        aplicarFiltros();
-    }
+tono:[
+@foreach (var item in (SelectList)ViewBag.Tonos)
+{
+<text>{id:"@item.Value",name:"@item.Text"},</text>
+}
+],
 
-    form.addEventListener("change", aplicarFiltros);
-    btnFiltrar.addEventListener("click", aplicarFiltros);
-    btnLimpiar.addEventListener("click", limpiarFiltros);
+piel:[
+{id:"Seca",name:"Seca"},
+{id:"Grasa",name:"Grasa"},
+{id:"Mixta",name:"Mixta"},
+{id:"Sensible",name:"Sensible"}
+]
+
+};
+
+
+/* ================= PICKER ================= */
+
+var currentType=null;
+
+
+function openPicker(type){
+
+currentType=type;
+
+var title="Elegir";
+
+if(type==="cat") title="Elegir categoría";
+if(type==="mar") title="Elegir marca";
+if(type==="tono") title="Elegir tono";
+if(type==="piel") title="Elegir tipo de piel";
+
+document.getElementById("pickerTitle").innerText=title;
+
+document.getElementById("pickerSearch").value="";
+
+renderPickerList("");
+
+document.getElementById("pickerOverlay").style.display="flex";
+
+setTimeout(function(){
+document.getElementById("pickerSearch").focus();
+},50);
+
+}
+
+
+/* ================= LISTA ================= */
+
+function renderPickerList(query){
+
+var list=document.getElementById("pickerList");
+
+list.innerHTML="";
+
+var arr=DATA[currentType] || [];
+
+var q=(query||"").toLowerCase();
+
+arr.forEach(function(item){
+
+if(q && item.name.toLowerCase().indexOf(q)===-1) return;
+
+var div=document.createElement("div");
+
+div.className="pick-item";
+
+div.setAttribute("data-id",item.id);
+div.setAttribute("data-name",item.name);
+
+div.onclick=function(){
+
+var id=this.getAttribute("data-id");
+var name=this.getAttribute("data-name");
+
+applySelection(currentType,id,name);
+
+forceClose();
+
+};
+
+div.innerHTML='<div class="pick-name">'+item.name+'</div>';
+
+list.appendChild(div);
+
+});
+
+}
+
+
+function filterPicker(){
+
+var q=document.getElementById("pickerSearch").value;
+
+renderPickerList(q);
+
+}
+
+
+/* ================= SELECCION ================= */
+
+function applySelection(type,id,name){
+
+if(type==="cat"){
+document.getElementById("hidCategoriaId").value=id;
+document.getElementById("txtCategoriaShow").value=name;
+}
+
+if(type==="mar"){
+document.getElementById("hidMarcaId").value=id;
+document.getElementById("txtMarcaShow").value=name;
+}
+
+if(type==="tono"){
+document.getElementById("hidTonoId").value=id;
+document.getElementById("txtTonoShow").value=name;
+}
+
+if(type==="piel"){
+document.getElementById("hidTipoPiel").value=id;
+document.getElementById("txtTipoPielShow").value=name;
+}
+
+}
+
+document.getElementById("btnFiltrar").addEventListener("click", function () {
+
+    var form = document.getElementById("filtrosForm");
+    var data = new FormData(form);
+
+    fetch('@Url.Action("FiltrarProductos","Productos")', {
+        method: "POST",
+        body: data
+    })
+    .then(response => response.text())
+    .then(html => {
+
+        document.getElementById("tablaProductos").innerHTML = html;
+
+    });
+
+});
+
+/* ================= CERRAR ================= */
+
+function forceClose(){
+document.getElementById("pickerOverlay").style.display="none";
+}
+
+function closePicker(e){
+
+if(e.target.id==="pickerOverlay"){
+forceClose();
+}
+
+}
+
+function stopClose(e){
+e.stopPropagation();
+}
 
 </script>
