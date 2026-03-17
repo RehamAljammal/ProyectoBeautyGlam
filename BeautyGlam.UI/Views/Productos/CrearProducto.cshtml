@@ -66,14 +66,16 @@
                                 </div>
                                 <!-- TONO -->
                                 <div class="col-md-6 d-flex flex-column">
-                                    @Html.LabelFor(m => m.tono, new { @class = "prod-label mb-1" })
 
-                                    @Html.DropDownListFor(m => m.tono,
-                                        new SelectList(new[] { "Claro", "Medio", "Oscuro" }),
+                                    @Html.LabelFor(m => m.id_Tono, new { @class = "prod-label mb-1" })
+
+                                    @Html.DropDownListFor(m => m.id_Tono,
+                                        (SelectList)ViewBag.Tonos,
                                         "Seleccione un tono",
                                         new { @class = "form-control prod-input" })
 
-                                    @Html.ValidationMessageFor(m => m.tono, "", new { @class = "text-danger" })
+                                    @Html.ValidationMessageFor(m => m.id_Tono, "", new { @class = "text-danger" })
+
                                 </div>
 
                                 <!-- TIPO DE PIEL -->

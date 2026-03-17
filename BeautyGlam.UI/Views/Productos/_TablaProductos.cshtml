@@ -12,78 +12,84 @@ else
 {
     foreach (var item in Model)
     {
-        <tr>
-            <!-- IMAGEN -->
-            <td>
-                <img src="@(string.IsNullOrEmpty(item.imagen)
+<tr>
+    <!-- IMAGEN -->
+    <td>
+        <img src="@(string.IsNullOrEmpty(item.imagen)
                              ? Url.Content("~/Content/img/no-image.png")
                              : (item.imagen.StartsWith("http") ? item.imagen : Url.Content("~" + item.imagen)))"
-                     style="width:70px;height:70px;object-fit:cover;border-radius:12px;" />
-            </td>
+             style="width:70px;height:70px;object-fit:cover;border-radius:12px;" />
+    </td>
 
-            <!-- INFORMACIÓN -->
-            <td>
-                <strong style="color:#5c3b6f;">@item.nombre</strong>
-                <div class="small text-muted">@item.descripcion</div>
-            </td>
+    <!-- INFORMACIÓN -->
+    <td>
+        <strong style="color:#5c3b6f;">@item.nombre</strong>
+        <div class="small text-muted">@item.descripcion</div>
+    </td>
 
-            <!-- CATEGORÍA -->
-            <td>@item.nombreCategoria</td>
+    <!-- CATEGORÍA -->
+    <td>@item.nombreCategoria</td>
 
-            <!-- MARCA -->
-            <td>@item.nombreMarca</td>
+    <!-- MARCA -->
+    <td>@item.nombreMarca</td>
 
-            <!-- PROVEEDOR -->
-            <td>@item.nombreProveedor</td>
+    <!-- PROVEEDOR -->
+    <td>@item.nombreProveedor</td>
 
-            <!-- PRECIO -->
-            <td>₡ @item.precio</td>
 
-            <!-- ESTADO -->
-            <td>
-                @if (item.estado)
-                {
-                    <span class="prod-chip prod-chip-ok">Activo</span>
-                }
-                else
-                {
-                    <span class="prod-chip prod-chip-off">Inactivo</span>
-                }
-            </td>
+    <!-- PRECIO -->
+    <td>₡ @item.precio</td>
 
-            <!-- TEMPORADA -->
-            <td>
-                @if (item.EsTemporada)
-                {
-                    <span class="prod-chip prod-chip-season">Sí</span>
-                }
-                else
-                {
-                    <span class="prod-chip prod-chip-off">No</span>
-                }
-            </td>
+    <!-- ESTADO -->
+    <td>
+        @if (item.estado)
+        {
+            <span class="prod-chip prod-chip-ok">Activo</span>
+        }
+        else
+        {
+            <span class="prod-chip prod-chip-off">Inactivo</span>
+        }
+    </td>
+    <!-- TONO -->
+    <td>@item.tono</td>
 
-            <!-- ACCIONES -->
-            <td class="text-end">
-                <div class="prod-actions d-flex gap-2 justify-content-end flex-nowrap">
+    <!-- TIPO DE PIEL -->
+    <td>@item.tipoPiel</td>
 
-                    <a href="@Url.Action("DetallesDelProducto","Productos", new { id = item.id })"
-                       class="prod-btn prod-btn-soft prod-btn-sm">
-                        Ver 👀
-                    </a>
+    <!-- TEMPORADA -->
+    <td>
+        @if (item.EsTemporada)
+        {
+            <span class="prod-chip prod-chip-season">Sí</span>
+        }
+        else
+        {
+            <span class="prod-chip prod-chip-off">No</span>
+        }
+    </td>
 
-                    <a href="@Url.Action("EditarProducto","Productos", new { id = item.id })"
-                       class="prod-btn prod-btn-outline prod-btn-sm">
-                        Editar ✏️
-                    </a>
+    <!-- ACCIONES -->
+    <td class="text-end">
+        <div class="prod-actions d-flex gap-2 justify-content-end flex-nowrap">
 
-                    <a href="@Url.Action("EliminarProducto","Productos", new { id = item.id })"
-                       class="prod-btn prod-btn-danger prod-btn-sm">
-                        Desactivar 🗑️
-                    </a>
+            <a href="@Url.Action("DetallesDelProducto","Productos", new { id = item.id })"
+               class="prod-btn prod-btn-soft prod-btn-sm">
+                Ver 👀
+            </a>
 
-                </div>
-            </td>
-        </tr>
+            <a href="@Url.Action("EditarProducto","Productos", new { id = item.id })"
+               class="prod-btn prod-btn-outline prod-btn-sm">
+                Editar ✏️
+            </a>
+
+            <a href="@Url.Action("EliminarProducto","Productos", new { id = item.id })"
+               class="prod-btn prod-btn-danger prod-btn-sm">
+                Desactivar 🗑️
+            </a>
+
+        </div>
+    </td>
+</tr>
     }
 }

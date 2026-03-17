@@ -1,0 +1,74 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.TonoDTO
+
+@{
+    ViewBag.Title = "Desactivar Tono";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space prod-page">
+    <div class="container prod-container">
+
+        <div class="prod-header">
+            <h2 class="prod-title">Desactivar tono</h2>
+            <p class="prod-subtitle">Confirmar desactivación</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-6">
+
+                <div class="prod-card p-4">
+
+                    <h4 class="text-danger mb-3">
+                        ¿Seguro que deseas desactivar este tono?
+                    </h4>
+
+                    <div class="mb-3">
+                        <label class="prod-label">Nombre del tono</label>
+                        <input type="text"
+                               class="form-control prod-input"
+                               value="@Model.nombre"
+                               disabled />
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="prod-label">Estado actual</label>
+
+                        @if (Model.estado)
+                        {
+                            <span class="badge bg-success">Activo</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Inactivo</span>
+                        }
+                    </div>
+
+                    @using (Html.BeginForm("Desactivar", "Tono", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        @Html.HiddenFor(m => m.id_Tono)
+
+                        <div class="d-flex justify-content-end gap-2">
+
+                            <a href="@Url.Action("Index","Tono")"
+                               class="prod-btn prod-btn-soft">
+                                Cancelar
+                            </a>
+
+                            <button type="submit"
+                                    class="prod-btn"
+                                    style="background:#dc3545;">
+                                Desactivar
+                            </button>
+
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>

@@ -39,6 +39,9 @@ namespace BeautyGlam.Abstracciones.ModelosParaUI
         [Display(Name = "Proveedor")]
         public string nombreProveedor { get; set; }
 
+        // ===== TONO =====
+        [Display(Name = "Tono")]
+        public int id_Tono { get; set; }
 
         [Display(Name = "Estado")]
         public bool estado { get; set; }

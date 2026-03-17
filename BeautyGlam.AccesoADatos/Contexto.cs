@@ -31,6 +31,11 @@ namespace BeautyGlam.AccesoADatos
         public DbSet<BlogAD> Blog { get; set; }
         public DbSet<ComentarioBlogAD> ComentarioBlog { get; set; }
 
+        public DbSet<TonoAD> Tono { get; set; }
+        public DbSet<WishlistAD> Wishlist { get; set; }
+        public DbSet<WishlistProductoAD> WishlistProducto { get; set; }
+
+
         public DbSet<OcasionAD> Ocasiones { get; set; }
         public DbSet<VentaAD> Venta { get; set; }
         public DbSet<DetalleVentaAD> DetalleVenta { get; set; }
@@ -49,6 +54,7 @@ namespace BeautyGlam.AccesoADatos
         // ===============================
         //  public DbSet<WishlistAD> Wishlist { get; set; }
         // public DbSet<WishlistProductoAD> WishlistProducto { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

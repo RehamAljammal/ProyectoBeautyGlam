@@ -35,6 +35,8 @@ namespace BeautyGlam.AccesoADatos.Entidades
         [Column("estado")]
         public bool estado { get; set; } // true = Activo | false = Inactivo
         public bool EsTemporada { get; set; }
+        [Column("id_Tono")]
+        public int id_Tono { get; set; }
 
         [Display(Name = "Tono")]
         public string tono { get; set; }          // Claro, Medio, Oscuro, etc.

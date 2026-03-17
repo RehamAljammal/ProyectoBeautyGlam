@@ -14,6 +14,7 @@ using BeautyGlam.LogicaDeNegocio.Productos.EliminarProducto;
 using BeautyGlam.LogicaDeNegocio.Productos.ListaProductos;
 using BeautyGlam.LogicaDeNegocio.Productos.RegistrarProducto;
 using BeautyGlam.LogicaDeNegocio.Proveedores.ListaDeProveedor;
+using BeautyGlam.LogicaDeNegocio.Tono;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -35,7 +36,7 @@ namespace BeautyGlam.UI.Controllers
         private readonly ObtenerLaListaDeCategoriasLN _obtenerLaListaDeCategoriasLN;
         private readonly ObtenerListaDeMarcaLN _obtenerListaDeMarcaLN;
         private readonly ObtenerLaListaDeProveedoresLN _obtenerLaListaDeProveedoresLN;
-
+        private readonly ObtenerListaTonoLN _obtenerListaTonoLN;
         public ProductosController()
         {
             _obtenerLaListaDeProductosLN = new ObtenerLaListaDeProductosLN();
@@ -47,6 +48,7 @@ namespace BeautyGlam.UI.Controllers
             _obtenerLaListaDeCategoriasLN = new ObtenerLaListaDeCategoriasLN();
             _obtenerListaDeMarcaLN = new ObtenerListaDeMarcaLN();
             _obtenerLaListaDeProveedoresLN = new ObtenerLaListaDeProveedoresLN();
+            _obtenerListaTonoLN = new ObtenerListaTonoLN();
         }
 
         // ===== Cargar combos para dropdowns =====
@@ -72,13 +74,20 @@ namespace BeautyGlam.UI.Controllers
                 "nombre",
                 model?.idProveedor
             );
+
+            ViewBag.Tonos = new SelectList(
+           _obtenerListaTonoLN.ObtenerTodos(),
+           "id_Tono",
+           "nombre",
+           model?.id_Tono
+   );
         }
 
         // ================== LISTA DE PRODUCTOS CON FILTROS ==================
         public ActionResult ListaDeProductos(
             string buscar,
             int? idCategoria,
-            string tono,
+            int? id_Tono,
             string tipoPiel,
             int? idMarca,
             decimal? precioMin,
@@ -107,8 +116,8 @@ namespace BeautyGlam.UI.Controllers
             if (idCategoria.HasValue)
                 productos = productos.Where(p => p.idCategoria == idCategoria.Value).ToList();
 
-            if (!string.IsNullOrEmpty(tono))
-                productos = productos.Where(p => p.tono == tono).ToList();
+            if (id_Tono.HasValue)
+                productos = productos.Where(p => p.id_Tono == id_Tono.Value).ToList();
 
             if (!string.IsNullOrEmpty(tipoPiel))
                 productos = productos.Where(p => p.tipoPiel == tipoPiel).ToList();
@@ -147,7 +156,7 @@ namespace BeautyGlam.UI.Controllers
 
             // FILTROS
             ViewBag.idCategoria = idCategoria;
-            ViewBag.tono = tono;
+            ViewBag.id_Tono = id_Tono;
             ViewBag.tipoPiel = tipoPiel;
             ViewBag.idMarca = idMarca;
             ViewBag.precioMin = precioMin;
@@ -161,7 +170,7 @@ namespace BeautyGlam.UI.Controllers
         // Acción AJAX para actualización dinámica de la tabla
         public ActionResult FiltrarProductos(
             int? idCategoria,
-            string tono,
+            int? id_Tono,
             string tipoPiel,
             int? idMarca,
             decimal? precioMin,
@@ -173,8 +182,9 @@ namespace BeautyGlam.UI.Controllers
             if (idCategoria.HasValue)
                 productos = productos.Where(p => p.idCategoria == idCategoria.Value).ToList();
 
-            if (!string.IsNullOrEmpty(tono))
-                productos = productos.Where(p => p.tono == tono).ToList();
+
+            if (id_Tono.HasValue)
+                productos = productos.Where(p => p.id_Tono == id_Tono.Value).ToList();
 
             if (!string.IsNullOrEmpty(tipoPiel))
                 productos = productos.Where(p => p.tipoPiel == tipoPiel).ToList();
@@ -218,7 +228,8 @@ namespace BeautyGlam.UI.Controllers
                     return View(elProductoParaGuardar);
                 }
 
-                // Guardar imagen
+                elProductoParaGuardar.estado = true;
+
                 if (imagen != null && imagen.ContentLength > 0)
                 {
                     string carpeta = Server.MapPath("~/img/productos/");
@@ -236,6 +247,7 @@ namespace BeautyGlam.UI.Controllers
                 }
 
                 await _agregarProductoLN.Registrar(elProductoParaGuardar);
+
                 return RedirectToAction("ListaDeProductos");
             }
             catch
@@ -244,7 +256,6 @@ namespace BeautyGlam.UI.Controllers
                 return View(elProductoParaGuardar);
             }
         }
-
         // ================== EDITAR PRODUCTO ==================
         public ActionResult EditarProducto(int id)
         {
@@ -270,6 +281,8 @@ namespace BeautyGlam.UI.Controllers
                 productoActual.idCategoria = elProductoParaGuardar.idCategoria;
                 productoActual.idMarca = elProductoParaGuardar.idMarca;
                 productoActual.idProveedor = elProductoParaGuardar.idProveedor;
+                productoActual.id_Tono = elProductoParaGuardar.id_Tono;
+                productoActual.tipoPiel = elProductoParaGuardar.tipoPiel;
                 productoActual.estado = elProductoParaGuardar.estado;
 
                 // Imagen opcional
