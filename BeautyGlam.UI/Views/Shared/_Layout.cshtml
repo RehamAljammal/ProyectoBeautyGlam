@@ -70,24 +70,12 @@
                                             <ul class="submenu">
                                                 <li><a href="@Url.Action("ListaDeUsuarios","Usuarios")">Usuarios</a></li>
                                                 <li><a href="@Url.Action("ListaDeRoles","Rol")">Roles</a></li>
-                                                <li><a href="@Url.Action("Index","Permisos")">Permisos</a></li>
                                                 <li><a href="@Url.Action("ListaDeProveedores","Proveedores")">Proveedores</a></li>
-                                                <li><a href="@Url.Action("ListaDeCategorias","Categorias")">Categorías</a></li>
-                                                <li><a href="@Url.Action("ListaDeMarcas","Marca")">Marcas</a></li>
-                                                <li><a href="@Url.Action("ListaDePromociones","Promociones")">Promociones</a></li>
-                                                <li><a href="@Url.Action("ListaDeProductos","Productos")">Productos</a></li>
-
-                                                <li><a href="@Url.Action("Index","Tono")">Tono</a></li>
-
                                                 <li><a href="@Url.Action("Listado","Venta")">Ventas</a></li>
                                                 <li><a href="@Url.Action("Listado","Devolucion")">Devoluciones</a></li>
                                                 <li><a href="@Url.Action("Ventas","Reporte")">Reporte De Ventas</a></li>
                                                 <li><a href="@Url.Action("Devoluciones","Reporte")">Reporte De Devoluciones</a></li>
                                                 <li><a href="@Url.Action("ListaOcasiones","Ocasiones")">Ocasiones</a></li>
-                                                <li><a href="@Url.Action("ListaDeInventario","Inventario")">Inventario</a></li>
-                                                <li><a href="@Url.Action("Movimientos","Inventario")">Movimientos</a></li>
-
-
                                             </ul>
                                         </li>
                                     }
@@ -98,11 +86,16 @@
                                         <ul class="submenu">
                                             @if (User.IsInRole("Admin"))
                                             {
-                                                <li><a href="@Url.Action("ListaDeProductos","Productos")">Gestión (Admin)</a></li>
-
+                                                <li><a href="@Url.Action("ListaDeProductos","Productos")">Productos</a></li>
+                                                <li><a href="@Url.Action("ListaDeCategorias","Categorias")">Categorías</a></li>
+                                                <li><a href="@Url.Action("ListaDePromociones","Promociones")">Promociones</a></li>
+                                                <li><a href="@Url.Action("ListaDeInventario","Inventario")">Inventario</a></li>
+                                                <li><a href="@Url.Action("Movimientos","Inventario")">Movimientos</a></li>
+                                                <li><a href="@Url.Action("ListaDeMarcas","Marca")">Marcas</a></li>
+                                                <li><a href="@Url.Action("Index","Tono")">Tono</a></li>
                                             }
-                                            <li><a href="@Url.Action("Index","GuiaRegalos")">Guia De Regalos</a></li>
                                             <li><a href="@Url.Action("Index","Catalogo")">Catálogo</a></li>
+                                            <li><a href="@Url.Action("Index","GuiaRegalos")">Guia De Regalos</a></li>
                                             <li><a href="@Url.Action("Index","Wishlist")">Wish List</a></li>
                                             <li><a href="@Url.Action("Index","Combos")">Combos promocionales</a></li>
 
