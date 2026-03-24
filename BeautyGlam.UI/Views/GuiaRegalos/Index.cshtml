@@ -59,113 +59,114 @@
             </p>
         </div>
 
-        <!-- Botón Admin -->
-        <div class="mt-4 text-end">
-            <a class="btn inv-btn rounded-pill"
-               href="@Url.Action("RegistrarRegalo", "GuiaRegalos")">
-                Agregar regalo ➕
-            </a>
-        </div>
-
-        <!-- Filtros -->
-        <div class="inv-filters mb-4 p-4 rounded-4 bg-white shadow-sm">
-            <form id="filtrosForm" class="row g-3" onsubmit="return false;">
-
-                <div class="col-md-2">
-                    <label class="form-label fw-semibold d-block mb-1">Ocasión</label>
-                    <select name="idOcasion" class="form-control w-100 rounded-pill shadow-sm">
-                        <option value="">Todas</option>
-
-                        @foreach (var o in ViewBag.Ocasiones)
-                        {
-                            <option value="@o.idOcasion">@o.nombre</option>
-                        }
-                    </select>
-                </div>
-
-                <div class="col-md-2">
-                    <label class="form-label fw-semibold d-block mb-1">Género</label>
-                    <select name="genero" class="form-control w-100 rounded-pill shadow-sm">
-                        <option value="">Todos</option>
-                        <option>Femenino</option>
-                        <option>Masculino</option>
-                        <option>Unisex</option>
-                    </select>
-                </div>
-
-                <div class="col-md-2">
-                    <label class="form-label fw-semibold d-block mb-1">Categoría</label>
-
-                    <select name="idCategoria" class="form-control w-100 rounded-pill shadow-sm">
-                        <option value="">Todas</option>
-
-                        @foreach (var c in ViewBag.Categorias)
-                        {
-                            <option value="@c.id">@c.nombre</option>
-                        }
-
-                    </select>
-                </div>
-
-                <div class="col-md-2">
-                    <label class="form-label fw-semibold d-block mb-1">Precio mín</label>
-                    <input type="number"
-                           name="precioMin"
-                           class="form-control rounded-pill shadow-sm"
-                           placeholder="₡0" />
-                </div>
-
-                <div class="col-md-2">
-                    <label class="form-label fw-semibold d-block mb-1">Precio máx</label>
-                    <input type="number"
-                           name="precioMax"
-                           class="form-control rounded-pill shadow-sm"
-                           placeholder="₡50000" />
-                </div>
-
-                <div class="col-md-2 d-flex align-items-end">
-                    <button type="button" id="btnFiltrar" class="btn inv-btn w-100 rounded-pill">
-                        Filtrar 🔍
-                    </button>
-                </div>
-
-
-            </form>
-        </div>
-
-        <!-- Tabla -->
-        <div class="inv-table-wrap">
-            <table class="table table-striped inv-table align-middle">
-                <thead>
-                    <tr>
-                        <th>Ocasión</th>
-                        <th>Categoría</th>
-                        <th>Precio</th>
-                        <th>Género</th>
-                        <th>Estado</th>
-                        <th style="width:260px;">Acciones</th>
-                    </tr>
-                </thead>
-
-                <tbody id="tablaGuias">
-                    @Html.Partial("_TablaGuias", Model)
-                </tbody>
-            </table>
-            <div class="usr-pagination">
-
-                @for (int i = 1; i <= ViewBag.TotalPaginas; i++)
-                {
-                    <a class="usr-page-link @(i == ViewBag.PaginaActual ? "active" : "")"
-                       href="@Url.Action("Index", new { pagina = i })">
-                        @i
-                    </a>
-                }
-
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="mt-4 text-end">
+                <a class="btn inv-btn rounded-pill"
+                   href="@Url.Action("RegistrarRegalo", "GuiaRegalos")">
+                    Agregar regalo ➕
+                </a>
             </div>
+        }
+            <!-- Filtros -->
+            <div class="inv-filters mb-4 p-4 rounded-4 bg-white shadow-sm">
+                <form id="filtrosForm" class="row g-3" onsubmit="return false;">
+
+                    <div class="col-md-2">
+                        <label class="form-label fw-semibold d-block mb-1">Ocasión</label>
+                        <select name="idOcasion" class="form-control w-100 rounded-pill shadow-sm">
+                            <option value="">Todas</option>
+
+                            @foreach (var o in ViewBag.Ocasiones)
+                            {
+                                <option value="@o.idOcasion">@o.nombre</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <label class="form-label fw-semibold d-block mb-1">Género</label>
+                        <select name="genero" class="form-control w-100 rounded-pill shadow-sm">
+                            <option value="">Todos</option>
+                            <option>Femenino</option>
+                            <option>Masculino</option>
+                            <option>Unisex</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <label class="form-label fw-semibold d-block mb-1">Categoría</label>
+
+                        <select name="idCategoria" class="form-control w-100 rounded-pill shadow-sm">
+                            <option value="">Todas</option>
+
+                            @foreach (var c in ViewBag.Categorias)
+                            {
+                                <option value="@c.id">@c.nombre</option>
+                            }
+
+                        </select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <label class="form-label fw-semibold d-block mb-1">Precio mín</label>
+                        <input type="number"
+                               name="precioMin"
+                               class="form-control rounded-pill shadow-sm"
+                               placeholder="₡0" />
+                    </div>
+
+                    <div class="col-md-2">
+                        <label class="form-label fw-semibold d-block mb-1">Precio máx</label>
+                        <input type="number"
+                               name="precioMax"
+                               class="form-control rounded-pill shadow-sm"
+                               placeholder="₡50000" />
+                    </div>
+
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button type="button" id="btnFiltrar" class="btn inv-btn w-100 rounded-pill">
+                            Filtrar 🔍
+                        </button>
+                    </div>
+
+
+                </form>
+            </div>
+
+            <!-- Tabla -->
+            <div class="inv-table-wrap">
+                <table class="table table-striped inv-table align-middle">
+                    <thead>
+                        <tr>
+                            <th>Ocasión</th>
+                            <th>Categoría</th>
+                            <th>Precio</th>
+                            <th>Género</th>
+                            <th>Estado</th>
+                            <th style="width:260px;">Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tablaGuias">
+                        @Html.Partial("_TablaGuias", Model)
+                    </tbody>
+                </table>
+                <div class="usr-pagination">
+
+                    @for (int i = 1; i <= ViewBag.TotalPaginas; i++)
+                    {
+                        <a class="usr-page-link @(i == ViewBag.PaginaActual ? "active" : "")"
+                           href="@Url.Action("Index", new { pagina = i })">
+                            @i
+                        </a>
+                    }
+
+                </div>
+            </div>
+
+
         </div>
-
-
-    </div>
 </section>
 
 
