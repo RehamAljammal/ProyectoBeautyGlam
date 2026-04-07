@@ -10,11 +10,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BeautyGlam.AccesoADatos</RootNamespace>
     <AssemblyName>BeautyGlam.AccesoADatos</AssemblyName>
-    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -96,6 +97,7 @@
     <Compile Include="Entidades\RolAD.cs" />
     <Compile Include="Entidades\TonoAD.cs" />
     <Compile Include="Entidades\UsuarioAD.cs" />
+    <Compile Include="Entidades\ValoracionProductoAD.cs" />
     <Compile Include="Entidades\WishlistAD.cs" />
     <Compile Include="Entidades\WishlistProductoAD.cs" />
     <Compile Include="Entidades\RolModuloAD.cs" />
@@ -106,6 +108,11 @@
     <Compile Include="GuiaRegalo\ObtenerGuiaRegaloAD.cs" />
     <Compile Include="GuiaRegalo\ObtenerProductosParaGuiaAD\ObtenerProductosParaGuiaAD.cs" />
     <Compile Include="GuiaRegalo\RegistrarRegalo\RegistrarGuiaRegaloAD.cs" />
+    <Compile Include="HistorialCompras\Detalle\ObtenerDetalleCompraAD.cs" />
+    <Compile Include="HistorialCompras\Lista de Historial\ObtenerHistorialComprasAD .cs" />
+    <Compile Include="HistorialCompras\Reclamo\RegistrarReclamoAD.cs" />
+    <Compile Include="HistorialCompras\Valoración\ObtenerValoracionesPorUsuarioAD.cs" />
+    <Compile Include="HistorialCompras\Valoración\RegistrarValoracionAD.cs" />
     <Compile Include="Inventario\EditarStockActual\EditarStockActualAD.cs" />
     <Compile Include="Inventario\EditarStock\EditarStockAD.cs" />
     <Compile Include="Inventario\ListaDeInventario\ObtenerListaDeInventarioAD.cs" />

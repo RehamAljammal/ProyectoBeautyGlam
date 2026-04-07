@@ -48,7 +48,10 @@ namespace BeautyGlam.AccesoADatos
 
         public DbSet<RolModuloAD> RolModulo { get; set; }
 
-
+        // ===============================
+        // ⭐ VALORACIONES
+        // ===============================
+        public DbSet<ValoracionProductoAD> ValoracionProducto { get; set; }
         // ===============================
         // WISHLIST
         // ===============================
