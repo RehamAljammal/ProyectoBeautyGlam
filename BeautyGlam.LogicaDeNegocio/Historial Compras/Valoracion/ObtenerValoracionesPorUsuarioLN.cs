@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BeautyGlam.LogicaDeNegocio.Valoracion
 {
-    public class ObtenerValoracionesPorUsuarioLN
+    public class ObtenerValoracionesPorUsuarioLN 
     {
-        private readonly IObtenerValoracionesPorUsuarioLN _valoracionesAD;
+        private readonly IObtenerValoracionesPorUsuarioAD _valoracionesAD;
 
         public ObtenerValoracionesPorUsuarioLN()
         {

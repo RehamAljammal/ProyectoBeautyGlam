@@ -123,6 +123,7 @@
     <Compile Include="Venta\Reporte\RegistrarDevolucionLN.cs" />
     <Compile Include="Venta\Reporte\ReporteDevolucionesLN.cs" />
     <Compile Include="Venta\Reporte\ReporteLN.cs" />
+    <Compile Include="Wishlist\Token\ObtenerWishlistPorTokenLN.cs" />
   </ItemGroup>
   <!-- Rol, Seguridad y Usuario -->
   <ItemGroup>

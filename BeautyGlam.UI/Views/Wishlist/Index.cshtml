@@ -76,7 +76,11 @@
             </div>
 
         }
-
+        <div class="text-center mb-4">
+            <a href="@Url.Action("EnviarWhatsApp","Wishlist")" class="promo-btn">
+                Enviar por WhatsApp 📲
+            </a>
+        </div>
         <!-- PROMOCIONES DE TEMPORADA -->
 
         @if (ViewBag.Promociones != null)
@@ -111,7 +115,7 @@
                             ₡ @promo.totalConDescuento
                         </div>
 
-                       
+
 
 
 

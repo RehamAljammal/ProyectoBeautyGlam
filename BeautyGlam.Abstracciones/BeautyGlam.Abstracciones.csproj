@@ -131,6 +131,7 @@
     <Compile Include="AccesoADatos\Venta\Reporte\IRegistrarDevolucionAD.cs" />
     <Compile Include="AccesoADatos\Venta\Reporte\IReporteAD.cs" />
     <Compile Include="AccesoADatos\Venta\Reporte\IReporteDevolucionesAD.cs" />
+    <Compile Include="AccesoADatos\Wishlist\Token\IObtenerWishlistPorTokenAD.cs" />
     <Compile Include="LogicaDeNegocio\Blog\CraerBlog\ICrearBlogLN.cs" />
     <Compile Include="LogicaDeNegocio\Blog\EditarBlog\IEditarBlogLN.cs" />
     <Compile Include="LogicaDeNegocio\Blog\EliminarBlog\IDesactivarBlogLN.cs" />

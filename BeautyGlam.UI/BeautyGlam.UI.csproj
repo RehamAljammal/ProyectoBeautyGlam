@@ -661,6 +661,7 @@
     <Content Include="Views\Promociones\ActivarDesactivarPromocion.cshtml" />
     <Content Include="Views\HistorialCompras\Index.cshtml" />
     <Content Include="Views\HistorialCompras\Detalle.cshtml" />
+    <Content Include="Views\Wishlist\Compartida.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

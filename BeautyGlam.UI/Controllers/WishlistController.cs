@@ -4,13 +4,16 @@ using BeautyGlam.Abstracciones.LogicaDeNegocio.Wishlist.CrearWishlist;
 using BeautyGlam.Abstracciones.LogicaDeNegocio.Wishlist.EliminarProductoWishlist;
 using BeautyGlam.Abstracciones.LogicaDeNegocio.Wishlist.ListaDeWishlist;
 using BeautyGlam.Abstracciones.ModelosParaUI;
+using BeautyGlam.AccesoADatos;
 using BeautyGlam.LogicaDeNegocio.Promociones.Combo;
 using BeautyGlam.LogicaDeNegocio.Wishlist.AgregarProductoWishlist;
+using BeautyGlam.LogicaDeNegocio.Wishlist.CompartirWishlist;
 using BeautyGlam.LogicaDeNegocio.Wishlist.CrearWishlist;
 using BeautyGlam.LogicaDeNegocio.Wishlist.EliminarProductoWishlist;
 using BeautyGlam.LogicaDeNegocio.Wishlist.ListaDeWishlist;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 
 namespace BeautyGlam.Web.Controllers
@@ -23,6 +26,7 @@ namespace BeautyGlam.Web.Controllers
         private readonly IEliminarProductoWishlistLN _eliminarProductoLN;
         private readonly IObtenerWishlistPorUsuarioLN _listaWishlistLN;
         private readonly IObtenerCombosPromocionalesLN _combosPromocionalesLN;
+        private readonly ObtenerWishlistPorTokenLN _wishlistPorTokenLN;
 
         public WishlistController()
         {
@@ -31,6 +35,8 @@ namespace BeautyGlam.Web.Controllers
             _eliminarProductoLN = new EliminarProductoWishlistLN();
             _listaWishlistLN = new ObtenerWishlistPorUsuarioLN();
             _combosPromocionalesLN = new ObtenerCombosPromocionalesLN();
+            _wishlistPorTokenLN = new ObtenerWishlistPorTokenLN();
+
         }
 
         // ==================================
@@ -110,6 +116,42 @@ namespace BeautyGlam.Web.Controllers
             await _eliminarProductoLN.Eliminar(idWishlist, idProducto);
 
             return RedirectToAction("Index");
+        }
+
+        [AllowAnonymous]
+        public async Task<ActionResult> Compartida(string token)
+        {
+            if (string.IsNullOrWhiteSpace(token))
+                return RedirectToAction("Index", "Home");
+
+            var lista = await _wishlistPorTokenLN.Obtener(token);
+
+            return View(lista);
+        }
+
+        public ActionResult EnviarWhatsApp()
+        {
+            if (Session["IdUsuario"] == null)
+                return RedirectToAction("Login", "Auth");
+
+            int idUsuario = (int)Session["IdUsuario"];
+
+            var wishlist = new Contexto().Wishlist.FirstOrDefault(w => w.idUsuario == idUsuario);
+
+            if (wishlist == null)
+                return RedirectToAction("Index");
+
+            string link = Url.Action(
+                "Compartida",
+                "Wishlist",
+                new { token = wishlist.tokenCompartir },
+                protocol: Request.Url.Scheme
+            );
+
+            string mensaje = "¡Quiero compartir mi wishlist! ¡Échale un vistazo!:\n" + link;
+            string whatsappUrl = "https://wa.me/?text=" + HttpUtility.UrlEncode(mensaje);
+
+            return Redirect(whatsappUrl);
         }
     }
 }

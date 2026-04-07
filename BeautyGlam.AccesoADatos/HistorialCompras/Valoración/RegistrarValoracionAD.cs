@@ -1,9 +1,8 @@
 ﻿using BeautyGlam.Abstracciones.AccesoADatos.Historial_de_Compras.Valoracion;
 using BeautyGlam.Abstracciones.ModelosParaUI;
+using BeautyGlam.AccesoADatos.Entidades;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BeautyGlam.AccesoADatos.HistorialCompras.Valoración

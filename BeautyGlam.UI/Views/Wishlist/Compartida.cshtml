@@ -1,0 +1,49 @@
+﻿@model IEnumerable<BeautyGlam.Abstracciones.ModelosParaUI.WishlistProductoDto>
+
+@{
+    ViewBag.Title = "Wishlist compartida";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space promo-page">
+    <div class="container promo-container">
+
+        <div class="promo-header text-center mb-4">
+            <h2 class="promo-title">Productos de interés</h2>
+            <p class="promo-subtitle">Lista compartida por el cliente 💖</p>
+        </div>
+
+        <div class="row justify-content-center">
+
+            @if (Model != null && Model.Any())
+            {
+                foreach (var producto in Model)
+                {
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="promo-card h-100">
+                            <div class="p-3 text-center">
+                                <img src="@producto.imagen"
+                                     style="width:120px;height:120px;object-fit:cover;border-radius:10px;" />
+
+                                <h5 style="color:#5c3b6f; font-weight:600;">
+                                    @producto.nombre
+                                </h5>
+
+                                <p class="text-muted">
+                                    ₡ @producto.precio
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12 text-center text-muted">
+                    No hay productos en esta wishlist.
+                </div>
+            }
+
+        </div>
+    </div>
+</section>

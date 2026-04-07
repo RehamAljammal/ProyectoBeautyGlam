@@ -184,6 +184,7 @@
     <Compile Include="Venta\Reporte\RegistrarDevolucionAD.cs" />
     <Compile Include="Venta\Reporte\ReporteAD.cs" />
     <Compile Include="Venta\Reporte\ReporteDevolucionesAD.cs" />
+    <Compile Include="Wishlist\Token\ObtenerWishlistPorTokenAD.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

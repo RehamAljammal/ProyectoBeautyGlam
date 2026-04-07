@@ -12,10 +12,8 @@ public class ValoracionProductoAD
     [Column("id_Usuario")]
     public int idUsuario { get; set; }
 
-    [Column("id_Producto")]
-    public int idProducto { get; set; }
     [Column("id")]
-    public int id { get; set; }
+    public int idProducto { get; set; }
 
     [Column("estrellas")]
     public int estrellas { get; set; }

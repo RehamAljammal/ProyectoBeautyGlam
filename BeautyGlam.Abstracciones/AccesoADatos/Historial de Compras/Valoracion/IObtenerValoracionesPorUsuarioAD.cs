@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BeautyGlam.Abstracciones.AccesoADatos.Historial_de_Compras.Valoracion
 {
-    public interface IObtenerValoracionesPorUsuarioLN
+    public interface IObtenerValoracionesPorUsuarioAD
     {
         Task<IEnumerable<ValoracionDto>> Obtener(int idUsuario);
     }

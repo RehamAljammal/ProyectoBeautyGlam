@@ -29,7 +29,6 @@ namespace BeautyGlam.Abstracciones.ModelosParaUI
             public int idUsuario { get; set; }
             public int idProducto { get; set; }
             public int idVenta { get; set; }
-             public int id { get; set; }
             public int estrellas { get; set; }
             public string comentario { get; set; }
             public DateTime fecha { get; set; }

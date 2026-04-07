@@ -16,5 +16,8 @@ namespace BeautyGlam.AccesoADatos.Entidades
 
         [Column("fecha_Creacion")]
         public DateTime fechaCreacion { get; set; }
+
+        [Column("token_Compartir")]
+        public string tokenCompartir { get; set; }
     }
 }
