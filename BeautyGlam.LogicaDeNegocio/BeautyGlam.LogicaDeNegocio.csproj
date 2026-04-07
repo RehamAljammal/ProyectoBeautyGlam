@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BeautyGlam.LogicaDeNegocio</RootNamespace>
     <AssemblyName>BeautyGlam.LogicaDeNegocio</AssemblyName>
-    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -69,6 +70,11 @@
     <Compile Include="GuiaRegalo\ObtenerProductosParaGuia\ObtenerProductosParaGuiaLN.cs" />
     <Compile Include="GuiaRegalo\RegistrarRegalo\RegistrarGuiaRegaloLN.cs" />
     <Compile Include="Email\EmailLN.cs" />
+    <Compile Include="Historial Compras\Detalle\ObtenerDetalleCompraLN.cs" />
+    <Compile Include="Historial Compras\Lista de Historial\ObtenerHistorialComprasLN.cs" />
+    <Compile Include="Historial Compras\Reclamo\RegistrarReclamoLN.cs" />
+    <Compile Include="Historial Compras\Valoracion\ObtenerValoracionesPorUsuarioLN.cs" />
+    <Compile Include="Historial Compras\Valoracion\RegistrarValoracionLN.cs" />
     <Compile Include="Inventario\EditarStockActual\EditarStockActualLN.cs" />
     <Compile Include="Inventario\EditarStock\EditarStockLN.cs" />
     <Compile Include="Inventario\ListaDeInventario\ObtenerListaDeInventarioLN.cs" />
@@ -107,19 +113,16 @@
     <Compile Include="Proveedores\EliminarProveedor\EliminarProveedorLN.cs" />
     <Compile Include="Proveedores\ListaDeProveedor\ObtenerLaListaDeProveedoresLN.cs" />
     <Compile Include="Proveedores\RegistrarProveedor\RegistrarProveedorLN.cs" />
-
     <Compile Include="Wishlist\AgregarP\AgregarProductoWishlistLN.cs" />
     <Compile Include="Wishlist\Crear\CrearWishlistLN.cs" />
     <Compile Include="Wishlist\EliminarP\EliminarProductoWishlistLN.cs" />
     <Compile Include="Wishlist\ListaDeWishlist\ObtenerWishlistPorUsuarioLN.cs" />
-
     <Compile Include="Venta\ListadoVenta\ListadoVentaLN.cs" />
     <Compile Include="Venta\RegistrarVentaLN.cs" />
     <Compile Include="Venta\Reporte\ListaDevolucionLN.cs" />
     <Compile Include="Venta\Reporte\RegistrarDevolucionLN.cs" />
     <Compile Include="Venta\Reporte\ReporteDevolucionesLN.cs" />
     <Compile Include="Venta\Reporte\ReporteLN.cs" />
-
   </ItemGroup>
   <!-- Rol, Seguridad y Usuario -->
   <ItemGroup>

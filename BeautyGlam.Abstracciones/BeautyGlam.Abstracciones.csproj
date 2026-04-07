@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BeautyGlam.Abstracciones</RootNamespace>
     <AssemblyName>BeautyGlam.Abstracciones</AssemblyName>
-    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -56,6 +57,11 @@
     <Compile Include="AccesoADatos\Comentarios\EliminarComentario\IDesactivarComentarioAD.cs" />
     <Compile Include="AccesoADatos\Comentarios\ListaDeComentarioPorId\IObtenerComentariosPorBlogAD.cs" />
     <Compile Include="AccesoADatos\Comentarios\ListaDeComentarios\IObtenerListaComentarioAD.cs" />
+    <Compile Include="AccesoADatos\Historial de Compras\Detalle Compras\IObtenerDetalleCompraAD.cs" />
+    <Compile Include="AccesoADatos\Historial de Compras\Lista Historial\IObtenerHistorialComprasAD.cs" />
+    <Compile Include="AccesoADatos\Historial de Compras\Reclamo\IRegistrarReclamoAD.cs" />
+    <Compile Include="AccesoADatos\Historial de Compras\Valoracion\IObtenerValoracionesPorUsuarioAD.cs" />
+    <Compile Include="AccesoADatos\Historial de Compras\Valoracion\IRegistrarValoracionAD.cs" />
     <Compile Include="AccesoADatos\Modulos\ObtenerModulos\IObtenerListaDeModulosAD.cs" />
     <Compile Include="AccesoADatos\Movimiento\IObtenerMovimientosInventarioAD.cs" />
     <Compile Include="AccesoADatos\Movimiento\Registrar\IRegistrarMovimientoInventarioAD.cs" />
@@ -115,19 +121,16 @@
     <Compile Include="AccesoADatos\Usuarios\LisaUsuario\IObtenerListaDeUsuariosAD.cs" />
     <Compile Include="AccesoADatos\Usuarios\ObtenerUsuarioPorId\IObtenerUsuarioPorIdAD.cs" />
     <Compile Include="AccesoADatos\Usuarios\RegistrarUsuario\IRegistrarUsuarioAD.cs" />
-
     <Compile Include="AccesoADatos\Wishlist\AgregarP\IAgregarProductoWishlistAD.cs" />
     <Compile Include="AccesoADatos\Wishlist\Crear\ICrearWishlistDA.cs" />
     <Compile Include="AccesoADatos\Wishlist\EliminarP\IEliminarProductoWishlistAD.cs" />
     <Compile Include="AccesoADatos\Wishlist\ListaDeWishlist\IObtenerWishlistPorUsuarioAD.cs" />
-
     <Compile Include="AccesoADatos\Venta\IRegistrarVentaAD.cs" />
     <Compile Include="AccesoADatos\Venta\ListadoVenta\IVentaAD.cs" />
     <Compile Include="AccesoADatos\Venta\Reporte\IListaDevolucionAD.cs" />
     <Compile Include="AccesoADatos\Venta\Reporte\IRegistrarDevolucionAD.cs" />
     <Compile Include="AccesoADatos\Venta\Reporte\IReporteAD.cs" />
     <Compile Include="AccesoADatos\Venta\Reporte\IReporteDevolucionesAD.cs" />
-
     <Compile Include="LogicaDeNegocio\Blog\CraerBlog\ICrearBlogLN.cs" />
     <Compile Include="LogicaDeNegocio\Blog\EditarBlog\IEditarBlogLN.cs" />
     <Compile Include="LogicaDeNegocio\Blog\EliminarBlog\IDesactivarBlogLN.cs" />
@@ -140,6 +143,10 @@
     <Compile Include="LogicaDeNegocio\Comentario\CrearComentario\ICrearComentarioLN.cs" />
     <Compile Include="LogicaDeNegocio\Comentario\EliminarComentario\IDesactivarComentarioLN.cs" />
     <Compile Include="LogicaDeNegocio\Comentario\ListaDeComentario\IObtenerComentariosLN.cs" />
+    <Compile Include="LogicaDeNegocio\Historial de Compras\Detalle Compras\IObtenerDetalleCompraLN.cs" />
+    <Compile Include="LogicaDeNegocio\Historial de Compras\Lista Historial\IObtenerHistorialComprasLN.cs" />
+    <Compile Include="LogicaDeNegocio\Historial de Compras\Reclamo\IRegistrarReclamoLN.cs" />
+    <Compile Include="LogicaDeNegocio\Historial de Compras\Valoracion\IRegistrarValoracionLN.cs" />
     <Compile Include="LogicaDeNegocio\Movimiento\ObtenerMovimiento\IObtenerMovimientosInventarioLN.cs" />
     <Compile Include="LogicaDeNegocio\Movimiento\Registrar\IRegistrarMovimientoInventarioLN.cs" />
     <Compile Include="LogicaDeNegocio\Ocasiones\Editar\IEditarOcasionLN.cs" />
@@ -180,12 +187,10 @@
     <Compile Include="LogicaDeNegocio\Proveedores\EliminarProveedor\IEliminarProveedorLN.cs" />
     <Compile Include="LogicaDeNegocio\Proveedores\ListaDeProveedor\IObtenerLaListaDeProveedoresLN.cs" />
     <Compile Include="LogicaDeNegocio\Proveedores\RegistrarProveedor\IRegistrarProveedorLN.cs" />
-
     <Compile Include="LogicaDeNegocio\Wishlist\AgregarP\IAgregarProductoWishlistLN.cs" />
     <Compile Include="LogicaDeNegocio\Wishlist\Crear\ICrearWishlistLN.cs" />
     <Compile Include="LogicaDeNegocio\Wishlist\EliminarP\IEliminarProductoWishlistLN.cs" />
     <Compile Include="LogicaDeNegocio\Wishlist\ListaDeWishlist\IObtenerWishlistPorUsuarioLN.cs" />
-
     <Compile Include="LogicaDeNegocio\Venta\IRegistrarVentaLN.cs" />
     <Compile Include="LogicaDeNegocio\Venta\ListadoVenta\IVentaLN.cs" />
     <Compile Include="LogicaDeNegocio\Venta\Reporte\IListaDevolucionLN.cs" />
@@ -198,12 +203,12 @@
     <Compile Include="ModelosParaUI\DetalleVentaDto.cs" />
     <Compile Include="ModelosParaUI\DevolucionDto.cs" />
     <Compile Include="ModelosParaUI\DevolucionListadoDto.cs" />
-
     <Compile Include="ModelosParaUI\BlogDto.cs" />
     <Compile Include="ModelosParaUI\CategoriasDto.cs" />
     <Compile Include="ModelosParaUI\ComboPromocionalDto.cs" />
     <Compile Include="ModelosParaUI\ComentarioBlogDto.cs" />
     <Compile Include="ModelosParaUI\GuiaRegaloDto.cs" />
+    <Compile Include="ModelosParaUI\HistorialCompraDto.cs" />
     <Compile Include="ModelosParaUI\InventarioAvanzadoDto.cs" />
     <Compile Include="ModelosParaUI\InventarioDto.cs" />
     <Compile Include="ModelosParaUI\MarcaDto.cs" />
@@ -242,14 +247,12 @@
     <Compile Include="ModelosParaUI\ResetVigenteDTO.cs" />
     <Compile Include="ModelosParaUI\RestablecerContrasenaDTO.cs" />
     <Compile Include="ModelosParaUI\RolDto.cs" />
-
     <Compile Include="ModelosParaUI\TonoDto.cs" />
     <Compile Include="ModelosParaUI\UsuarioAuthDto.cs" />
     <Compile Include="ModelosParaUI\UsuarioCrearDto.cs" />
     <Compile Include="ModelosParaUI\UsuarioDto.cs" />
     <Compile Include="ModelosParaUI\WishlistDto.cs" />
     <Compile Include="ModelosParaUI\WishlistProductoDto.cs" />
-
     <Compile Include="ModelosParaUI\RolModuloDto.cs" />
     <Compile Include="ModelosParaUI\UsuarioAuthDto.cs" />
     <Compile Include="ModelosParaUI\UsuarioCrearDto.cs" />
@@ -258,7 +261,6 @@
     <Compile Include="ModelosParaUI\VentaFacturaDto.cs" />
     <Compile Include="ModelosParaUI\VentaItemDto.cs" />
     <Compile Include="ModelosParaUI\VentaListadoDto.cs" />
- 
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

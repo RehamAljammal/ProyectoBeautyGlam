@@ -1,0 +1,100 @@
+﻿@model IEnumerable<BeautyGlam.Abstracciones.ModelosParaUI.DetalleCompraDto>
+
+@{
+    ViewBag.Title = "Detalle de Compra";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space promo-page">
+    <div class="container promo-container">
+
+        <div class="promo-header text-center mb-4">
+            <h2 class="promo-title">Detalle de Compra</h2>
+            <p class="promo-subtitle">Productos adquiridos 📦</p>
+        </div>
+
+        <div class="mb-3 text-start">
+            <a href="@Url.Action("Index","HistorialCompras")" class="promo-btn promo-btn-outline">
+                ⬅ Volver al historial
+            </a>
+        </div>
+
+        <!-- MENSAJES -->
+        @if (TempData["Msg"] != null)
+        {
+            <div class="alert alert-success text-center">@TempData["Msg"]</div>
+        }
+
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger text-center">@TempData["Error"]</div>
+        }
+
+        <div class="row justify-content-center">
+
+            @foreach (var producto in Model)
+            {
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="promo-card h-100">
+
+                        <div class="p-3 text-center">
+
+                            <img src="@producto.imagen"
+                                 style="width:120px;height:120px;object-fit:cover;border-radius:10px;" />
+
+                            <h5 class="mt-2">@producto.nombre</h5>
+
+                            <p>Cantidad: @producto.cantidad</p>
+
+                            <p>₡ @producto.precio</p>
+
+                            <!-- ⭐ VALORAR -->
+                            <form method="post" action="@Url.Action("Valorar","HistorialCompras")">
+
+                                <input type="hidden" name="idProducto" value="@producto.idProducto" />
+                                <input type="hidden" name="idVenta" value="@ViewBag.idVenta" />
+
+                                <select name="estrellas" class="form-control mb-2">
+                                    <option value="1">⭐ 1</option>
+                                    <option value="2">⭐⭐ 2</option>
+                                    <option value="3">⭐⭐⭐ 3</option>
+                                    <option value="4">⭐⭐⭐⭐ 4</option>
+                                    <option value="5">⭐⭐⭐⭐⭐ 5</option>
+                                </select>
+
+                                <input type="text" name="comentario"
+                                       placeholder="Comentario..."
+                                       class="form-control mb-2" />
+
+                                <button type="submit" class="promo-btn promo-btn-outline">
+                                    Valorar ⭐
+                                </button>
+
+                            </form>
+
+                            <!-- ⚠ RECLAMO -->
+                            <form method="post" action="@Url.Action("Reclamar","HistorialCompras")" class="mt-2">
+
+                                <input type="hidden" name="idProducto" value="@producto.idProducto" />
+                                <input type="hidden" name="idVenta" value="@ViewBag.idVenta" />
+
+                                <input type="text" name="descripcion"
+                                       placeholder="Reportar problema..."
+                                       class="form-control mb-2" />
+
+                                <button type="submit" class="promo-btn promo-btn-danger">
+                                    Reclamar ⚠
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+                </div>
+            }
+
+        </div>
+
+    </div>
+</section>
