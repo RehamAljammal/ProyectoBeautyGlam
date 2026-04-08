@@ -1,0 +1,25 @@
+name: Build .NET Framework 4.8
+ 
+on:
+  push:
+    branches: [ "main" ]
+ 
+jobs:
+  build:
+    runs-on: windows-latest # Required for .NET Framework
+ 
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+ 
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2 # Configures MSBuild path
+ 
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1 # Restores .config style packages
+ 
+      - name: Restore NuGet packages
+        run: nuget restore BeautyGlam.sln
+        
+      - name: Build Solution
+        run: msbuild BeautyGlam.sln/p:Configuration=Release /p:Platform="Any CPU"
