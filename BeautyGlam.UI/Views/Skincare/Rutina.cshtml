@@ -1,0 +1,174 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.RutinaDTO
+
+@{
+    ViewBag.Title = "Tu Rutina de Skincare";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-space sk-page">
+    <div class="container sk-container">
+
+        <!-- Header -->
+        <div class="sk-header text-center">
+            <h3 class="sk-title">Tu rutina de skincare</h3>
+            <p class="sk-subtitle">
+                Basada en tu diagnóstico, esta es la rutina ideal para tu piel ✨
+            </p>
+        </div>
+
+        <!-- Rutina Mañana -->
+        <div class="sk-card sk-routine">
+            <h5 class="sk-routine-title">🌤 Rutina de mañana</h5>
+
+            <!-- LIMPIEZA -->
+            @if (Model.Limpieza != null)
+            {
+                <div class="sk-routine-step">
+                    <span class="sk-routine-icon">🧼</span>
+                    <div>
+                        <strong>@Model.Limpieza.nombre</strong>
+                        <p>@Model.Limpieza.descripcion</p>
+                        <img src="@Model.Limpieza.imagen" width="80" />
+                        <br />
+                        <a href="@Url.Action("Detalle","Catalogo", new { id = Model.Limpieza.id })">
+                            Ver producto
+                        </a>
+                    </div>
+                </div>
+            }
+
+            <!-- TONICO -->
+            @if (Model.Tonico != null)
+            {
+                <div class="sk-routine-step">
+                    <span class="sk-routine-icon">💧</span>
+                    <div>
+                        <strong>@Model.Tonico.nombre</strong>
+                        <p>@Model.Tonico.descripcion</p>
+                        <img src="@Model.Tonico.imagen" width="80" />
+                        <br />
+                        <a href="@Url.Action("Detalle","Catalogo", new { id = Model.Tonico.id })">
+                            Ver producto
+                        </a>
+                    </div>
+                </div>
+            }
+
+            <!-- SERUM -->
+            @if (Model.Serum != null)
+            {
+                <div class="sk-routine-step">
+                    <span class="sk-routine-icon">✨</span>
+                    <div>
+                        <strong>@Model.Serum.nombre</strong>
+                        <p>@Model.Serum.descripcion</p>
+                        <img src="@Model.Serum.imagen" width="80" />
+                        <br />
+                        <a href="@Url.Action("Detalle","Catalogo", new { id = Model.Serum.id })">
+                            Ver producto
+                        </a>
+                    </div>
+                </div>
+            }
+
+            <!-- HIDRATANTE -->
+            @if (Model.Hidratante != null)
+            {
+                <div class="sk-routine-step">
+                    <span class="sk-routine-icon">🧴</span>
+                    <div>
+                        <strong>@Model.Hidratante.nombre</strong>
+                        <p>@Model.Hidratante.descripcion</p>
+                        <img src="@Model.Hidratante.imagen" width="80" />
+                        <br />
+                        <a href="@Url.Action("Detalle","Catalogo", new { id = Model.Hidratante.id })">
+                            Ver producto
+                        </a>
+                    </div>
+                </div>
+            }
+
+            <!-- PROTECTOR -->
+            @if (Model.ProtectorSolar != null)
+            {
+                <div class="sk-routine-step">
+                    <span class="sk-routine-icon">☀️</span>
+                    <div>
+                        <strong>@Model.ProtectorSolar.nombre</strong>
+                        <p>@Model.ProtectorSolar.descripcion</p>
+                        <img src="@Model.ProtectorSolar.imagen" width="80" />
+                        <br />
+                        <a href="@Url.Action("Detalle","Catalogo", new { id = Model.ProtectorSolar.id })">
+                            Ver producto
+                        </a>
+                    </div>
+
+                </div>
+            }
+        </div>
+
+        <!-- Rutina Noche -->
+        <div class="sk-card sk-routine">
+            <h5 class="sk-routine-title">🌙 Rutina de noche</h5>
+
+            <!-- LIMPIEZA NOCHE -->
+            @if (Model.Limpieza != null)
+            {
+                <div class="sk-routine-step">
+                    <span class="sk-routine-icon">🧼</span>
+                    <div>
+                        <strong>@Model.Limpieza.nombre</strong>
+                        <p>Limpieza profunda para retirar residuos del día.</p>
+                    </div>
+                </div>
+            }
+
+            <!-- SERUM NOCHE -->
+            @if (Model.Serum != null)
+            {
+                <div class="sk-routine-step">
+                    <span class="sk-routine-icon">✨</span>
+                    <div>
+                        <strong>@Model.Serum.nombre</strong>
+                        <p>Tratamiento nocturno.</p>
+                    </div>
+                </div>
+            }
+
+            <!-- CREMA NOCHE -->
+            @if (Model.Hidratante != null)
+            {
+                <div class="sk-routine-step">
+                    <span class="sk-routine-icon">🧴</span>
+                    <div>
+                        <strong>@Model.Hidratante.nombre</strong>
+                        <p>Nutrición profunda.</p>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- SIN RESULTADOS -->
+        @if (Model.Limpieza == null && Model.Hidratante == null)
+        {
+            <div class="alert alert-warning text-center">
+                No encontramos productos específicos 😢 <br />
+                Mostrando rutina general.
+            </div>
+        }
+
+        <!-- Acción -->
+        <div class="sk-action">
+            <a href="@Url.Action("PasoAPaso","Skincare")"
+               class="btn sk-btn">
+                Ver paso a paso ✨
+            </a>
+
+            <a href="@Url.Action("Cuestionario","Skincare")"
+               class="btn sk-btn">
+                Actualizar rutina 🔄
+            </a>
+        </div>
+
+    </div>
+</section>
