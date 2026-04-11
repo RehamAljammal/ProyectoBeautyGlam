@@ -1,0 +1,123 @@
+﻿@model BeautyGlam.Abstracciones.ModelosParaUI.RespuestasSkincareDTO
+
+@using (Html.BeginForm("GenerarRutina", "Skincare", FormMethod.Post))
+{
+    <section class="section-space sk-page">
+        <div class="container sk-container">
+
+            <div class="sk-header text-center">
+                <h3 class="sk-title">Cuéntanos sobre tu piel</h3>
+                <p class="sk-subtitle">
+                    Responde unas preguntas rápidas para crear tu rutina ideal ✨
+                </p>
+            </div>
+
+            <!-- 1 TIPO DE PIEL -->
+            <div class="sk-card">
+                <div class="sk-card-head">
+                    <span class="sk-step">1</span>
+                    <h6 class="sk-question">¿Cómo describirías tu tipo de piel?</h6>
+                </div>
+
+                <div class="sk-field">
+                    @Html.DropDownListFor(m => m.tipoPiel, new SelectList(new[]
+                         {
+                    "Grasa","Seca","Mixta","Sensible"
+                }), "Selecciona una opción", new { @class = "form-select sk-select", required = "required" })
+                </div>
+            </div>
+
+            <!-- 2 PROBLEMAS -->
+            <div class="sk-card">
+                <div class="sk-card-head">
+                    <span class="sk-step">2</span>
+                    <h6 class="sk-question">¿Qué es lo que más te preocupa?</h6>
+                </div>
+
+                <div class="sk-check-group">
+                    <label class="sk-check">
+                        <input type="checkbox" name="problema" value="acne">
+                        <span>Acné</span>
+                    </label>
+                    <label class="sk-check">
+                        <input type="checkbox" name="problema" value="manchas">
+                        <span>Manchas</span>
+                    </label>
+                    <label class="sk-check">
+                        <input type="checkbox" name="problema" value="arrugas">
+                        <span>Arrugas</span>
+                    </label>
+                    <label class="sk-check">
+                        <input type="checkbox" name="problema" value="resequedad">
+                        <span>Resequedad</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 3 FRECUENCIA -->
+            <div class="sk-card">
+                <div class="sk-card-head">
+                    <span class="sk-step">3</span>
+                    <h6 class="sk-question">¿Cada cuánto realizas tu rutina?</h6>
+                </div>
+
+                <div class="sk-field">
+                    @Html.DropDownListFor(m => m.frecuencia, new SelectList(new[]
+                         {
+                    "Diario","Semanal","Nunca"
+                }), null, new { @class = "form-select sk-select" })
+                </div>
+            </div>
+
+            <!-- 4 SENSIBILIDAD -->
+            <div class="sk-card">
+                <div class="sk-card-head">
+                    <span class="sk-step">4</span>
+                    <h6 class="sk-question">¿Tu piel reacciona fácil?</h6>
+                </div>
+
+                <div class="sk-field">
+                    @Html.DropDownListFor(m => m.sensibilidad, new SelectList(new[]
+                         {
+                    "Alta","Media","Baja"
+                }), "Selecciona", new { @class = "form-select sk-select" })
+                </div>
+            </div>
+
+            <!-- 5 OBJETIVOS -->
+            <div class="sk-card">
+                <div class="sk-card-head">
+                    <span class="sk-step">5</span>
+                    <h6 class="sk-question">¿Cuál es tu objetivo?</h6>
+                </div>
+
+                <div class="sk-check-group">
+                    <label class="sk-check">
+                        <input type="checkbox" name="objetivos" value="grasa">
+                        <span>Controlar grasa</span>
+                    </label>
+                    <label class="sk-check">
+                        <input type="checkbox" name="objetivos" value="hidratar">
+                        <span>Hidratar</span>
+                    </label>
+                    <label class="sk-check">
+                        <input type="checkbox" name="objetivos" value="imperfecciones">
+                        <span>Reducir imperfecciones</span>
+                    </label>
+                    <label class="sk-check">
+                        <input type="checkbox" name="objetivos" value="antiage">
+                        <span>Anti-edad</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- BOTON REAL -->
+            <div class="sk-action">
+                <button type="submit" class="btn sk-btn">
+                    Ver mi rutina ✨
+                </button>
+            </div>
+
+        </div>
+    </section>
+}

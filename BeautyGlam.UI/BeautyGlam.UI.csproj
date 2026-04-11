@@ -239,6 +239,7 @@
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CatalogoController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
+    <Compile Include="Controllers\ChatSkincareController.cs" />
     <Compile Include="Controllers\HistorialComprasController.cs" />
     <Compile Include="Controllers\DevolucionController.cs" />
     <Compile Include="Controllers\GuiaRegalosController.cs" />
@@ -254,6 +255,7 @@
     <Compile Include="Controllers\ProveedoresController.cs" />
     <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\SkincareController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\TonoController.cs" />
     <Compile Include="Controllers\VentaController.cs" />
@@ -662,6 +664,12 @@
     <Content Include="Views\HistorialCompras\Index.cshtml" />
     <Content Include="Views\HistorialCompras\Detalle.cshtml" />
     <Content Include="Views\Wishlist\Compartida.cshtml" />
+    <Content Include="Views\ChatSkincare\Index.cshtml" />
+    <Content Include="Views\Skincare\Cuestionario.cshtml" />
+    <Content Include="Views\Skincare\Index.cshtml" />
+    <Content Include="Views\Skincare\PasoAPaso.cshtml" />
+    <Content Include="Views\Skincare\Repeticion.cshtml" />
+    <Content Include="Views\Skincare\Rutina.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
