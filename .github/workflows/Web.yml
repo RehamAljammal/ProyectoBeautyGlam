@@ -1,25 +1,32 @@
-name: Build .NET Framework 4.8
- 
+name: Build and Deploy .NET Framework 4.8 to Azure
+
 on:
   push:
     branches: [ "main" ]
- 
+
 jobs:
-  build:
-    runs-on: windows-latest # Required for .NET Framework
- 
+  build-and-deploy:
+    runs-on: windows-latest
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
- 
+
       - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v2 # Configures MSBuild path
- 
+        uses: microsoft/setup-msbuild@v2
+
       - name: Setup NuGet
-        uses: NuGet/setup-nuget@v1 # Restores .config style packages
- 
+        uses: NuGet/setup-nuget@v1
+
       - name: Restore NuGet packages
         run: nuget restore BeautyGlam.sln
-        
+
       - name: Build Solution
-        run: msbuild BeautyGlam.sln /p:Configuration=Release /p:Platform="Any CPU"
+        run: msbuild BeautyGlam.sln /p:Configuration=Release /p:Platform="Any CPU" /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation=".\publish"
+
+      - name: Deploy to Azure App Service
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: beautyglam-app
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: .\publish\*.zip
